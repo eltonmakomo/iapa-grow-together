@@ -45,14 +45,14 @@ export function CountUp({ value }: { value: string }) {
   const [shown, setShown] = useState(value);
   useEffect(() => {
     if (!m || reduced() || !ref.current) return;
-    const [, pre, numStr, post] = m;
+    const pre = m[1] ?? "", numStr = m[2] ?? "0", post = m[3] ?? "";
     const sep = numStr.match(/[,\s\u00a0\u202f]/)?.[0];
-    const dec = /\.\d+$/.test(numStr) && !/,/.test(numStr) ? numStr.split(".")[1].length : 0;
+    const dec = /\.\d+$/.test(numStr) && !/,/.test(numStr) ? (numStr.split(".")[1] ?? "").length : 0;
     const target = parseFloat(numStr.replace(/[,\s\u00a0\u202f]/g, ""));
     if (!isFinite(target)) return;
     const fmt = (n: number) => {
       const s = n.toFixed(dec);
-      const [i, d] = s.split(".");
+      const [i = "", d] = s.split(".");
       const g = sep && target >= 1000 ? i.replace(/\B(?=(\d{3})+(?!\d))/g, sep) : i;
       return pre + g + (d ? "." + d : "") + post;
     };
