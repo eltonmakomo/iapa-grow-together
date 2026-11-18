@@ -1,4 +1,5 @@
 import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
+import { useSiteMotion } from "@/components/iapa/motion";
 import { SiteFooter, SiteHeader, asLang } from "@/components/iapa/site";
 
 export const Route = createFileRoute("/$lang")({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/$lang")({
 
 function LangLayout() {
   const lang = asLang(Route.useParams().lang);
+  useSiteMotion();
   return (
     <div id="top" lang={lang}>
       <SiteHeader lang={lang} />

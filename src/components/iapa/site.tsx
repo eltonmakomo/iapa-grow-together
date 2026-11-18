@@ -5,6 +5,7 @@ import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
 import { IMG, type ImgKey } from "@/components/iapa/media";
+import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
 
@@ -180,7 +181,7 @@ export function StatGroup({ label, tag, stats, tone }: { label: string; tag: str
         {stats.map(([n, d]) => (
           <div key={d} className="flex flex-col-reverse">
             <dt className={`mt-1 text-sm leading-snug ${tone === "own" ? "text-primary-foreground/90" : "text-muted-foreground"}`}>{d}</dt>
-            <dd className={`text-4xl font-extrabold tracking-tight md:text-5xl ${num}`}>{n}</dd>
+            <dd className={`text-4xl font-extrabold tracking-tight md:text-5xl ${num}`}><CountUp value={n ?? ""} /></dd>
           </div>
         ))}
       </dl>
