@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { Gallery, PageHero, Photo, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
-import { IMG, storyImg } from "@/components/iapa/media";
+import { storyImg, storyPosition } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/our-work")({
   head: ({ params }) => pageHead(params.lang, "our-work"),
@@ -16,7 +16,7 @@ function OurWork() {
   const p = PAGES[lang].work;
   return (
     <>
-      <PageHero eyebrow={w.eyebrow} title={w.title} lead={p.lead} img={IMG.cameroon} />
+      <PageHero eyebrow={w.eyebrow} title={w.title} lead={p.lead} img="cameroon" />
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
@@ -65,7 +65,7 @@ function OurWork() {
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {w.stories.map((s) => (
               <li key={s.title} className="curve-card overflow-hidden bg-card">
-                <img src={storyImg(s.img)} alt="" loading="lazy" className="aspect-[4/3] w-full object-cover" />
+                <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="aspect-[4/3] w-full object-cover object-top origin-top" />
                 <div className="p-5"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold leading-snug">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p></div>
               </li>
             ))}

@@ -4,7 +4,7 @@ import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { Arc, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
 import { GALLERY_TITLE } from "@/lib/iapa-photos";
-import { IMG, storyImg } from "@/components/iapa/media";
+import { IMG, PHOTO_POSITION, storyImg, storyPosition } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -25,7 +25,7 @@ function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
-        <img src={IMG.hero} alt={t.hero.photoAlt} fetchPriority="high" className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center]" />
+        <img src={IMG.hero} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: PHOTO_POSITION.hero }} className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_top] origin-top" />
         <div className="bg-hero-overlay absolute inset-0 -z-10" />
         <div className="container-page flex min-h-[min(78svh,760px)] flex-col justify-center py-20 md:py-28">
           <p className="eyebrow text-sun">{t.hero.eyebrow}</p>
@@ -105,7 +105,7 @@ function Home() {
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {t.work.stories.slice(0, 2).map((s) => (
               <li key={s.title} className="curve-card grid overflow-hidden bg-card sm:grid-cols-[1fr_1.2fr]">
-                <img src={storyImg(s.img)} alt="" loading="lazy" className="h-full min-h-48 w-full object-cover" />
+                <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="h-full min-h-48 w-full object-cover object-top origin-top" />
                 <div className="p-6"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p></div>
               </li>
             ))}

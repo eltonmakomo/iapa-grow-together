@@ -3,7 +3,7 @@ import { Download } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
-import { IMG, PULSE, PULSE_COVER } from "@/components/iapa/media";
+import { PULSE, PULSE_COVER } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/knowledge-hub")({
   head: ({ params }) => pageHead(params.lang, "knowledge-hub"),
@@ -16,7 +16,7 @@ function Hub() {
   const p = PAGES[lang].hub;
   return (
     <>
-      <PageHero eyebrow={h.eyebrow} title={h.title} lead={p.lead} img={IMG.morocco} />
+      <PageHero eyebrow={h.eyebrow} title={h.title} lead={p.lead} img="morocco" />
       <section className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={h.title} lead={h.lead} />

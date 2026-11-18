@@ -4,7 +4,7 @@ import { Globe, Menu, X, ArrowUp, Mail, Phone, MapPin } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
-import { IMG, type ImgKey } from "@/components/iapa/media";
+import { IMG, PHOTO_POSITION, type ImgKey } from "@/components/iapa/media";
 import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
@@ -151,10 +151,10 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
   );
 }
 
-export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: string; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: ImgKey; children?: ReactNode }) {
   return (
     <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
-      <img src={img} alt="" fetchPriority="high" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+      <img src={IMG[img]} alt="" fetchPriority="high" style={{ objectPosition: PHOTO_POSITION[img] }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="container-page py-16 md:py-24">
         <p className="eyebrow text-sun">{eyebrow}</p>
@@ -207,7 +207,7 @@ export function Photo({ k, lang, className = "", ratio = "aspect-[4/3]" }: { k: 
   const cap = CAPTIONS[k]?.[lang] ?? "";
   return (
     <figure className={`curve-card group relative overflow-hidden bg-muted ${className}`}>
-      <img src={IMG[k]} alt={cap} loading="lazy" className={`h-full w-full object-cover transition duration-500 group-hover:scale-105 ${ratio}`} />
+      <img src={IMG[k]} alt={cap} loading="lazy" style={{ objectPosition: PHOTO_POSITION[k] }} className={`h-full w-full object-cover object-top origin-top transition duration-500 group-hover:scale-105 ${ratio}`} />
       {cap && <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent p-4 pt-10 text-sm font-semibold text-forest-foreground">{cap}</figcaption>}
     </figure>
   );

@@ -4,7 +4,7 @@ import { CONTACT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { MEDIA_GALLERY_TITLE } from "@/lib/iapa-photos";
-import { IMG } from "@/components/iapa/media";
+import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/media")({
   head: ({ params }) => pageHead(params.lang, "media"),
@@ -17,14 +17,14 @@ function Media() {
   const m = p.media;
   return (
     <>
-      <PageHero eyebrow={p.nav.media} title={p.nav.media} lead={m.lead} img={IMG.mauritania} />
+      <PageHero eyebrow={p.nav.media} title={p.nav.media} lead={m.lead} img="mauritania" />
       <section className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={m.pressTitle} />
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {m.press.map(([d, h, x], i) => (
               <li key={h} className="curve-card overflow-hidden bg-card">
-                <img src={i === 0 ? IMG.ghana : IMG.signing} alt="" loading="lazy" className="aspect-[16/8] w-full object-cover" />
+                <img src={i === 0 ? IMG.ghana : IMG.signing} alt="" loading="lazy" style={{ objectPosition: PHOTO_POSITION[i === 0 ? "ghana" : "signing"] }} className="aspect-[16/8] w-full object-cover object-top origin-top" />
                 <div className="p-7"><p className="eyebrow">{d}</p><h3 className="mt-2 text-2xl font-extrabold">{h}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{x}</p></div>
               </li>
             ))}

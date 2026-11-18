@@ -26,6 +26,28 @@ export const IMG = {
   burkinaSession: burkinaSession.url, burkinaMaize: burkinaMaize.url, civ: civ.url, spirulina: spirulina.url, seedling: seedling.url,
 };
 export type ImgKey = keyof typeof IMG;
+
+// Focal points keep faces just below the top edge, including in wide banners.
+export const PHOTO_POSITION: Record<ImgKey, string> = {
+  hero: "70% 18%",
+  burkinaMaize: "50% 20%",
+  burkina: "50% 10%",
+  burkinaSession: "50% 30%",
+  cameroon: "50% 0%",
+  robusta: "50% 15%",
+  spirulina: "50% 25%",
+  chadSup: "50% 20%",
+  civ: "50% 15%",
+  evaluation: "50% 65%",
+  ghana: "50% 35%",
+  kenya: "50% 0%",
+  mali: "50% 45%",
+  mauritania: "50% 0%",
+  morocco: "50% 35%",
+  signing: "50% 35%",
+  seedling: "50% 50%",
+};
 export const storyImg = (k: string): string => (IMG as Record<string, string>)[k] ?? IMG.hero;
+export const storyPosition = (k: string): string => (PHOTO_POSITION as Record<string, string>)[k] ?? "50% 0%";
 export const PULSE: Record<string, string> = { "3": pulse3.url, "2": pulse2.url };
 export const PULSE_COVER: Record<string, string> = { "3": pulse3Cover.url, "2": pulse2Cover.url };

@@ -3,7 +3,6 @@ import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { Arc, Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { TRAINING_GALLERY_TITLE } from "@/lib/iapa-photos";
-import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/training")({
   head: ({ params }) => pageHead(params.lang, "training"),
@@ -15,7 +14,7 @@ function Training() {
   const t = CONTENT[lang].training;
   return (
     <>
-      <PageHero eyebrow={t.eyebrow} title={t.title} lead={PAGES[lang].training.lead} img={IMG.burkina} />
+      <PageHero eyebrow={t.eyebrow} title={t.title} lead={PAGES[lang].training.lead} img="burkina" />
       <section className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={t.schoolsTitle} lead={t.lead} />

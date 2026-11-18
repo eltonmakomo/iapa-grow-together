@@ -3,7 +3,6 @@ import { Award, Briefcase, Crown, MapPin, Wallet } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
-import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/who-we-are")({
   head: ({ params }) => pageHead(params.lang, "who-we-are"),
@@ -17,7 +16,7 @@ function WhoWeAre() {
   const p = PAGES[lang].who;
   return (
     <>
-      <PageHero eyebrow={t.eyebrow} title={t.title} lead={p.lead} img={IMG.ghana} />
+      <PageHero eyebrow={t.eyebrow} title={t.title} lead={p.lead} img="ghana" />
 
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-12 lg:grid-cols-2">
