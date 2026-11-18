@@ -1,5 +1,5 @@
 import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
-import { useSiteMotion } from "@/components/iapa/motion";
+import { ScrollProgress, useSiteMotion } from "@/components/iapa/motion";
 import { SiteFooter, SiteHeader, asLang } from "@/components/iapa/site";
 
 export const Route = createFileRoute("/$lang")({
@@ -21,6 +21,7 @@ function LangLayout() {
   useSiteMotion();
   return (
     <div id="top" lang={lang}>
+      <ScrollProgress />
       <SiteHeader lang={lang} />
       <main id="main"><Outlet /></main>
       <SiteFooter lang={lang} />

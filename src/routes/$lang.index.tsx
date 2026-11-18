@@ -44,8 +44,8 @@ function Home() {
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <div>
+        <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <div className="lg:sticky lg:top-32">
             <SectionHead eyebrow={p.homeIntro.eyebrow} title={p.homeIntro.title} lead={p.homeIntro.text} />
             <Link to="/$lang/who-we-are" params={{ lang }} className="mt-7 inline-flex items-center gap-2 font-bold text-primary underline underline-offset-4">{p.nav["who-we-are"]} <ArrowRight className="h-4 w-4" aria-hidden /></Link>
           </div>
@@ -65,11 +65,12 @@ function Home() {
 
       <section className="bg-card py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={p.initiativesTitle} />
-          <ul className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+          <div className="lg:sticky lg:top-32 lg:self-start"><SectionHead title={p.initiativesTitle} /></div>
+          <ul className="grid gap-6">
             {p.initiatives.map(([slug, h, d], i) => (
-              <li key={h}>
-                <Link to={`/$lang/${slug}` as "/$lang/training"} params={{ lang }} className="curve-card group relative block h-full overflow-hidden bg-background p-7 transition hover:-translate-y-1">
+              <li key={h} className="sticky" style={{ top: `${6 + i * 1.5}rem` }}>
+                <Link to={`/$lang/${slug}` as "/$lang/training"} params={{ lang }} className="curve-card group relative block min-h-56 overflow-hidden border bg-background p-7 md:p-10 transition hover:-translate-y-1">
                   <span aria-hidden className={`absolute -right-6 -top-6 h-24 w-24 rounded-full ${["bg-sun/40", "bg-arid/30", "bg-savanna/40"][i]}`} />
                   <h3 className="relative text-xl font-extrabold">{h}</h3>
                   <p className="relative mt-2 leading-relaxed text-muted-foreground">{d}</p>
@@ -78,6 +79,7 @@ function Home() {
               </li>
             ))}
           </ul>
+          </div>
         </div>
       </section>
 

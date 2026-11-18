@@ -75,3 +75,16 @@ export function CountUp({ value }: { value: string }) {
   }, [value]);
   return <span ref={ref} aria-label={value}><span aria-hidden>{shown}</span></span>;
 }
+
+export function ScrollProgress() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const on = () => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      if (ref.current) ref.current.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
+    };
+    on(); addEventListener("scroll", on, { passive: true }); addEventListener("resize", on);
+    return () => { removeEventListener("scroll", on); removeEventListener("resize", on); };
+  }, []);
+  return <div ref={ref} aria-hidden className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-primary via-savanna to-sun" style={{ transform: "scaleX(0)" }} />;
+}
