@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin } from "lucide-react";
+import { Award, Briefcase, Crown, MapPin, Wallet } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
@@ -87,19 +87,43 @@ function WhoWeAre() {
             <Photo k="ghana" lang={lang} ratio="aspect-[16/9]" />
             <Photo k="evaluation" lang={lang} ratio="aspect-[16/9]" />
           </div>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div>
-              <h3 className="text-2xl font-extrabold">{p.boardTitle}</h3>
-              <ul className="mt-4 grid gap-2">
-                {p.board.map((b) => <li key={b} className="rounded-xl bg-card px-4 py-3 font-semibold">{b}</li>)}
+          <div className="mt-14">
+            <h3 className="text-2xl font-extrabold">{p.boardTitle}</h3>
+            <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {p.board.slice(0, 4).map((b, i) => {
+                const Icon = [Crown, Award, Wallet, Briefcase][i]!;
+                return (
+                  <li key={b} className="curve-card flex flex-col items-start gap-4 bg-primary p-6 text-primary-foreground">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sun text-accent-foreground"><Icon className="h-6 w-6" aria-hidden /></span>
+                    <p className="text-lg font-extrabold leading-tight">{b}</p>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="curve-card mt-4 bg-card p-6 md:p-8">
+              <p className="eyebrow">{lang === "fr" ? "Points focaux régionaux" : "Regional focal points"}</p>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                {p.board.slice(4).map((b) => (
+                  <li key={b} className="flex items-start gap-2.5 rounded-2xl bg-secondary p-4">
+                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                    <span className="font-semibold leading-snug">{b.split(/\s[–-]\s/).slice(1).join(" – ") || b}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div>
-              <h3 className="text-2xl font-extrabold">{p.deptTitle}</h3>
-              <ul className="mt-4 grid gap-3">
-                {p.depts.map(([h, d]) => <li key={h} className="rounded-xl border-l-4 border-arid bg-card px-4 py-3"><p className="font-bold">{h}</p><p className="text-sm text-muted-foreground">{d}</p></li>)}
-              </ul>
-            </div>
+          </div>
+          <div className="mt-14">
+            <h3 className="text-2xl font-extrabold">{p.deptTitle}</h3>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {p.depts.map(([h, d], i) => (
+                <li key={h} className="curve-card relative overflow-hidden bg-card p-6">
+                  <span aria-hidden className="absolute -right-3 -top-4 text-7xl font-extrabold text-sun/30">{i + 1}</span>
+                  <span aria-hidden className="block h-1.5 w-10 rounded-full bg-arid" />
+                  <p className="relative mt-4 text-lg font-extrabold leading-tight">{h}</p>
+                  <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
