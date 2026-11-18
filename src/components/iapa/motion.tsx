@@ -15,7 +15,10 @@ export function useSiteMotion() {
       const sib = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
       el.style.setProperty("--reveal-delay", `${Math.min(sib, 6) * 80}ms`);
       el.classList.add("reveal");
+      if (el.matches("figure, li:has(> figure)")) el.classList.add("reveal-zoom");
+      else if (el.closest(".lg\\:grid-cols-2, .md\\:grid-cols-2") && el.parentElement?.children.length === 2) el.classList.add(sib === 0 ? "reveal-left" : "reveal-right");
     });
+    main.querySelectorAll<HTMLElement>("h2.section-title, .eyebrow").forEach((el) => { el.classList.add("reveal", "reveal-title"); els.push(el); });
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
     }), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });

@@ -1,4 +1,4 @@
-import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
+import { createFileRoute, notFound, Outlet, useLocation } from "@tanstack/react-router";
 import { ScrollProgress, useSiteMotion } from "@/components/iapa/motion";
 import { SiteFooter, SiteHeader, asLang } from "@/components/iapa/site";
 
@@ -23,7 +23,7 @@ function LangLayout() {
     <div id="top" lang={lang}>
       <ScrollProgress />
       <SiteHeader lang={lang} />
-      <main id="main"><Outlet /></main>
+      <main id="main" key={useLocation({ select: (l) => l.pathname })} className="page-enter"><Outlet /></main>
       <SiteFooter lang={lang} />
     </div>
   );

@@ -130,3 +130,21 @@
   main a.rounded-full:hover, header a.rounded-full:hover { transform: translateY(-2px) scale(1.03); }
   main a.rounded-full:active { transform: scale(.97); }
 }
+
+/* Extra motion variants */
+.reveal-zoom { transform: scale(.92); }
+.reveal-left { transform: translateX(-48px); }
+.reveal-right { transform: translateX(48px); }
+.reveal-title { transform: translateY(16px); letter-spacing: .02em; transition-property: opacity, transform, letter-spacing; }
+.reveal-title.in { letter-spacing: inherit; }
+.reveal.in img { animation: img-settle 1.2s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes img-settle { from { transform: scale(1.12); } to { transform: none; } }
+@keyframes page-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0 } 70% { transform: scale(1.12) } 100% { transform: scale(1); opacity: 1 } }
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter { animation: page-enter .5s ease both; }
+  main li span.rounded-full[aria-hidden].absolute { animation: float 6s ease-in-out infinite; }
+  .reveal.in > span.rounded-full, .reveal.in > span.rounded-2xl, .reveal.in svg { animation: pop .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--reveal-delay, 0ms) + .2s); }
+  main svg.block path { transform-origin: bottom; animation: hero-rise 1s ease both; }
+}
