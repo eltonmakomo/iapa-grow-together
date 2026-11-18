@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 import { CONTACT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { MEDIA_GALLERY_TITLE } from "@/lib/iapa-photos";
 import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/media")({
@@ -23,7 +24,7 @@ function Media() {
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {m.press.map(([d, h, x], i) => (
               <li key={h} className="curve-card overflow-hidden bg-card">
-                {i === 0 && <img src={IMG.ghana} alt="" loading="lazy" className="aspect-[16/8] w-full object-cover" />}
+                <img src={i === 0 ? IMG.ghana : IMG.signing} alt="" loading="lazy" className="aspect-[16/8] w-full object-cover" />
                 <div className="p-7"><p className="eyebrow">{d}</p><h3 className="mt-2 text-2xl font-extrabold">{h}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{x}</p></div>
               </li>
             ))}
@@ -44,6 +45,12 @@ function Media() {
         </div>
       </section>
       <section className="py-16 md:py-24">
+        <div className="container-page">
+          <Gallery lang={lang} title={MEDIA_GALLERY_TITLE[lang]} keys={["kenya", "evaluation", "signing", "ghana", "spirulina", "robusta"]} />
+        </div>
+      </section>
+
+      <section className="bg-card py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={m.docsTitle} />
           <ul className="mt-8 grid gap-4 md:grid-cols-2">

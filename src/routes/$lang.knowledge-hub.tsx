@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Download } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
-import { IMG, PULSE } from "@/components/iapa/media";
+import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { IMG, PULSE, PULSE_COVER } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/knowledge-hub")({
   head: ({ params }) => pageHead(params.lang, "knowledge-hub"),
@@ -24,7 +24,9 @@ function Hub() {
             {h.issues.map((is, i) => (
               <li key={is.key} className="curve-card flex flex-col overflow-hidden bg-card">
                 <div className={`h-2 ${i === 0 ? "bg-primary" : "bg-arid"}`} />
-                <div className="flex flex-1 flex-col p-7">
+                <div className="grid flex-1 gap-6 p-7 sm:grid-cols-[9rem_1fr]">
+                <img src={PULSE_COVER[is.key]} alt={`IAPA Pulse — ${is.label}`} loading="lazy" className="w-36 rounded-lg border shadow-soft sm:w-full" />
+                <div className="flex flex-col">
                   <p className="eyebrow">{is.label}</p>
                   <h3 className="mt-2 text-2xl font-extrabold">{is.title}</h3>
                   <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{is.text}</p>
@@ -33,6 +35,7 @@ function Hub() {
                   </a>
                   <p className="mt-2 text-xs text-muted-foreground">{h.size}</p>
                 </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -40,6 +43,11 @@ function Hub() {
       </section>
       <section className="bg-secondary py-16 md:py-24">
         <div className="container-page">
+          <div className="mb-10 grid gap-4 md:grid-cols-3">
+            <Photo k="mali" lang={lang} ratio="aspect-[4/3]" />
+            <Photo k="burkinaSession" lang={lang} ratio="aspect-[4/3]" />
+            <Photo k="morocco" lang={lang} ratio="aspect-[4/3]" />
+          </div>
           <SectionHead title={p.libraryTitle} />
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.library.map((x) => (

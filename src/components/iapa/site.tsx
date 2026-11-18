@@ -3,6 +3,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Globe, Menu, X, ArrowUp, Mail, Phone, MapPin } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
+import { CAPTIONS } from "@/lib/iapa-photos";
+import { IMG, type ImgKey } from "@/components/iapa/media";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
 
@@ -195,6 +197,32 @@ export function ResultsBlock({ lang }: { lang: Lang }) {
         <StatGroup tone="shared" {...w.shared} stats={w.sharedStats} />
       </div>
       <div className="mt-6"><StatGroup tone="target" {...w.targets} stats={w.targetStats} /></div>
+    </div>
+  );
+}
+
+
+export function Photo({ k, lang, className = "", ratio = "aspect-[4/3]" }: { k: ImgKey; lang: Lang; className?: string; ratio?: string }) {
+  const cap = CAPTIONS[k]?.[lang] ?? "";
+  return (
+    <figure className={`curve-card group relative overflow-hidden bg-muted ${className}`}>
+      <img src={IMG[k]} alt={cap} loading="lazy" className={`h-full w-full object-cover transition duration-500 group-hover:scale-105 ${ratio}`} />
+      {cap && <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent p-4 pt-10 text-sm font-semibold text-forest-foreground">{cap}</figcaption>}
+    </figure>
+  );
+}
+
+export function Gallery({ keys, lang, title }: { keys: ImgKey[]; lang: Lang; title?: string }) {
+  return (
+    <div>
+      {title && <h2 className="section-title mb-8">{title}</h2>}
+      <ul className="grid auto-rows-[14rem] grid-cols-2 gap-4 md:auto-rows-[16rem] md:grid-cols-4">
+        {keys.map((k, i) => (
+          <li key={k} className={i === 0 ? "col-span-2 row-span-2" : i === 3 ? "col-span-2" : i === 5 ? "md:col-span-3" : ""}>
+            <Photo k={k} lang={lang} ratio="" className="h-full" />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

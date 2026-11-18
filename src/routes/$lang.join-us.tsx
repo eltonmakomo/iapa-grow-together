@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Check, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/join-us")({
@@ -37,6 +37,11 @@ function JoinUs() {
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[p.vacancies, p.scholarships].map(([h, x]) => <div key={h} className="curve-card bg-card p-6"><h3 className="text-xl font-extrabold">{h}</h3><p className="mt-2 text-muted-foreground">{x}</p></div>)}
             <div className="curve-card bg-sun p-6 text-accent-foreground"><p className="leading-relaxed">{p.oppStory}</p></div>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <Photo k="cameroon" lang={lang} ratio="aspect-[4/3]" />
+            <Photo k="burkinaMaize" lang={lang} ratio="aspect-[4/3]" />
+            <Photo k="civ" lang={lang} ratio="aspect-[4/3]" />
           </div>
         </div>
       </section>

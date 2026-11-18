@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/who-we-are")({
@@ -60,7 +60,8 @@ function WhoWeAre() {
       <section className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={p.timelineTitle} />
-          <ol className="mt-8 border-l-4 border-savanna pl-6 md:pl-10">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+          <ol className="border-l-4 border-savanna pl-6 md:pl-10">
             {p.timeline.map(([d, x]) => (
               <li key={d} className="relative pb-8 last:pb-0">
                 <span aria-hidden className="absolute -left-[2.05rem] top-1 h-5 w-5 rounded-full border-4 border-background bg-primary md:-left-[3.05rem]" />
@@ -68,6 +69,11 @@ function WhoWeAre() {
               </li>
             ))}
           </ol>
+          <div className="grid gap-4">
+            <Photo k="kenya" lang={lang} ratio="aspect-[16/10]" />
+            <Photo k="signing" lang={lang} ratio="aspect-[16/10]" />
+          </div>
+          </div>
         </div>
       </section>
 
@@ -77,6 +83,10 @@ function WhoWeAre() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.organs.map(([h, d]) => <li key={h} className="curve-card bg-card p-6"><h3 className="text-lg font-extrabold text-primary">{h}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
           </ul>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <Photo k="ghana" lang={lang} ratio="aspect-[16/9]" />
+            <Photo k="evaluation" lang={lang} ratio="aspect-[16/9]" />
+          </div>
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             <div>
               <h3 className="text-2xl font-extrabold">{p.boardTitle}</h3>

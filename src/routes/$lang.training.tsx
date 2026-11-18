@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { Arc, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { Arc, Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { TRAINING_GALLERY_TITLE } from "@/lib/iapa-photos";
 import { IMG } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/training")({
@@ -26,6 +27,9 @@ function Training() {
               </li>
             ))}
           </ul>
+          <div className="mt-16">
+            <Gallery lang={lang} title={TRAINING_GALLERY_TITLE[lang]} keys={["burkinaMaize", "civ", "robusta", "chadSup", "burkinaSession", "mauritania"]} />
+          </div>
         </div>
       </section>
       <section className="bg-forest text-forest-foreground">

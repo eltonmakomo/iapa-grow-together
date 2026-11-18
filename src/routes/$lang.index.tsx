@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Mail } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { Arc, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { Arc, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { GALLERY_TITLE } from "@/lib/iapa-photos";
 import { IMG, storyImg } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/")({
@@ -48,6 +49,8 @@ function Home() {
             <SectionHead eyebrow={p.homeIntro.eyebrow} title={p.homeIntro.title} lead={p.homeIntro.text} />
             <Link to="/$lang/who-we-are" params={{ lang }} className="mt-7 inline-flex items-center gap-2 font-bold text-primary underline underline-offset-4">{p.nav["who-we-are"]} <ArrowRight className="h-4 w-4" aria-hidden /></Link>
           </div>
+          <div className="grid gap-4">
+          <Photo k="kenya" lang={lang} ratio="aspect-[16/9]" />
           <ol className="grid gap-4">
             {t.who.pillars.map(([h, d], i) => (
               <li key={h} className="curve-card flex gap-4 bg-card p-5">
@@ -56,6 +59,7 @@ function Home() {
               </li>
             ))}
           </ol>
+          </div>
         </div>
       </section>
 
@@ -78,6 +82,12 @@ function Home() {
       </section>
 
       <section className="py-16 md:py-24">
+        <div className="container-page">
+          <Gallery lang={lang} title={GALLERY_TITLE[lang]} keys={["ghana", "robusta", "mauritania", "civ", "spirulina", "mali"]} />
+        </div>
+      </section>
+
+      <section className="bg-card py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={p.numbersTitle} lead={t.work.resultsNote} />
           <div className="mt-8"><ResultsBlock lang={lang} /></div>

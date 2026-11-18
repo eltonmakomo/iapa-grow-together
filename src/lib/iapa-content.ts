@@ -92,6 +92,8 @@ const en = {
       { img: "mauritania", place: "Mauritania", title: "PBS for women fish processors", text: "A pilot in Ndiago (4–6 Aug 2026) tested the Processor Business School with women in fish processing, with GIZ-ProGRH and ABF." },
       { img: "morocco", place: "Morocco", title: "Pilot FBS Milk training", text: "Dalila Delhoumi led the pilot FBS Milk training, paving the way for a better-structured dairy sector." },
       { img: "burkina", place: "Burkina Faso", title: "PBS launched in Bobo-Dioulasso", text: "With Lonnya Consult and Baitoul Maal under the MGF project, followed by a PBS training of trainers in June 2026." },
+      { img: "civ", place: "Côte d'Ivoire", title: "FBS Coffee for Nestlé and partners", text: "KOUAKOU Djé Robert led an FBS Café training of trainers for Nestlé employees and partners, in a public-private collaboration." },
+      { img: "spirulina", place: "Chad", title: "17 trainers, 300 spirulina producers", text: "With GIZ PEA-PAMELOT and Dorsch Impact, Jude Kawzu trained 17 trainers (2 women) and 300 producers, 203 of them women." },
     ],
     partnersTitle: "Partners and funders",
     partners: [
@@ -248,6 +250,8 @@ const fr: Content = {
       { img: "mauritania", place: "Mauritanie", title: "La PBS pour les transformatrices de poisson", text: "Une formation pilote à Ndiago (4–6 août 2026) a testé l'approche PBS avec des femmes de la transformation halieutique, avec GIZ-ProGRH et l'ABF." },
       { img: "morocco", place: "Maroc", title: "Formation pilote FBS Lait", text: "Dalila Delhoumi a animé la formation pilote FBS Lait, ouvrant la voie à une meilleure structuration de la filière laitière." },
       { img: "burkina", place: "Burkina Faso", title: "Lancement de la PBS à Bobo-Dioulasso", text: "Avec Lonnya Consult et Baitoul Maal dans le cadre du projet MGF, suivi d'une formation de formateurs PBS en juin 2026." },
+      { img: "civ", place: "Côte d'Ivoire", title: "FBS Café pour Nestlé et ses partenaires", text: "KOUAKOU Djé Robert a animé une formation de formateurs FBS Café pour des employés de Nestlé et leurs partenaires, dans une collaboration public-privé." },
+      { img: "spirulina", place: "Tchad", title: "17 formateurs, 300 producteurs de spiruline", text: "Avec le programme GIZ PEA-PAMELOT et Dorsch Impact, Jude Kawzu a formé 17 formateurs (dont 2 femmes) et 300 producteurs, dont 203 femmes." },
     ],
     partnersTitle: "Partenaires et bailleurs",
     partners: [

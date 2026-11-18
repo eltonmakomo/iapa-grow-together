@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { PageHero, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { Gallery, PageHero, Photo, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { IMG, storyImg } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/our-work")({
@@ -30,7 +30,11 @@ function OurWork() {
             <ul className="mt-4 grid gap-4">
               {w.memberServices.map(([h, d]) => <li key={h} className="rounded-2xl bg-secondary p-6"><h3 className="text-lg font-extrabold">{h}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
             </ul>
+            <Photo k="burkina" lang={lang} className="mt-4" ratio="aspect-[16/10]" />
           </div>
+        </div>
+        <div className="container-page mt-12">
+          <Gallery lang={lang} keys={["cameroon", "chadSup", "morocco", "burkinaMaize", "mali", "spirulina"]} />
         </div>
       </section>
 
@@ -58,7 +62,7 @@ function OurWork() {
       <section id="stories" className="scroll-mt-24 bg-secondary py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={w.storiesTitle} lead={w.storiesNote} />
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {w.stories.map((s) => (
               <li key={s.title} className="curve-card overflow-hidden bg-card">
                 <img src={storyImg(s.img)} alt="" loading="lazy" className="aspect-[4/3] w-full object-cover" />
@@ -72,6 +76,7 @@ function OurWork() {
       <section className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={w.inViewTitle} />
+          <Photo k="evaluation" lang={lang} className="mt-6" ratio="aspect-[21/9]" />
           <ul className="mt-6 grid gap-4 md:grid-cols-2">
             {w.inView.map(([n, d, href]) => (
               <li key={n} className="rounded-2xl border-2 border-dashed border-savanna p-6">
