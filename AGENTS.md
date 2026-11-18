@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- The site is one bilingual page served at /en and /fr; / redirects to /en. All copy lives in src/lib/iapa-content.ts so both languages stay in sync.
+- The EN/FR switch links to the other language with the active section as hash, so visitors stay in the same section; section ids are shared across languages.
