@@ -1,0 +1,233 @@
+// Extra copy for the multi-page site (EN/FR). Facts from the uploaded IAPA documents.
+import type { Lang } from "./iapa-content";
+
+export const PAGE_SLUGS = ["who-we-are", "our-work", "training", "knowledge-hub", "media", "join-us"] as const;
+export type PageSlug = (typeof PAGE_SLUGS)[number];
+
+const en = {
+  nav: { "who-we-are": "Who We Are", "our-work": "Our Work", training: "Training", "knowledge-hub": "Knowledge Hub", media: "Media", "join-us": "Join Us" } as Record<PageSlug, string>,
+  home: "Home",
+  meta: {
+    "who-we-are": ["Who We Are — IAPA", "IAPA's story, vision, mission, values, governance, partners and regional network across Africa."],
+    "our-work": ["Our Work — IAPA", "Advisory, curriculum adaptation, training at scale and member services, with results, stories and partnerships."],
+    training: ["Training & Approaches — IAPA", "Farmer, Cooperative, Processor and Aquaculture Business Schools, Inclusive Contract Farming and GAP."],
+    "knowledge-hub": ["Knowledge Hub — IAPA", "Download the IAPA Pulse newsletter and explore IAPA publications and resources."],
+    media: ["Media — IAPA", "IAPA milestones, events, press releases and key documents."],
+    "join-us": ["Join Us — IAPA", "Become an IAPA member or partner, see opportunities and contact the Executive Secretariat."],
+  } as Record<PageSlug, [string, string]>,
+  readMore: "Learn more",
+  homeIntro: {
+    eyebrow: "About IAPA",
+    title: "A practitioner-led association for Africa's agribusiness",
+    text: "IAPA transfers agricultural, cooperative development and agro-processing knowledge to drive economic growth and end poverty. Our network of Master Trainers and value chain experts spans more than 20 African countries.",
+  },
+  initiativesTitle: "What we do",
+  initiatives: [
+    ["our-work", "Advisory & curricula", "Choosing the right value chain and adapting training materials to your context."],
+    ["training", "Certified training", "Four Business Schools and Inclusive Contract Farming, delivered by Master Trainers."],
+    ["join-us", "Member growth", "Certification, mentorship and visibility for agribusiness professionals."],
+  ] as [PageSlug, string, string][],
+  numbersTitle: "IAPA in numbers",
+  highlightsTitle: "Highlight stories",
+  subscribe: { title: "Subscribe to IAPA Pulse", text: "Get our newsletter with news from the network.", cta: "Subscribe by email", subject: "Subscribe to IAPA Pulse" },
+  who: {
+    lead: "A membership-based pan-African association building Africa's first professional body for the certification and coordination of agribusiness practitioners.",
+    whyTitle: "Why we exist",
+    why: [
+      "Across Africa, agribusiness support is often delivered through short-term projects of uneven quality. Professional standards remain fragmented and peer-driven quality assurance is limited.",
+      "Better outcomes for farmers need better-trained, connected and professionally supported practitioners. IAPA exists to close that gap.",
+    ],
+    motto: "Motto",
+    timelineTitle: "Our journey",
+    timeline: [
+      ["2014–2019", "Idea of country associations of trainers takes shape"],
+      ["Sep 2023", "Master Trainer Network Conference in Johannesburg; interim steering team drafts the statutes"],
+      ["Jul 2024", "Constituent General Assembly validates the statutes and elects the governing body"],
+      ["2025", "Ordinary General Assembly in Aburi, Ghana"],
+      ["Aug 2026", "IAPA officially registered in Accra, Ghana"],
+    ],
+    govTitle: "Governance",
+    govText: "In line with its statutes, IAPA is governed by:",
+    organs: [
+      ["General Assembly", "The decision-making body of all members, with honorary members."],
+      ["Board of Directors", "9 members responsible for strategic direction and policy."],
+      ["Supervisory Board", "3 members responsible for oversight and control."],
+      ["Executive Secretariat", "6 members running day-to-day operations through departments."],
+    ],
+    boardTitle: "Board of Directors",
+    board: ["President", "Vice President", "Treasurer", "Executive Secretary", "Regional Focal Point – North Africa", "Regional Focal Point – Anglophone West & Central Africa", "Regional Focal Point – Francophone West Africa", "Regional Focal Point – East Africa", "Regional Focal Point – Southern Africa"],
+    deptTitle: "Executive Secretariat departments",
+    depts: [
+      ["Secretary General", "Official documents, reports, minutes and meeting agendas."],
+      ["Administration & Finance", "Accounting, administration, fundraising policy and annual financial statements."],
+      ["Marketing & Communication", "Internal and external communication, partnerships, funding proposals and public relations."],
+      ["Career Development", "Programme design, expert database and certification pathways."],
+      ["Quality Assurance & Control", "Quality of approaches, manuals and tools; coordination of certification."],
+    ],
+    officesTitle: "Our offices",
+    hq: "Headquarters",
+  },
+  work: { lead: "We help partners scale proven agribusiness solutions and help members grow as professionals.", mapTitle: "Where we work", mapNote: "Countries with IAPA focal points, by region." },
+  training: { lead: "Certified, practical and adult-centred entrepreneurial approaches that strengthen the skills, economic performance and resilience of farmers, cooperatives, processors and the service providers who support them." },
+  hub: {
+    lead: "Newsletters, publications and learning resources from the IAPA network.",
+    libraryTitle: "Resource library",
+    library: ["Publications", "Policy briefs", "Research papers", "Case studies", "Webinars & recordings", "Multimedia", "Podcasts"],
+    soon: "Coming soon",
+  },
+  media: {
+    lead: "Milestones, events and official news from IAPA.",
+    pressTitle: "Press releases",
+    press: [
+      ["Oct 2026", "IAPA Ghana team receives IAPA's legal documents from ABF", "On 2 October 2026, the IAPA Ghana team, led by Patrick, officially received the legal documents from the ABF team."],
+      ["Aug 2026", "IAPA is officially recognised", "IAPA was officially registered in Accra, Ghana, opening new opportunities for funding, collaboration and impact."],
+    ],
+    eventsTitle: "Events",
+    upcoming: "Planned",
+    events: [
+      ["Nov 2026", "General meeting of members", "Planned in IAPA's roadmap.", true],
+      ["15–19 Jun 2026", "ABF-GIZ Independent Evaluation Committee, Accra", "Dr. Codjoe Francis, Kum Jude Kawzu and Ouedraogo Boureima represented IAPA."],
+      ["26–28 May 2026", "Strategic workshop, Kenya", "Organised by ABF-GIZ with ACBF on governance, business model and roadmap."],
+      ["28 May 2026", "Meeting with Africa Agribusiness Academy, Nairobi", "Exploring cooperation on training and practitioner skills."],
+      ["2025", "Ordinary General Assembly, Aburi, Ghana", ""],
+      ["Sep 2023", "Master Trainer Network Conference, Johannesburg", "Where IAPA was founded."],
+    ] as [string, string, string, boolean?][],
+    docsTitle: "Key documents",
+    docs: [
+      ["IAPA Strategic Plan 2026–2030", "Our five-year strategy and three strategic pillars."],
+      ["First 12 months operationalisation plan", "How the strategy is put into action."],
+    ],
+    requestDoc: "Request a copy",
+  },
+  join: {
+    lead: "Become a member, partner with us, or explore opportunities in the network.",
+    oppTitle: "Opportunities",
+    vacancies: ["Vacancies", "There are no open vacancies right now. Check back or contact us."],
+    scholarships: ["Scholarships", "There are no open scholarships right now. Check back or contact us."],
+    oppStory: "In 2026, five Master Trainers from Nigeria, Ghana and Ethiopia were selected to coach winners of an agribusiness competition under the Agribusiness E-Academy mentoring programme.",
+    faqTitle: "Frequently asked questions",
+    faq: [
+      ["Who can become a member?", "Agribusiness trainers, Master Trainers, coordinators and value chain experts. Membership follows participation in a Master Trainer Programme (MTP)."],
+      ["Where does IAPA work?", "In more than 20 African countries across five regions, with headquarters in Accra, Ghana."],
+      ["How can my organisation work with IAPA?", "Send us a partnership enquiry. We support value chain choice, curriculum adaptation, training at scale and events."],
+      ["Which languages do you work in?", "IAPA works in English and French, and adapts training materials to local contexts."],
+    ],
+  },
+  footer: { explore: "Explore", contact: "Contact", newsletter: "Newsletter" },
+};
+
+export type PagesContent = typeof en;
+
+const fr: PagesContent = {
+  nav: { "who-we-are": "Qui sommes-nous", "our-work": "Nos actions", training: "Formation", "knowledge-hub": "Ressources", media: "Médias", "join-us": "Nous rejoindre" },
+  home: "Accueil",
+  meta: {
+    "who-we-are": ["Qui sommes-nous — IAPA", "Histoire, vision, mission, valeurs, gouvernance, partenaires et réseau régional de l'IAPA en Afrique."],
+    "our-work": ["Nos actions — IAPA", "Conseil, adaptation de curricula, formation à grande échelle et services aux membres, avec résultats et histoires."],
+    training: ["Formation et approches — IAPA", "Écoles d'entrepreneuriat agricole, coopératif, de transformation et aquacole, agriculture contractuelle et BPA."],
+    "knowledge-hub": ["Ressources — IAPA", "Téléchargez la lettre IAPA Pulse et découvrez les publications de l'IAPA."],
+    media: ["Médias — IAPA", "Étapes clés, événements, communiqués et documents clés de l'IAPA."],
+    "join-us": ["Nous rejoindre — IAPA", "Devenez membre ou partenaire de l'IAPA, découvrez les opportunités et contactez le Secrétariat exécutif."],
+  },
+  readMore: "En savoir plus",
+  homeIntro: {
+    eyebrow: "À propos de l'IAPA",
+    title: "Une association de praticiens au service de l'agribusiness africain",
+    text: "L'IAPA transfère des connaissances en agriculture, développement coopératif et transformation agroalimentaire pour stimuler la croissance et éradiquer la pauvreté. Notre réseau couvre plus de 20 pays africains.",
+  },
+  initiativesTitle: "Ce que nous faisons",
+  initiatives: [
+    ["our-work", "Conseil et curricula", "Choisir la bonne chaîne de valeur et adapter les supports de formation à votre contexte."],
+    ["training", "Formations certifiées", "Quatre écoles d'entrepreneuriat et l'agriculture contractuelle inclusive, par nos Maîtres Formateurs."],
+    ["join-us", "Croissance des membres", "Certification, mentorat et visibilité pour les professionnels de l'agribusiness."],
+  ],
+  numbersTitle: "L'IAPA en chiffres",
+  highlightsTitle: "Histoires à la une",
+  subscribe: { title: "Abonnez-vous à IAPA Pulse", text: "Recevez notre lettre d'information avec les nouvelles du réseau.", cta: "S'abonner par e-mail", subject: "Abonnement à IAPA Pulse" },
+  who: {
+    lead: "Une association panafricaine de membres qui bâtit le premier organisme professionnel africain de certification et de coordination des praticiens de l'agribusiness.",
+    whyTitle: "Pourquoi nous existons",
+    why: [
+      "En Afrique, l'appui à l'agribusiness passe souvent par des projets de court terme, de qualité inégale. Les normes professionnelles restent fragmentées et l'assurance qualité par les pairs limitée.",
+      "De meilleurs résultats pour les producteurs exigent des praticiens mieux formés, connectés et soutenus. L'IAPA existe pour combler ce manque.",
+    ],
+    motto: "Devise",
+    timelineTitle: "Notre parcours",
+    timeline: [
+      ["2014–2019", "Naissance de l'idée d'associations nationales de formateurs"],
+      ["Sept. 2023", "Conférence du réseau des Maîtres Formateurs à Johannesburg ; une équipe intérimaire rédige les statuts"],
+      ["Juil. 2024", "Assemblée générale constitutive : validation des statuts et élection des organes"],
+      ["2025", "Assemblée générale ordinaire à Aburi, Ghana"],
+      ["Août 2026", "Enregistrement officiel de l'IAPA à Accra, Ghana"],
+    ],
+    govTitle: "Gouvernance",
+    govText: "Conformément à ses statuts, l'IAPA est gouvernée par :",
+    organs: [
+      ["Assemblée générale", "L'organe de décision de tous les membres, avec les membres d'honneur."],
+      ["Conseil d'administration", "9 membres chargés de l'orientation stratégique et des politiques."],
+      ["Conseil de surveillance", "3 membres chargés du suivi et du contrôle."],
+      ["Secrétariat exécutif", "6 membres qui gèrent les opérations au quotidien par départements."],
+    ],
+    boardTitle: "Conseil d'administration",
+    board: ["Président", "Vice-président", "Trésorier", "Secrétaire exécutif", "Point focal régional – Afrique du Nord", "Point focal régional – Afrique de l'Ouest anglophone et centrale", "Point focal régional – Afrique de l'Ouest francophone", "Point focal régional – Afrique de l'Est", "Point focal régional – Afrique australe"],
+    deptTitle: "Départements du Secrétariat exécutif",
+    depts: [
+      ["Secrétariat général", "Documents officiels, rapports, procès-verbaux et ordres du jour."],
+      ["Administration et finances", "Comptabilité, administration, politique de mobilisation de fonds et états financiers."],
+      ["Marketing et communication", "Communication interne et externe, partenariats, propositions de financement et relations publiques."],
+      ["Développement de carrière", "Conception de programmes, base d'experts et parcours de certification."],
+      ["Assurance et contrôle qualité", "Qualité des approches, manuels et outils ; coordination de la certification."],
+    ],
+    officesTitle: "Nos bureaux",
+    hq: "Siège",
+  },
+  work: { lead: "Nous aidons les partenaires à déployer des solutions éprouvées et les membres à grandir professionnellement.", mapTitle: "Où nous travaillons", mapNote: "Pays disposant de points focaux IAPA, par région." },
+  training: { lead: "Des approches entrepreneuriales certifiées, pratiques et centrées sur l'adulte, qui renforcent les compétences, la performance économique et la résilience des producteurs, coopératives, transformateurs et prestataires qui les accompagnent." },
+  hub: {
+    lead: "Lettres d'information, publications et ressources d'apprentissage du réseau IAPA.",
+    libraryTitle: "Bibliothèque de ressources",
+    library: ["Publications", "Notes de politique", "Articles de recherche", "Études de cas", "Webinaires et enregistrements", "Multimédia", "Podcasts"],
+    soon: "Bientôt disponible",
+  },
+  media: {
+    lead: "Étapes clés, événements et actualités officielles de l'IAPA.",
+    pressTitle: "Communiqués",
+    press: [
+      ["Oct. 2026", "L'équipe IAPA Ghana reçoit les documents juridiques de l'ABF", "Le 2 octobre 2026, l'équipe IAPA Ghana, conduite par Patrick, a officiellement reçu les documents juridiques de l'équipe ABF."],
+      ["Août 2026", "L'IAPA officiellement reconnue", "L'IAPA a été officiellement enregistrée à Accra, au Ghana, ouvrant de nouvelles opportunités de financement, de collaboration et d'impact."],
+    ],
+    eventsTitle: "Événements",
+    upcoming: "Prévu",
+    events: [
+      ["Nov. 2026", "Réunion générale des membres", "Prévue dans la feuille de route de l'IAPA.", true],
+      ["15–19 juin 2026", "Comité d'évaluation indépendant ABF-GIZ, Accra", "Dr Codjoe Francis, Kum Jude Kawzu et Ouedraogo Boureima ont représenté l'IAPA."],
+      ["26–28 mai 2026", "Atelier stratégique, Kenya", "Organisé par l'ABF-GIZ avec l'ACBF sur la gouvernance, le modèle d'affaires et la feuille de route."],
+      ["28 mai 2026", "Rencontre avec l'Africa Agribusiness Academy, Nairobi", "Exploration d'une coopération sur la formation et les compétences."],
+      ["2025", "Assemblée générale ordinaire, Aburi, Ghana", ""],
+      ["Sept. 2023", "Conférence du réseau des Maîtres Formateurs, Johannesburg", "Lieu de fondation de l'IAPA."],
+    ],
+    docsTitle: "Documents clés",
+    docs: [
+      ["Plan stratégique IAPA 2026–2030", "Notre stratégie quinquennale et ses trois piliers."],
+      ["Plan d'opérationnalisation des 12 premiers mois", "La mise en œuvre de la stratégie."],
+    ],
+    requestDoc: "Demander une copie",
+  },
+  join: {
+    lead: "Devenez membre, devenez partenaire ou découvrez les opportunités du réseau.",
+    oppTitle: "Opportunités",
+    vacancies: ["Offres d'emploi", "Aucune offre ouverte pour le moment. Revenez bientôt ou contactez-nous."],
+    scholarships: ["Bourses", "Aucune bourse ouverte pour le moment. Revenez bientôt ou contactez-nous."],
+    oppStory: "En 2026, cinq Maîtres Formateurs du Nigeria, du Ghana et d'Éthiopie ont été sélectionnés pour accompagner les lauréats d'un concours d'agribusiness dans le cadre du programme de mentorat de l'Agribusiness E-Academy.",
+    faqTitle: "Questions fréquentes",
+    faq: [
+      ["Qui peut devenir membre ?", "Les formateurs, Maîtres Formateurs, coordinateurs et experts des chaînes de valeur. L'adhésion suit la participation à un programme de Maître Formateur (MTP)."],
+      ["Où l'IAPA intervient-elle ?", "Dans plus de 20 pays africains répartis en cinq régions, avec un siège à Accra, au Ghana."],
+      ["Comment mon organisation peut-elle collaborer avec l'IAPA ?", "Envoyez-nous une demande de partenariat. Nous appuyons le choix des filières, l'adaptation de curricula, la formation à grande échelle et les événements."],
+      ["Dans quelles langues travaillez-vous ?", "L'IAPA travaille en anglais et en français et adapte ses supports aux contextes locaux."],
+    ],
+  },
+  footer: { explore: "Explorer", contact: "Contact", newsletter: "Lettre d'information" },
+};
+
+export const PAGES: Record<Lang, PagesContent> = { en, fr };

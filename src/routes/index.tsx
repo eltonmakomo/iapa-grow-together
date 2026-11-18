@@ -12,6 +12,6 @@ export const Route = createFileRoute("/")({
     ],
   }),
   beforeLoad: () => {
-    throw redirect({ to: "/en" });
+    throw redirect({ to: "/$lang", params: { lang: "en" } });
   },
 });

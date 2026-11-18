@@ -30,5 +30,5 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- The site is one bilingual page served at /en and /fr; / redirects to /en. All copy lives in src/lib/iapa-content.ts so both languages stay in sync.
-- The EN/FR switch links to the other language with the active section as hash, so visitors stay in the same section; section ids are shared across languages.
+- The site is a bilingual multi-page site under the /$lang param route (en|fr); / redirects to /en. All copy lives in src/lib/iapa-content.ts and src/lib/iapa-pages.ts so both languages stay in sync.
+- The EN/FR switch links to the same route with the other lang param, so visitors stay on the same page.
