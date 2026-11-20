@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { CONTACT, CONTENT } from "@/lib/iapa-content";
+import { CONTACT, CONTENT, SOCIALS } from "@/lib/iapa-content";
+import { PAGES } from "@/lib/iapa-pages";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -13,5 +14,15 @@ describe("IAPA content", () => {
   });
   it("uses the verified contact email", () => {
     expect(CONTACT.email).toBe("secretariatexecutif.iapa@gmail.com");
+  });
+  it("links the footer to Facebook, LinkedIn, Instagram and X", () => {
+    expect(SOCIALS.map((s) => s.name)).toEqual(["Facebook", "LinkedIn", "Instagram", "X"]);
+    for (const s of SOCIALS) {
+      expect(s.href).toMatch(/^https:\/\/(www\.)?(facebook|linkedin|instagram|x)\.com\/.+$/);
+    }
+  });
+  it("labels the social links in both languages", () => {
+    expect(PAGES.en.arch.social).toBe("Follow us");
+    expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
 });

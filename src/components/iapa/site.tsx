@@ -1,9 +1,9 @@
 import { Link, useMatches } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Globe, Menu, X, ArrowUp, ArrowRight, ArrowUpRight, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode, type SVGProps } from "react";
+import { Globe, Menu, X, ArrowUp, ArrowRight, ArrowUpRight, ChevronDown, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { navPage } from "@/lib/iapa-nav";
 import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
-import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
+import { CONTACT, CONTENT, SOCIALS, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
 import { BANNER, IMG, PHOTO_POSITION, type BannerKey, type ImgKey } from "@/components/iapa/media";
@@ -160,6 +160,16 @@ export function SiteHeader({ lang }: { lang: Lang }) {
   );
 }
 
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  );
+}
+
+const SOCIAL_ICON = { facebook: Facebook, linkedin: Linkedin, instagram: Instagram, x: XIcon } as const;
+
 export function SiteFooter({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const p = PAGES[lang];
@@ -171,6 +181,28 @@ export function SiteFooter({ lang }: { lang: Lang }) {
           <p className="mt-2 max-w-xs text-sm text-forest-foreground/80">{t.footer.rights}</p>
           <p className="mt-2 text-sm font-semibold text-sun">{t.footer.motto}</p>
           <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="mt-6 inline-flex rounded-full bg-sun px-5 py-2.5 text-sm font-extrabold text-accent-foreground hover:brightness-105">{p.subscribe.cta}</a>
+          <div className="mt-7">
+            <p className="text-sm font-extrabold uppercase tracking-wider text-sun">{p.arch.social}</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {SOCIALS.map((s) => {
+                const Icon = SOCIAL_ICON[s.icon];
+                return (
+                  <li key={s.name}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.name}
+                      title={s.name}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-forest-foreground/50 bg-forest-foreground/10 transition hover:-translate-y-0.5 hover:border-sun hover:bg-sun hover:text-accent-foreground"
+                    >
+                      <Icon className="h-4 w-4" aria-hidden />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
         <nav aria-label={p.footer.explore}>
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-sun">{p.footer.explore}</h2>

@@ -9,6 +9,14 @@ export const CONTACT = {
   address: "THE ROMBUS, Plot 24, Tumu Street, Accra, Ghana",
 };
 
+// Placeholder profile URLs: swap each href for IAPA's live page once the accounts are confirmed.
+export const SOCIALS = [
+  { name: "Facebook", icon: "facebook", href: "https://www.facebook.com/IAPAAgribusiness" },
+  { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/international-agribusiness-practitioners-association" },
+  { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/iapa.agribusiness" },
+  { name: "X", icon: "x", href: "https://x.com/IAPAAgribusiness" },
+] as const;
+
 export const SECTION_IDS = ["who-we-are", "our-work", "training", "knowledge-hub", "join-us"] as const;
 export type SectionId = (typeof SECTION_IDS)[number];
 
