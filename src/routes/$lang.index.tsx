@@ -53,10 +53,11 @@ function Home() {
           <Photo k="kenya" lang={lang} ratio="aspect-[16/9]" />
           <ol className="grid gap-4">
             {t.who.pillars.map(([h, d], i) => (
-              <li key={h} className="curve-card flex gap-4 bg-card p-5">
+              <li key={h}><Link to="/$lang/who-we-are" params={{ lang }} className="curve-card group flex gap-4 bg-card p-5">
                 <span className="text-4xl font-extrabold text-primary">{i + 1}</span>
-                <div><h3 className="font-extrabold">{h}</h3><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>
-              </li>
+                <div className="flex-1"><h3 className="font-extrabold">{h}</h3><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>
+                <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden />
+              </Link></li>
             ))}
           </ol>
           </div>
@@ -104,9 +105,11 @@ function Home() {
           </div>
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {t.work.stories.slice(0, 2).map((s) => (
-              <li key={s.title} className="curve-card grid overflow-hidden bg-card sm:grid-cols-[1fr_1.2fr]">
+              <li key={s.title}>
+                <Link to="/$lang/our-work" params={{ lang }} hash={`story-${s.img}`} className="curve-card group grid h-full overflow-hidden bg-card sm:grid-cols-[1fr_1.2fr]">
                 <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="h-full min-h-48 w-full object-cover object-top origin-top" />
-                <div className="p-6"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p></div>
+                <div className="p-6"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div>
+                </Link>
               </li>
             ))}
           </ul>
