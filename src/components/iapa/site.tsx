@@ -194,7 +194,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
                       rel="noopener noreferrer"
                       aria-label={s.name}
                       title={s.name}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-forest-foreground/50 bg-forest-foreground/10 transition hover:-translate-y-0.5 hover:border-sun hover:bg-sun hover:text-accent-foreground"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-sun/55 bg-sun/12 text-sun transition hover:-translate-y-0.5 hover:border-sun hover:bg-sun hover:text-accent-foreground"
                     >
                       <Icon className="h-4 w-4" aria-hidden />
                     </a>
