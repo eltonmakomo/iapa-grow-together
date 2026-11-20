@@ -16,7 +16,7 @@ function JoinUs() {
   const mail = (s: string) => `mailto:${CONTACT.email}?subject=${encodeURIComponent(s)}`;
   return (
     <>
-      <PageHero eyebrow={j.eyebrow} title={j.title} lead={p.lead} img="hero" />
+      <PageHero eyebrow={j.eyebrow} title={j.title} lead={p.lead} img="join" />
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-6 lg:grid-cols-2">
           {([["membership", j.member, "bg-primary text-primary-foreground", "bg-sun text-accent-foreground"], ["partnership", j.partner, "bg-card", "bg-primary text-primary-foreground"]] as const).map(([id, c, cls, btn]) => (
