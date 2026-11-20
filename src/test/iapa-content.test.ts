@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CONTACT, CONTENT, SOCIALS } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
+import { NAV } from "@/lib/iapa-nav";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -24,5 +25,14 @@ describe("IAPA content", () => {
   it("labels the social links in both languages", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
+  });
+  it("gives all 32 dropdown children a unique page path in each language", () => {
+    const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
+    expect(children).toHaveLength(32);
+    for (const lang of ["en", "fr"] as const) {
+      const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
+      expect(new Set(paths).size).toBe(32);
+      expect(paths.every((path) => !path.includes("#"))).toBe(true);
+    }
   });
 });

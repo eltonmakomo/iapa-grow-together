@@ -20,6 +20,7 @@ import { Route as LangOurWorkRouteImport } from './routes/$lang.our-work'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
 import { Route as LangTrainingRouteImport } from './routes/$lang.training'
 import { Route as LangWhoWeAreRouteImport } from './routes/$lang.who-we-are'
+import { Route as LangSectionChildRouteImport } from './routes/$lang.$section.$child'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const LangWhoWeAreRoute = LangWhoWeAreRouteImport.update({
   path: '/who-we-are',
   getParentRoute: () => LangRoute,
 } as any)
+const LangSectionChildRoute = LangSectionChildRouteImport.update({
+  id: '/$section/$child',
+  path: '/$section/$child',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/$section/$child': typeof LangSectionChildRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang': typeof LangIndexRoute
+  '/$lang/$section/$child': typeof LangSectionChildRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/$section/$child': typeof LangSectionChildRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang/'
+    | '/$lang/$section/$child'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang'
+    | '/$lang/$section/$child'
   id:
     | '__root__'
     | '/'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang/'
+    | '/$lang/$section/$child'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangWhoWeAreRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/$section/$child': {
+      id: '/$lang/$section/$child'
+      path: '/$section/$child'
+      fullPath: '/$lang/$section/$child'
+      preLoaderRoute: typeof LangSectionChildRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
@@ -254,6 +273,7 @@ interface LangRouteChildren {
   LangTrainingRoute: typeof LangTrainingRoute
   LangWhoWeAreRoute: typeof LangWhoWeAreRoute
   LangIndexRoute: typeof LangIndexRoute
+  LangSectionChildRoute: typeof LangSectionChildRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
@@ -266,6 +286,7 @@ const LangRouteChildren: LangRouteChildren = {
   LangTrainingRoute: LangTrainingRoute,
   LangWhoWeAreRoute: LangWhoWeAreRoute,
   LangIndexRoute: LangIndexRoute,
+  LangSectionChildRoute: LangSectionChildRoute,
 }
 
 const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)

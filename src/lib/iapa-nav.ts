@@ -1,5 +1,5 @@
-// Site structure from "IAPA Website Architecture.docx": main menu pages and their child sections.
-// Each child id is a section anchor on that page, so the mega menu and pages stay in sync.
+// Site structure from "IAPA Website Architecture.docx": main menu pages and their child pages.
+// Each child id is the final segment of its own bilingual page URL.
 import type { Lang } from "./iapa-content";
 import type { PageSlug } from "./iapa-pages";
 import type { ImgKey } from "@/components/iapa/media";
@@ -61,6 +61,6 @@ export const NAV: NavPage[] = [
 ];
 
 export const navPage = (slug: PageSlug) => NAV.find((n) => n.slug === slug)!;
-/** Label of a child section, for use as the section heading on its page. */
+/** Label of a child page, for use in navigation and page headings. */
 export const childLabel = (slug: PageSlug, id: string, lang: Lang) =>
   navPage(slug).groups.flatMap((g) => g.items).find((i) => i.id === id)?.label[lang] ?? id;

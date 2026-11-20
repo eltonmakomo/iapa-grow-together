@@ -34,8 +34,9 @@ function LangSwitch({ lang }: { lang: Lang }) {
   const leaf = matches[matches.length - 1];
   const other: Lang = lang === "en" ? "fr" : "en";
   const to = (leaf?.fullPath?.startsWith("/$lang") ? leaf.fullPath : "/$lang") as "/$lang";
+  const currentParams = (leaf?.params ?? {}) as Record<string, string>;
   return (
-    <Link to={to} params={{ lang: other }} hrefLang={other} aria-label={CONTENT[lang].langLabel}
+    <Link to={to} params={{ ...currentParams, lang: other }} hrefLang={other} aria-label={CONTENT[lang].langLabel}
       className="inline-flex shrink-0 items-center gap-1.5 rounded-full border-2 border-primary px-3 py-1.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
       <Globe className="h-4 w-4" aria-hidden />
       <span aria-hidden>{lang.toUpperCase()}</span><span aria-hidden className="opacity-60">/</span><span aria-hidden>{other.toUpperCase()}</span>
@@ -66,7 +67,7 @@ function MegaPanel({ lang, slug, onNavigate }: { lang: Lang; slug: PageSlug; onN
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">{g.title[lang]}</p>
                 <ul className="mt-4 space-y-1">
                   {g.items.map((it) => (
-                    <li key={it.id}><Link to={pathFor(slug)} params={{ lang }} hash={it.id} onClick={onNavigate} className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2 -mx-3 text-[1.05rem] transition hover:bg-secondary hover:text-primary">
+                    <li key={it.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: it.id }} onClick={onNavigate} className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2 -mx-3 text-[1.05rem] transition hover:bg-secondary hover:text-primary">
                       {it.label[lang]}<ArrowRight className="h-4 w-4 shrink-0 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100" aria-hidden />
                     </Link></li>
                   ))}
@@ -145,7 +146,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 {sub === s && (
                   <ul className="mb-3 ml-3 border-l-2 border-savanna pl-3">
                     {navPage(s).groups.flatMap((g) => g.items).map((it) => (
-                      <li key={it.id}><Link to={pathFor(s)} params={{ lang }} hash={it.id} onClick={() => setOpen(false)} className="block rounded-lg px-2 py-2 text-muted-foreground hover:text-primary">{it.label[lang]}</Link></li>
+                      <li key={it.id}><Link to="/$lang/$section/$child" params={{ lang, section: s, child: it.id }} onClick={() => setOpen(false)} className="block rounded-lg px-2 py-2 text-muted-foreground hover:text-primary">{it.label[lang]}</Link></li>
                     ))}
                   </ul>
                 )}
@@ -177,8 +178,10 @@ export function SiteFooter({ lang }: { lang: Lang }) {
     <footer className="bg-forest text-forest-foreground">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1.3fr]">
         <div className="min-w-0">
-          <p className="text-3xl font-extrabold tracking-[0.3em]">IAPA</p>
-          <p className="mt-2 max-w-xs text-sm text-forest-foreground/80">{t.footer.rights}</p>
+          <Link to="/$lang" params={{ lang }} aria-label={`IAPA — ${p.home}`} className="inline-block">
+            <img src={(lang === "en" ? logoEn : logoFr).url} alt="IAPA" width={220} height={62} className="h-16 w-auto brightness-0 invert md:h-20" />
+          </Link>
+          <p className="mt-4 max-w-xs text-sm text-forest-foreground/80">{t.footer.rights}</p>
           <p className="mt-2 text-sm font-semibold text-sun">{t.footer.motto}</p>
           <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="mt-6 inline-flex rounded-full bg-sun px-5 py-2.5 text-sm font-extrabold text-accent-foreground hover:brightness-105">{p.subscribe.cta}</a>
           <div className="mt-7">
