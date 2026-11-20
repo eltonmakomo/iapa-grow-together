@@ -29,7 +29,7 @@ export type ImgKey = keyof typeof IMG;
 
 // Focal points keep faces just below the top edge, including in wide banners.
 export const PHOTO_POSITION: Record<ImgKey, string> = {
-  hero: "35% 15%",
+  hero: "30% 15%",
   burkinaMaize: "50% 20%",
   burkina: "50% 20%",
   burkinaSession: "50% 35%",

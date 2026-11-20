@@ -154,12 +154,13 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
 export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: ImgKey; children?: ReactNode }) {
   return (
     <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
-      <img src={IMG[img]} alt="" fetchPriority="high" style={{ objectPosition: PHOTO_POSITION[img] }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
-      <div className="bg-hero-overlay absolute inset-0 -z-10" />
+      <img src={IMG[img]} alt="" fetchPriority="high" style={{ objectPosition: PHOTO_POSITION[img] }} className="absolute inset-y-0 right-0 -z-10 h-full w-full md:w-[62%] object-cover object-top origin-top" />
+      <div className="bg-hero-overlay absolute inset-0 -z-10 md:hidden" />
+        <div aria-hidden className="absolute inset-y-0 left-0 -z-10 hidden w-[55%] bg-gradient-to-r from-forest from-70% to-transparent md:block" />
       <div className="container-page py-16 md:py-24">
         <p className="eyebrow text-sun">{eyebrow}</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">{title}</h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-foreground/90">{lead}</p>
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-forest-foreground/90">{lead}</p>
         {children}
       </div>
       <Arc className="-mb-px text-background" />

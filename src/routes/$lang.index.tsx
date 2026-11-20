@@ -25,11 +25,12 @@ function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
-        <img src={IMG.hero} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: PHOTO_POSITION.hero }} className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_top] origin-top" />
-        <div className="bg-hero-overlay absolute inset-0 -z-10" />
+        <img src={IMG.hero} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: PHOTO_POSITION.hero }} className="absolute inset-y-0 right-0 -z-10 h-full w-full md:w-[62%] object-cover origin-top" />
+        <div className="bg-hero-overlay absolute inset-0 -z-10 md:hidden" />
+        <div aria-hidden className="absolute inset-y-0 left-0 -z-10 hidden w-[55%] bg-gradient-to-r from-forest from-70% to-transparent md:block" />
         <div className="container-page flex min-h-[min(78svh,760px)] flex-col justify-center py-20 md:py-28">
           <p className="eyebrow text-sun">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">{t.hero.title}</h1>
+          <h1 className="mt-4 max-w-3xl md:max-w-xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">{t.hero.title}</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-forest-foreground/90 md:text-xl">{t.hero.lead}</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="inline-flex items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground hover:brightness-105">
