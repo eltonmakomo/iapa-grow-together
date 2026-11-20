@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Download, FileText, Mail, MapPin, Quote } from "
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
+import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER, storyImg, storyPosition, type BannerKey } from "@/components/iapa/media";
 
@@ -39,20 +40,6 @@ function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | unde
   );
 }
 
-function Regions({ lang }: { lang: Lang }) {
-  const regions = CONTENT[lang].who.regions;
-  return (
-    <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-      {regions.map(([region, countries], i) => (
-        <li key={region} className={`curve-card p-6 ${["bg-primary text-primary-foreground", "bg-sun text-accent-foreground", "bg-savanna text-accent-foreground", "bg-arid text-accent-foreground", "bg-forest text-forest-foreground"][i]}`}>
-          <h3 className="font-extrabold">{region}</h3>
-          <ul className="mt-3 space-y-1 text-sm">{(countries ?? "").split(", ").map((country) => <li key={country}>{country}</li>)}</ul>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function WhoBody({ lang, child }: { lang: Lang; child: string }) {
   const t = CONTENT[lang].who;
   const w = CONTENT[lang].work;
@@ -77,7 +64,7 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
   if (child === "partners") return <><PairCards items={w.partners} /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>
     <div className="curve-card bg-primary p-7 text-primary-foreground"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p><p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p></div>
-    <div className="mt-10"><SectionHead title={t.regionsTitle} /><Regions lang={lang} /></div>
+    <div className="mt-10"><SectionHead title={t.regionsTitle} /><AfricaImpactMap lang={lang} /></div>
   </>;
 }
 
@@ -85,7 +72,7 @@ function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const w = CONTENT[lang].work;
   const p = PAGES[lang].work;
   const a = PAGES[lang].arch;
-  if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><Regions lang={lang} /></>;
+  if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
   if (child === "asr-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
   if (child === "stories") return <>
     <SectionHead title={w.storiesTitle} lead={w.storiesNote} />

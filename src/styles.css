@@ -145,7 +145,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .page-enter { animation: page-enter .5s ease both; }
   main li span.rounded-full[aria-hidden].absolute { animation: float 6s ease-in-out infinite; }
-  .reveal.in > span.rounded-full, .reveal.in > span.rounded-2xl, .reveal.in svg { animation: pop .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--reveal-delay, 0ms) + .2s); }
+  .reveal.in > span.rounded-full, .reveal.in > span.rounded-2xl, .reveal.in svg:not(.africa-map-svg) { animation: pop .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--reveal-delay, 0ms) + .2s); }
   main svg.block path { transform-origin: bottom; animation: hero-rise 1s ease both; }
 }
 

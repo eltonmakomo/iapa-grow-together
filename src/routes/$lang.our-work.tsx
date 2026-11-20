@@ -3,6 +3,7 @@ import { ArrowRight, Quote } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { childLabel } from "@/lib/iapa-nav";
 import { PAGES } from "@/lib/iapa-pages";
+import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { PageHero, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { storyImg, storyPosition } from "@/components/iapa/media";
 
@@ -14,7 +15,6 @@ export const Route = createFileRoute("/$lang/our-work")({
 function OurWork() {
   const lang = asLang(Route.useParams().lang);
   const w = CONTENT[lang].work;
-  const who = CONTENT[lang].who;
   const p = PAGES[lang].work;
   const a = PAGES[lang].arch;
   return (
@@ -23,14 +23,7 @@ function OurWork() {
       <section id="impact-map" className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead eyebrow={p.mapTitle} title={childLabel("our-work", "impact-map", lang)} lead={p.mapNote} />
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {who.regions.map(([r, c], i) => (
-              <li key={r} className={`curve-card p-6 ${["bg-primary text-primary-foreground", "bg-sun text-accent-foreground", "bg-savanna text-accent-foreground", "bg-arid text-accent-foreground", "bg-forest text-forest-foreground"][i]}`}>
-                <h3 className="font-extrabold">{r}</h3>
-                <ul className="mt-3 space-y-1 text-sm">{(c ?? "").split(", ").map((x) => <li key={x}>{x}</li>)}</ul>
-              </li>
-            ))}
-          </ul>
+          <AfricaImpactMap lang={lang} />
         </div>
       </section>
 

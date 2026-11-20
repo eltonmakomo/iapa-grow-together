@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { CONTACT, CONTENT, SOCIALS } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { NAV } from "@/lib/iapa-nav";
+import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
+import mapData from "@/lib/africa-map-data.json";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -33,6 +35,19 @@ describe("IAPA content", () => {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
       expect(new Set(paths).size).toBe(32);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
+    }
+  });
+  it("maps every IAPA region and country to a real SVG shape in both languages", () => {
+    const shapeIds = new Set(mapData.countries.map((c) => c.id));
+    expect(AFRICA_REGIONS).toHaveLength(5);
+    for (const lang of ["en", "fr"] as const) {
+      AFRICA_REGIONS.forEach((region, i) => {
+        const expected = (CONTENT[lang].who.regions[i]?.[1] ?? "").split(", ");
+        expect(region.countries.map((c) => c[lang])).toEqual(expected);
+        for (const c of region.countries) {
+          expect(shapeIds.has(c.id)).toBe(true);
+        }
+      });
     }
   });
 });
