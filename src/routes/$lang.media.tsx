@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 import { CONTACT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
+import { childLabel } from "@/lib/iapa-nav";
 import { Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { MEDIA_GALLERY_TITLE } from "@/lib/iapa-photos";
 import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
@@ -18,22 +19,9 @@ function Media() {
   return (
     <>
       <PageHero eyebrow={p.nav.media} title={p.nav.media} lead={m.lead} img="mauritania" />
-      <section className="py-16 md:py-24">
+      <section id="events" className="bg-card py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={m.pressTitle} />
-          <ul className="mt-8 grid gap-6 md:grid-cols-2">
-            {m.press.map(([d, h, x], i) => (
-              <li key={h} className="curve-card overflow-hidden bg-card">
-                <img src={i === 0 ? IMG.ghana : IMG.signing} alt="" loading="lazy" style={{ objectPosition: PHOTO_POSITION[i === 0 ? "ghana" : "signing"] }} className="aspect-[16/8] w-full object-cover object-top origin-top" />
-                <div className="p-7"><p className="eyebrow">{d}</p><h3 className="mt-2 text-2xl font-extrabold">{h}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{x}</p></div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <section className="bg-card py-16 md:py-24">
-        <div className="container-page">
-          <SectionHead title={m.eventsTitle} />
+          <SectionHead title={childLabel("media", "events", lang)} />
           <ol className="mt-8 grid gap-3">
             {m.events.map(([d, h, x, planned]) => (
               <li key={h} className={`grid gap-2 rounded-2xl p-5 sm:grid-cols-[11rem_1fr] ${planned ? "border-2 border-dashed border-arid bg-cream" : "bg-background"}`}>
@@ -50,9 +38,9 @@ function Media() {
         </div>
       </section>
 
-      <section className="bg-card py-16 md:py-24">
+      <section id="key-documents" className="py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={m.docsTitle} />
+          <SectionHead title={childLabel("media", "key-documents", lang)} />
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {m.docs.map(([h, x]) => (
               <li key={h} className="curve-card flex flex-col bg-card p-7">
@@ -60,6 +48,19 @@ function Media() {
                 <h3 className="mt-3 text-xl font-extrabold">{h}</h3>
                 <p className="mt-2 flex-1 text-muted-foreground">{x}</p>
                 <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(h ?? "")}`} className="mt-5 inline-flex w-fit rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground">{m.requestDoc}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <section id="press-releases" className="bg-card py-16 md:py-24">
+        <div className="container-page">
+          <SectionHead title={childLabel("media", "press-releases", lang)} />
+          <ul className="mt-8 grid gap-6 md:grid-cols-2">
+            {m.press.map(([d, h, x], i) => (
+              <li key={h} className="curve-card overflow-hidden bg-background">
+                <img src={i === 0 ? IMG.ghana : IMG.signing} alt="" loading="lazy" style={{ objectPosition: PHOTO_POSITION[i === 0 ? "ghana" : "signing"] }} className="aspect-[16/8] w-full object-cover object-top origin-top" />
+                <div className="p-7"><p className="eyebrow">{d}</p><h3 className="mt-2 text-2xl font-extrabold">{h}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{x}</p></div>
               </li>
             ))}
           </ul>

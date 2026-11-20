@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, Briefcase, Crown, MapPin, Wallet } from "lucide-react";
+import { Award, Briefcase, Crown, MapPin, Users, Wallet } from "lucide-react";
+import { childLabel } from "@/lib/iapa-nav";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
@@ -14,12 +15,15 @@ function WhoWeAre() {
   const t = CONTENT[lang].who;
   const w = CONTENT[lang].work;
   const p = PAGES[lang].who;
+  const p2 = PAGES[lang];
+  const a = p2.arch;
   return (
     <>
       <PageHero eyebrow={t.eyebrow} title={t.title} lead={p.lead} img="ghana" />
 
-      <section className="py-16 md:py-24">
-        <div className="container-page grid gap-12 lg:grid-cols-2">
+      <section id="about" className="py-16 md:py-24">
+        <div className="container-page"><SectionHead eyebrow={p2.nav["who-we-are"]} title={childLabel("who-we-are", "about", lang)} /></div>
+        <div className="container-page mt-10 grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHead title={p.whyTitle} />
             {p.why.map((x) => <p key={x} className="mt-5 text-lg leading-relaxed text-muted-foreground">{x}</p>)}
@@ -76,9 +80,9 @@ function WhoWeAre() {
         </div>
       </section>
 
-      <section className="bg-secondary py-16 md:py-24">
+      <section id="managing-board" className="bg-secondary py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={p.govTitle} lead={p.govText} />
+          <SectionHead eyebrow={p.govTitle} title={childLabel("who-we-are", "managing-board", lang)} lead={p.govText} />
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.organs.map(([h, d]) => <li key={h} className="curve-card bg-card p-6"><h3 className="text-lg font-extrabold text-primary">{h}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
           </ul>
@@ -88,17 +92,7 @@ function WhoWeAre() {
           </div>
           <div className="mt-14">
             <h3 className="text-2xl font-extrabold">{p.boardTitle}</h3>
-            <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {p.board.slice(0, 4).map((b, i) => {
-                const Icon = [Crown, Award, Wallet, Briefcase][i]!;
-                return (
-                  <li key={b} className="curve-card flex flex-col items-start gap-4 bg-primary p-6 text-primary-foreground">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sun text-accent-foreground"><Icon className="h-6 w-6" aria-hidden /></span>
-                    <p className="text-lg font-extrabold leading-tight">{b}</p>
-                  </li>
-                );
-              })}
-            </ul>
+            <p className="mt-2 text-muted-foreground">{p.board.slice(0, 4).join(" · ")}</p>
             <div className="curve-card mt-4 bg-card p-6 md:p-8">
               <p className="eyebrow">{lang === "fr" ? "Points focaux régionaux" : "Regional focal points"}</p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -127,16 +121,41 @@ function WhoWeAre() {
         </div>
       </section>
 
+      <section id="leadership" className="py-16 md:py-24">
+        <div className="container-page">
+          <SectionHead title={childLabel("who-we-are", "leadership", lang)} lead={a.leadershipText} />
+          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {p.board.slice(0, 4).map((b, i) => {
+              const Icon = [Crown, Award, Wallet, Briefcase][i]!;
+              return (
+                <li key={b} className="curve-card flex flex-col items-start gap-4 bg-primary p-6 text-primary-foreground">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sun text-accent-foreground"><Icon className="h-6 w-6" aria-hidden /></span>
+                  <p className="text-lg font-extrabold leading-tight">{b}</p>
+                  <p className="text-sm opacity-80">{a.soon}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      <section id="asr-team" className="bg-card py-16 md:py-24">
+        <div className="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <SectionHead title={childLabel("who-we-are", "asr-team", lang)} lead={a.asrText} />
+          <div className="curve-card border-2 border-dashed border-savanna p-8"><Users className="h-10 w-10 text-primary" aria-hidden /><p className="mt-4 text-lg font-extrabold">{a.soon}</p></div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-10 lg:grid-cols-2">
-          <div>
-            <SectionHead title={w.partnersTitle} />
+          <div id="partners">
+            <SectionHead title={childLabel("who-we-are", "partners", lang)} />
             <ul className="mt-6 grid gap-3">
               {w.partners.map(([n, d]) => <li key={n} className="rounded-2xl border p-4"><p className="font-extrabold text-primary">{n}</p><p className="mt-1 text-sm text-muted-foreground">{d}</p></li>)}
             </ul>
           </div>
-          <div>
-            <SectionHead title={p.officesTitle} />
+          <div id="offices">
+            <SectionHead title={childLabel("who-we-are", "offices", lang)} />
             <div className="curve-card mt-6 bg-primary p-6 text-primary-foreground">
               <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p>
               <p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p>

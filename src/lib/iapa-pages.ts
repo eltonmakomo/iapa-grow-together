@@ -113,6 +113,23 @@ const en = {
       ["Which languages do you work in?", "IAPA works in English and French, and adapts training materials to local contexts."],
     ],
   },
+  arch: {
+    soon: "Coming soon",
+    leadershipText: "IAPA is led by its Board of Directors' officers. Profiles will be published here.",
+    asrText: "The ASR team and external associates who support IAPA's work. Profiles will be published here.",
+    testimonialsText: "Testimonials from partners, trainers and farmers will be published here. Want to share yours?",
+    shareCta: "Share a testimonial",
+    approachesTitle: "Our approaches",
+    formatsTitle: "Training formats",
+    formats: [
+      ["online", "Self-paced and live virtual learning for practitioners across Africa."],
+      ["residential", "Intensive in-person programmes with field practice."],
+      ["blended", "A mix of online learning and in-person sessions."],
+      ["tailor-made", "Programmes designed around a partner's value chain and target group."],
+    ] as [string, string][],
+    hubText: "Resources in this category will be published here.",
+    privacy: "Privacy Policy", legal: "Legal Notice", faqs: "FAQs", brand: "Brand Guidelines", social: "Follow us",
+  },
   footer: { explore: "Explore", contact: "Contact", newsletter: "Newsletter" },
 };
 
@@ -227,7 +244,35 @@ const fr: PagesContent = {
       ["Dans quelles langues travaillez-vous ?", "L'IAPA travaille en anglais et en français et adapte ses supports aux contextes locaux."],
     ],
   },
+  arch: {
+    soon: "Bientôt disponible",
+    leadershipText: "L'IAPA est dirigée par les membres du bureau du Conseil d'administration. Les profils seront publiés ici.",
+    asrText: "L'équipe ASR et les associés externes qui appuient le travail de l'IAPA. Les profils seront publiés ici.",
+    testimonialsText: "Les témoignages de partenaires, formateurs et producteurs seront publiés ici. Vous souhaitez partager le vôtre ?",
+    shareCta: "Partager un témoignage",
+    approachesTitle: "Nos approches",
+    formatsTitle: "Formats de formation",
+    formats: [
+      ["online", "Apprentissage virtuel, en autonomie ou en direct, pour les praticiens de toute l'Afrique."],
+      ["residential", "Programmes intensifs en présentiel avec pratique de terrain."],
+      ["blended", "Un mélange d'apprentissage en ligne et de sessions en présentiel."],
+      ["tailor-made", "Programmes conçus autour de la filière et du public cible d'un partenaire."],
+    ],
+    hubText: "Les ressources de cette catégorie seront publiées ici.",
+    privacy: "Politique de confidentialité", legal: "Mentions légales", faqs: "FAQ", brand: "Charte graphique", social: "Suivez-nous",
+  },
   footer: { explore: "Explorer", contact: "Contact", newsletter: "Lettre d'information" },
 };
 
 export const PAGES: Record<Lang, PagesContent> = { en, fr };
+
+export const LEGAL: Record<Lang, Record<"privacy" | "legal", { title: string; body: string[] }>> = {
+  en: {
+    privacy: { title: "Privacy Policy", body: ["This website does not use tracking cookies or collect personal data through forms.", "When you email the IAPA Executive Secretariat, we use your details only to answer your enquiry and do not share them with third parties.", "To ask about or delete information you have sent us, contact us by email."] },
+    legal: { title: "Legal Notice", body: ["This website is published by the International Agribusiness Practitioners Association (IAPA), registered in Accra, Ghana, in August 2026.", "Headquarters: Accra, Tumu Street, THE ROMBUS, plot 24, Ghana.", "Content, logos and photos on this site belong to IAPA or its partners and may not be reused without permission."] },
+  },
+  fr: {
+    privacy: { title: "Politique de confidentialité", body: ["Ce site n'utilise pas de cookies de suivi et ne collecte pas de données personnelles via des formulaires.", "Lorsque vous écrivez au Secrétariat exécutif de l'IAPA, vos coordonnées servent uniquement à répondre à votre demande et ne sont pas partagées.", "Pour toute question ou suppression des informations transmises, contactez-nous par e-mail."] },
+    legal: { title: "Mentions légales", body: ["Ce site est édité par l'International Agribusiness Practitioners Association (IAPA), enregistrée à Accra, au Ghana, en août 2026.", "Siège : Accra, Tumu Street, THE ROMBUS, parcelle 24, Ghana.", "Les contenus, logos et photos de ce site appartiennent à l'IAPA ou à ses partenaires et ne peuvent être réutilisés sans autorisation."] },
+  },
+};

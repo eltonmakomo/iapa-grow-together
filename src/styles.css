@@ -148,3 +148,13 @@
   .reveal.in > span.rounded-full, .reveal.in > span.rounded-2xl, .reveal.in svg { animation: pop .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--reveal-delay, 0ms) + .2s); }
   main svg.block path { transform-origin: bottom; animation: hero-rise 1s ease both; }
 }
+
+/* Mega menu */
+@utility shadow-lift { box-shadow: 0 40px 80px -30px color-mix(in oklab, var(--forest) 45%, transparent); }
+[id] { scroll-margin-top: 7rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .mega-panel { animation: mega-in 220ms cubic-bezier(.2,.7,.2,1) both; }
+  .mega-backdrop { animation: fade-in 200ms ease-out both; }
+}
+@keyframes mega-in { from { opacity: 0; transform: translateY(-10px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }

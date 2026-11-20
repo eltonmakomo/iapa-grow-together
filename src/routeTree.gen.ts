@@ -14,8 +14,10 @@ import { Route as LangRouteImport } from './routes/$lang'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangJoinUsRouteImport } from './routes/$lang.join-us'
 import { Route as LangKnowledgeHubRouteImport } from './routes/$lang.knowledge-hub'
+import { Route as LangLegalRouteImport } from './routes/$lang.legal'
 import { Route as LangMediaRouteImport } from './routes/$lang.media'
 import { Route as LangOurWorkRouteImport } from './routes/$lang.our-work'
+import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
 import { Route as LangTrainingRouteImport } from './routes/$lang.training'
 import { Route as LangWhoWeAreRouteImport } from './routes/$lang.who-we-are'
 
@@ -44,6 +46,11 @@ const LangKnowledgeHubRoute = LangKnowledgeHubRouteImport.update({
   path: '/knowledge-hub',
   getParentRoute: () => LangRoute,
 } as any)
+const LangLegalRoute = LangLegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangMediaRoute = LangMediaRouteImport.update({
   id: '/media',
   path: '/media',
@@ -52,6 +59,11 @@ const LangMediaRoute = LangMediaRouteImport.update({
 const LangOurWorkRoute = LangOurWorkRouteImport.update({
   id: '/our-work',
   path: '/our-work',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPrivacyRoute = LangPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => LangRoute,
 } as any)
 const LangTrainingRoute = LangTrainingRouteImport.update({
@@ -70,8 +82,10 @@ export interface FileRoutesByFullPath {
   '/$lang': typeof LangRouteWithChildren
   '/$lang/join-us': typeof LangJoinUsRoute
   '/$lang/knowledge-hub': typeof LangKnowledgeHubRoute
+  '/$lang/legal': typeof LangLegalRoute
   '/$lang/media': typeof LangMediaRoute
   '/$lang/our-work': typeof LangOurWorkRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
@@ -80,8 +94,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/join-us': typeof LangJoinUsRoute
   '/$lang/knowledge-hub': typeof LangKnowledgeHubRoute
+  '/$lang/legal': typeof LangLegalRoute
   '/$lang/media': typeof LangMediaRoute
   '/$lang/our-work': typeof LangOurWorkRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang': typeof LangIndexRoute
@@ -92,8 +108,10 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/$lang/join-us': typeof LangJoinUsRoute
   '/$lang/knowledge-hub': typeof LangKnowledgeHubRoute
+  '/$lang/legal': typeof LangLegalRoute
   '/$lang/media': typeof LangMediaRoute
   '/$lang/our-work': typeof LangOurWorkRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/training': typeof LangTrainingRoute
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
@@ -105,8 +123,10 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/$lang/join-us'
     | '/$lang/knowledge-hub'
+    | '/$lang/legal'
     | '/$lang/media'
     | '/$lang/our-work'
+    | '/$lang/privacy'
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang/'
@@ -115,8 +135,10 @@ export interface FileRouteTypes {
     | '/'
     | '/$lang/join-us'
     | '/$lang/knowledge-hub'
+    | '/$lang/legal'
     | '/$lang/media'
     | '/$lang/our-work'
+    | '/$lang/privacy'
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang'
@@ -126,8 +148,10 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/$lang/join-us'
     | '/$lang/knowledge-hub'
+    | '/$lang/legal'
     | '/$lang/media'
     | '/$lang/our-work'
+    | '/$lang/privacy'
     | '/$lang/training'
     | '/$lang/who-we-are'
     | '/$lang/'
@@ -175,6 +199,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangKnowledgeHubRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/legal': {
+      id: '/$lang/legal'
+      path: '/legal'
+      fullPath: '/$lang/legal'
+      preLoaderRoute: typeof LangLegalRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/media': {
       id: '/$lang/media'
       path: '/media'
@@ -187,6 +218,13 @@ declare module '@tanstack/react-router' {
       path: '/our-work'
       fullPath: '/$lang/our-work'
       preLoaderRoute: typeof LangOurWorkRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/privacy': {
+      id: '/$lang/privacy'
+      path: '/privacy'
+      fullPath: '/$lang/privacy'
+      preLoaderRoute: typeof LangPrivacyRouteImport
       parentRoute: typeof LangRoute
     }
     '/$lang/training': {
@@ -209,8 +247,10 @@ declare module '@tanstack/react-router' {
 interface LangRouteChildren {
   LangJoinUsRoute: typeof LangJoinUsRoute
   LangKnowledgeHubRoute: typeof LangKnowledgeHubRoute
+  LangLegalRoute: typeof LangLegalRoute
   LangMediaRoute: typeof LangMediaRoute
   LangOurWorkRoute: typeof LangOurWorkRoute
+  LangPrivacyRoute: typeof LangPrivacyRoute
   LangTrainingRoute: typeof LangTrainingRoute
   LangWhoWeAreRoute: typeof LangWhoWeAreRoute
   LangIndexRoute: typeof LangIndexRoute
@@ -219,8 +259,10 @@ interface LangRouteChildren {
 const LangRouteChildren: LangRouteChildren = {
   LangJoinUsRoute: LangJoinUsRoute,
   LangKnowledgeHubRoute: LangKnowledgeHubRoute,
+  LangLegalRoute: LangLegalRoute,
   LangMediaRoute: LangMediaRoute,
   LangOurWorkRoute: LangOurWorkRoute,
+  LangPrivacyRoute: LangPrivacyRoute,
   LangTrainingRoute: LangTrainingRoute,
   LangWhoWeAreRoute: LangWhoWeAreRoute,
   LangIndexRoute: LangIndexRoute,

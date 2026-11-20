@@ -34,7 +34,7 @@ function JoinUs() {
         <div className="container-page">
           <SectionHead title={p.oppTitle} />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[p.vacancies, p.scholarships].map(([h, x]) => <div key={h} className="curve-card bg-card p-6"><h3 className="text-xl font-extrabold">{h}</h3><p className="mt-2 text-muted-foreground">{x}</p></div>)}
+            {([["vacancies", p.vacancies], ["scholarships", p.scholarships]] as const).map(([id, [h, x]]) => <div key={id} id={id} className="curve-card bg-card p-6"><h3 className="text-xl font-extrabold">{h}</h3><p className="mt-2 text-muted-foreground">{x}</p></div>)}
             <div className="curve-card bg-sun p-6 text-accent-foreground"><p className="leading-relaxed">{p.oppStory}</p></div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -47,7 +47,7 @@ function JoinUs() {
 
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-10 lg:grid-cols-2">
-          <div>
+          <div id="faq">
             <SectionHead title={p.faqTitle} />
             <div className="mt-6 divide-y rounded-2xl border bg-card">
               {p.faq.map(([q, a]) => (

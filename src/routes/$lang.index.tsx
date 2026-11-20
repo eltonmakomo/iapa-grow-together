@@ -43,7 +43,7 @@ function Home() {
         <Arc className="-mb-px text-background" />
       </section>
 
-      <section className="py-16 md:py-24">
+      <section id="about-us" className="py-16 md:py-24">
         <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
           <div className="lg:sticky lg:top-32">
             <SectionHead eyebrow={p.homeIntro.eyebrow} title={p.homeIntro.title} lead={p.homeIntro.text} />
@@ -64,29 +64,29 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-card py-16 md:py-24">
+      <section id="key-initiatives" className="bg-card py-16 md:py-24">
         <div className="container-page">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-          <div className="lg:sticky lg:top-32 lg:self-start"><SectionHead title={p.initiativesTitle} /></div>
-          <ul className="grid gap-6">
-            {p.initiatives.map(([slug, h, d], i) => (
-              <li key={h} className="sticky" style={{ top: `${6 + i * 1.5}rem` }}>
-                <Link to={`/$lang/${slug}` as "/$lang/training"} params={{ lang }} className="curve-card group relative block min-h-56 overflow-hidden border bg-background p-7 md:p-10 transition hover:-translate-y-1">
-                  <span aria-hidden className={`absolute -right-6 -top-6 h-24 w-24 rounded-full ${["bg-sun/40", "bg-arid/30", "bg-savanna/40"][i]}`} />
-                  <h3 className="relative text-xl font-extrabold">{h}</h3>
-                  <p className="relative mt-2 leading-relaxed text-muted-foreground">{d}</p>
-                  <span className="relative mt-5 inline-flex items-center gap-1.5 font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <SectionHead title={p.initiativesTitle} />
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <h3 className="eyebrow">{t.work.partnersLabel}</h3>
+              <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                {t.work.partnerServices.map(([h, d], i) => (
+                  <li key={h} className="curve-card relative overflow-hidden border bg-background p-6">
+                    <span aria-hidden className={`absolute -right-6 -top-6 h-20 w-20 rounded-full ${["bg-sun/40", "bg-arid/30", "bg-savanna/40", "bg-sun/30"][i]}`} />
+                    <h4 className="relative text-lg font-extrabold">{h}</h4><p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="eyebrow">{t.work.membersLabel}</h3>
+              <ul className="mt-4 grid gap-4">
+                {t.work.memberServices.map(([h, d]) => <li key={h} className="rounded-2xl bg-secondary p-6"><h4 className="text-lg font-extrabold">{h}</h4><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
+              </ul>
+              <Link to="/$lang/join-us" params={{ lang }} className="group mt-5 inline-flex items-center gap-1.5 font-bold text-primary underline-offset-4 hover:underline">{p.nav["join-us"]} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container-page">
-          <Gallery lang={lang} title={GALLERY_TITLE[lang]} keys={["ghana", "robusta", "mauritania", "civ", "spirulina", "mali"]} />
         </div>
       </section>
 
@@ -113,6 +113,12 @@ function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container-page">
+          <Gallery lang={lang} title={GALLERY_TITLE[lang]} keys={["ghana", "robusta", "mauritania", "civ", "spirulina", "mali"]} />
         </div>
       </section>
 

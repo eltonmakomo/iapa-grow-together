@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Download } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
+import { childLabel } from "@/lib/iapa-nav";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER } from "@/components/iapa/media";
@@ -10,6 +11,8 @@ export const Route = createFileRoute("/$lang/knowledge-hub")({
   component: Hub,
 });
 
+const CATS = ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"];
+
 function Hub() {
   const lang = asLang(Route.useParams().lang);
   const h = CONTENT[lang].hub;
@@ -17,9 +20,9 @@ function Hub() {
   return (
     <>
       <PageHero eyebrow={h.eyebrow} title={h.title} lead={p.lead} img="morocco" />
-      <section className="py-16 md:py-24">
+      <section id="publications" className="py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={h.title} lead={h.lead} />
+          <SectionHead eyebrow={h.title} title={childLabel("knowledge-hub", "publications", lang)} lead={h.lead} />
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {h.issues.map((is, i) => (
               <li key={is.key} className="curve-card flex flex-col overflow-hidden bg-card">
@@ -49,11 +52,12 @@ function Hub() {
             <Photo k="morocco" lang={lang} ratio="aspect-[4/3]" />
           </div>
           <SectionHead title={p.libraryTitle} />
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {p.library.map((x) => (
-              <li key={x} className="rounded-2xl border-2 border-dashed border-savanna bg-card/60 p-6">
-                <h3 className="text-lg font-extrabold">{x}</h3>
-                <p className="mt-2 text-sm font-semibold text-arid-ink">{p.soon}</p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CATS.map((id) => (
+              <li key={id} id={id} className="rounded-2xl border-2 border-dashed border-savanna bg-card/60 p-6">
+                <h3 className="text-lg font-extrabold">{childLabel("knowledge-hub", id, lang)}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{PAGES[lang].arch.hubText}</p>
+                <p className="mt-3 text-sm font-semibold text-arid-ink">{p.soon}</p>
               </li>
             ))}
           </ul>

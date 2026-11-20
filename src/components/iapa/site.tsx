@@ -1,6 +1,8 @@
 import { Link, useMatches } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
-import { Globe, Menu, X, ArrowUp, Mail, Phone, MapPin } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Globe, Menu, X, ArrowUp, ArrowRight, ArrowUpRight, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
+import { navPage } from "@/lib/iapa-nav";
+import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
@@ -41,25 +43,66 @@ function LangSwitch({ lang }: { lang: Lang }) {
   );
 }
 
-const navCls = "rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-secondary";
-const activeCls = { className: "bg-secondary text-primary", "aria-current": "page" as const };
+const navCls = "inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-secondary";
+
+function MegaPanel({ lang, slug, onNavigate }: { lang: Lang; slug: PageSlug; onNavigate: () => void }) {
+  const n = navPage(slug);
+  const p = PAGES[lang];
+  return (
+    <div id={`mega-${slug}`} className="mega-panel container-page absolute inset-x-0 top-full pt-3">
+      <div className="grid gap-8 rounded-[2rem] border border-border/60 bg-background/90 p-8 shadow-lift backdrop-blur-2xl backdrop-saturate-150 lg:grid-cols-[1.1fr_repeat(2,1fr)_1.1fr] lg:p-10">
+        <div className="flex flex-col lg:border-r lg:pr-8">
+          <p className="eyebrow text-xs">{p.nav[slug]}</p>
+          <p className="mt-3 text-xl font-semibold leading-snug">{n.blurb[lang]}</p>
+          <Link to={pathFor(slug)} params={{ lang }} onClick={onNavigate} className="group mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-arid/20 px-5 py-2.5 font-bold text-arid-ink ring-1 ring-arid/40 transition hover:bg-arid/30">
+            <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />{p.readMore}
+          </Link>
+        </div>
+        {[0, 1].map((gi) => {
+          const g = n.groups[gi];
+          return (
+            <div key={gi}>
+              {g && <>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">{g.title[lang]}</p>
+                <ul className="mt-4 space-y-1">
+                  {g.items.map((it) => (
+                    <li key={it.id}><Link to={pathFor(slug)} params={{ lang }} hash={it.id} onClick={onNavigate} className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2 -mx-3 text-[1.05rem] transition hover:bg-secondary hover:text-primary">
+                      {it.label[lang]}<ArrowRight className="h-4 w-4 shrink-0 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100" aria-hidden />
+                    </Link></li>
+                  ))}
+                </ul>
+              </>}
+            </div>
+          );
+        })}
+        <img src={IMG[n.img]} alt="" loading="lazy" style={{ objectPosition: PHOTO_POSITION[n.img] }} className="hidden h-full max-h-64 w-full rounded-[1.5rem] object-cover lg:block" />
+      </div>
+    </div>
+  );
+}
 
 export function SiteHeader({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const p = PAGES[lang];
   const [open, setOpen] = useState(false);
+  const [mega, setMega] = useState<PageSlug | null>(null);
+  const [sub, setSub] = useState<PageSlug | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const matches = useMatches();
   const path = matches[matches.length - 1]?.pathname;
-  useEffect(() => setOpen(false), [path]);
+  useEffect(() => { setOpen(false); setMega(null); }, [path]);
   useEffect(() => {
-    if (!open) return;
-    const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    if (!open && !mega) return;
+    const k = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(false); setMega(null); } };
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
-  }, [open]);
+  }, [open, mega]);
+  const show = (s: PageSlug) => { clearTimeout(timer.current); setMega(s); };
+  const hide = () => { clearTimeout(timer.current); timer.current = setTimeout(() => setMega(null), 160); };
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
+    <>
+    <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur-xl" onMouseLeave={hide}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">{t.skip}</a>
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
         <Link to="/$lang" params={{ lang }} className="min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
@@ -68,7 +111,12 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {PAGE_SLUGS.map((s) => (
-              <li key={s}><Link to={pathFor(s)} params={{ lang }} className={navCls} activeProps={activeCls}>{p.nav[s]}</Link></li>
+              <li key={s} onMouseEnter={() => show(s)} className="flex items-center">
+                <Link to={pathFor(s)} params={{ lang }} className={`${navCls} ${mega === s ? "bg-secondary" : ""}`} activeProps={{ className: "text-primary", "aria-current": "page" }} onFocus={() => show(s)}>{p.nav[s]}</Link>
+                <button type="button" aria-expanded={mega === s} aria-controls={`mega-${s}`} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setMega(mega === s ? null : s)} className="-ml-1.5 grid h-8 w-6 place-items-center rounded-full text-muted-foreground hover:text-primary">
+                  <ChevronDown className={`h-4 w-4 transition-transform ${mega === s ? "rotate-180" : ""}`} aria-hidden />
+                </button>
+              </li>
             ))}
           </ul>
         </nav>
@@ -81,17 +129,34 @@ export function SiteHeader({ lang }: { lang: Lang }) {
           </button>
         </div>
       </div>
+      {mega && <div className="hidden xl:block" onMouseEnter={() => show(mega)}><MegaPanel key={mega} lang={lang} slug={mega} onNavigate={() => setMega(null)} /></div>}
       {open && (
-        <nav id="mobile-nav" aria-label="Primary" className="border-t bg-background xl:hidden">
+        <nav id="mobile-nav" aria-label="Primary" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t bg-background/90 backdrop-blur-2xl xl:hidden">
           <ul className="container-page flex flex-col py-3">
             <li><Link to="/$lang" params={{ lang }} activeOptions={{ exact: true }} className="block rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.home}</Link></li>
             {PAGE_SLUGS.map((s) => (
-              <li key={s}><Link to={pathFor(s)} params={{ lang }} className="block rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.nav[s]}</Link></li>
+              <li key={s} className="border-t border-border/50">
+                <div className="flex items-center justify-between">
+                  <Link to={pathFor(s)} params={{ lang }} className="block flex-1 rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.nav[s]}</Link>
+                  <button type="button" aria-expanded={sub === s} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setSub(sub === s ? null : s)} className="grid h-10 w-10 place-items-center rounded-full hover:bg-secondary">
+                    <ChevronDown className={`h-5 w-5 transition-transform ${sub === s ? "rotate-180" : ""}`} aria-hidden />
+                  </button>
+                </div>
+                {sub === s && (
+                  <ul className="mb-3 ml-3 border-l-2 border-savanna pl-3">
+                    {navPage(s).groups.flatMap((g) => g.items).map((it) => (
+                      <li key={it.id}><Link to={pathFor(s)} params={{ lang }} hash={it.id} onClick={() => setOpen(false)} className="block rounded-lg px-2 py-2 text-muted-foreground hover:text-primary">{it.label[lang]}</Link></li>
+                    ))}
+                  </ul>
+                )}
+              </li>
             ))}
           </ul>
         </nav>
       )}
     </header>
+    {mega && <div aria-hidden onClick={() => setMega(null)} className="mega-backdrop fixed inset-0 z-40 hidden bg-forest/25 backdrop-blur-md xl:block" />}
+    </>
   );
 }
 
@@ -124,8 +189,14 @@ export function SiteFooter({ lang }: { lang: Lang }) {
         </div>
       </div>
       <div className="border-t border-forest-foreground/15">
-        <div className="container-page flex items-center justify-between py-5 text-sm text-forest-foreground/80">
+        <div className="container-page flex flex-wrap items-center justify-between gap-4 py-5 text-sm text-forest-foreground/80">
           <span>© 2026 IAPA</span>
+          <ul className="flex flex-wrap gap-x-5 gap-y-1">
+            <li><Link to="/$lang/join-us" params={{ lang }} hash="faq" className="hover:underline">{p.arch.faqs}</Link></li>
+            <li><a href={brandPdf.url} target="_blank" rel="noopener" className="hover:underline">{p.arch.brand}</a></li>
+            <li><Link to="/$lang/privacy" params={{ lang }} className="hover:underline">{p.arch.privacy}</Link></li>
+            <li><Link to="/$lang/legal" params={{ lang }} className="hover:underline">{p.arch.legal}</Link></li>
+          </ul>
           <a href="#top" className="inline-flex items-center gap-1.5 hover:underline"><ArrowUp className="h-4 w-4" aria-hidden />{t.footer.backTop}</a>
         </div>
       </div>
