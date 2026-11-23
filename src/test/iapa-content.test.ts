@@ -3,6 +3,7 @@ import { CONTACT, CONTENT, SOCIALS } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { NAV } from "@/lib/iapa-nav";
 import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
+import { getStory, STORIES } from "@/lib/iapa-stories";
 import mapData from "@/lib/africa-map-data.json";
 
 describe("IAPA content", () => {
@@ -48,6 +49,17 @@ describe("IAPA content", () => {
           expect(shapeIds.has(c.id)).toBe(true);
         }
       });
+    }
+  });
+  it("provides a bilingual inside page for every field story", () => {
+    expect(STORIES).toHaveLength(CONTENT.en.work.stories.length);
+    for (const s of CONTENT.en.work.stories) {
+      const detail = getStory(s.img);
+      expect(detail).toBeDefined();
+      expect(detail?.en.body.length).toBeGreaterThanOrEqual(3);
+      expect(detail?.fr.body.length).toBeGreaterThanOrEqual(3);
+      expect(detail?.en.highlights.length).toBeGreaterThanOrEqual(3);
+      expect(detail?.fr.highlights.length).toBeGreaterThanOrEqual(3);
     }
   });
 });

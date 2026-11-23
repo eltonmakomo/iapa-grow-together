@@ -40,8 +40,10 @@ function OurWork() {
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {w.stories.map((s) => (
               <li key={s.title} id={`story-${s.img}`} className="curve-card scroll-mt-28 overflow-hidden bg-card target:ring-4 target:ring-sun">
-                <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="aspect-[4/3] w-full object-cover object-top origin-top" />
-                <div className="p-5"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold leading-snug">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p><Link to="/$lang/knowledge-hub" params={{ lang }} className="group mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary underline-offset-4 hover:underline">{lang === "fr" ? "Lire dans IAPA Pulse" : "Read in IAPA Pulse"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></Link></div>
+                <Link to="/$lang/stories/$storyId" params={{ lang, storyId: s.img }} className="group flex h-full flex-col">
+                  <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="aspect-[4/3] w-full object-cover object-top origin-top" />
+                  <div className="flex flex-1 flex-col p-5"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold leading-snug">{s.title}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{lang === "fr" ? "Lire l'histoire" : "Read story"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div>
+                </Link>
               </li>
             ))}
           </ul>
