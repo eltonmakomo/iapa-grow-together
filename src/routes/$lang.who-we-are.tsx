@@ -4,6 +4,7 @@ import { childLabel } from "@/lib/iapa-nav";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { PartnerCards } from "@/components/iapa/partner-logos";
 
 export const Route = createFileRoute("/$lang/who-we-are")({
   head: ({ params }) => pageHead(params.lang, "who-we-are"),
@@ -13,7 +14,6 @@ export const Route = createFileRoute("/$lang/who-we-are")({
 function WhoWeAre() {
   const lang = asLang(Route.useParams().lang);
   const t = CONTENT[lang].who;
-  const w = CONTENT[lang].work;
   const p = PAGES[lang].who;
   const p2 = PAGES[lang];
   const a = p2.arch;
@@ -150,9 +150,7 @@ function WhoWeAre() {
         <div className="container-page grid gap-10 lg:grid-cols-2">
           <div id="partners">
             <SectionHead title={childLabel("who-we-are", "partners", lang)} />
-            <ul className="mt-6 grid gap-3">
-              {w.partners.map(([n, d]) => <li key={n} className="rounded-2xl border p-4"><p className="font-extrabold text-primary">{n}</p><p className="mt-1 text-sm text-muted-foreground">{d}</p></li>)}
-            </ul>
+            <div className="mt-6"><PartnerCards lang={lang} className="sm:grid-cols-2" /></div>
           </div>
           <div id="offices">
             <SectionHead title={childLabel("who-we-are", "offices", lang)} />

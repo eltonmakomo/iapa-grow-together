@@ -6,6 +6,7 @@ import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER, storyImg, storyPosition, type BannerKey } from "@/components/iapa/media";
+import { PartnerCards } from "@/components/iapa/partner-logos";
 
 const BANNERS: Record<PageSlug, BannerKey> = {
   "who-we-are": "ghana",
@@ -61,7 +62,7 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
     <PairCards items={p.board.slice(0, 4).map((role): Pair => [role, a.soon])} />
   </>;
   if (child === "iapa-team") return <><SectionHead title={p.deptTitle} lead={a.teamText} /><PairCards items={p.depts} /></>;
-  if (child === "partners") return <><PairCards items={w.partners} /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
+  if (child === "partners") return <><PartnerCards lang={lang} className="sm:grid-cols-2 lg:grid-cols-3" /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>
     <div className="curve-card bg-primary p-7 text-primary-foreground"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p><p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p></div>
     <div className="mt-10"><SectionHead title={t.regionsTitle} /><AfricaImpactMap lang={lang} /></div>
