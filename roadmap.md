@@ -8,5 +8,6 @@
 - [x] Social media links in footer (placeholder profiles until IAPA confirms handles)
 - [x] White footer logo; dropdown children as individual bilingual pages
 - [x] Add official logos to partner and funder cards
-- [ ] Give every child page distinct content and images
-- [ ] Add an online reading option for IAPA Pulse newsletters
+- [x] Give every child page distinct content and images
+- [x] Add an online reading option for IAPA Pulse newsletters
+- [x] Fill empty child pages with clearly marked dummy content

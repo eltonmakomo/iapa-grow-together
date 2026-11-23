@@ -3,6 +3,7 @@ import { ChildPage } from "@/components/iapa/child-page";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { asLang } from "@/components/iapa/site";
+import { childContent } from "@/lib/iapa-child-content";
 
 function validChild(section: string, child: string): section is PageSlug {
   return PAGE_SLUGS.includes(section as PageSlug) &&
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/$lang/$section/$child")({
     const lang = asLang(params.lang);
     const section = params.section as PageSlug;
     const title = `${childLabel(section, params.child, lang)} — IAPA`;
-    const description = navPage(section).blurb[lang];
+    const description = childContent(section, params.child, lang).lead;
     return {
       meta: [
         { title },

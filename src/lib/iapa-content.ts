@@ -144,6 +144,7 @@ const en = {
       { key: "2", label: "Issue 2 · June 2026", title: "A strategic turning point", text: "Strategic workshop in Kenya, ACBF consultancy missions, the AAA partnership and new member opportunities." },
     ],
     download: "Download PDF",
+    read: "Read online",
     size: "PDF, English",
   },
   join: {
@@ -302,6 +303,7 @@ const fr: Content = {
       { key: "2", label: "Numéro 2 · Juin 2026", title: "Un tournant stratégique", text: "Atelier stratégique au Kenya, missions des consultants de l'ACBF, partenariat avec l'AAA et nouvelles opportunités pour les membres." },
     ],
     download: "Télécharger le PDF",
+    read: "Lire en ligne",
     size: "PDF, en anglais",
   },
   join: {

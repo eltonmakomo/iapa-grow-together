@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download } from "lucide-react";
+import { BookOpen, Download } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
 import { childLabel } from "@/lib/iapa-nav";
 import { PAGES } from "@/lib/iapa-pages";
@@ -33,9 +33,14 @@ function Hub() {
                   <p className="eyebrow">{is.label}</p>
                   <h3 className="mt-2 text-2xl font-extrabold">{is.title}</h3>
                   <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{is.text}</p>
-                  <a href={PULSE[is.key]} download target="_blank" rel="noopener" className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground hover:brightness-110">
-                    <Download className="h-5 w-5" aria-hidden /> {h.download}<span className="sr-only"> — IAPA Pulse {is.label}</span>
-                  </a>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a href={PULSE[is.key]} target="_blank" rel="noopener" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground">
+                      <BookOpen className="h-5 w-5" aria-hidden /> {h.read}<span className="sr-only"> — IAPA Pulse {is.label}</span>
+                    </a>
+                    <a href={PULSE[is.key]} download className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-bold text-primary-foreground hover:brightness-110">
+                      <Download className="h-5 w-5" aria-hidden /> {h.download}<span className="sr-only"> — IAPA Pulse {is.label}</span>
+                    </a>
+                  </div>
                   <p className="mt-2 text-xs text-muted-foreground">{h.size}</p>
                 </div>
                 </div>

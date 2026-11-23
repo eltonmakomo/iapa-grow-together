@@ -19,11 +19,61 @@ import pulse3Cover from "@/assets/pulse3-cover.jpg.asset.json";
 import pulse2Cover from "@/assets/pulse2-cover.jpg.asset.json";
 import pulse3 from "@/assets/pulse-3.pdf.asset.json";
 import pulse2 from "@/assets/pulse-2.pdf.asset.json";
+import aboutHandover from "@/assets/child-pages/about-handover.jpg.asset.json";
+import aquacultureProcessing from "@/assets/child-pages/aquaculture-processing.jpg.asset.json";
+import blendedWorkshop from "@/assets/child-pages/blended-workshop.jpg.asset.json";
+import boardStrategy from "@/assets/child-pages/board-strategy.jpg.asset.json";
+import careerGrowth from "@/assets/child-pages/career-growth.jpg.asset.json";
+import caseStudySession from "@/assets/child-pages/case-study-session.jpg.asset.json";
+import contractFarming from "@/assets/child-pages/contract-farming.jpg.asset.json";
+import cooperativeCertificates from "@/assets/child-pages/cooperative-certificates.jpg.asset.json";
+import documentSigning from "@/assets/child-pages/document-signing.jpg.asset.json";
+import elearningAcademy from "@/assets/child-pages/elearning-academy.jpg.asset.json";
+import farmerVoices from "@/assets/child-pages/farmer-voices.jpg.asset.json";
+import farmerBusinessSchool from "@/assets/child-pages/farmer-business-school.jpg.asset.json";
+import fieldPractices from "@/assets/child-pages/field-practices.jpg.asset.json";
+import knowledgeClassroom from "@/assets/child-pages/knowledge-classroom.jpg.asset.json";
+import leadershipPresentation from "@/assets/child-pages/leadership-presentation.jpg.asset.json";
+import multimediaTraining from "@/assets/child-pages/multimedia-training.jpg.asset.json";
+import onlineLearning from "@/assets/child-pages/online-learning.jpg.asset.json";
+import policyDialogue from "@/assets/child-pages/policy-dialogue.jpg.asset.json";
+import regionalNetwork from "@/assets/child-pages/regional-network.jpg.asset.json";
+import researchMeeting from "@/assets/child-pages/research-meeting.jpg.asset.json";
+import residentialClassroom from "@/assets/child-pages/residential-classroom.jpg.asset.json";
+import resultsCertificates from "@/assets/child-pages/results-certificates.jpg.asset.json";
+import scholarshipCertificate from "@/assets/child-pages/scholarship-certificate.jpg.asset.json";
+import tailoredTraining from "@/assets/child-pages/tailored-training.jpg.asset.json";
+import teamAssociates from "@/assets/child-pages/team-associates.jpg.asset.json";
 
 export const IMG = {
   hero: heroImg.url, cameroon: cameroon.url, mauritania: mauritania.url, morocco: morocco.url, burkina: burkina.url, ghana: ghana.url,
   kenya: kenya.url, signing: signing.url, evaluation: evaluation.url, robusta: robusta.url, chadSup: chadSup.url, mali: mali.url,
   burkinaSession: burkinaSession.url, burkinaMaize: burkinaMaize.url, civ: civ.url, spirulina: spirulina.url, seedling: seedling.url,
+  aboutHandover: aboutHandover.url,
+  aquacultureProcessing: aquacultureProcessing.url,
+  blendedWorkshop: blendedWorkshop.url,
+  boardStrategy: boardStrategy.url,
+  careerGrowth: careerGrowth.url,
+  caseStudySession: caseStudySession.url,
+  contractFarming: contractFarming.url,
+  cooperativeCertificates: cooperativeCertificates.url,
+  documentSigning: documentSigning.url,
+  elearningAcademy: elearningAcademy.url,
+  farmerVoices: farmerVoices.url,
+  farmerBusinessSchool: farmerBusinessSchool.url,
+  fieldPractices: fieldPractices.url,
+  knowledgeClassroom: knowledgeClassroom.url,
+  leadershipPresentation: leadershipPresentation.url,
+  multimediaTraining: multimediaTraining.url,
+  onlineLearning: onlineLearning.url,
+  policyDialogue: policyDialogue.url,
+  regionalNetwork: regionalNetwork.url,
+  researchMeeting: researchMeeting.url,
+  residentialClassroom: residentialClassroom.url,
+  resultsCertificates: resultsCertificates.url,
+  scholarshipCertificate: scholarshipCertificate.url,
+  tailoredTraining: tailoredTraining.url,
+  teamAssociates: teamAssociates.url,
 };
 export type ImgKey = keyof typeof IMG;
 
@@ -46,6 +96,31 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
   morocco: "50% 20%",
   signing: "50% 20%",
   seedling: "50% 20%",
+  aboutHandover: "50% 20%",
+  aquacultureProcessing: "50% 20%",
+  blendedWorkshop: "50% 20%",
+  boardStrategy: "50% 20%",
+  careerGrowth: "50% 20%",
+  caseStudySession: "50% 20%",
+  contractFarming: "50% 20%",
+  cooperativeCertificates: "50% 20%",
+  documentSigning: "50% 20%",
+  elearningAcademy: "50% 20%",
+  farmerVoices: "50% 20%",
+  farmerBusinessSchool: "50% 20%",
+  fieldPractices: "50% 20%",
+  knowledgeClassroom: "50% 20%",
+  leadershipPresentation: "50% 15%",
+  multimediaTraining: "50% 20%",
+  onlineLearning: "50% 20%",
+  policyDialogue: "50% 20%",
+  regionalNetwork: "50% 20%",
+  researchMeeting: "50% 20%",
+  residentialClassroom: "50% 20%",
+  resultsCertificates: "50% 20%",
+  scholarshipCertificate: "50% 15%",
+  tailoredTraining: "50% 20%",
+  teamAssociates: "50% 20%",
 };
 export const storyImg = (k: string): string => (IMG as Record<string, string>)[k] ?? IMG.hero;
 export const storyPosition = (k: string): string => (PHOTO_POSITION as Record<string, string>)[k] ?? "50% 0%";
@@ -71,3 +146,4 @@ export const BANNER = {
   join: { src: bJoin.url, pos: "100% 20%" },
 } as const;
 export type BannerKey = keyof typeof BANNER;
+export type HeroKey = BannerKey | ImgKey;

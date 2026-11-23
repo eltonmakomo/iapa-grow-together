@@ -5,6 +5,7 @@ import { NAV } from "@/lib/iapa-nav";
 import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
 import { getStory, STORIES } from "@/lib/iapa-stories";
 import mapData from "@/lib/africa-map-data.json";
+import { CHILD_CONTENT } from "@/lib/iapa-child-content";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -56,6 +57,31 @@ describe("IAPA content", () => {
           expect(shapeIds.has(c.id)).toBe(true);
         }
       });
+    }
+  });
+  it("gives every child page distinct bilingual copy and a unique hero image", () => {
+    const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
+    const heroes = new Set<string>();
+    const leads = new Set<string>();
+    for (const { page, id } of children) {
+      const entry = CHILD_CONTENT[page][id];
+      expect(entry, `${page}/${id}`).toBeDefined();
+      heroes.add(entry!.img);
+      leads.add(entry!.en.lead);
+      leads.add(entry!.fr.lead);
+    }
+    expect(heroes.size).toBe(32);
+    expect(leads.size).toBe(64);
+  });
+  it("fills formerly empty resource and opportunity pages with sample cards", () => {
+    const pages = ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"];
+    for (const id of pages) {
+      expect(CHILD_CONTENT["knowledge-hub"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
+      expect(CHILD_CONTENT["knowledge-hub"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
+    }
+    for (const id of ["vacancies", "scholarships"]) {
+      expect(CHILD_CONTENT["join-us"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
+      expect(CHILD_CONTENT["join-us"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
     }
   });
   it("provides a bilingual inside page for every field story", () => {

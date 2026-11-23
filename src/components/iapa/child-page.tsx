@@ -1,21 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Download, FileText, Mail, MapPin, Quote } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, MapPin } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
+import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
-import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
-import { PULSE, PULSE_COVER, storyImg, storyPosition, type BannerKey } from "@/components/iapa/media";
+import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
+import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
-
-const BANNERS: Record<PageSlug, BannerKey> = {
-  "who-we-are": "ghana",
-  "our-work": "cameroon",
-  training: "burkina",
-  "knowledge-hub": "morocco",
-  media: "mauritania",
-  "join-us": "join",
-};
 
 const PARENT_ROUTES = {
   "who-we-are": "/$lang/who-we-are",
@@ -25,8 +17,6 @@ const PARENT_ROUTES = {
   media: "/$lang/media",
   "join-us": "/$lang/join-us",
 } as const;
-
-type Pair = [string, string];
 
 function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | undefined>> }) {
   return (
@@ -41,11 +31,58 @@ function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | unde
   );
 }
 
+function FeatureBody({ lang, title, copy }: { lang: Lang; title: string; copy: ChildCopy }) {
+  const ui = CHILD_UI[lang];
+  return (
+    <>
+      <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+        <div>
+          <SectionHead title={copy.heading ?? title} />
+          {copy.body?.map((text) => <p key={text} className="mt-5 text-lg leading-relaxed text-muted-foreground">{text}</p>)}
+        </div>
+        {copy.points && (
+          <div className="curve-card bg-card p-7">
+            <h3 className="text-2xl font-extrabold">{ui.highlights}</h3>
+            <ul className="mt-6 grid gap-4">
+              {copy.points.map((point) => (
+                <li key={point} className="flex items-start gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-sun text-accent-foreground"><Check className="h-5 w-5" aria-hidden /></span>
+                  <span className="pt-1 font-semibold leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      {copy.samples && (
+        <div className="mt-12">
+          <div className="flex flex-wrap items-center gap-3 rounded-2xl border-2 border-dashed border-arid bg-cream p-4">
+            <span className="rounded-full bg-arid px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">{ui.sample}</span>
+            <p className="text-sm leading-relaxed text-muted-foreground">{ui.sampleNote}</p>
+          </div>
+          <ul className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {copy.samples.map((item) => (
+              <li key={item.title} className="curve-card flex h-full flex-col bg-card p-6">
+                <p className="eyebrow text-xs">{item.meta}</p>
+                <h3 className="mt-3 text-xl font-extrabold leading-snug">{item.title}</h3>
+                <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {copy.note && <p className="mt-6 rounded-2xl bg-secondary p-5 font-semibold text-secondary-foreground">{copy.note}</p>}
+    </>
+  );
+}
+
 function WhoBody({ lang, child }: { lang: Lang; child: string }) {
   const t = CONTENT[lang].who;
   const w = CONTENT[lang].work;
   const p = PAGES[lang].who;
-  const a = PAGES[lang].arch;
+  if (child === "leadership" || child === "iapa-team") {
+    return <FeatureBody lang={lang} title={childLabel("who-we-are", child, lang)} copy={childContent("who-we-are", child, lang)} />;
+  }
   if (child === "about") return <>
     <div className="grid gap-10 lg:grid-cols-2">
       <div><SectionHead title={p.whyTitle} />{[...p.why, ...t.body].map((text) => <p key={text} className="mt-5 text-lg leading-relaxed text-muted-foreground">{text}</p>)}</div>
@@ -57,11 +94,6 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
     <SectionHead title={p.govTitle} lead={p.govText} /><PairCards items={p.organs} />
     <div className="mt-12"><SectionHead title={p.boardTitle} /><ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{p.board.map((role) => <li key={role} className="rounded-2xl border bg-card p-5 font-semibold">{role}</li>)}</ul></div>
   </>;
-  if (child === "leadership") return <>
-    <SectionHead title={p.boardTitle} lead={a.leadershipText} />
-    <PairCards items={p.board.slice(0, 4).map((role): Pair => [role, a.soon])} />
-  </>;
-  if (child === "iapa-team") return <><SectionHead title={p.deptTitle} lead={a.teamText} /><PairCards items={p.depts} /></>;
   if (child === "partners") return <><PartnerCards lang={lang} className="sm:grid-cols-2 lg:grid-cols-3" /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>
     <div className="curve-card bg-primary p-7 text-primary-foreground"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p><p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p></div>
@@ -72,39 +104,25 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
 function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const w = CONTENT[lang].work;
   const p = PAGES[lang].work;
-  const a = PAGES[lang].arch;
   if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
   if (child === "iapa-in-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
   if (child === "stories") return <>
     <SectionHead title={w.storiesTitle} lead={w.storiesNote} />
     <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{w.stories.map((story) => <li key={story.title}><Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.img }} className="curve-card group flex h-full flex-col overflow-hidden bg-card"><img src={storyImg(story.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(story.img) }} className="aspect-[4/3] w-full object-cover object-top" /><div className="flex flex-1 flex-col p-5"><p className="eyebrow text-xs">{story.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{story.title}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{lang === "fr" ? "Lire l'histoire" : "Read story"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div></Link></li>)}</ul>
   </>;
-  return <div className="curve-card relative overflow-hidden bg-primary p-8 text-primary-foreground md:p-10"><Quote className="h-12 w-12 text-sun" aria-hidden /><p className="mt-4 max-w-2xl text-xl leading-relaxed">{a.testimonialsText}</p><p className="mt-4 text-2xl font-extrabold">{a.soon}</p><a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(a.shareCta)}`} className="mt-6 inline-flex rounded-full bg-sun px-6 py-3 font-extrabold text-accent-foreground hover:brightness-105">{a.shareCta}</a></div>;
+  return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} />;
 }
 
 function TrainingBody({ lang, child }: { lang: Lang; child: string }) {
-  const t = CONTENT[lang].training;
-  const a = PAGES[lang].arch;
-  const school = t.schools.find(([abbr]) => abbr?.toLowerCase() === child);
-  const format = a.formats.find(([id]) => id === child);
-  const title = school?.[1] ?? (child === "cf" ? t.cfTitle : child === "gap" ? childLabel("training", "gap", lang) : undefined);
-  const text = school?.[2] ?? (child === "cf" ? t.cfText : child === "gap" ? t.gap : format?.[1]);
-  return <>
-    <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-start">
-      <div><SectionHead title={title ?? a.formatsTitle} lead={text ?? t.lead} /><p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.lead}</p></div>
-      <div className="curve-card bg-card p-7"><h3 className="text-2xl font-extrabold">{t.processTitle}</h3><ol className="mt-6 grid gap-4">{t.process.map((step, i) => <li key={step} className="flex items-center gap-3"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-savanna font-extrabold text-accent-foreground">{i + 1}</span><span className="font-semibold">{step}</span></li>)}</ol></div>
-    </div>
-    <div className="mt-12 grid gap-4 md:grid-cols-3"><Photo k="burkinaMaize" lang={lang} /><Photo k="burkinaSession" lang={lang} /><Photo k="mauritania" lang={lang} /></div>
-  </>;
+  return <FeatureBody lang={lang} title={childLabel("training", child, lang)} copy={childContent("training", child, lang)} />;
 }
 
 function HubBody({ lang, child }: { lang: Lang; child: string }) {
   const h = CONTENT[lang].hub;
-  const p = PAGES[lang].hub;
-  if (child !== "publications") return <div className="curve-card border-2 border-dashed border-savanna bg-card p-8 md:p-10"><h2 className="text-2xl font-extrabold">{childLabel("knowledge-hub", child, lang)}</h2><p className="mt-3 text-lg text-muted-foreground">{PAGES[lang].arch.hubText}</p><p className="mt-5 font-bold text-arid-ink">{p.soon}</p></div>;
+  if (child !== "publications") return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} />;
   return <>
     <SectionHead title={h.title} lead={h.lead} />
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">{h.issues.map((issue, i) => <li key={issue.key} className="curve-card flex flex-col overflow-hidden bg-card"><div className={`h-2 ${i === 0 ? "bg-primary" : "bg-arid"}`} /><div className="grid flex-1 gap-6 p-7 sm:grid-cols-[9rem_1fr]"><img src={PULSE_COVER[issue.key]!} alt={`IAPA Pulse — ${issue.label}`} loading="lazy" className="w-36 rounded-lg border shadow-soft sm:w-full" /><div><p className="eyebrow">{issue.label}</p><h3 className="mt-2 text-2xl font-extrabold">{issue.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{issue.text}</p><a href={PULSE[issue.key]!} download target="_blank" rel="noopener" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground hover:brightness-110"><Download className="h-5 w-5" aria-hidden />{h.download}</a><p className="mt-2 text-xs text-muted-foreground">{h.size}</p></div></div></li>)}</ul>
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">{h.issues.map((issue, i) => <li key={issue.key} className="curve-card flex flex-col overflow-hidden bg-card"><div className={`h-2 ${i === 0 ? "bg-primary" : "bg-arid"}`} /><div className="grid flex-1 gap-6 p-7 sm:grid-cols-[9rem_1fr]"><img src={PULSE_COVER[issue.key]!} alt={`IAPA Pulse — ${issue.label}`} loading="lazy" className="w-36 rounded-lg border shadow-soft sm:w-full" /><div><p className="eyebrow">{issue.label}</p><h3 className="mt-2 text-2xl font-extrabold">{issue.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{issue.text}</p><div className="mt-6 flex flex-wrap gap-3"><a href={PULSE[issue.key]!} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground"><BookOpen className="h-5 w-5" aria-hidden />{h.read}</a><a href={PULSE[issue.key]!} download className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-bold text-primary-foreground hover:brightness-110"><Download className="h-5 w-5" aria-hidden />{h.download}</a></div><p className="mt-2 text-xs text-muted-foreground">{h.size}</p></div></div></li>)}</ul>
   </>;
 }
 
@@ -116,10 +134,7 @@ function MediaBody({ lang, child }: { lang: Lang; child: string }) {
 }
 
 function JoinBody({ lang, child }: { lang: Lang; child: string }) {
-  const p = PAGES[lang].join;
-  const j = CONTENT[lang].join;
-  const [title, text] = child === "vacancies" ? p.vacancies : p.scholarships;
-  return <div className="grid gap-6 lg:grid-cols-2"><div className="curve-card bg-card p-8"><h2 className="text-2xl font-extrabold">{title}</h2><p className="mt-3 text-lg leading-relaxed text-muted-foreground">{text}</p><a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(title ?? "")}`} className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-extrabold text-primary-foreground"><Mail className="h-5 w-5" aria-hidden />{j.contactTitle}</a></div><div className="curve-card bg-sun p-8 text-accent-foreground"><p className="text-lg leading-relaxed">{p.oppStory}</p></div></div>;
+  return <FeatureBody lang={lang} title={childLabel("join-us", child, lang)} copy={childContent("join-us", child, lang)} />;
 }
 
 function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: string }) {
@@ -136,7 +151,7 @@ export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; c
   const n = navPage(slug);
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
-    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={n.blurb[lang]} img={BANNERS[slug]} />
+    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={childContent(slug, child, lang).lead} img={childHero(slug, child)} />
     <section className="py-16 md:py-24"><div className="container-page"><Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link><ChildBody lang={lang} slug={slug} child={child} /></div></section>
     <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;

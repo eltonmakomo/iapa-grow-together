@@ -6,7 +6,7 @@ import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
 import { CONTACT, CONTENT, SOCIALS, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
-import { BANNER, IMG, PHOTO_POSITION, type BannerKey, type ImgKey } from "@/components/iapa/media";
+import { BANNER, IMG, PHOTO_POSITION, type HeroKey, type ImgKey } from "@/components/iapa/media";
 import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
@@ -257,10 +257,12 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
   );
 }
 
-export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: BannerKey; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: HeroKey; children?: ReactNode }) {
+  const banner = (BANNER as Record<string, { src: string; pos: string }>)[img];
+  const source = banner ?? { src: IMG[img as ImgKey], pos: "100% 20%" };
   return (
     <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
-      <img src={BANNER[img].src} alt="" fetchPriority="high" style={{ objectPosition: BANNER[img].pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
+      <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="container-page py-16 md:py-24">
         <p className="eyebrow text-sun">{eyebrow}</p>
