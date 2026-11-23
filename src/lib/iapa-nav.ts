@@ -17,14 +17,14 @@ export const NAV: NavPage[] = [
     blurb: { en: "A pan-African professional body of agribusiness practitioners from 20+ countries.", fr: "Un organisme professionnel panafricain de praticiens de l'agribusiness dans plus de 20 pays." },
     groups: [
       { title: { en: "About", fr: "À propos" }, items: [c("about", "About IAPA", "À propos de l'IAPA"), c("managing-board", "Managing Board", "Conseil de gestion"), c("leadership", "Leadership", "Direction")] },
-      { title: { en: "Network", fr: "Réseau" }, items: [c("asr-team", "ASR Team & External Associates", "Équipe ASR et associés externes"), c("partners", "Partners & Funders", "Partenaires et bailleurs"), c("offices", "Our Offices", "Nos bureaux")] },
+      { title: { en: "Network", fr: "Réseau" }, items: [c("iapa-team", "IAPA Team & External Associates", "Équipe IAPA et associés externes"), c("partners", "Partners & Funders", "Partenaires et bailleurs"), c("offices", "Our Offices", "Nos bureaux")] },
     ],
   },
   {
     slug: "our-work", img: "cameroon",
     blurb: { en: "Where we work, what we have achieved and the people behind the results.", fr: "Où nous travaillons, nos résultats et les personnes qui les portent." },
     groups: [
-      { title: { en: "Impact", fr: "Impact" }, items: [c("impact-map", "Impact Map", "Carte d'impact"), c("asr-numbers", "ASR in Numbers", "L'ASR en chiffres")] },
+      { title: { en: "Impact", fr: "Impact" }, items: [c("impact-map", "Impact Map", "Carte d'impact"), c("iapa-in-numbers", "IAPA in Numbers", "L'IAPA en chiffres")] },
       { title: { en: "Voices", fr: "Témoignages" }, items: [c("stories", "Stories", "Histoires"), c("testimonials", "Testimonials", "Témoignages")] },
     ],
   },
@@ -48,7 +48,7 @@ export const NAV: NavPage[] = [
     slug: "media", img: "evaluation",
     blurb: { en: "Milestones, events and official news from IAPA.", fr: "Étapes clés, événements et actualités officielles de l'IAPA." },
     groups: [
-      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("key-documents", "Key ASR Documents", "Documents clés de l'ASR"), c("press-releases", "Press Releases", "Communiqués de presse")] },
+      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("press-releases", "Press Releases", "Communiqués de presse")] },
     ],
   },
   {

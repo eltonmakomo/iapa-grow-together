@@ -60,7 +60,7 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
     <SectionHead title={p.boardTitle} lead={a.leadershipText} />
     <PairCards items={p.board.slice(0, 4).map((role): Pair => [role, a.soon])} />
   </>;
-  if (child === "asr-team") return <><SectionHead title={p.deptTitle} lead={a.asrText} /><PairCards items={p.depts} /></>;
+  if (child === "iapa-team") return <><SectionHead title={p.deptTitle} lead={a.teamText} /><PairCards items={p.depts} /></>;
   if (child === "partners") return <><PairCards items={w.partners} /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>
     <div className="curve-card bg-primary p-7 text-primary-foreground"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p><p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p></div>
@@ -73,7 +73,7 @@ function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const p = PAGES[lang].work;
   const a = PAGES[lang].arch;
   if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
-  if (child === "asr-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
+  if (child === "iapa-in-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
   if (child === "stories") return <>
     <SectionHead title={w.storiesTitle} lead={w.storiesNote} />
     <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{w.stories.map((story) => <li key={story.title}><Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.img }} className="curve-card group flex h-full flex-col overflow-hidden bg-card"><img src={storyImg(story.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(story.img) }} className="aspect-[4/3] w-full object-cover object-top" /><div className="flex flex-1 flex-col p-5"><p className="eyebrow text-xs">{story.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{story.title}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{lang === "fr" ? "Lire l'histoire" : "Read story"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div></Link></li>)}</ul>

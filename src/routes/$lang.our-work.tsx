@@ -27,9 +27,9 @@ function OurWork() {
         </div>
       </section>
 
-      <section id="asr-numbers" className="bg-card py-16 md:py-24">
+      <section id="iapa-in-numbers" className="bg-card py-16 md:py-24">
         <div className="container-page">
-          <SectionHead eyebrow={w.resultsTitle} title={childLabel("our-work", "asr-numbers", lang)} lead={w.resultsNote} />
+          <SectionHead eyebrow={w.resultsTitle} title={childLabel("our-work", "iapa-in-numbers", lang)} lead={w.resultsNote} />
           <div className="mt-8"><ResultsBlock lang={lang} /></div>
         </div>
       </section>

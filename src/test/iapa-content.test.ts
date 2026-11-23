@@ -38,6 +38,13 @@ describe("IAPA content", () => {
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
+  it("never shows the ASR acronym in navigation or page copy", () => {
+    const labels = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.flatMap((item) => [item.id, item.label.en, item.label.fr])));
+    expect(labels.some((text) => /\bASR\b/.test(text))).toBe(false);
+    expect(labels).toContain("iapa-team");
+    expect(labels).toContain("iapa-in-numbers");
+    expect(JSON.stringify([PAGES.en, PAGES.fr])).not.toMatch(/\bASR\b/);
+  });
   it("maps every IAPA region and country to a real SVG shape in both languages", () => {
     const shapeIds = new Set(mapData.countries.map((c) => c.id));
     expect(AFRICA_REGIONS).toHaveLength(5);
