@@ -288,24 +288,7 @@ main a.rounded-full.btn-morph[class*="px-"]:focus-visible > svg:last-child { tra
   main svg.block path { transform-origin: bottom; animation: hero-rise 1s ease both; }
   .reveal.in .btn-morph > svg { animation: none; }
 }
-
-/* Subtle monochrome IAPA emblem pattern */
-:root {
-  --iapa-tile-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cdefs%3E%3Cg id='m'%3E%3Crect x='4' y='4' width='52' height='52' rx='11' fill='none' stroke='%23000' stroke-width='1.4' stroke-opacity='0.048'/%3E%3Ccircle cx='22.5' cy='18.5' r='4.2' fill='%23000' fill-opacity='0.04'/%3E%3Ccircle cx='22.5' cy='18.5' r='7.4' fill='none' stroke='%23000' stroke-width='1.3' stroke-dasharray='2.2 1.8' stroke-opacity='0.052'/%3E%3Cpath d='M4 30 C16 32 23 39 26 56' fill='none' stroke='%23000' stroke-width='1.3' stroke-opacity='0.048'/%3E%3Cpath d='M4 36 C13 38 19 44 21 56' fill='none' stroke='%23000' stroke-width='1.3' stroke-opacity='0.048'/%3E%3Cpath d='M4 36 C13 38 19 44 21 56 L15 56 C8.9 56 4 51.1 4 45 Z' fill='%23000' fill-opacity='0.025'/%3E%3Cpath d='M25 56 C26 35 38 23 56 21' fill='none' stroke='%23000' stroke-width='1.4' stroke-opacity='0.052'/%3E%3Cpath d='M31 56 C32 39 42 29 56 27' fill='none' stroke='%23000' stroke-width='1.4' stroke-opacity='0.052'/%3E%3Cpath d='M31 56 C32 39 42 29 56 27 L56 45 C56 51.1 51.1 56 45 56 Z' fill='%23000' fill-opacity='0.036'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23m' x='10' y='10'/%3E%3Cuse href='%23m' x='90' y='90'/%3E%3C/svg%3E");
-  --iapa-tile-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cdefs%3E%3Cg id='m'%3E%3Crect x='4' y='4' width='52' height='52' rx='11' fill='none' stroke='%23fff' stroke-width='1.4' stroke-opacity='0.06'/%3E%3Ccircle cx='22.5' cy='18.5' r='4.2' fill='%23fff' fill-opacity='0.05'/%3E%3Ccircle cx='22.5' cy='18.5' r='7.4' fill='none' stroke='%23fff' stroke-width='1.3' stroke-dasharray='2.2 1.8' stroke-opacity='0.065'/%3E%3Cpath d='M4 30 C16 32 23 39 26 56' fill='none' stroke='%23fff' stroke-width='1.3' stroke-opacity='0.06'/%3E%3Cpath d='M4 36 C13 38 19 44 21 56' fill='none' stroke='%23fff' stroke-width='1.3' stroke-opacity='0.06'/%3E%3Cpath d='M4 36 C13 38 19 44 21 56 L15 56 C8.9 56 4 51.1 4 45 Z' fill='%23fff' fill-opacity='0.032'/%3E%3Cpath d='M25 56 C26 35 38 23 56 21' fill='none' stroke='%23fff' stroke-width='1.4' stroke-opacity='0.065'/%3E%3Cpath d='M31 56 C32 39 42 29 56 27' fill='none' stroke='%23fff' stroke-width='1.4' stroke-opacity='0.065'/%3E%3Cpath d='M31 56 C32 39 42 29 56 27 L56 45 C56 51.1 51.1 56 45 56 Z' fill='%23fff' fill-opacity='0.045'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23m' x='10' y='10'/%3E%3Cuse href='%23m' x='90' y='90'/%3E%3C/svg%3E");
-}
-@utility bg-iapa-pattern {
-  background-image: var(--iapa-tile-light);
-  background-size: 160px 160px;
-}
-@utility bg-iapa-pattern-dark {
-  background-image: var(--iapa-tile-dark);
-  background-size: 160px 160px;
-}
-footer.bg-forest {
-  background-image: var(--iapa-tile-dark);
-  background-size: 160px 160px;
-}
+.reveal.in svg.iapa-emblem { animation: none; }
 
 /* Mega menu */
 @utility shadow-lift { box-shadow: 0 40px 80px -30px color-mix(in oklab, var(--forest) 45%, transparent); }

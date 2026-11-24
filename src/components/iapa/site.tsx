@@ -175,8 +175,9 @@ export function SiteFooter({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const p = PAGES[lang];
   return (
-    <footer className="bg-forest text-forest-foreground">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1.3fr]">
+    <footer className="relative overflow-hidden bg-forest text-forest-foreground">
+      <EmblemBackdrop className="absolute -bottom-20 -right-14 h-[340px] w-[340px] text-forest-foreground opacity-[0.06] md:h-[420px] md:w-[420px]" />
+      <div className="container-page relative grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1.3fr]">
         <div className="min-w-0">
           <Link to="/$lang" params={{ lang }} aria-label={`IAPA — ${p.home}`} className="inline-block">
             <img src={(lang === "en" ? logoEn : logoFr).url} alt="IAPA" width={220} height={62} className="h-16 w-auto brightness-0 invert md:h-20" />
@@ -224,7 +225,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
         </div>
       </div>
       <div className="border-t border-forest-foreground/15">
-        <div className="container-page flex flex-wrap items-center justify-between gap-4 py-5 text-sm text-forest-foreground/80">
+        <div className="container-page relative flex flex-wrap items-center justify-between gap-4 py-5 text-sm text-forest-foreground/80">
           <span>© 2026 IAPA</span>
           <ul className="flex flex-wrap gap-x-5 gap-y-1">
             <li><Link to="/$lang/join-us" params={{ lang }} hash="faq" className="hover:underline">{p.arch.faqs}</Link></li>
@@ -243,6 +244,21 @@ export function Arc({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden className={`block h-10 w-full md:h-16 ${className}`}>
       <path d="M0 80 C 360 0, 1080 0, 1440 80 Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function EmblemBackdrop({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" aria-hidden className={`iapa-emblem pointer-events-none select-none ${className}`}>
+      <circle cx="70" cy="58" r="14" fill="currentColor" />
+      <circle cx="70" cy="58" r="25" fill="none" stroke="currentColor" strokeWidth="4.5" strokeDasharray="6 6.5" strokeLinecap="round" />
+      <path d="M0 104 C44 109 70 136 80 200" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" />
+      <path d="M0 124 C34 129 56 151 64 200" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" />
+      <path d="M0 124 C34 129 56 151 64 200 L0 200 Z" fill="currentColor" fillOpacity="0.32" />
+      <path d="M78 200 C83 122 126 80 200 72" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+      <path d="M100 200 C105 138 140 102 200 95" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+      <path d="M100 200 C105 138 140 102 200 95 L200 200 Z" fill="currentColor" fillOpacity="0.45" />
     </svg>
   );
 }

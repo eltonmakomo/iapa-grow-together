@@ -4,7 +4,7 @@ import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { childLabel } from "@/lib/iapa-nav";
 import { PAGES } from "@/lib/iapa-pages";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
-import { PageHero, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { EmblemBackdrop, PageHero, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { storyImg, storyPosition } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/our-work")({
@@ -53,7 +53,8 @@ function OurWork() {
       <section id="testimonials" className="py-16 md:py-24">
         <div className="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <SectionHead title={childLabel("our-work", "testimonials", lang)} lead={a.testimonialsText} />
-          <div className="curve-card bg-iapa-pattern-dark relative overflow-hidden bg-primary p-8 text-primary-foreground md:p-10">
+          <div className="curve-card relative overflow-hidden bg-primary p-8 text-primary-foreground md:p-10">
+            <EmblemBackdrop className="absolute -bottom-10 -right-8 h-60 w-60 text-primary-foreground opacity-[0.1]" />
             <Quote className="relative h-12 w-12 text-sun" aria-hidden />
             <p className="relative mt-4 text-2xl font-extrabold">{a.soon}</p>
             <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(a.shareCta)}`} className="relative mt-6 inline-flex rounded-full bg-sun px-6 py-3 font-extrabold text-accent-foreground hover:brightness-105">{a.shareCta}</a>
