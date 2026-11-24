@@ -159,6 +159,7 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   overflow-wrap: break-word;
 }
 .home-banner .banner-title { font-size: 2.25rem; }
+.home-banner .banner-content { min-height: calc(100svh - 3rem); }
 .banner-lead {
   max-width: 35rem;
   margin-top: 1.25rem;
@@ -170,14 +171,13 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   .page-banner .banner-content { padding-block: 4rem; }
   .page-banner .banner-title { font-size: 3rem; }
   .banner-lead { font-size: 1.125rem; }
-  .home-banner .banner-content { min-height: min(68svh, 660px); }
+  .home-banner .banner-content { min-height: calc(100svh - 3.5rem); }
   .banner-actions { margin-top: 1.75rem; }
 }
 @media (min-width: 768px) and (max-height: 900px) {
   .page-banner .banner-content { padding-block: 3rem; }
   .page-banner .banner-title { font-size: 2.75rem; }
   .banner-lead { margin-top: 1rem; font-size: 1.0625rem; }
-  .home-banner .banner-content { min-height: min(66svh, 580px); }
   .banner-actions { margin-top: 1.25rem; }
 }
 
