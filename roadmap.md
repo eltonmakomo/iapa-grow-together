@@ -17,3 +17,4 @@
 - [x] Apply the redesigned introduction to every Knowledge Hub dropdown page in EN/FR
 - [x] Add sliding-fill and travelling-arrow hover effects to buttons
 - [x] Redesign every Media dropdown page in EN/FR to match the improved Knowledge Hub presentation
+- [x] Remove the featured podcast and webinar from the repeated episode/recording grids below their players

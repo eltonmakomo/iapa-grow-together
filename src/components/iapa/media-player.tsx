@@ -99,6 +99,7 @@ export function PodcastPlayer({ lang, items }: { lang: Lang; items: SampleItem[]
     if (idx === active) { setPlaying((p) => !p); return; }
     setActive(idx);
     setElapsed(0);
+    setOpenNotes(null);
     setPlaying(true);
   };
   const skip = (delta: number) => setElapsed((prev) => Math.min(total, Math.max(0, prev + delta)));
@@ -140,7 +141,7 @@ export function PodcastPlayer({ lang, items }: { lang: Lang; items: SampleItem[]
       </div>
 
       <ul className="grid gap-4">
-        {items.map((ep, idx) => {
+        {items.map((ep, idx) => ({ ep, idx })).filter(({ idx }) => idx !== active).map(({ ep, idx }) => {
           const isCurrent = idx === active;
           const isPlaying = isCurrent && playing;
           const expanded = openNotes === idx;
@@ -252,8 +253,8 @@ export function VideoShowcase({ lang, items, isMultimedia }: { lang: Lang; items
         </div>
       </div>
 
-      <ul className="grid gap-5 md:grid-cols-3">
-        {items.map((item, idx) => (
+      <ul className="grid gap-5 md:grid-cols-2 lg:mx-auto lg:max-w-5xl">
+        {items.map((item, idx) => ({ item, idx })).filter(({ idx }) => idx !== active).map(({ item, idx }) => (
           <li key={item.title} className={`curve-card flex flex-col overflow-hidden bg-card ${idx === active ? "ring-2 ring-primary" : ""}`}>
             {item.img && (
               <button type="button" onClick={() => { setActive(idx); setElapsed(0); setPlaying(true); }} className="group relative aspect-[16/10] w-full overflow-hidden text-left">
