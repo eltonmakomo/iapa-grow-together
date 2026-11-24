@@ -396,7 +396,7 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       },
     },
     webinars: {
-      img: "elearningAcademy",
+      img: "webinarSession",
       en: {
         lead: "Live learning sessions and recordings for agribusiness practitioners wherever they work.",
         heading: "Join the conversation, then watch again",

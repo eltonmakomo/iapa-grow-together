@@ -28,7 +28,7 @@ import caseStudySession from "@/assets/child-banners/case-study-session.webp.ass
 import contractFarming from "@/assets/child-banners/contract-farming.webp.asset.json";
 import cooperativeCertificates from "@/assets/child-banners/cooperative-certificates.webp.asset.json";
 import documentSigning from "@/assets/child-banners/document-signing.webp.asset.json";
-import elearningAcademy from "@/assets/child-banners/elearning-academy.webp.asset.json";
+import webinarSession from "@/assets/child-banners/webinar-session.webp.asset.json";
 import farmerVoices from "@/assets/child-banners/farmer-voices.webp.asset.json";
 import farmerBusinessSchool from "@/assets/child-banners/farmer-business-school.webp.asset.json";
 import fieldPractices from "@/assets/child-banners/field-practices.webp.asset.json";
@@ -58,7 +58,7 @@ export const IMG = {
   contractFarming: contractFarming.url,
   cooperativeCertificates: cooperativeCertificates.url,
   documentSigning: documentSigning.url,
-  elearningAcademy: elearningAcademy.url,
+  webinarSession: webinarSession.url,
   farmerVoices: farmerVoices.url,
   farmerBusinessSchool: farmerBusinessSchool.url,
   fieldPractices: fieldPractices.url,
@@ -105,7 +105,7 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
   contractFarming: "50% 20%",
   cooperativeCertificates: "50% 20%",
   documentSigning: "50% 20%",
-  elearningAcademy: "50% 20%",
+  webinarSession: "50% 15%",
   farmerVoices: "50% 20%",
   farmerBusinessSchool: "50% 20%",
   fieldPractices: "50% 20%",
