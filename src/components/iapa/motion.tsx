@@ -23,7 +23,7 @@ export function useSiteMotion() {
     main.querySelectorAll<HTMLElement>("h2.section-title, .eyebrow").forEach((el) => { el.classList.add("reveal", "reveal-title"); els.push(el); });
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-    }), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    }), { threshold: 0.01, rootMargin: "0px 0px -20px 0px" });
     els.forEach((el) => io.observe(el));
 
     const px = Array.from(main.querySelectorAll<HTMLElement>("section.isolate > img"));
