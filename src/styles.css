@@ -132,7 +132,7 @@
 .btn-hover,
 :where(main a.rounded-full[class*="px-"],
 main button.rounded-full[class*="px-"],
-header a.rounded-full[class*="px-"],
+header a.btn-hover[class*="px-"],
 footer a.rounded-full[class*="px-"]) {
   --btn-hover-bg: var(--primary);
   --btn-hover-fg: var(--primary-foreground);
@@ -149,7 +149,7 @@ footer a.rounded-full[class*="px-"]) {
 .btn-hover::before,
 main a.rounded-full[class*="px-"]::before,
 main button.rounded-full[class*="px-"]::before,
-header a.rounded-full[class*="px-"]::before,
+header a.btn-hover[class*="px-"]::before,
 footer a.rounded-full[class*="px-"]::before {
   content: "";
   position: absolute;
@@ -195,8 +195,8 @@ main a.rounded-full[class*="px-"]:hover,
 main a.rounded-full[class*="px-"]:focus-visible,
 main button.rounded-full[class*="px-"]:hover,
 main button.rounded-full[class*="px-"]:focus-visible,
-header a.rounded-full[class*="px-"]:hover,
-header a.rounded-full[class*="px-"]:focus-visible,
+header a.btn-hover[class*="px-"]:hover,
+header a.btn-hover[class*="px-"]:focus-visible,
 footer a.rounded-full[class*="px-"]:hover,
 footer a.rounded-full[class*="px-"]:focus-visible {
   color: var(--btn-hover-fg);
@@ -210,19 +210,19 @@ main a.rounded-full[class*="px-"]:hover::before,
 main a.rounded-full[class*="px-"]:focus-visible::before,
 main button.rounded-full[class*="px-"]:hover::before,
 main button.rounded-full[class*="px-"]:focus-visible::before,
-header a.rounded-full[class*="px-"]:hover::before,
-header a.rounded-full[class*="px-"]:focus-visible::before,
+header a.btn-hover[class*="px-"]:hover::before,
+header a.btn-hover[class*="px-"]:focus-visible::before,
 footer a.rounded-full[class*="px-"]:hover::before,
 footer a.rounded-full[class*="px-"]:focus-visible::before { transform: translateX(0); }
 .btn-hover:active,
 main a.rounded-full[class*="px-"]:active,
 main button.rounded-full[class*="px-"]:active,
-header a.rounded-full[class*="px-"]:active,
+header a.btn-hover[class*="px-"]:active,
 footer a.rounded-full[class*="px-"]:active { transform: translateY(0) scale(.98); }
 .btn-hover > svg,
 main a.rounded-full[class*="px-"] > svg,
 main button.rounded-full[class*="px-"] > svg,
-header a.rounded-full[class*="px-"] > svg,
+header a.btn-hover[class*="px-"] > svg,
 footer a.rounded-full[class*="px-"] > svg { transition: transform .35s cubic-bezier(.2,.7,.2,1), background-color .35s ease, color .35s ease; }
 .btn-hover:hover > svg:last-child,
 .btn-hover:focus-visible > svg:last-child,
@@ -264,8 +264,8 @@ main a.rounded-full.btn-morph[class*="px-"]:focus-visible > svg:last-child { tra
   main button.rounded-full[class*="px-"],
   main button.rounded-full[class*="px-"]::before,
   main button.rounded-full[class*="px-"] > svg,
-  header a.rounded-full[class*="px-"],
-  header a.rounded-full[class*="px-"]::before,
+  header a.btn-hover[class*="px-"],
+  header a.btn-hover[class*="px-"]::before,
   footer a.rounded-full[class*="px-"],
   footer a.rounded-full[class*="px-"]::before { transition-duration: .01ms; }
 }

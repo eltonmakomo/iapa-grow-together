@@ -37,7 +37,7 @@ function LangSwitch({ lang }: { lang: Lang }) {
   const currentParams = (leaf?.params ?? {}) as Record<string, string>;
   return (
     <Link to={to} params={{ ...currentParams, lang: other }} hrefLang={other} aria-label={CONTENT[lang].langLabel}
-      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border-2 border-primary px-3 py-1.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
+      className="btn-hover inline-flex shrink-0 items-center gap-1.5 rounded-full border-2 border-primary px-3 py-1.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
       <Globe className="h-4 w-4" aria-hidden />
       <span aria-hidden>{lang.toUpperCase()}</span><span aria-hidden className="opacity-60">/</span><span aria-hidden>{other.toUpperCase()}</span>
     </Link>
@@ -123,7 +123,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         </nav>
         <div className="flex items-center gap-2">
           <LangSwitch lang={lang} />
-          <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110 md:inline-flex">{t.hero.join}</Link>
+          <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-hover hidden rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110 md:inline-flex">{t.hero.join}</Link>
           <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-full border xl:hidden"
             aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? t.close : t.menu} onClick={() => setOpen((o) => !o)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
