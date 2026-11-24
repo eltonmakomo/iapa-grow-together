@@ -1,0 +1,42 @@
+import { Link, useLocation } from "@tanstack/react-router";
+import { Home } from "lucide-react";
+import type { Lang } from "@/lib/iapa-content";
+import { PAGES, PAGE_SLUGS, LEGAL, type PageSlug } from "@/lib/iapa-pages";
+import { childLabel } from "@/lib/iapa-nav";
+import { getStory } from "@/lib/iapa-stories";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+
+const parents = {
+  "who-we-are": "/$lang/who-we-are", "our-work": "/$lang/our-work", training: "/$lang/training",
+  "knowledge-hub": "/$lang/knowledge-hub", media: "/$lang/media", "join-us": "/$lang/join-us",
+} as const;
+
+export function PageBreadcrumbs({ lang }: { lang: Lang }) {
+  const pathname = useLocation({ select: (location) => location.pathname });
+  const [, , section, child] = pathname.split("/");
+  if (!section) return null;
+  const slug = PAGE_SLUGS.find((value) => value === section);
+  const story = section === "stories" && child ? getStory(child) : undefined;
+  const parent: PageSlug | undefined = story ? "our-work" : slug;
+  const current = story ? story[lang].title : slug ? child ? childLabel(slug, child, lang) : PAGES[lang].nav[slug]
+    : section === "privacy" || section === "legal" ? LEGAL[lang][section].title : section;
+  return (
+    <div className="border-b bg-background">
+      <Breadcrumb aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className="container-page py-3">
+        <BreadcrumbList className="gap-2 text-xs">
+          <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang" params={{ lang }} className="inline-flex items-center gap-1.5"><Home className="h-3.5 w-3.5" aria-hidden />{PAGES[lang].home}</Link></BreadcrumbLink></BreadcrumbItem>
+          <BreadcrumbSeparator />
+          {parent && (child || story) && <>
+            <BreadcrumbItem><BreadcrumbLink asChild><Link to={parents[parent]} params={{ lang }}>{PAGES[lang].nav[parent]}</Link></BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </>}
+          {story && <>
+            <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }}>{childLabel("our-work", "stories", lang)}</Link></BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </>}
+          <BreadcrumbItem className="min-w-0"><BreadcrumbPage className="font-semibold">{current}</BreadcrumbPage></BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+  );
+}

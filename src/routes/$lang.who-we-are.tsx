@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, Briefcase, Crown, MapPin, Users, Wallet } from "lucide-react";
+import { MapPin, Users } from "lucide-react";
 import { childLabel } from "@/lib/iapa-nav";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { PartnerCards } from "@/components/iapa/partner-logos";
+import { ProfileGrid } from "@/components/iapa/profile-grid";
+import { childContent } from "@/lib/iapa-child-content";
 
 export const Route = createFileRoute("/$lang/who-we-are")({
   head: ({ params }) => pageHead(params.lang, "who-we-are"),
@@ -123,18 +125,7 @@ function WhoWeAre() {
       <section id="leadership" className="py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={childLabel("who-we-are", "leadership", lang)} lead={a.leadershipText} />
-          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {p.board.slice(0, 4).map((b, i) => {
-              const Icon = [Crown, Award, Wallet, Briefcase][i]!;
-              return (
-                <li key={b} className="curve-card flex flex-col items-start gap-4 bg-primary p-6 text-primary-foreground">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sun text-accent-foreground"><Icon className="h-6 w-6" aria-hidden /></span>
-                  <p className="text-lg font-extrabold leading-tight">{b}</p>
-                  <p className="text-sm opacity-80">{a.soon}</p>
-                </li>
-              );
-            })}
-          </ul>
+          <ProfileGrid lang={lang} items={childContent("who-we-are", "leadership", lang).samples ?? []} />
         </div>
       </section>
 

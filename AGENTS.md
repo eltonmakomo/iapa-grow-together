@@ -34,4 +34,7 @@ use the editor.
 - The EN/FR switch links to the same route with the other lang param, so visitors stay on the same page.
 - All parent and dropdown child pages use the full-bleed PageHero banner style (photo background with hero overlay, sun eyebrow, white title, lead text, and curved Arc bottom).
 - Home and PageHero share banner typography and height-aware spacing in global CSS; keep content-driven heights so shorter desktop screens fit banners without clipping translated text or buttons.
+- Use global type-size and content-density tokens for section headings, cards and grid spacing; maintain readable body text and content-driven page heights instead of scaling or clipping whole pages.
 - Knowledge Hub child pages share the introduction layout in ChildPage, with page-specific images, captions and resource links, to keep dropdown pages consistent in both languages.
+- Render breadcrumbs in the language layout from the active page hierarchy, so parent, child, story and legal pages share translated navigation without duplicating it per route.
+- Use a shared ProfileGrid for leadership sections and profile pages; fictional names and generated portraits remain explicitly labelled placeholders rather than verified officeholders.

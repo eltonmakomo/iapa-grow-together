@@ -4,6 +4,7 @@ import { CONTACT, type Lang } from "@/lib/iapa-content";
 import type { SampleItem, SampleKind } from "@/lib/iapa-child-content";
 import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
 import { PodcastPlayer, VideoShowcase } from "@/components/iapa/media-player";
+import { ProfileGrid } from "@/components/iapa/profile-grid";
 
 const LABELS = {
   en: {
@@ -135,34 +136,6 @@ function TestimonialGrid({ items }: { items: SampleItem[] }) {
   );
 }
 
-function ProfileGrid({ items }: { items: SampleItem[] }) {
-  return (
-    <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item) => {
-        const initials = item.title.split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase() ?? "").join("");
-        return (
-          <li key={item.title} className="curve-card flex h-full flex-col bg-card p-6">
-            <div className="flex items-center gap-4">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">{initials}</span>
-              <div>
-                <p className="eyebrow text-xs">{item.meta}</p>
-                <h3 className="text-lg font-extrabold leading-snug">{item.title}</h3>
-              </div>
-            </div>
-            {item.byline && <p className="mt-3 text-xs font-bold text-primary">{item.byline}</p>}
-            <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-            {item.highlights && (
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {item.highlights.map((tag) => <span key={tag} className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-secondary-foreground">{tag}</span>)}
-              </div>
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
 function OpportunityGrid({ lang, items, isScholarship }: { lang: Lang; items: SampleItem[]; isScholarship?: boolean }) {
   const ui = LABELS[lang];
   const Icon = isScholarship ? GraduationCap : Briefcase;
@@ -198,6 +171,6 @@ export function SampleShowcase({ lang, kind, items, child }: { lang: Lang; kind?
   if (kind === "webinar" || kind === "multimedia") return <VideoShowcase lang={lang} items={items} isMultimedia={kind === "multimedia"} />;
   if (kind === "publication") return <PublicationGrid lang={lang} items={items} />;
   if (kind === "testimonial") return <TestimonialGrid items={items} />;
-  if (kind === "profile") return <ProfileGrid items={items} />;
+  if (kind === "profile") return <ProfileGrid lang={lang} items={items} />;
   return <OpportunityGrid lang={lang} items={items} isScholarship={child === "scholarships"} />;
 }

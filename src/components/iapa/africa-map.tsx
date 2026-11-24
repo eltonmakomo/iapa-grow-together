@@ -160,7 +160,7 @@ export function AfricaImpactMap({ lang }: { lang: Lang }) {
   const statusFill = activeRegionIndex !== null ? AFRICA_REGIONS[activeRegionIndex]?.fill : undefined;
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:items-start">
+    <div className="impact-map-grid mt-8 grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:items-start">
       <div className="curve-card bg-card p-5 md:p-7">
         <div className="flex min-h-11 flex-wrap items-center justify-between gap-2 border-b pb-4">
           <div className="flex flex-wrap items-center gap-2.5">

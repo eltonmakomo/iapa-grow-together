@@ -6,6 +6,13 @@
 
 @theme inline {
   --font-sans: "Open Sans", system-ui, sans-serif;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.375rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2.125rem;
+  --text-5xl: 2.5rem;
+  --text-6xl: 3rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -44,6 +51,9 @@
 
 :root {
   --radius: 0.75rem;
+  --section-space: 2.75rem;
+  --layout-gap: 1.5rem;
+  --card-space: 1.25rem;
   --background: oklch(0.982 0.01 90);      /* warm off-white */
   --foreground: oklch(0.24 0.03 135);
   --card: oklch(1 0 0);
@@ -103,9 +113,11 @@
 }
 @utility section-title {
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  font-size: 1.875rem;
+  @media (min-width: 768px) { font-size: 2.5rem; }
+  @media (min-width: 768px) and (max-height: 900px) { font-size: 2.25rem; }
 }
 @utility curve-card {
   border-radius: 2rem 2rem 2rem 0.5rem;
@@ -113,6 +125,29 @@
 }
 @utility bg-hero-overlay { background: var(--gradient-hero); }
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
+
+/* Content density shared by parent, child, article and legal page sections. */
+main section:not(.page-banner):is(.py-16, .py-14, .py-20, .py-24) {
+  padding-block: var(--section-space);
+}
+:is(main, footer, .mega-panel) .grid > * { min-width: 0; }
+:is(main, footer, .mega-panel) :is(h1, h2, h3, p, dd, a) { overflow-wrap: break-word; }
+main :is(h1, h2, h3, dd) { letter-spacing: 0; }
+:is(main, footer, .mega-panel) .grid:is(.gap-8, .gap-10, .gap-12) { gap: var(--layout-gap); }
+:is(main, .mega-panel) .curve-card:is(.p-6, .p-7, .p-8) { padding: var(--card-space); }
+main :is(.mt-10, .mt-12, .mt-14) { margin-top: 2rem; }
+main .mb-10 { margin-bottom: 2rem; }
+main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
+.mega-panel > div { max-height: calc(100svh - 6rem); overflow-y: auto; }
+.impact-map-grid .africa-map-svg { max-width: 26rem; margin-inline: auto; }
+@media (min-width: 768px) {
+  :root { --section-space: 4rem; --layout-gap: 2rem; --card-space: 1.5rem; }
+  footer > .container-page { padding-block: 3rem; }
+}
+@media (min-width: 768px) and (max-height: 900px) {
+  :root { --section-space: 3rem; --layout-gap: 1.75rem; }
+  .impact-map-grid .africa-map-svg { max-width: 22rem; }
+}
 
 /* Shared banner proportions: content can grow, but shorter screens stay compact. */
 .page-banner .banner-content { padding-block: 2.5rem; }

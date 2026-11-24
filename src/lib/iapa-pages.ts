@@ -117,7 +117,7 @@ const en = {
   },
   arch: {
     soon: "Coming soon",
-    leadershipText: "IAPA is led by its Board of Directors' officers. Profiles will be published here.",
+    leadershipText: "Meet the people behind IAPA's strategic direction, governance and member services.",
     teamText: "The IAPA team and external associates who support IAPA's work. Profiles will be published here.",
     testimonialsText: "Testimonials from partners, trainers and farmers will be published here. Want to share yours?",
     shareCta: "Share a testimonial",
@@ -250,7 +250,7 @@ const fr: PagesContent = {
   },
   arch: {
     soon: "Bientôt disponible",
-    leadershipText: "L'IAPA est dirigée par les membres du bureau du Conseil d'administration. Les profils seront publiés ici.",
+    leadershipText: "Découvrez les personnes qui portent l'orientation stratégique, la gouvernance et les services aux membres de l'IAPA.",
     teamText: "L'équipe IAPA et les associés externes qui appuient le travail de l'IAPA. Les profils seront publiés ici.",
     testimonialsText: "Les témoignages de partenaires, formateurs et producteurs seront publiés ici. Vous souhaitez partager le vôtre ?",
     shareCta: "Partager un témoignage",
