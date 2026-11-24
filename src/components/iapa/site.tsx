@@ -247,22 +247,6 @@ export function Arc({ className = "" }: { className?: string }) {
   );
 }
 
-export function EmblemWatermark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" aria-hidden className={`iapa-emblem pointer-events-none select-none ${className}`}>
-      <rect x="4" y="4" width="92" height="92" rx="20" fill="none" stroke="currentColor" strokeWidth="2.4" />
-      <circle cx="37" cy="30" r="7.5" fill="currentColor" fillOpacity="0.85" />
-      <circle cx="37" cy="30" r="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray="3.8 3" />
-      <path d="M4 50 C25 53 38 66 43 96" fill="none" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M4 60 C20 63 31 74 35 96" fill="none" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M4 60 C20 63 31 74 35 96 L24 96 C13 96 4 87 4 76 Z" fill="currentColor" fillOpacity="0.28" />
-      <path d="M41 96 C43 58 64 38 96 34" fill="none" stroke="currentColor" strokeWidth="2.6" />
-      <path d="M52 96 C54 66 71 48 96 45" fill="none" stroke="currentColor" strokeWidth="2.6" />
-      <path d="M52 96 C54 66 71 48 96 45 L96 76 C96 87 87 96 76 96 Z" fill="currentColor" fillOpacity="0.42" />
-    </svg>
-  );
-}
-
 export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eyebrow?: string; title: string; lead?: string; light?: boolean; as?: "h1" | "h2" }) {
   return (
     <div className="max-w-3xl">
@@ -296,15 +280,12 @@ export function StatGroup({ label, tag, stats, tone }: { label: string; tag: str
   const num = tone === "own" ? "text-primary-foreground" : tone === "shared" ? "text-primary" : "text-arid-ink";
   const tagCls = tone === "own" ? "bg-sun text-accent-foreground" : tone === "shared" ? "bg-secondary text-secondary-foreground" : "bg-arid/20 text-arid-ink";
   return (
-    <div className={`curve-card relative overflow-hidden p-6 md:p-8 ${styles}`}>
-      {tone !== "shared" && (
-        <EmblemWatermark className={`absolute -bottom-8 -right-8 h-48 w-48 ${tone === "own" ? "text-primary-foreground opacity-[0.09]" : "text-foreground opacity-[0.05]"}`} />
-      )}
-      <div className="relative flex flex-wrap items-center justify-between gap-2">
+    <div className={`curve-card p-6 md:p-8 ${styles}`}>
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-xl font-extrabold">{label}</h3>
         <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${tagCls}`}>{tag}</span>
       </div>
-      <dl className={`relative mt-6 grid gap-5 ${stats.length > 4 ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2"}`}>
+      <dl className={`mt-6 grid gap-5 ${stats.length > 4 ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2"}`}>
         {stats.map(([n, d]) => (
           <div key={d} className="flex flex-col-reverse">
             <dt className={`mt-1 text-sm leading-snug ${tone === "own" ? "text-primary-foreground/90" : "text-muted-foreground"}`}>{d}</dt>

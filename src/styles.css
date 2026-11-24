@@ -302,17 +302,10 @@ main a.rounded-full.btn-morph[class*="px-"]:focus-visible > svg:last-child { tra
   background-image: var(--iapa-tile-dark);
   background-size: 160px 160px;
 }
-main > section.bg-secondary,
-main > section.bg-cream {
-  background-image: var(--iapa-tile-light);
-  background-size: 160px 160px;
-}
-main > section.bg-forest:not(.isolate),
 footer.bg-forest {
   background-image: var(--iapa-tile-dark);
   background-size: 160px 160px;
 }
-.reveal.in svg.iapa-emblem { animation: none; }
 
 /* Mega menu */
 @utility shadow-lift { box-shadow: 0 40px 80px -30px color-mix(in oklab, var(--forest) 45%, transparent); }
