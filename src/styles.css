@@ -189,7 +189,7 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   padding-top: 1.5rem;
   padding-bottom: 2.5rem;
 }
-.banner-breadcrumbs { margin-bottom: 2rem; max-width: 48rem; }
+.banner-breadcrumbs { margin-top: 2rem; max-width: 48rem; }
 .inside-banner .banner-copy { display: flex; flex: 1; flex-direction: column; justify-content: center; }
 @media (min-width: 768px) {
   .inside-banner .banner-content { min-height: 30rem; padding-top: 2rem; padding-bottom: 4rem; }

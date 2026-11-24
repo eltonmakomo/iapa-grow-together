@@ -282,12 +282,12 @@ export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: str
       <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="banner-content container-page">
-        <PageBreadcrumbs inBanner />
         <div className="banner-copy">
         <p className="eyebrow text-sun">{eyebrow}</p>
         <h1 className="banner-title mt-3 font-extrabold">{title}</h1>
         <p className="banner-lead text-forest-foreground/90">{lead}</p>
         {children}
+        <PageBreadcrumbs inBanner />
         </div>
       </div>
       <Arc className="-mb-px text-background" />
