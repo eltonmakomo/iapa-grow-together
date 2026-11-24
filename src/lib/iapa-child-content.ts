@@ -1,6 +1,7 @@
 import type { Lang } from "./iapa-content";
 import type { PageSlug } from "./iapa-pages";
 import type { HeroKey, ImgKey } from "@/components/iapa/media";
+import { BANNER } from "@/components/iapa/media";
 import kwame from "@/assets/leadership/kwame.webp.asset.json";
 import amina from "@/assets/leadership/amina.webp.asset.json";
 import grace from "@/assets/leadership/grace.webp.asset.json";
@@ -573,8 +574,9 @@ export function childContent(slug: PageSlug, child: string, lang: Lang): ChildCo
   return entry[lang];
 }
 
-export function childHero(slug: PageSlug, child: string): HeroKey {
+export function childHero(slug: PageSlug, child: string): string {
   const entry = CHILD_CONTENT[slug][child];
   if (!entry) throw new Error(`Missing child hero for ${slug}/${child}`);
-  return entry.img;
+  // Prefer the page's own photograph; fall back to the shared library.
+  return BANNER[child] ? child : entry.img;
 }

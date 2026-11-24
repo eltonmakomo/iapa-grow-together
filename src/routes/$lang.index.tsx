@@ -4,7 +4,7 @@ import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { Arc, EmblemBackdrop, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
 import { GALLERY_TITLE } from "@/lib/iapa-photos";
-import { BANNER, storyImg, storyPosition } from "@/components/iapa/media";
+import { bannerSpec, storyImg, storyPosition } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -25,7 +25,7 @@ function Home() {
   return (
     <>
       <section className="page-banner home-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
-        <img src={BANNER.home.src} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: BANNER.home.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover origin-top" />
+        <img src={bannerSpec("home").src} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: bannerSpec("home").pos }} className="absolute inset-0 -z-10 h-full w-full object-cover origin-top" />
         <div className="bg-hero-overlay absolute inset-0 -z-10" />
         <div className="banner-content container-page flex flex-col justify-center">
           <p className="eyebrow text-sun">{t.hero.eyebrow}</p>

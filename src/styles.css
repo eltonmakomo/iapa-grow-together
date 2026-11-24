@@ -104,6 +104,14 @@
   padding-inline: 1.25rem;
   @media (min-width: 768px) { padding-inline: 2rem; }
 }
+
+/* Header: the bilingual nav must stay on one line in French too. */
+header .container-page { max-width: min(100%, 88rem); }
+header nav a, header nav button { white-space: nowrap; }
+@media (min-width: 1280px) and (max-width: 1439px) {
+  header nav a { font-size: 0.86rem; padding-inline: 0.55rem; }
+  header .btn-hover { padding-inline: 0.9rem; font-size: 0.82rem; }
+}
 @utility eyebrow {
   font-size: 0.8rem;
   font-weight: 700;
@@ -139,6 +147,22 @@ main :is(.mt-10, .mt-12, .mt-14) { margin-top: 2rem; }
 main .mb-10 { margin-bottom: 2rem; }
 main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
 .mega-panel > div { max-height: calc(100svh - 6rem); overflow-y: auto; }
+/* Short screens: tighten the mega menu so every item is visible without scrolling. */
+@media (min-width: 1280px) and (max-height: 760px) {
+  .mega-panel > div.grid { padding: 1.5rem; gap: 1.25rem; }
+  .mega-panel > div.grid > div { gap: 0.75rem; }
+  .mega-panel .text-xl { font-size: 1.05rem; line-height: 1.35; }
+  .mega-panel ul.mt-4 { margin-top: 0.6rem; }
+  .mega-panel li > a { padding-block: 0.2rem; font-size: 0.95rem; }
+  .mega-panel .mt-6 { margin-top: 0.9rem; }
+  .mega-panel img { max-height: 11rem; }
+}
+@media (min-width: 1280px) and (max-height: 640px) {
+  .mega-panel > div.grid { padding: 1.1rem; gap: 1rem; grid-template-columns: 1.1fr repeat(2, 1fr) !important; }
+  .mega-panel li > a { padding-block: 0.1rem; font-size: 0.9rem; }
+  .mega-panel .text-xl { font-size: 0.98rem; }
+  .mega-panel img { display: none !important; }
+}
 .impact-map-grid .africa-map-svg { max-width: 26rem; margin-inline: auto; }
 @media (min-width: 768px) {
   :root { --section-space: 4rem; --layout-gap: 2rem; --card-space: 1.5rem; }

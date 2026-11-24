@@ -127,23 +127,11 @@ export const storyPosition = (k: string): string => (PHOTO_POSITION as Record<st
 export const PULSE: Record<string, string> = { "3": pulse3.url, "2": pulse2.url };
 export const PULSE_COVER: Record<string, string> = { "3": pulse3Cover.url, "2": pulse2Cover.url };
 
-import bHome from "@/assets/banners/home.jpg.asset.json";
-import bCameroon from "@/assets/banners/cameroon.jpg.asset.json";
-import bMorocco from "@/assets/banners/morocco.jpg.asset.json";
-import bMauritania from "@/assets/banners/mauritania.jpg.asset.json";
-import bGhana from "@/assets/banners/ghana.jpg.asset.json";
-import bBurkina from "@/assets/banners/burkina.jpg.asset.json";
-import bJoin from "@/assets/banners/join.jpg.asset.json";
+import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 
-/** Banner-only photos: subjects sit on the right so the left-side text never covers faces. */
-export const BANNER = {
-  home: { src: bHome.url, pos: "100% 20%" },
-  cameroon: { src: bCameroon.url, pos: "100% 25%" },
-  morocco: { src: bMorocco.url, pos: "100% 0%" },
-  mauritania: { src: bMauritania.url, pos: "100% 35%" },
-  ghana: { src: bGhana.url, pos: "100% 25%" },
-  burkina: { src: bBurkina.url, pos: "100% 25%" },
-  join: { src: bJoin.url, pos: "100% 20%" },
-} as const;
-export type BannerKey = keyof typeof BANNER;
+/** Every banner photograph: focal point keeps faces just below the top edge. */
+export const BANNER: Record<string, BannerSpec> = NEW_BANNERS;
+export const bannerSpec = (key: string): BannerSpec =>
+  BANNER[key] ?? { src: IMG[key as ImgKey] ?? IMG.hero, pos: PHOTO_POSITION[key as ImgKey] ?? "50% 20%" };
+export type BannerKey = "home" | "cameroon" | "morocco" | "mauritania" | "ghana" | "burkina" | "join";
 export type HeroKey = BannerKey | ImgKey;

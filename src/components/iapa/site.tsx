@@ -6,7 +6,7 @@ import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
 import { CONTACT, CONTENT, SOCIALS, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { CAPTIONS } from "@/lib/iapa-photos";
-import { BANNER, IMG, PHOTO_POSITION, type HeroKey, type ImgKey } from "@/components/iapa/media";
+import { bannerSpec, BANNER, IMG, PHOTO_POSITION, type HeroKey, type ImgKey } from "@/components/iapa/media";
 import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
@@ -45,7 +45,7 @@ function LangSwitch({ lang }: { lang: Lang }) {
   );
 }
 
-const navCls = "inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-secondary";
+const navCls = "inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors hover:bg-secondary";
 
 function MegaPanel({ lang, slug, onNavigate }: { lang: Lang; slug: PageSlug; onNavigate: () => void }) {
   const n = navPage(slug);
@@ -124,7 +124,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         </nav>
         <div className="flex items-center gap-2">
           <LangSwitch lang={lang} />
-          <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-hover hidden rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110 md:inline-flex">{t.hero.join}</Link>
+          <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-hover hidden whitespace-nowrap rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110 md:inline-flex">{t.hero.join}</Link>
           <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-full border xl:hidden"
             aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? t.close : t.menu} onClick={() => setOpen((o) => !o)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -274,12 +274,11 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
   );
 }
 
-export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: HeroKey; children?: ReactNode }) {
-  const banner = (BANNER as Record<string, { src: string; pos: string }>)[img];
-  const source = banner ?? { src: IMG[img as ImgKey], pos: PHOTO_POSITION[img as ImgKey] ?? "50% 20%" };
+export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: string; children?: ReactNode }) {
+  const source = bannerSpec(img);
   return (
     <section className="page-banner inside-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
-      <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
+      <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className={`absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top ${source.flip ? "-scale-x-100" : ""}`} />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="banner-content container-page">
         <div className="banner-copy">
