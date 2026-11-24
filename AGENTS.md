@@ -37,4 +37,4 @@ use the editor.
 - Use global type-size and content-density tokens for section headings, cards and grid spacing; maintain readable body text and content-driven page heights instead of scaling or clipping whole pages.
 - Knowledge Hub child pages share the introduction layout in ChildPage, with page-specific images, captions and resource links, to keep dropdown pages consistent in both languages.
 - Render breadcrumbs in the language layout from the active page hierarchy, so parent, child, story and legal pages share translated navigation without duplicating it per route.
-- Use a shared ProfileGrid for leadership sections and profile pages; fictional names and generated portraits remain explicitly labelled placeholders rather than verified officeholders.
+- Use a shared ProfileGrid for leadership sections and profile pages, showing title, name and location on cards with full details in an accessible dialog; label fictional names and generated portraits as placeholders inside the dialog rather than verified officeholders.
