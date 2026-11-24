@@ -19,3 +19,4 @@
 - [x] Redesign every Media dropdown page in EN/FR to match the improved Knowledge Hub presentation
 - [x] Remove the featured podcast and webinar from the repeated episode/recording grids below their players
 - [x] Soften orange, yellow and light green site-wide; remove excess decorative accents and coloured panels
+- [x] Split Events into upcoming and past sections in EN/FR

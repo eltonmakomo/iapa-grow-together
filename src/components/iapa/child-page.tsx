@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
+import { EventsSections } from "@/components/iapa/events";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
@@ -119,14 +120,7 @@ function HubBody({ lang, child }: { lang: Lang; child: string }) {
 
 function MediaBody({ lang, child }: { lang: Lang; child: string }) {
   const m = PAGES[lang].media;
-  if (child === "events") return <>
-    <SectionHead title={m.eventsTitle} />
-    <ol className="mt-8 grid gap-4">{m.events.map(([date, title, text, planned]) => <li key={title} className={`group relative overflow-hidden rounded-2xl border bg-card p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6 sm:p-6 ${planned ? "border-arid/50" : "border-border"}`}>
-      <span aria-hidden className={`absolute inset-y-0 left-0 w-1 ${planned ? "bg-arid" : "bg-primary"}`} />
-      <p className="flex flex-wrap items-center gap-2 font-extrabold text-primary"><CalendarDays className="h-5 w-5 shrink-0" aria-hidden /><span>{date}</span>{planned && <span className="rounded-full bg-arid/20 px-2.5 py-1 text-xs uppercase tracking-wide text-arid-ink">{m.upcoming}</span>}</p>
-      <div className="mt-3 sm:mt-0"><h3 className="text-lg font-extrabold leading-snug">{title}</h3>{text && <p className="mt-2 leading-relaxed text-muted-foreground">{text}</p>}</div>
-    </li>)}</ol>
-  </>;
+  if (child === "events") return <EventsSections lang={lang} />;
   if (child === "key-documents") return <>
     <SectionHead title={m.docsTitle} />
     <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text]) => <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">

@@ -6,6 +6,7 @@ import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
 import { getStory, STORIES } from "@/lib/iapa-stories";
 import mapData from "@/lib/africa-map-data.json";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
+import { partitionEvents } from "@/components/iapa/events";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -100,6 +101,18 @@ describe("IAPA content", () => {
           expect(doc.text).not.toMatch(/^(A sample|Une note fictive|Un article fictif|Un cas fictif)/i);
         }
       }
+    }
+  });
+  it("separates upcoming and past events in both languages", () => {
+    for (const lang of ["en", "fr"] as const) {
+      const media = PAGES[lang].media;
+      const { upcoming, past } = partitionEvents(media.events);
+      expect(upcoming.map(([, title]) => title)).toEqual([
+        lang === "en" ? "General meeting of members" : "Réunion générale des membres",
+      ]);
+      expect(past).toHaveLength(5);
+      expect(media.upcomingEventsTitle).toBe(lang === "en" ? "Upcoming events" : "Événements à venir");
+      expect(media.pastEventsTitle).toBe(lang === "en" ? "Past events" : "Événements passés");
     }
   });
   it("provides a bilingual inside page for every field story", () => {

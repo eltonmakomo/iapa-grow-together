@@ -83,7 +83,9 @@ const en = {
       ["Aug 2026", "IAPA is officially recognised", "IAPA was officially registered in Accra, Ghana, opening new opportunities for funding, collaboration and impact."],
     ],
     eventsTitle: "Events",
-    upcoming: "Planned",
+    upcomingEventsTitle: "Upcoming events",
+    pastEventsTitle: "Past events",
+    upcoming: "Upcoming",
     events: [
       ["Nov 2026", "General meeting of members", "Planned in IAPA's roadmap.", true],
       ["15–19 Jun 2026", "ABF-GIZ Independent Evaluation Committee, Accra", "Dr. Codjoe Francis, Kum Jude Kawzu and Ouedraogo Boureima represented IAPA."],
@@ -214,7 +216,9 @@ const fr: PagesContent = {
       ["Août 2026", "L'IAPA officiellement reconnue", "L'IAPA a été officiellement enregistrée à Accra, au Ghana, ouvrant de nouvelles opportunités de financement, de collaboration et d'impact."],
     ],
     eventsTitle: "Événements",
-    upcoming: "Prévu",
+    upcomingEventsTitle: "Événements à venir",
+    pastEventsTitle: "Événements passés",
+    upcoming: "À venir",
     events: [
       ["Nov. 2026", "Réunion générale des membres", "Prévue dans la feuille de route de l'IAPA.", true],
       ["15–19 juin 2026", "Comité d'évaluation indépendant ABF-GIZ, Accra", "Dr Codjoe Francis, Kum Jude Kawzu et Ouedraogo Boureima ont représenté l'IAPA."],

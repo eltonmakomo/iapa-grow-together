@@ -3,6 +3,7 @@ import { FileText } from "lucide-react";
 import { CONTACT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { childLabel } from "@/lib/iapa-nav";
+import { EventsSections } from "@/components/iapa/events";
 import { Gallery, PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { MEDIA_GALLERY_TITLE } from "@/lib/iapa-photos";
 import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
@@ -21,15 +22,7 @@ function Media() {
       <PageHero eyebrow={p.nav.media} title={p.nav.media} lead={m.lead} img="mauritania" />
       <section id="events" className="bg-card py-16 md:py-24">
         <div className="container-page">
-          <SectionHead title={childLabel("media", "events", lang)} />
-          <ol className="mt-8 grid gap-3">
-            {m.events.map(([d, h, x, planned]) => (
-              <li key={h} className={`grid gap-2 rounded-2xl p-5 sm:grid-cols-[11rem_1fr] ${planned ? "border-2 border-dashed border-arid bg-cream" : "bg-background"}`}>
-                <p className="font-extrabold text-primary">{d}{planned && <span className="ml-2 rounded-full bg-arid/20 px-2 py-0.5 text-xs uppercase text-arid-ink">{m.upcoming}</span>}</p>
-                <div><h3 className="font-extrabold">{h}</h3>{x && <p className="mt-1 text-sm text-muted-foreground">{x}</p>}</div>
-              </li>
-            ))}
-          </ol>
+          <EventsSections lang={lang} />
         </div>
       </section>
       <section className="py-16 md:py-24">
