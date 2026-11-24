@@ -279,7 +279,7 @@ export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: str
   const source = bannerSpec(img);
   return (
     <section className="page-banner inside-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
-      <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className={`absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top ${source.flip ? "-scale-x-100" : ""}`} />
+      <img src={source.src} alt="" fetchPriority="high" data-flip={source.flip ? "true" : undefined} style={{ objectPosition: source.pos }} className={`absolute inset-0 -z-10 h-full w-full object-cover origin-top ${source.flip ? "-scale-x-100" : ""}`} />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="banner-content container-page">
         <div className="banner-copy">

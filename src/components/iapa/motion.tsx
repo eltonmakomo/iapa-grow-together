@@ -34,8 +34,9 @@ export function useSiteMotion() {
       raf = requestAnimationFrame(() => px.forEach((el) => {
         const r = el.parentElement!.getBoundingClientRect();
         if (r.bottom < 0 || r.top > innerHeight) return;
-        const offset = Math.max(-r.height * 0.1, Math.min(0, r.top) * 0.12);
-        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(1.15)`;
+        const offset = Math.max(-r.height * 0.03, Math.min(0, r.top) * 0.05);
+        const flipX = el.dataset["flip"] === "true" ? -1.03 : 1.03;
+        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${flipX}, 1.03)`;
       }));
     };
     onScroll();

@@ -224,7 +224,7 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
 
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); }
 .reveal.in { opacity: 1; transform: none; }
-.parallax { will-change: transform; transform: scale(1.15); }
+.parallax { will-change: transform; transform: scale(1.03); }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: no-preference) {
   section.isolate .container-page > * { animation: hero-rise .9s cubic-bezier(.2,.7,.2,1) both; }
