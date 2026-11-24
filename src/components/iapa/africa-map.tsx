@@ -20,13 +20,15 @@ interface RegionMeta {
   countries: ReadonlyArray<{ id: string; en: string; fr: string; hq?: boolean }>;
 }
 
+const softMapFill = (colour: string) => `color-mix(in oklab, ${colour} 68%, var(--card))`;
+
 export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   {
     key: "north",
-    fill: "var(--primary)",
-    cardClass: "bg-primary text-primary-foreground",
-    chipClass: "bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25",
-    chipActiveClass: "bg-primary-foreground text-primary",
+    fill: softMapFill("var(--primary)"),
+    cardClass: "border border-primary/20 bg-primary/10 text-foreground",
+    chipClass: "bg-primary/10 text-primary hover:bg-primary/20",
+    chipActiveClass: "bg-primary text-primary-foreground",
     countries: [
       { id: "tn", en: "Tunisia", fr: "Tunisie" },
       { id: "dz", en: "Algeria", fr: "Algérie" },
@@ -34,10 +36,10 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "west-fr",
-    fill: "var(--sun)",
-    cardClass: "bg-sun text-accent-foreground",
-    chipClass: "bg-accent-foreground/12 text-accent-foreground hover:bg-accent-foreground/22",
-    chipActiveClass: "bg-accent-foreground text-sun",
+    fill: softMapFill("var(--sun)"),
+    cardClass: "border border-sun/30 bg-sun/15 text-foreground",
+    chipClass: "bg-sun/20 text-accent-foreground hover:bg-sun/30",
+    chipActiveClass: "bg-sun text-accent-foreground",
     countries: [
       { id: "bj", en: "Benin", fr: "Bénin" },
       { id: "bf", en: "Burkina Faso", fr: "Burkina Faso" },
@@ -48,10 +50,10 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "west-en",
-    fill: "var(--savanna)",
-    cardClass: "bg-savanna text-accent-foreground",
-    chipClass: "bg-accent-foreground/12 text-accent-foreground hover:bg-accent-foreground/22",
-    chipActiveClass: "bg-accent-foreground text-savanna",
+    fill: softMapFill("var(--savanna)"),
+    cardClass: "border border-savanna/30 bg-savanna/15 text-foreground",
+    chipClass: "bg-savanna/20 text-secondary-foreground hover:bg-savanna/30",
+    chipActiveClass: "bg-savanna text-accent-foreground",
     countries: [
       { id: "gh", en: "Ghana", fr: "Ghana", hq: true },
       { id: "ng", en: "Nigeria", fr: "Nigeria" },
@@ -60,10 +62,10 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "east",
-    fill: "var(--arid)",
-    cardClass: "bg-arid text-accent-foreground",
-    chipClass: "bg-accent-foreground/12 text-accent-foreground hover:bg-accent-foreground/22",
-    chipActiveClass: "bg-accent-foreground text-arid",
+    fill: softMapFill("var(--arid)"),
+    cardClass: "border border-arid/25 bg-arid/10 text-foreground",
+    chipClass: "bg-arid/15 text-arid-ink hover:bg-arid/25",
+    chipActiveClass: "bg-arid text-accent-foreground",
     countries: [
       { id: "ss", en: "South Sudan", fr: "Soudan du Sud" },
       { id: "et", en: "Ethiopia", fr: "Éthiopie" },
@@ -74,10 +76,10 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "south",
-    fill: "var(--forest)",
-    cardClass: "bg-forest text-forest-foreground",
-    chipClass: "bg-forest-foreground/15 text-forest-foreground hover:bg-forest-foreground/25",
-    chipActiveClass: "bg-forest-foreground text-forest",
+    fill: softMapFill("var(--forest)"),
+    cardClass: "border border-forest/20 bg-forest/10 text-foreground",
+    chipClass: "bg-forest/10 text-forest hover:bg-forest/20",
+    chipActiveClass: "bg-forest text-forest-foreground",
     countries: [
       { id: "na", en: "Namibia", fr: "Namibie" },
       { id: "mz", en: "Mozambique", fr: "Mozambique" },
