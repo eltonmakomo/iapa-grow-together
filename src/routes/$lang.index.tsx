@@ -71,9 +71,8 @@ function Home() {
             <div>
               <h3 className="eyebrow">{t.work.partnersLabel}</h3>
               <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                {t.work.partnerServices.map(([h, d], i) => (
+                {t.work.partnerServices.map(([h, d]) => (
                   <li key={h} className="curve-card relative overflow-hidden border bg-background p-6">
-                    <span aria-hidden className={`absolute -right-6 -top-6 h-20 w-20 rounded-full ${["bg-sun/40", "bg-arid/30", "bg-savanna/40", "bg-sun/30"][i]}`} />
                     <h4 className="relative text-lg font-extrabold">{h}</h4><p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
                   </li>
                 ))}

@@ -52,11 +52,11 @@
   --popover-foreground: oklch(0.24 0.03 135);
   --primary: oklch(0.517 0.143 136);       /* #3A7C1E */
   --primary-foreground: oklch(0.99 0.005 90);
-  --secondary: oklch(0.95 0.025 110);
+  --secondary: oklch(0.965 0.01 110);
   --secondary-foreground: oklch(0.3 0.08 136);
   --muted: oklch(0.955 0.015 90);
   --muted-foreground: oklch(0.44 0.03 130);
-  --accent: oklch(0.8 0.14 85);            /* #E5B946 */
+  --accent: oklch(0.92 0.035 85);          /* restrained yellow tint */
   --accent-foreground: oklch(0.25 0.04 80);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
@@ -65,11 +65,11 @@
   --ring: oklch(0.517 0.143 136);
   --forest: oklch(0.27 0.06 140);
   --forest-foreground: oklch(0.97 0.015 95);
-  --savanna: oklch(0.71 0.13 120);         /* #9CB04A */
-  --sun: oklch(0.8 0.14 85);
-  --arid: oklch(0.69 0.13 60);             /* #D7883F */
-  --arid-ink: oklch(0.48 0.12 55);         /* AA-contrast orange text */
-  --cream: oklch(0.965 0.03 90);
+  --savanna: oklch(0.91 0.03 120);         /* muted light green */
+  --sun: oklch(0.91 0.045 85);             /* soft yellow */
+  --arid: oklch(0.9 0.035 60);             /* soft orange */
+  --arid-ink: oklch(0.43 0.045 55);        /* restrained, readable accent ink */
+  --cream: oklch(0.975 0.012 90);
   --shadow-soft: 0 20px 50px -24px color-mix(in oklab, var(--forest) 35%, transparent);
   --gradient-hero: linear-gradient(100deg, color-mix(in oklab, var(--forest) 92%, transparent) 0%, color-mix(in oklab, var(--forest) 70%, transparent) 45%, transparent 85%);
 }
@@ -84,7 +84,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
+  :focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; border-radius: 6px; }
 }
 
 @utility container-page {
@@ -99,7 +99,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--arid-ink);
+  color: var(--primary);
 }
 @utility section-title {
   font-weight: 800;

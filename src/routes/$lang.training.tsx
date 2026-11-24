@@ -38,11 +38,11 @@ function Training() {
         <Arc className="-mt-px rotate-180 text-background" />
         <div className="container-page grid gap-6 py-14 lg:grid-cols-2">
           <div className="grid gap-6">
-            <div id="cf" className="curve-card bg-sun p-8 text-accent-foreground">
+            <div id="cf" className="curve-card bg-card p-8 text-card-foreground">
               <h2 className="text-3xl font-extrabold">{childLabel("training", "cf", lang)}</h2>
               <p className="mt-3 text-lg leading-relaxed">{t.cfText}</p>
             </div>
-            <div id="gap" className="curve-card bg-savanna p-8 text-accent-foreground">
+            <div id="gap" className="curve-card bg-card p-8 text-card-foreground">
               <h2 className="text-2xl font-extrabold">{childLabel("training", "gap", lang)}</h2>
               <p className="mt-3 text-lg leading-relaxed">{t.gap}</p>
             </div>

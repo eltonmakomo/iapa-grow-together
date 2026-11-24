@@ -35,7 +35,7 @@ function JoinUs() {
           <SectionHead title={p.oppTitle} />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {([["vacancies", p.vacancies], ["scholarships", p.scholarships]] as const).map(([id, [h, x]]) => <div key={id} id={id} className="curve-card bg-card p-6"><h3 className="text-xl font-extrabold">{h}</h3><p className="mt-2 text-muted-foreground">{x}</p></div>)}
-            <div className="curve-card bg-sun p-6 text-accent-foreground"><p className="leading-relaxed">{p.oppStory}</p></div>
+            <div className="curve-card bg-card p-6 text-card-foreground"><p className="leading-relaxed">{p.oppStory}</p></div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <Photo k="cameroon" lang={lang} ratio="aspect-[4/3]" />

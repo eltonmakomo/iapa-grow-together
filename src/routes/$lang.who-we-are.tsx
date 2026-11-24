@@ -46,7 +46,6 @@ function WhoWeAre() {
           <ol className="mt-8 grid gap-5 md:grid-cols-3">
             {t.pillars.map(([h, d], i) => (
               <li key={h} className="curve-card relative overflow-hidden bg-background p-7">
-                <span aria-hidden className={`absolute -right-6 -top-6 h-24 w-24 rounded-full ${["bg-sun/40", "bg-arid/30", "bg-savanna/40"][i]}`} />
                 <span className="relative text-5xl font-extrabold text-primary">{i + 1}</span>
                 <h3 className="relative mt-3 text-xl font-extrabold">{h}</h3>
                 <p className="relative mt-3 leading-relaxed text-muted-foreground">{d}</p>
@@ -55,7 +54,7 @@ function WhoWeAre() {
           </ol>
           <h3 className="mt-14 text-2xl font-extrabold">{t.valuesTitle}</h3>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {t.values.map((v) => <li key={v} className="rounded-full border-2 border-savanna px-4 py-1.5 font-semibold">{v}</li>)}
+            {t.values.map((v) => <li key={v} className="rounded-full border border-border px-4 py-1.5 font-semibold">{v}</li>)}
           </ul>
         </div>
       </section>
@@ -64,7 +63,7 @@ function WhoWeAre() {
         <div className="container-page">
           <SectionHead title={p.timelineTitle} />
           <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
-          <ol className="border-l-4 border-savanna pl-6 md:pl-10">
+          <ol className="border-l-4 border-border pl-6 md:pl-10">
             {p.timeline.map(([d, x]) => (
               <li key={d} className="relative pb-8 last:pb-0">
                 <span aria-hidden className="absolute -left-[2.05rem] top-1 h-5 w-5 rounded-full border-4 border-background bg-primary md:-left-[3.05rem]" />
