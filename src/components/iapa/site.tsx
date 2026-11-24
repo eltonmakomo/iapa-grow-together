@@ -257,24 +257,9 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
   );
 }
 
-export function PageHero({ eyebrow, title, lead, img, children, uncropped = false }: { eyebrow: string; title: string; lead: string; img: HeroKey; children?: ReactNode; uncropped?: boolean }) {
+export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: HeroKey; children?: ReactNode }) {
   const banner = (BANNER as Record<string, { src: string; pos: string }>)[img];
-  const source = uncropped ? { src: IMG[img as ImgKey] ?? banner?.src, pos: "100% 20%" } : banner ?? { src: IMG[img as ImgKey], pos: "100% 20%" };
-  if (!banner || uncropped) {
-    return (
-      <section className="inside-banner relative isolate overflow-hidden bg-background text-foreground">
-        <div className="container-page pb-8 pt-10 md:pb-10 md:pt-14">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-extrabold leading-[1.1] md:text-5xl">{title}</h1>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">{lead}</p>
-          {children}
-        </div>
-        <div className="bg-secondary">
-          <img src={source.src} alt="" fetchPriority="high" className="mx-auto block max-h-[480px] w-full max-w-[76rem] object-contain md:max-h-[560px]" />
-        </div>
-      </section>
-    );
-  }
+  const source = banner ?? { src: IMG[img as ImgKey], pos: PHOTO_POSITION[img as ImgKey] ?? "50% 20%" };
   return (
     <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
       <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
