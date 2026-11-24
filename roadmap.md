@@ -11,3 +11,5 @@
 - [x] Give every child page distinct content and images
 - [x] Add an online reading option for IAPA Pulse newsletters
 - [x] Fill empty child pages with clearly marked dummy content
+- [x] Improve inside-page banner clarity and framing
+- [x] Remove the sample notice boxes indicated in the latest screenshot

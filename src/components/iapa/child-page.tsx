@@ -56,14 +56,10 @@ function FeatureBody({ lang, title, copy }: { lang: Lang; title: string; copy: C
       </div>
       {copy.samples && (
         <div className="mt-12">
-          <div className="flex flex-wrap items-center gap-3 rounded-2xl border-2 border-dashed border-arid bg-cream p-4">
-            <span className="rounded-full bg-arid px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">{ui.sample}</span>
-            <p className="text-sm leading-relaxed text-muted-foreground">{ui.sampleNote}</p>
-          </div>
           <ul className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {copy.samples.map((item) => (
               <li key={item.title} className="curve-card flex h-full flex-col bg-card p-6">
-                <p className="eyebrow text-xs">{item.meta}</p>
+                <p className="eyebrow text-xs">{ui.sample} · {item.meta}</p>
                 <h3 className="mt-3 text-xl font-extrabold leading-snug">{item.title}</h3>
                 <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{item.text}</p>
               </li>
@@ -151,7 +147,7 @@ export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; c
   const n = navPage(slug);
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
-    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={childContent(slug, child, lang).lead} img={childHero(slug, child)} />
+    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={childContent(slug, child, lang).lead} img={childHero(slug, child)} uncropped />
     <section className="py-16 md:py-24"><div className="container-page"><Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link><ChildBody lang={lang} slug={slug} child={child} /></div></section>
     <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;
