@@ -24,3 +24,4 @@
 - [x] Extend compact typography and spacing to all page sections, cards, map, footer and menus; check all bilingual pages and key controls across desktop and mobile sizes
 - [x] Add polished placeholder leadership profiles with AI-generated portraits and placeholder names in EN/FR
 - [x] Add breadcrumbs across content pages in EN/FR
+- [x] Move breadcrumbs into photo banners and increase inside-page banner height without clipping translated text

@@ -10,6 +10,7 @@ import { BANNER, IMG, PHOTO_POSITION, type HeroKey, type ImgKey } from "@/compon
 import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
+import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 
 export const asLang = (v: string): Lang => (v === "fr" ? "fr" : "en");
 
@@ -277,14 +278,17 @@ export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: str
   const banner = (BANNER as Record<string, { src: string; pos: string }>)[img];
   const source = banner ?? { src: IMG[img as ImgKey], pos: PHOTO_POSITION[img as ImgKey] ?? "50% 20%" };
   return (
-    <section className="page-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
+    <section className="page-banner inside-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
       <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
       <div className="banner-content container-page">
+        <PageBreadcrumbs inBanner />
+        <div className="banner-copy">
         <p className="eyebrow text-sun">{eyebrow}</p>
         <h1 className="banner-title mt-3 font-extrabold">{title}</h1>
         <p className="banner-lead text-forest-foreground/90">{lead}</p>
         {children}
+        </div>
       </div>
       <Arc className="-mb-px text-background" />
     </section>

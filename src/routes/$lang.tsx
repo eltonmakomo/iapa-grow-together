@@ -19,12 +19,15 @@ export const Route = createFileRoute("/$lang")({
 
 function LangLayout() {
   const lang = asLang(Route.useParams().lang);
+  const pathname = useLocation({ select: (location) => location.pathname });
+  const section = pathname.split("/")[2];
+  const standaloneBreadcrumbs = section === "stories" || section === "privacy" || section === "legal";
   useSiteMotion();
   return (
     <div id="top" lang={lang}>
       <ScrollProgress />
       <SiteHeader lang={lang} />
-      <main id="main" key={useLocation({ select: (l) => l.pathname })} className="page-enter"><PageBreadcrumbs lang={lang} /><Outlet /></main>
+      <main id="main" key={pathname} className="page-enter">{standaloneBreadcrumbs && <PageBreadcrumbs lang={lang} />}<Outlet /></main>
       <SiteFooter lang={lang} />
     </div>
   );

@@ -11,8 +11,9 @@ const parents = {
   "knowledge-hub": "/$lang/knowledge-hub", media: "/$lang/media", "join-us": "/$lang/join-us",
 } as const;
 
-export function PageBreadcrumbs({ lang }: { lang: Lang }) {
+export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lang?: Lang; inBanner?: boolean }) {
   const pathname = useLocation({ select: (location) => location.pathname });
+  const lang = requestedLang ?? (pathname.split("/")[1] === "fr" ? "fr" : "en");
   const [, , section, child] = pathname.split("/");
   if (!section) return null;
   const slug = PAGE_SLUGS.find((value) => value === section);
@@ -21,9 +22,9 @@ export function PageBreadcrumbs({ lang }: { lang: Lang }) {
   const current = story ? story[lang].title : slug ? child ? childLabel(slug, child, lang) : PAGES[lang].nav[slug]
     : section === "privacy" || section === "legal" ? LEGAL[lang][section].title : section;
   return (
-    <div className="border-b bg-background">
-      <Breadcrumb aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className="container-page py-3">
-        <BreadcrumbList className="gap-2 text-xs">
+    <div className={inBanner ? "banner-breadcrumbs" : "border-b bg-background"}>
+      <Breadcrumb aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className={inBanner ? "" : "container-page py-3"}>
+        <BreadcrumbList className={`gap-2 text-xs ${inBanner ? "text-forest-foreground/85 [&_a:hover]:text-forest-foreground" : ""}`}>
           <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang" params={{ lang }} className="inline-flex items-center gap-1.5"><Home className="h-3.5 w-3.5" aria-hidden />{PAGES[lang].home}</Link></BreadcrumbLink></BreadcrumbItem>
           <BreadcrumbSeparator />
           {parent && (child || story) && <>
@@ -34,7 +35,7 @@ export function PageBreadcrumbs({ lang }: { lang: Lang }) {
             <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }}>{childLabel("our-work", "stories", lang)}</Link></BreadcrumbLink></BreadcrumbItem>
             <BreadcrumbSeparator />
           </>}
-          <BreadcrumbItem className="min-w-0"><BreadcrumbPage className="font-semibold">{current}</BreadcrumbPage></BreadcrumbItem>
+          <BreadcrumbItem className="min-w-0"><BreadcrumbPage className={`font-semibold ${inBanner ? "text-forest-foreground" : ""}`}>{current}</BreadcrumbPage></BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
