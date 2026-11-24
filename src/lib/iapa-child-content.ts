@@ -29,11 +29,19 @@ export type ChildPageContent = { img: HeroKey; en: ChildCopy; fr: ChildCopy };
 export const CHILD_UI = {
   en: {
     highlights: "What you'll find",
+    browsePublications: "Browse publications",
+    browseRecordings: "Browse recordings",
+    browseMultimedia: "Explore multimedia",
+    browsePodcasts: "Browse episodes",
     sample: "Sample content",
     sampleNote: "Illustrative content for the page layout — not a live publication, testimonial or opportunity.",
   },
   fr: {
     highlights: "Ce que vous trouverez",
+    browsePublications: "Explorer les publications",
+    browseRecordings: "Explorer les enregistrements",
+    browseMultimedia: "Explorer le multimédia",
+    browsePodcasts: "Explorer les épisodes",
     sample: "Contenu fictif",
     sampleNote: "Contenu illustratif pour la mise en page — il ne s'agit pas d'une publication, d'un témoignage ou d'une offre réelle.",
   },
@@ -317,8 +325,8 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
   "knowledge-hub": {
     publications: {
       img: "knowledgeClassroom",
-      en: { lead: "Read IAPA Pulse online or download each issue for field stories, partnerships and network news." },
-      fr: { lead: "Lisez IAPA Pulse en ligne ou téléchargez chaque numéro pour suivre les histoires de terrain et les nouvelles du réseau." },
+      en: { lead: "Read IAPA Pulse online or download each issue for field stories, partnerships and network news.", heading: "Field stories and news from the IAPA network" },
+      fr: { lead: "Lisez IAPA Pulse en ligne ou téléchargez chaque numéro pour suivre les histoires de terrain et les nouvelles du réseau.", heading: "Récits de terrain et actualités du réseau IAPA" },
     },
     "policy-briefs": {
       img: "policyDialogue",
