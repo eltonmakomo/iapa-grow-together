@@ -8,6 +8,7 @@ import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
+import { SampleShowcase } from "@/components/iapa/sample-showcase";
 
 const PARENT_ROUTES = {
   "who-we-are": "/$lang/who-we-are",
@@ -31,7 +32,7 @@ function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | unde
   );
 }
 
-function FeatureBody({ lang, title, copy }: { lang: Lang; title: string; copy: ChildCopy }) {
+function FeatureBody({ lang, title, copy, child }: { lang: Lang; title: string; copy: ChildCopy; child: string }) {
   const ui = CHILD_UI[lang];
   return (
     <>
@@ -54,19 +55,7 @@ function FeatureBody({ lang, title, copy }: { lang: Lang; title: string; copy: C
           </div>
         )}
       </div>
-      {copy.samples && (
-        <div className="mt-12">
-          <ul className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {copy.samples.map((item) => (
-              <li key={item.title} className="curve-card flex h-full flex-col bg-card p-6">
-                <p className="eyebrow text-xs">{ui.sample} · {item.meta}</p>
-                <h3 className="mt-3 text-xl font-extrabold leading-snug">{item.title}</h3>
-                <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{item.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {copy.samples && <SampleShowcase lang={lang} kind={copy.sampleKind} items={copy.samples} child={child} />}
       {copy.note && <p className="mt-6 rounded-2xl bg-secondary p-5 font-semibold text-secondary-foreground">{copy.note}</p>}
     </>
   );
@@ -77,7 +66,7 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
   const w = CONTENT[lang].work;
   const p = PAGES[lang].who;
   if (child === "leadership" || child === "iapa-team") {
-    return <FeatureBody lang={lang} title={childLabel("who-we-are", child, lang)} copy={childContent("who-we-are", child, lang)} />;
+    return <FeatureBody lang={lang} title={childLabel("who-we-are", child, lang)} copy={childContent("who-we-are", child, lang)} child={child} />;
   }
   if (child === "about") return <>
     <div className="grid gap-10 lg:grid-cols-2">
@@ -106,16 +95,16 @@ function WorkBody({ lang, child }: { lang: Lang; child: string }) {
     <SectionHead title={w.storiesTitle} lead={w.storiesNote} />
     <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{w.stories.map((story) => <li key={story.title}><Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.img }} className="curve-card group flex h-full flex-col overflow-hidden bg-card"><img src={storyImg(story.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(story.img) }} className="aspect-[4/3] w-full object-cover object-top" /><div className="flex flex-1 flex-col p-5"><p className="eyebrow text-xs">{story.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{story.title}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{lang === "fr" ? "Lire l'histoire" : "Read story"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div></Link></li>)}</ul>
   </>;
-  return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} />;
+  return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} child={child} />;
 }
 
 function TrainingBody({ lang, child }: { lang: Lang; child: string }) {
-  return <FeatureBody lang={lang} title={childLabel("training", child, lang)} copy={childContent("training", child, lang)} />;
+  return <FeatureBody lang={lang} title={childLabel("training", child, lang)} copy={childContent("training", child, lang)} child={child} />;
 }
 
 function HubBody({ lang, child }: { lang: Lang; child: string }) {
   const h = CONTENT[lang].hub;
-  if (child !== "publications") return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} />;
+  if (child !== "publications") return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} child={child} />;
   return <>
     <SectionHead title={h.title} lead={h.lead} />
     <ul className="mt-8 grid gap-6 md:grid-cols-2">{h.issues.map((issue, i) => <li key={issue.key} className="curve-card flex flex-col overflow-hidden bg-card"><div className={`h-2 ${i === 0 ? "bg-primary" : "bg-arid"}`} /><div className="grid flex-1 gap-6 p-7 sm:grid-cols-[9rem_1fr]"><img src={PULSE_COVER[issue.key]!} alt={`IAPA Pulse — ${issue.label}`} loading="lazy" className="w-36 rounded-lg border shadow-soft sm:w-full" /><div><p className="eyebrow">{issue.label}</p><h3 className="mt-2 text-2xl font-extrabold">{issue.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{issue.text}</p><div className="mt-6 flex flex-wrap gap-3"><a href={PULSE[issue.key]!} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground"><BookOpen className="h-5 w-5" aria-hidden />{h.read}</a><a href={PULSE[issue.key]!} download className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-bold text-primary-foreground hover:brightness-110"><Download className="h-5 w-5" aria-hidden />{h.download}</a></div><p className="mt-2 text-xs text-muted-foreground">{h.size}</p></div></div></li>)}</ul>
@@ -130,7 +119,7 @@ function MediaBody({ lang, child }: { lang: Lang; child: string }) {
 }
 
 function JoinBody({ lang, child }: { lang: Lang; child: string }) {
-  return <FeatureBody lang={lang} title={childLabel("join-us", child, lang)} copy={childContent("join-us", child, lang)} />;
+  return <FeatureBody lang={lang} title={childLabel("join-us", child, lang)} copy={childContent("join-us", child, lang)} child={child} />;
 }
 
 function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: string }) {

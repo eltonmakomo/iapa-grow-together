@@ -84,6 +84,24 @@ describe("IAPA content", () => {
       expect(CHILD_CONTENT["join-us"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
     }
   });
+  it("gives podcasts playable durations and publications structured takeaways without generic sample phrasing", () => {
+    for (const lang of ["en", "fr"] as const) {
+      const pods = CHILD_CONTENT["knowledge-hub"]["podcasts"]?.[lang];
+      expect(pods?.sampleKind).toBe("podcast");
+      for (const ep of pods?.samples ?? []) {
+        expect(ep.durationSec).toBeGreaterThan(60);
+        expect(ep.text).not.toMatch(/^(A sample|Un épisode fictif)/i);
+      }
+      for (const pubId of ["policy-briefs", "research-papers", "case-studies"]) {
+        const pub = CHILD_CONTENT["knowledge-hub"][pubId]?.[lang];
+        expect(pub?.sampleKind).toBe("publication");
+        for (const doc of pub?.samples ?? []) {
+          expect(doc.highlights?.length).toBeGreaterThanOrEqual(3);
+          expect(doc.text).not.toMatch(/^(A sample|Une note fictive|Un article fictif|Un cas fictif)/i);
+        }
+      }
+    }
+  });
   it("provides a bilingual inside page for every field story", () => {
     expect(STORIES).toHaveLength(CONTENT.en.work.stories.length);
     for (const s of CONTENT.en.work.stories) {

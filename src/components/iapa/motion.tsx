@@ -10,7 +10,9 @@ export function useSiteMotion() {
     if (reduced()) return;
     const main = document.getElementById("main");
     if (!main) return;
-    const els = Array.from(main.querySelectorAll<HTMLElement>("section .container-page > *, section ul > li, section ol > li, section dl > div"));
+    const els = Array.from(
+      main.querySelectorAll<HTMLElement>("section .container-page > *, section ul > li, section ol > li, section dl > div"),
+    ).filter((el) => !el.closest("[role='dialog']") && !el.parentElement?.closest("li"));
     els.forEach((el) => {
       const sib = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
       el.style.setProperty("--reveal-delay", `${Math.min(sib, 6) * 80}ms`);
