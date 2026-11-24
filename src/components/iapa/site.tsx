@@ -105,7 +105,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     <>
     <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur-xl" onMouseLeave={hide}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">{t.skip}</a>
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-18">
         <Link to="/$lang" params={{ lang }} className="min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
           <img src={(lang === "en" ? logoEn : logoFr).url} alt="IAPA" width={180} height={50} className="h-9 w-auto md:h-11" />
         </Link>
@@ -277,13 +277,13 @@ export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: str
   const banner = (BANNER as Record<string, { src: string; pos: string }>)[img];
   const source = banner ?? { src: IMG[img as ImgKey], pos: PHOTO_POSITION[img as ImgKey] ?? "50% 20%" };
   return (
-    <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
+    <section className="page-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
       <img src={source.src} alt="" fetchPriority="high" style={{ objectPosition: source.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover object-top origin-top" />
       <div className="bg-hero-overlay absolute inset-0 -z-10" />
-      <div className="container-page py-16 md:py-24">
+      <div className="banner-content container-page">
         <p className="eyebrow text-sun">{eyebrow}</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">{title}</h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-foreground/90">{lead}</p>
+        <h1 className="banner-title mt-3 font-extrabold">{title}</h1>
+        <p className="banner-lead text-forest-foreground/90">{lead}</p>
         {children}
       </div>
       <Arc className="-mb-px text-background" />

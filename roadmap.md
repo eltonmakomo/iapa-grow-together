@@ -20,3 +20,4 @@
 - [x] Remove the featured podcast and webinar from the repeated episode/recording grids below their players
 - [x] Soften orange, yellow and light green site-wide; remove excess decorative accents and coloured panels
 - [x] Split Events into upcoming and past sections in EN/FR
+- [x] Reduce shared banner typography and spacing; verify 1900×1080, 1920×1200, scaled desktop and mobile in EN/FR

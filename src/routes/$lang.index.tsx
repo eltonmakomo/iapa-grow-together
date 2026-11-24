@@ -24,18 +24,18 @@ function Home() {
   const p = PAGES[lang];
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-forest text-forest-foreground">
+      <section className="page-banner home-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
         <img src={BANNER.home.src} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: BANNER.home.pos }} className="absolute inset-0 -z-10 h-full w-full object-cover origin-top" />
         <div className="bg-hero-overlay absolute inset-0 -z-10" />
-        <div className="container-page flex min-h-[min(78svh,760px)] flex-col justify-center py-20 md:py-28">
+        <div className="banner-content container-page flex flex-col justify-center">
           <p className="eyebrow text-sun">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">{t.hero.title}</h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-forest-foreground/90 md:text-xl">{t.hero.lead}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-morph inline-flex items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground">
+          <h1 className="banner-title mt-4 font-extrabold">{t.hero.title}</h1>
+          <p className="banner-lead text-forest-foreground/90">{t.hero.lead}</p>
+          <div className="banner-actions flex flex-wrap gap-3">
+            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-morph inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-extrabold text-accent-foreground">
               {t.hero.join} <ArrowRight className="h-5 w-5" aria-hidden />
             </Link>
-            <Link to="/$lang/join-us" params={{ lang }} hash="partnership" className="inline-flex items-center gap-2 rounded-full border-2 border-forest-foreground px-7 py-3.5 font-bold hover:bg-forest-foreground hover:text-forest">
+            <Link to="/$lang/join-us" params={{ lang }} hash="partnership" className="inline-flex items-center gap-2 rounded-full border-2 border-forest-foreground px-6 py-3 text-sm font-bold hover:bg-forest-foreground hover:text-forest">
               {t.hero.partner}
             </Link>
           </div>

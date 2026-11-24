@@ -33,4 +33,5 @@ use the editor.
 - The site is a bilingual multi-page site under the /$lang param route (en|fr); / redirects to /en. All copy lives in src/lib/iapa-content.ts and src/lib/iapa-pages.ts so both languages stay in sync.
 - The EN/FR switch links to the same route with the other lang param, so visitors stay on the same page.
 - All parent and dropdown child pages use the full-bleed PageHero banner style (photo background with hero overlay, sun eyebrow, white title, lead text, and curved Arc bottom).
+- Home and PageHero share banner typography and height-aware spacing in global CSS; keep content-driven heights so shorter desktop screens fit banners without clipping translated text or buttons.
 - Knowledge Hub child pages share the introduction layout in ChildPage, with page-specific images, captions and resource links, to keep dropdown pages consistent in both languages.
