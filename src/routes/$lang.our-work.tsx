@@ -53,10 +53,10 @@ function OurWork() {
       <section id="testimonials" className="py-16 md:py-24">
         <div className="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <SectionHead title={childLabel("our-work", "testimonials", lang)} lead={a.testimonialsText} />
-          <div className="curve-card relative overflow-hidden bg-primary p-8 text-primary-foreground md:p-10">
-            <Quote className="h-12 w-12 text-sun" aria-hidden />
-            <p className="mt-4 text-2xl font-extrabold">{a.soon}</p>
-            <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(a.shareCta)}`} className="mt-6 inline-flex rounded-full bg-sun px-6 py-3 font-extrabold text-accent-foreground hover:brightness-105">{a.shareCta}</a>
+          <div className="curve-card bg-iapa-pattern-dark relative overflow-hidden bg-primary p-8 text-primary-foreground md:p-10">
+            <Quote className="relative h-12 w-12 text-sun" aria-hidden />
+            <p className="relative mt-4 text-2xl font-extrabold">{a.soon}</p>
+            <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(a.shareCta)}`} className="relative mt-6 inline-flex rounded-full bg-sun px-6 py-3 font-extrabold text-accent-foreground hover:brightness-105">{a.shareCta}</a>
           </div>
         </div>
       </section>

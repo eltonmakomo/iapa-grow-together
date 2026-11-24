@@ -124,9 +124,9 @@ function Home() {
 
       <section className="py-16 md:py-20">
         <div className="container-page">
-          <div className="curve-card flex flex-col gap-6 bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:justify-between md:p-12">
-            <div><h2 className="text-3xl font-extrabold">{p.subscribe.title}</h2><p className="mt-2 opacity-90">{p.subscribe.text}</p></div>
-            <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground hover:brightness-105">
+          <div className="curve-card bg-iapa-pattern-dark relative flex flex-col gap-6 overflow-hidden bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:justify-between md:p-12">
+            <div className="relative"><h2 className="text-3xl font-extrabold">{p.subscribe.title}</h2><p className="mt-2 opacity-90">{p.subscribe.text}</p></div>
+            <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="relative inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground hover:brightness-105">
               <Mail className="h-5 w-5" aria-hidden /> {p.subscribe.cta}
             </a>
           </div>
