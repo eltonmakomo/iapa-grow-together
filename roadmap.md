@@ -13,3 +13,4 @@
 - [x] Fill empty child pages with clearly marked dummy content
 - [x] Improve inside-page banner clarity and framing
 - [x] Remove the sample notice boxes indicated in the latest screenshot
+- [x] Redesign the webinar introduction section, not just its photograph

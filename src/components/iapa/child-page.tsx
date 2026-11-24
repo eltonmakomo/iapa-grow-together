@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, MapPin, Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
-import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
+import { IMG, PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
 
@@ -104,6 +105,13 @@ function TrainingBody({ lang, child }: { lang: Lang; child: string }) {
 
 function HubBody({ lang, child }: { lang: Lang; child: string }) {
   const h = CONTENT[lang].hub;
+  if (child === "webinars") {
+    const copy = childContent("knowledge-hub", child, lang);
+    return <div id="webinar-recordings">
+      {copy.body?.map((text) => <p key={text} className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{text}</p>)}
+      {copy.samples && <SampleShowcase lang={lang} kind={copy.sampleKind} items={copy.samples} child={child} />}
+    </div>;
+  }
   if (child !== "publications") return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} child={child} />;
   return <>
     <SectionHead title={h.title} lead={h.lead} />
@@ -134,10 +142,30 @@ function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: s
 export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: string }) {
   const p = PAGES[lang];
   const n = navPage(slug);
+  const isWebinar = slug === "knowledge-hub" && child === "webinars";
+  const copy = childContent(slug, child, lang);
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
-    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={childContent(slug, child, lang).lead} img={childHero(slug, child)} uncropped />
-    <section className="py-16 md:py-24"><div className="container-page"><Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link><ChildBody lang={lang} slug={slug} child={child} /></div></section>
+    {isWebinar ? <section className="border-b bg-background pt-8 md:pt-12">
+      <div className="container-page">
+        <Link to="/$lang/knowledge-hub" params={{ lang }} className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>
+        <div className="grid gap-6 pb-8 pt-6 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-12 md:pb-10">
+          <h1 className="max-w-2xl text-3xl font-extrabold leading-tight md:text-5xl">{childLabel(slug, child, lang)}</h1>
+          <div>
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">{copy.lead}</p>
+            <Button asChild className="mt-5 h-11 rounded-full px-5 font-bold"><a href="#webinar-recordings"><Video aria-hidden />{lang === "fr" ? "Explorer les enregistrements" : "Browse recordings"}<ArrowRight aria-hidden /></a></Button>
+          </div>
+        </div>
+        <figure className="border-t border-primary/25 pt-6">
+          <img src={IMG.webinarSession} alt="" fetchPriority="high" className="mx-auto block h-auto max-h-[360px] max-w-full rounded-lg md:max-h-[400px]" />
+          <figcaption className="flex items-center gap-4 py-6 md:py-7">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-secondary text-primary"><Video className="h-5 w-5" aria-hidden /></span>
+            <p className="text-lg font-bold leading-snug md:text-xl">{copy.heading}</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section> : <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} uncropped />}
+    <section className={isWebinar ? "py-10 md:py-14" : "py-16 md:py-24"}><div className="container-page">{!isWebinar && <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>}<ChildBody lang={lang} slug={slug} child={child} /></div></section>
     <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;
 }
