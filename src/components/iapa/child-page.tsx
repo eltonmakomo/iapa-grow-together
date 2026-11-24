@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Check, Download, FileText, Film, Headphones, MapPin, Newspaper, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
-import { Arc, PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
+import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
@@ -161,39 +161,13 @@ function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: s
 export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: string }) {
   const p = PAGES[lang];
   const n = navPage(slug);
-  const isHub = slug === "knowledge-hub";
-  const isMedia = slug === "media";
-  const hasSplitHero = isHub || isMedia;
   const copy = childContent(slug, child, lang);
-  const ui = CHILD_UI[lang];
-  const Icon = isMedia
-    ? child === "events" ? CalendarDays : child === "press-releases" ? Newspaper : FileText
-    : child === "podcasts" ? Headphones : child === "webinars" ? Video : child === "multimedia" ? Film : BookOpen;
-  const browseLabel = isMedia
-    ? child === "events" ? ui.browseEvents : child === "press-releases" ? ui.browsePress : ui.browseDocuments
-    : child === "podcasts" ? ui.browsePodcasts : child === "webinars" ? ui.browseRecordings : child === "multimedia" ? ui.browseMultimedia : ui.browsePublications;
-  const contentId = isMedia ? `media-${child}` : child === "webinars" ? "webinar-recordings" : "hub-resources";
-  const heroKey = childHero(slug, child);
+  const hasContentAnchor = slug === "knowledge-hub" || slug === "media";
+  const contentId = slug === "media" ? `media-${child}` : child === "webinars" ? "webinar-recordings" : "hub-resources";
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
-    {hasSplitHero ? <section className="relative overflow-hidden bg-forest text-forest-foreground">
-      <div className="container-page pb-10 pt-8 md:pb-14 md:pt-12">
-        <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="inline-flex items-center gap-2 text-sm font-bold text-sun hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-12">
-          <div>
-            <h1 className="text-3xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">{childLabel(slug, child, lang)}</h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-forest-foreground/85 md:text-lg">{copy.lead}</p>
-            {copy.heading && <p className="mt-5 flex items-center gap-3 text-sm font-bold text-forest-foreground/95 md:text-base"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-foreground/12 text-sun"><Icon className="h-4 w-4" aria-hidden /></span><span>{copy.heading}</span></p>}
-            <a href={`#${contentId}`} className="btn-morph mt-7 inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-extrabold text-accent-foreground shadow-soft">{browseLabel}<ArrowRight className="h-4 w-4" aria-hidden /></a>
-          </div>
-          <div className="curve-card overflow-hidden bg-forest-foreground/10 ring-1 ring-forest-foreground/15">
-            <img src={storyImg(heroKey)} alt="" fetchPriority="high" style={{ objectPosition: storyPosition(heroKey) }} className="aspect-[16/10] w-full object-cover" />
-          </div>
-        </div>
-      </div>
-      <Arc className="-mb-px text-background" />
-    </section> : <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} uncropped />}
-    <section id={hasSplitHero ? contentId : undefined} className={hasSplitHero ? "py-10 md:py-14" : "py-16 md:py-24"}><div className="container-page">{!hasSplitHero && <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>}<ChildBody lang={lang} slug={slug} child={child} /></div></section>
+    <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} uncropped />
+    <section id={hasContentAnchor ? contentId : undefined} className="py-16 md:py-24"><div className="container-page"><Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link><ChildBody lang={lang} slug={slug} child={child} /></div></section>
     <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;
 }
