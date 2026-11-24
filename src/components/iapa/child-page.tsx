@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, Film, Headphones, MapPin, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Check, Download, FileText, Film, Headphones, MapPin, Newspaper, Video } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
@@ -119,9 +119,30 @@ function HubBody({ lang, child }: { lang: Lang; child: string }) {
 
 function MediaBody({ lang, child }: { lang: Lang; child: string }) {
   const m = PAGES[lang].media;
-  if (child === "events") return <ol className="grid gap-3">{m.events.map(([date, title, text, planned]) => <li key={title} className={`grid gap-2 rounded-2xl p-5 sm:grid-cols-[11rem_1fr] ${planned ? "border-2 border-dashed border-arid bg-cream" : "bg-card"}`}><p className="font-extrabold text-primary">{date}{planned && <span className="ml-2 rounded-full bg-arid/20 px-2 py-0.5 text-xs uppercase text-arid-ink">{m.upcoming}</span>}</p><div><h3 className="font-extrabold">{title}</h3>{text && <p className="mt-1 text-sm text-muted-foreground">{text}</p>}</div></li>)}</ol>;
-  if (child === "key-documents") return <ul className="grid gap-4 md:grid-cols-2">{m.docs.map(([title, text]) => <li key={title} className="curve-card flex flex-col bg-card p-7"><FileText className="h-8 w-8 text-primary" aria-hidden /><h3 className="mt-3 text-xl font-extrabold">{title}</h3><p className="mt-2 flex-1 text-muted-foreground">{text}</p><a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(title ?? "")}`} className="mt-5 inline-flex w-fit rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground">{m.requestDoc}</a></li>)}</ul>;
-  return <ul className="grid gap-6 md:grid-cols-2">{m.press.map(([date, title, text]) => <li key={title} className="curve-card bg-card p-7"><p className="eyebrow">{date}</p><h3 className="mt-2 text-2xl font-extrabold">{title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{text}</p></li>)}</ul>;
+  if (child === "events") return <>
+    <SectionHead title={m.eventsTitle} />
+    <ol className="mt-8 grid gap-4">{m.events.map(([date, title, text, planned]) => <li key={title} className={`group relative overflow-hidden rounded-2xl border bg-card p-5 shadow-soft transition duration-300 hover:-translate-y-1 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6 sm:p-6 ${planned ? "border-arid/50" : "border-border"}`}>
+      <span aria-hidden className={`absolute inset-y-0 left-0 w-1 ${planned ? "bg-arid" : "bg-primary"}`} />
+      <p className="flex flex-wrap items-center gap-2 font-extrabold text-primary"><CalendarDays className="h-5 w-5 shrink-0" aria-hidden /><span>{date}</span>{planned && <span className="rounded-full bg-arid/20 px-2.5 py-1 text-xs uppercase tracking-wide text-arid-ink">{m.upcoming}</span>}</p>
+      <div className="mt-3 sm:mt-0"><h3 className="text-lg font-extrabold leading-snug">{title}</h3>{text && <p className="mt-2 leading-relaxed text-muted-foreground">{text}</p>}</div>
+    </li>)}</ol>
+  </>;
+  if (child === "key-documents") return <>
+    <SectionHead title={m.docsTitle} />
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text]) => <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">
+      <div className="flex items-center justify-between gap-4"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary"><FileText className="h-6 w-6" aria-hidden /></span><span className="rounded-full bg-sun/25 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">IAPA</span></div>
+      <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{text}</p>
+      <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(title ?? "")}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.requestDoc}<ArrowRight className="h-4 w-4" aria-hidden /></a>
+    </li>)}</ul>
+  </>;
+  return <>
+    <SectionHead title={m.pressTitle} />
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.press.map(([date, title, text]) => <li key={title} className="curve-card group border bg-card p-7 transition duration-300 hover:-translate-y-1">
+      <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground"><Newspaper className="h-5 w-5" aria-hidden /></span><p className="eyebrow">{date}</p></div>
+      <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{text}</p>
+      <div aria-hidden className="mt-6 h-1 w-14 rounded-full bg-sun transition-all duration-300 group-hover:w-24" />
+    </li>)}</ul>
+  </>;
 }
 
 function JoinBody({ lang, child }: { lang: Lang; child: string }) {
@@ -141,23 +162,29 @@ export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; c
   const p = PAGES[lang];
   const n = navPage(slug);
   const isHub = slug === "knowledge-hub";
+  const isMedia = slug === "media";
+  const hasSplitHero = isHub || isMedia;
   const copy = childContent(slug, child, lang);
   const ui = CHILD_UI[lang];
-  const Icon = child === "podcasts" ? Headphones : child === "webinars" ? Video : child === "multimedia" ? Film : BookOpen;
-  const browseLabel = child === "podcasts" ? ui.browsePodcasts : child === "webinars" ? ui.browseRecordings : child === "multimedia" ? ui.browseMultimedia : ui.browsePublications;
-  const contentId = child === "webinars" ? "webinar-recordings" : "hub-resources";
+  const Icon = isMedia
+    ? child === "events" ? CalendarDays : child === "press-releases" ? Newspaper : FileText
+    : child === "podcasts" ? Headphones : child === "webinars" ? Video : child === "multimedia" ? Film : BookOpen;
+  const browseLabel = isMedia
+    ? child === "events" ? ui.browseEvents : child === "press-releases" ? ui.browsePress : ui.browseDocuments
+    : child === "podcasts" ? ui.browsePodcasts : child === "webinars" ? ui.browseRecordings : child === "multimedia" ? ui.browseMultimedia : ui.browsePublications;
+  const contentId = isMedia ? `media-${child}` : child === "webinars" ? "webinar-recordings" : "hub-resources";
   const heroKey = childHero(slug, child);
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
-    {isHub ? <section className="relative overflow-hidden bg-forest text-forest-foreground">
+    {hasSplitHero ? <section className="relative overflow-hidden bg-forest text-forest-foreground">
       <div className="container-page pb-10 pt-8 md:pb-14 md:pt-12">
-        <Link to="/$lang/knowledge-hub" params={{ lang }} className="inline-flex items-center gap-2 text-sm font-bold text-sun hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>
+        <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="inline-flex items-center gap-2 text-sm font-bold text-sun hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>
         <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-12">
           <div>
             <h1 className="text-3xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">{childLabel(slug, child, lang)}</h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-forest-foreground/85 md:text-lg">{copy.lead}</p>
             {copy.heading && <p className="mt-5 flex items-center gap-3 text-sm font-bold text-forest-foreground/95 md:text-base"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-foreground/12 text-sun"><Icon className="h-4 w-4" aria-hidden /></span><span>{copy.heading}</span></p>}
-            <a href={`#${contentId}`} className="mt-7 inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-extrabold text-accent-foreground shadow-soft hover:brightness-105"><Icon className="h-4 w-4" aria-hidden />{browseLabel}<ArrowRight className="h-4 w-4" aria-hidden /></a>
+            <a href={`#${contentId}`} className="btn-morph mt-7 inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-extrabold text-accent-foreground shadow-soft">{browseLabel}<ArrowRight className="h-4 w-4" aria-hidden /></a>
           </div>
           <div className="curve-card overflow-hidden bg-forest-foreground/10 ring-1 ring-forest-foreground/15">
             <img src={storyImg(heroKey)} alt="" fetchPriority="high" style={{ objectPosition: storyPosition(heroKey) }} className="aspect-[16/10] w-full object-cover" />
@@ -166,7 +193,7 @@ export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; c
       </div>
       <Arc className="-mb-px text-background" />
     </section> : <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} uncropped />}
-    <section id={isHub ? contentId : undefined} className={isHub ? "py-10 md:py-14" : "py-16 md:py-24"}><div className="container-page">{!isHub && <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>}<ChildBody lang={lang} slug={slug} child={child} /></div></section>
+    <section id={hasSplitHero ? contentId : undefined} className={hasSplitHero ? "py-10 md:py-14" : "py-16 md:py-24"}><div className="container-page">{!hasSplitHero && <Link to={PARENT_ROUTES[slug]} params={{ lang }} className="mb-10 inline-flex items-center gap-2 font-bold text-primary hover:underline"><ArrowLeft className="h-4 w-4" aria-hidden />{p.nav[slug]}</Link>}<ChildBody lang={lang} slug={slug} child={child} /></div></section>
     <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;
 }

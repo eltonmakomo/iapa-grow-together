@@ -15,3 +15,5 @@
 - [x] Remove the sample notice boxes indicated in the latest screenshot
 - [x] Redesign the webinar introduction section, not just its photograph
 - [x] Apply the redesigned introduction to every Knowledge Hub dropdown page in EN/FR
+- [x] Add sliding-fill and travelling-arrow hover effects to buttons
+- [x] Redesign every Media dropdown page in EN/FR to match the improved Knowledge Hub presentation

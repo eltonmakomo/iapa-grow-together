@@ -32,7 +32,7 @@ function Home() {
           <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">{t.hero.title}</h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-forest-foreground/90 md:text-xl">{t.hero.lead}</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="inline-flex items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground hover:brightness-105">
+            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-morph inline-flex items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground">
               {t.hero.join} <ArrowRight className="h-5 w-5" aria-hidden />
             </Link>
             <Link to="/$lang/join-us" params={{ lang }} hash="partnership" className="inline-flex items-center gap-2 rounded-full border-2 border-forest-foreground px-7 py-3.5 font-bold hover:bg-forest-foreground hover:text-forest">
