@@ -7,22 +7,22 @@ import { PodcastPlayer, VideoShowcase } from "@/components/iapa/media-player";
 
 const LABELS = {
   en: {
-    read: "Read preview",
+    read: "Read online",
     download: "Download brief",
-    close: "Close preview",
+    close: "Close",
     takeaways: "Key takeaways",
     details: "Key details",
     enquire: "Enquire via email",
-    previewNotice: "Full PDF version will be published in the IAPA library.",
+    previewNotice: "Published by the International Agribusiness Practitioners Association (IAPA).",
   },
   fr: {
-    read: "Lire l'aperçu",
+    read: "Lire en ligne",
     download: "Télécharger la fiche",
-    close: "Fermer l'aperçu",
+    close: "Fermer",
     takeaways: "Points clés",
     details: "Détails clés",
     enquire: "Nous écrire par e-mail",
-    previewNotice: "La version PDF complète sera publiée dans la bibliothèque de l'IAPA.",
+    previewNotice: "Publié par l'Association Internationale des Praticiens de l'Agribusiness (IAPA).",
   },
 } as const;
 

@@ -11,11 +11,9 @@ const UI = {
     pause: "Pause",
     notes: "Show notes",
     hideNotes: "Hide notes",
-    watch: "Watch preview",
+    watch: "Watch recording",
     explore: "Open feature",
     chapters: "Key segments",
-    previewAudio: "Interactive audio preview",
-    previewVideo: "Interactive session preview",
   },
   fr: {
     nowPlaying: "Lecture en cours",
@@ -23,11 +21,9 @@ const UI = {
     pause: "Pause",
     notes: "Notes de l'épisode",
     hideNotes: "Masquer les notes",
-    watch: "Voir l'aperçu",
+    watch: "Regarder",
     explore: "Ouvrir le contenu",
     chapters: "Séquences clés",
-    previewAudio: "Aperçu audio interactif",
-    previewVideo: "Aperçu vidéo interactif",
   },
 } as const;
 
@@ -139,7 +135,6 @@ export function PodcastPlayer({ lang, items }: { lang: Lang; items: SampleItem[]
                 {muted ? <VolumeX className="h-4 w-4" aria-hidden /> : <Volume2 className="h-4 w-4" aria-hidden />}
               </button>
             </div>
-            <p className="mt-2 text-xs opacity-75">{ui.previewAudio}</p>
           </div>
         </div>
       </div>
@@ -253,7 +248,6 @@ export function VideoShowcase({ lang, items, isMultimedia }: { lang: Lang; items
                 </div>
               )}
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">{ui.previewVideo}</p>
           </div>
         </div>
       </div>

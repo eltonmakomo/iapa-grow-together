@@ -493,7 +493,7 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       img: "careerGrowth",
       en: {
         lead: "Future staff and consultancy opportunities within Africa's agribusiness practitioner network.",
-        heading: "Example roles at IAPA",
+        heading: "Current & upcoming roles at IAPA",
         body: ["IAPA periodically recruits Secretariat staff and short-term Master Trainer consultants for missions across Africa. Expressions of interest are welcome ahead of upcoming calls."],
         sampleKind: "opportunity",
         samples: [
@@ -505,7 +505,7 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       },
       fr: {
         lead: "Les futures opportunités d'emploi et de consultation au sein du réseau africain de praticiens de l'agribusiness.",
-        heading: "Exemples de fonctions à l'IAPA",
+        heading: "Postes et missions à l'IAPA",
         body: ["L'IAPA recrute régulièrement des profils pour le Secrétariat exécutif ainsi que des Maîtres Formateurs consultants pour des missions sur le continent. Les manifestations d'intérêt sont bienvenues."],
         sampleKind: "opportunity",
         samples: [
@@ -520,7 +520,7 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       img: "scholarshipCertificate",
       en: {
         lead: "Future learning support for practitioners seeking to strengthen their agribusiness skills.",
-        heading: "Example scholarship opportunities",
+        heading: "Learning grants & fellowships",
         body: ["IAPA works with partners to mobilise learning grants that widen access to Master Trainer certification, women's leadership coaching and digital agribusiness courses."],
         sampleKind: "opportunity",
         samples: [
@@ -532,7 +532,7 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       },
       fr: {
         lead: "Les futurs appuis à l'apprentissage pour les praticiens souhaitant renforcer leurs compétences en agribusiness.",
-        heading: "Exemples de bourses",
+        heading: "Bourses et appuis à la formation",
         body: ["L'IAPA mobilise des appuis avec ses partenaires pour élargir l'accès à la certification de Maître Formateur, au leadership féminin et aux parcours numériques en agribusiness."],
         sampleKind: "opportunity",
         samples: [
