@@ -11,6 +11,7 @@ import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
+import { assetUrl } from "@/lib/asset-url";
 
 export const asLang = (v: string): Lang => (v === "fr" ? "fr" : "en");
 
@@ -108,7 +109,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">{t.skip}</a>
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-18">
         <Link to="/$lang" params={{ lang }} className="min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
-          <img src={(lang === "en" ? logoEn : logoFr).url} alt="IAPA" width={180} height={50} className="h-9 w-auto md:h-11" />
+          <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={180} height={50} className="h-9 w-auto md:h-11" />
         </Link>
         <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
@@ -181,7 +182,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
       <div className="container-page relative grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1.3fr]">
         <div className="min-w-0">
           <Link to="/$lang" params={{ lang }} aria-label={`IAPA — ${p.home}`} className="inline-block">
-            <img src={(lang === "en" ? logoEn : logoFr).url} alt="IAPA" width={220} height={62} className="h-16 w-auto brightness-0 invert md:h-20" />
+            <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={220} height={62} className="h-16 w-auto brightness-0 invert md:h-20" />
           </Link>
           <p className="mt-4 max-w-xs text-sm text-forest-foreground/80">{t.footer.rights}</p>
           <p className="mt-2 text-sm font-semibold text-sun">{t.footer.motto}</p>
@@ -230,7 +231,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
           <span>© 2026 IAPA</span>
           <ul className="flex flex-wrap gap-x-5 gap-y-1">
             <li><Link to="/$lang/join-us" params={{ lang }} hash="faq" className="hover:underline">{p.arch.faqs}</Link></li>
-            <li><a href={brandPdf.url} target="_blank" rel="noopener" className="hover:underline">{p.arch.brand}</a></li>
+            <li><a href={assetUrl(brandPdf.url)} target="_blank" rel="noopener" className="hover:underline">{p.arch.brand}</a></li>
             <li><Link to="/$lang/privacy" params={{ lang }} className="hover:underline">{p.arch.privacy}</Link></li>
             <li><Link to="/$lang/legal" params={{ lang }} className="hover:underline">{p.arch.legal}</Link></li>
           </ul>

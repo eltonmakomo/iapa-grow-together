@@ -1,4 +1,5 @@
 import { CONTENT, type Lang } from "@/lib/iapa-content";
+import { assetUrl } from "@/lib/asset-url";
 import abf from "@/assets/partners/abf.svg.asset.json";
 import acbf from "@/assets/partners/acbf.svg.asset.json";
 import eu from "@/assets/partners/european-union.png.asset.json";
@@ -11,19 +12,19 @@ type PartnerLogo = { src: string; alt: string };
 
 export const PARTNER_LOGOS: ReadonlyArray<ReadonlyArray<PartnerLogo>> = [
   [
-    { src: abf.url, alt: "Agri-Business Facility for Africa" },
-    { src: giz.url, alt: "GIZ" },
+    { src: assetUrl(abf.url), alt: "Agri-Business Facility for Africa" },
+    { src: assetUrl(giz.url), alt: "GIZ" },
   ],
   [
-    { src: germanCooperation.url, alt: "German Cooperation — BMZ" },
-    { src: giz.url, alt: "GIZ" },
+    { src: assetUrl(germanCooperation.url), alt: "German Cooperation — BMZ" },
+    { src: assetUrl(giz.url), alt: "GIZ" },
   ],
   [
-    { src: eu.url, alt: "European Union" },
-    { src: oacps.url, alt: "Organisation of African, Caribbean and Pacific States" },
+    { src: assetUrl(eu.url), alt: "European Union" },
+    { src: assetUrl(oacps.url), alt: "Organisation of African, Caribbean and Pacific States" },
   ],
-  [{ src: acbf.url, alt: "African Capacity Building Foundation" }],
-  [{ src: move.url, alt: "MOVE — Market-Oriented Value Chains for Jobs and Growth in the ECOWAS Region" }],
+  [{ src: assetUrl(acbf.url), alt: "African Capacity Building Foundation" }],
+  [{ src: assetUrl(move.url), alt: "MOVE — Market-Oriented Value Chains for Jobs and Growth in the ECOWAS Region" }],
 ];
 
 export function PartnerCards({ lang, className = "sm:grid-cols-2 lg:grid-cols-3" }: { lang: Lang; className?: string }) {

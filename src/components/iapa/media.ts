@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/asset-url";
 import heroImg from "@/assets/hero-farmer.jpg.asset.json";
 import cameroon from "@/assets/cameroon-coffee.jpg.asset.json";
 import mauritania from "@/assets/mauritania-pbs.jpg.asset.json";
@@ -45,7 +46,7 @@ import scholarshipCertificate from "@/assets/child-banners/scholarship-certifica
 import tailoredTraining from "@/assets/child-banners/tailored-training.webp.asset.json";
 import teamAssociates from "@/assets/child-banners/team-associates.webp.asset.json";
 
-export const IMG = {
+const IMG_SOURCES = {
   hero: heroImg.url, cameroon: cameroon.url, mauritania: mauritania.url, morocco: morocco.url, burkina: burkina.url, ghana: ghana.url,
   kenya: kenya.url, signing: signing.url, evaluation: evaluation.url, robusta: robusta.url, chadSup: chadSup.url, mali: mali.url,
   burkinaSession: burkinaSession.url, burkinaMaize: burkinaMaize.url, civ: civ.url, spirulina: spirulina.url, seedling: seedling.url,
@@ -75,6 +76,10 @@ export const IMG = {
   tailoredTraining: tailoredTraining.url,
   teamAssociates: teamAssociates.url,
 };
+
+export const IMG = Object.fromEntries(
+  Object.entries(IMG_SOURCES).map(([key, url]) => [key, assetUrl(url)]),
+) as { [K in keyof typeof IMG_SOURCES]: string };
 export type ImgKey = keyof typeof IMG;
 
 // Focal points keep faces just below the top edge, including in wide banners.
@@ -124,13 +129,15 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
 };
 export const storyImg = (k: string): string => (IMG as Record<string, string>)[k] ?? IMG.hero;
 export const storyPosition = (k: string): string => (PHOTO_POSITION as Record<string, string>)[k] ?? "50% 0%";
-export const PULSE: Record<string, string> = { "3": pulse3.url, "2": pulse2.url };
-export const PULSE_COVER: Record<string, string> = { "3": pulse3Cover.url, "2": pulse2Cover.url };
+export const PULSE: Record<string, string> = { "3": assetUrl(pulse3.url), "2": assetUrl(pulse2.url) };
+export const PULSE_COVER: Record<string, string> = { "3": assetUrl(pulse3Cover.url), "2": assetUrl(pulse2Cover.url) };
 
 import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 
 /** Every banner photograph: focal point keeps faces just below the top edge. */
-export const BANNER: Record<string, BannerSpec> = NEW_BANNERS;
+export const BANNER: Record<string, BannerSpec> = Object.fromEntries(
+  Object.entries(NEW_BANNERS).map(([key, spec]) => [key, { ...spec, src: assetUrl(spec.src) }]),
+);
 export const bannerSpec = (key: string): BannerSpec =>
   BANNER[key] ?? { src: IMG[key as ImgKey] ?? IMG.hero, pos: PHOTO_POSITION[key as ImgKey] ?? "50% 20%" };
 export type BannerKey = "home" | "cameroon" | "morocco" | "mauritania" | "ghana" | "burkina" | "join";
