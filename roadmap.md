@@ -27,4 +27,5 @@
 - [x] Move breadcrumbs into photo banners and increase inside-page banner height without clipping translated text
 - [x] Replace all 32 banner photographs with realistic, page-matched imagery (faces on the right, near the top, no green overlay, no repeats) in EN/FR
 - [x] Make the navigation menu fit on the screen (mega menu / dropdown overflowing at small viewports)
-- [ ] Stop French nav labels and the "Rejoindre l'IAPA" button wrapping onto two lines
+- [x] Stop French nav labels and the "Rejoindre l'IAPA" button wrapping onto two lines
+- [ ] Leadership page banner: face still clipped by the banner's curved bottom edge — needs a wider-composition photo
