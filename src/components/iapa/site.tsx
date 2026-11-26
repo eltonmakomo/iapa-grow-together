@@ -275,22 +275,18 @@ export function SectionHead({ eyebrow, title, lead, light, as: H = "h2" }: { eye
   );
 }
 
-export function PageHero({ eyebrow, title, lead, img, children }: { eyebrow: string; title: string; lead: string; img: string; children?: ReactNode }) {
+export function PageHero({ title, lead, img, children }: { eyebrow?: string; title: string; lead: string; img: string; children?: ReactNode }) {
   const source = bannerSpec(img);
   return (
-    <section className="page-banner inside-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
+    <section className="page-banner inside-banner relative isolate w-full overflow-hidden bg-banner-night text-forest-foreground">
       <img src={source.src} alt="" fetchPriority="high" data-flip={source.flip ? "true" : undefined} style={{ objectPosition: source.pos }} className={`absolute inset-0 -z-10 h-full w-full object-cover origin-top ${source.flip ? "-scale-x-100" : ""}`} />
-      <div className="bg-hero-overlay absolute inset-0 -z-10" />
+      <div className="photo-scrim absolute inset-0 -z-10" />
       <div className="banner-content container-page">
-        <div className="banner-copy">
-        <p className="eyebrow text-sun">{eyebrow}</p>
-        <h1 className="banner-title mt-3 font-extrabold">{title}</h1>
-        <p className="banner-lead text-forest-foreground/90">{lead}</p>
-        {children}
         <PageBreadcrumbs inBanner />
-        </div>
+        <h1 className="banner-title font-bold">{title}</h1>
+        <p className="banner-lead text-forest-foreground/95">{lead}</p>
+        {children}
       </div>
-      <Arc className="-mb-px text-background" />
     </section>
   );
 }

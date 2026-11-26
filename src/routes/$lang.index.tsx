@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { Arc, EmblemBackdrop, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { EmblemBackdrop, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { GALLERY_TITLE } from "@/lib/iapa-photos";
 import { bannerSpec, storyImg, storyPosition } from "@/components/iapa/media";
 
@@ -24,23 +25,26 @@ function Home() {
   const p = PAGES[lang];
   return (
     <>
-      <section className="page-banner home-banner relative isolate overflow-hidden bg-forest text-forest-foreground">
+      <section className="page-banner home-banner relative isolate w-full overflow-hidden bg-banner-night text-forest-foreground">
         <img src={bannerSpec("home").src} alt={t.hero.photoAlt} fetchPriority="high" style={{ objectPosition: bannerSpec("home").pos }} className="absolute inset-0 -z-10 h-full w-full object-cover origin-top" />
-        <div className="bg-hero-overlay absolute inset-0 -z-10" />
-        <div className="banner-content container-page flex flex-col justify-center">
-          <p className="eyebrow text-sun">{t.hero.eyebrow}</p>
-          <h1 className="banner-title mt-4 font-extrabold">{t.hero.title}</h1>
-          <p className="banner-lead text-forest-foreground/90">{t.hero.lead}</p>
+        <div className="photo-scrim absolute inset-0 -z-10" />
+        <div className="banner-content container-page">
+          <PageBreadcrumbs lang={lang} inBanner />
+          <h1 className="banner-title font-bold">{t.hero.title}</h1>
+          <p className="banner-lead text-forest-foreground/95">{t.hero.lead}</p>
           <div className="banner-actions flex flex-wrap gap-3">
-            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="btn-morph inline-flex items-center gap-2 rounded-full bg-sun px-6 py-3 text-sm font-extrabold text-accent-foreground">
-              {t.hero.join} <ArrowRight className="h-5 w-5" aria-hidden />
+            <Link to="/$lang/join-us" params={{ lang }} hash="membership" className="wwu group relative inline-flex items-center rounded-full border border-banner-sun">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="relative z-10 px-7 py-3.5 font-bold text-banner-ink">{t.hero.join}</span>
+              <span className="wwu-arrow relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowUpRight className="h-[23px] w-[23px]" strokeWidth={2} aria-hidden /></span>
             </Link>
-            <Link to="/$lang/join-us" params={{ lang }} hash="partnership" className="inline-flex items-center gap-2 rounded-full border-2 border-forest-foreground px-6 py-3 text-sm font-bold hover:bg-forest-foreground hover:text-forest">
-              {t.hero.partner}
+            <Link to="/$lang/join-us" params={{ lang }} hash="partnership" className="wwu wwu-ghost relative inline-flex items-center rounded-full border border-forest-foreground">
+              <span className="wwu-fill" aria-hidden="true" />
+              <span className="wwu-label relative z-10 px-7 py-3.5 font-bold text-forest-foreground">{t.hero.partner}</span>
+              <span className="wwu-arrow wwu-reveal relative z-10 grid h-11 w-11 shrink-0 place-items-center"><ArrowRight className="h-[23px] w-[23px]" strokeWidth={2} aria-hidden /></span>
             </Link>
           </div>
         </div>
-        <Arc className="-mb-px text-background" />
       </section>
 
       <section id="about-us" className="py-16 md:py-24">

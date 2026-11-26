@@ -15,7 +15,18 @@ export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lan
   const pathname = useLocation({ select: (location) => location.pathname });
   const lang = requestedLang ?? (pathname.split("/")[1] === "fr" ? "fr" : "en");
   const [, , section, child] = pathname.split("/");
-  if (!section) return null;
+  if (!section && !inBanner) return null;
+  if (!section) {
+    return (
+      <div className="banner-breadcrumbs">
+        <Breadcrumb aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"}>
+          <BreadcrumbList className="gap-1.5 text-sm text-forest-foreground">
+            <BreadcrumbItem><BreadcrumbPage className="font-semibold text-banner-accent">{PAGES[lang].home}</BreadcrumbPage></BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+    );
+  }
   const slug = PAGE_SLUGS.find((value) => value === section);
   const story = section === "stories" && child ? getStory(child) : undefined;
   const parent: PageSlug | undefined = story ? "our-work" : slug;
@@ -24,18 +35,25 @@ export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lan
   return (
     <div className={inBanner ? "banner-breadcrumbs" : "border-b bg-background"}>
       <Breadcrumb aria-label={lang === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className={inBanner ? "" : "container-page py-3"}>
-        <BreadcrumbList className={`gap-2 text-xs ${inBanner ? "text-forest-foreground/85 [&_a:hover]:text-forest-foreground" : ""}`}>
-          <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang" params={{ lang }} className="inline-flex items-center gap-1.5"><Home className="h-3.5 w-3.5" aria-hidden />{PAGES[lang].home}</Link></BreadcrumbLink></BreadcrumbItem>
-          <BreadcrumbSeparator />
+        <BreadcrumbList className={inBanner ? "gap-1.5 text-sm text-forest-foreground [&_a:hover]:text-banner-accent" : "gap-2 text-xs"}>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/$lang" params={{ lang }} className="inline-flex items-center gap-1.5">
+                {!inBanner && <Home className="h-3.5 w-3.5" aria-hidden />}
+                {PAGES[lang].home}
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
           {parent && (child || story) && <>
             <BreadcrumbItem><BreadcrumbLink asChild><Link to={parents[parent]} params={{ lang }}>{PAGES[lang].nav[parent]}</Link></BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
           </>}
           {story && <>
             <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }}>{childLabel("our-work", "stories", lang)}</Link></BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
           </>}
-          <BreadcrumbItem className="min-w-0"><BreadcrumbPage className={`font-semibold ${inBanner ? "text-forest-foreground" : ""}`}>{current}</BreadcrumbPage></BreadcrumbItem>
+          <BreadcrumbItem className="min-w-0"><BreadcrumbPage className={`font-semibold ${inBanner ? "text-banner-accent" : ""}`}>{current}</BreadcrumbPage></BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
