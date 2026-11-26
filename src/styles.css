@@ -211,6 +211,16 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
 }
 .banner-actions { margin-top: 2.5rem; }
 .banner-breadcrumbs { margin-bottom: 1.25rem; max-width: 48rem; }
+/* Mobile: the headline sits over the photo, so deepen the home banner scrim. */
+@media (max-width: 767px) {
+  .home-banner .photo-scrim {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--banner-night) 80%, transparent) 0%, color-mix(in srgb, var(--banner-night) 60%, transparent) 55%, color-mix(in srgb, var(--banner-night) 42%, transparent) 100%),
+      linear-gradient(90deg, color-mix(in srgb, var(--banner-night) 85%, transparent) 0%, color-mix(in srgb, var(--banner-night) 45%, transparent) 50%, transparent 100%);
+  }
+  /* Keep the whole face inside the narrow mobile frame instead of on an edge. */
+  .home-banner img { object-position: 62% 12% !important; }
+}
 @media (min-width: 768px) {
   .home-banner { aspect-ratio: 16 / 9; max-height: 46rem; min-height: 30rem; }
   .inside-banner { aspect-ratio: 16 / 7; max-height: 34rem; min-height: 25rem; }
@@ -234,8 +244,7 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
 }
 
 /* Hero ring-and-pill CTA buttons (matching reference banner). */
-.wwu { --wwu-gap: 6px; --wwu-slot: 44px; }
-.wwu-fill {
+.wwu { --wwu-gap: 6px; --wwu-slot: 44px; }.wwu-fill {
   position: absolute;
   top: var(--wwu-gap);
   bottom: var(--wwu-gap);

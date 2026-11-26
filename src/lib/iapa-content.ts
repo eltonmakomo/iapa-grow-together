@@ -37,7 +37,7 @@ const en = {
     lead: "IAPA connects certified Master Trainers and value chain experts from 20+ African countries to deliver high-quality agribusiness training and advisory services.",
     join: "Join IAPA",
     partner: "Partner with Us",
-    photoAlt: "A farmer holding harvested grain in a field",
+    photoAlt: "A smiling woman carrying a basket of freshly harvested cabbages in a cabbage field",
   },
   who: {
     eyebrow: "Who we are",
@@ -186,7 +186,7 @@ const fr: Content = {
     lead: "L'IAPA réunit des Maîtres Formateurs certifiés et des experts des chaînes de valeur de plus de 20 pays africains pour offrir des formations et des services-conseils en agribusiness de qualité.",
     join: "Rejoindre l'IAPA",
     partner: "Devenir partenaire",
-    photoAlt: "Un agriculteur tenant du grain récolté dans un champ",
+    photoAlt: "Une femme souriante portant un panier de choux fraîchement récoltés dans un champ de choux",
   },
   who: {
     eyebrow: "Qui sommes-nous",

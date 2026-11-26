@@ -47,7 +47,7 @@ export const NEW_BANNERS: Record<string, BannerSpec> = {
   "fbs": { src: bFbs.url, pos: "50% 0%", flip: true },
   "gap": { src: bGap.url, pos: "68% 22%" },
   "ghana": { src: bGhana.url, pos: "68% 22%" },
-  "home": { src: bHome.url, pos: "68% 15%" },
+  "home": { src: bHome.url, pos: "70% 12%" },
   "iapa-in-numbers": { src: bIapaInNumbers.url, pos: "50% 0%" },
   "iapa-team": { src: bIapaTeam.url, pos: "68% 35%" },
   "impact-map": { src: bImpactMap.url, pos: "50% 0%" },

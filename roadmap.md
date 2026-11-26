@@ -35,3 +35,4 @@
 - [x] Knowledge Hub: delete all 7 sub-pages and 18 invented resources, redirect deleted URLs to /knowledge-hub, keep IAPA Pulse on main page and replace category Explore links with non-clickable Coming soon labels (EN/FR)
 - [x] Who We Are → Our Journey: update the 5 timeline steps to match client wording exactly (EN/FR)
 - [x] Photo captions: keep the 8 confirmed captions, replace unconfirmed captions with neutral text and italic [Caption TBC], and sync image alt text (EN/FR)
+- [x] Use the uploaded cabbage-harvest photograph for the Home banner in EN/FR (no clipped face, readable headline on mobile)
