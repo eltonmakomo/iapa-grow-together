@@ -25,7 +25,7 @@ export const NAV: NavPage[] = [
     blurb: { en: "Where we work, what we have achieved and the people behind the results.", fr: "Où nous travaillons, nos résultats et les personnes qui les portent." },
     groups: [
       { title: { en: "Impact", fr: "Impact" }, items: [c("impact-map", "Impact Map", "Carte d'impact"), c("iapa-in-numbers", "IAPA in Numbers", "L'IAPA en chiffres")] },
-      { title: { en: "Voices", fr: "Témoignages" }, items: [c("stories", "Stories", "Histoires"), c("testimonials", "Testimonials", "Témoignages")] },
+      { title: { en: "Voices", fr: "Témoignages" }, items: [c("testimonials", "Testimonials", "Témoignages")] },
     ],
   },
   {

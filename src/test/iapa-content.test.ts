@@ -3,7 +3,6 @@ import { CONTACT, CONTENT, SOCIALS } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { NAV } from "@/lib/iapa-nav";
 import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
-import { getStory, STORIES } from "@/lib/iapa-stories";
 import mapData from "@/lib/africa-map-data.json";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
 import { partitionEvents } from "@/components/iapa/events";
@@ -31,12 +30,12 @@ describe("IAPA content", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
-  it("gives all 32 dropdown children a unique page path in each language", () => {
+  it("gives all 31 dropdown children a unique page path in each language", () => {
     const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
-    expect(children).toHaveLength(32);
+    expect(children).toHaveLength(31);
     for (const lang of ["en", "fr"] as const) {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
-      expect(new Set(paths).size).toBe(32);
+      expect(new Set(paths).size).toBe(31);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
@@ -71,8 +70,8 @@ describe("IAPA content", () => {
       leads.add(entry!.en.lead);
       leads.add(entry!.fr.lead);
     }
-    expect(heroes.size).toBe(32);
-    expect(leads.size).toBe(64);
+    expect(heroes.size).toBe(31);
+    expect(leads.size).toBe(62);
   });
   it("fills formerly empty resource and opportunity pages with sample cards", () => {
     const pages = ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"];
@@ -113,17 +112,6 @@ describe("IAPA content", () => {
       expect(past).toHaveLength(5);
       expect(media.upcomingEventsTitle).toBe(lang === "en" ? "Upcoming events" : "Événements à venir");
       expect(media.pastEventsTitle).toBe(lang === "en" ? "Past events" : "Événements passés");
-    }
-  });
-  it("provides a bilingual inside page for every field story", () => {
-    expect(STORIES).toHaveLength(CONTENT.en.work.stories.length);
-    for (const s of CONTENT.en.work.stories) {
-      const detail = getStory(s.img);
-      expect(detail).toBeDefined();
-      expect(detail?.en.body.length).toBeGreaterThanOrEqual(3);
-      expect(detail?.fr.body.length).toBeGreaterThanOrEqual(3);
-      expect(detail?.en.highlights.length).toBeGreaterThanOrEqual(3);
-      expect(detail?.fr.highlights.length).toBeGreaterThanOrEqual(3);
     }
   });
 });

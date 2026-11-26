@@ -3,7 +3,6 @@ import { Home } from "lucide-react";
 import type { Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, LEGAL, type PageSlug } from "@/lib/iapa-pages";
 import { childLabel } from "@/lib/iapa-nav";
-import { getStory } from "@/lib/iapa-stories";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const parents = {
@@ -28,9 +27,8 @@ export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lan
     );
   }
   const slug = PAGE_SLUGS.find((value) => value === section);
-  const story = section === "stories" && child ? getStory(child) : undefined;
-  const parent: PageSlug | undefined = story ? "our-work" : slug;
-  const current = story ? story[lang].title : slug ? child ? childLabel(slug, child, lang) : PAGES[lang].nav[slug]
+  const parent: PageSlug | undefined = slug;
+  const current = slug ? child ? childLabel(slug, child, lang) : PAGES[lang].nav[slug]
     : section === "privacy" || section === "legal" ? LEGAL[lang][section].title : section;
   return (
     <div className={inBanner ? "banner-breadcrumbs" : "border-b bg-background"}>
@@ -45,12 +43,8 @@ export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lan
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
-          {parent && (child || story) && <>
+          {parent && child && <>
             <BreadcrumbItem><BreadcrumbLink asChild><Link to={parents[parent]} params={{ lang }}>{PAGES[lang].nav[parent]}</Link></BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
-          </>}
-          {story && <>
-            <BreadcrumbItem><BreadcrumbLink asChild><Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }}>{childLabel("our-work", "stories", lang)}</Link></BreadcrumbLink></BreadcrumbItem>
             <BreadcrumbSeparator className={inBanner ? "opacity-50" : undefined} />
           </>}
           <BreadcrumbItem className="min-w-0"><BreadcrumbPage className={`font-semibold ${inBanner ? "text-banner-accent" : ""}`}>{current}</BreadcrumbPage></BreadcrumbItem>

@@ -35,7 +35,6 @@ import bPublications from "@/assets/headers/publications.jpg.asset.json";
 import bResearchPapers from "@/assets/banners/research-papers.webp.asset.json";
 import bResidential from "@/assets/banners/residential.webp.asset.json";
 import bScholarships from "@/assets/headers/scholarships.jpg.asset.json";
-import bStories from "@/assets/headers/stories.jpg.asset.json";
 import bTailorMade from "@/assets/headers/tailor-made.jpg.asset.json";
 import bTestimonials from "@/assets/headers/testimonials.jpg.asset.json";
 import bVacancies from "@/assets/headers/vacancies.jpg.asset.json";
@@ -78,7 +77,6 @@ export const NEW_BANNERS: Record<string, BannerSpec> = {
   "research-papers": { src: bResearchPapers.url, pos: "50% 0%" },
   "residential": { src: bResidential.url, pos: "50% 0%" },
   "scholarships": { src: bScholarships.url, pos: "68% 22%" },
-  "stories": { src: bStories.url, pos: "68% 18%" },
   "tailor-made": { src: bTailorMade.url, pos: "68% 28%" },
   "testimonials": { src: bTestimonials.url, pos: "68% 18%" },
   "vacancies": { src: bVacancies.url, pos: "68% 26%" },

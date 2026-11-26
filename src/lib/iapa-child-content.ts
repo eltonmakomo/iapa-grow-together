@@ -152,11 +152,6 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       en: { lead: "A transparent view of IAPA's own network, shared ABF-GIZ results and ambitions for 2030." },
       fr: { lead: "Une lecture transparente du réseau propre à l'IAPA, des résultats partagés avec ABF-GIZ et des ambitions 2030." },
     },
-    stories: {
-      img: "cameroon",
-      en: { lead: "Field reports showing how IAPA members adapt business approaches within real agricultural value chains." },
-      fr: { lead: "Des récits de terrain montrant comment les membres de l'IAPA adaptent les approches entrepreneuriales aux filières agricoles." },
-    },
     testimonials: {
       img: "farmerVoices",
       en: {

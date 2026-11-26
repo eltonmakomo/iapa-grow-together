@@ -7,7 +7,7 @@ import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-ch
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { EventsSections } from "@/components/iapa/events";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
-import { PULSE, PULSE_COVER, storyImg, storyPosition } from "@/components/iapa/media";
+import { PULSE, PULSE_COVER } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
 
@@ -92,10 +92,6 @@ function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const p = PAGES[lang].work;
   if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
   if (child === "iapa-in-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
-  if (child === "stories") return <>
-    <SectionHead title={w.storiesTitle} lead={w.storiesNote} />
-    <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{w.stories.map((story) => <li key={story.title}><Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.img }} className="curve-card group flex h-full flex-col overflow-hidden bg-card"><img src={storyImg(story.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(story.img) }} className="aspect-[4/3] w-full object-cover object-top" /><div className="flex flex-1 flex-col p-5"><p className="eyebrow text-xs">{story.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{story.title}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{lang === "fr" ? "Lire l'histoire" : "Read story"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div></Link></li>)}</ul>
-  </>;
   return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} child={child} />;
 }
 

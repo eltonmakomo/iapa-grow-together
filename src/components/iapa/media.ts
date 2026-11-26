@@ -127,8 +127,6 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
   tailoredTraining: "50% 20%",
   teamAssociates: "50% 20%",
 };
-export const storyImg = (k: string): string => (IMG as Record<string, string>)[k] ?? IMG.hero;
-export const storyPosition = (k: string): string => (PHOTO_POSITION as Record<string, string>)[k] ?? "50% 0%";
 export const PULSE: Record<string, string> = { "3": assetUrl(pulse3.url), "2": assetUrl(pulse2.url) };
 export const PULSE_COVER: Record<string, string> = { "3": assetUrl(pulse3Cover.url), "2": assetUrl(pulse2Cover.url) };
 

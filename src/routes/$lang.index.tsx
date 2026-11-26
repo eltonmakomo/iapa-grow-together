@@ -5,7 +5,7 @@ import { PAGES } from "@/lib/iapa-pages";
 import { EmblemBackdrop, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { GALLERY_TITLE } from "@/lib/iapa-photos";
-import { bannerSpec, storyImg, storyPosition } from "@/components/iapa/media";
+import { bannerSpec } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -97,25 +97,6 @@ function Home() {
         <div className="container-page">
           <SectionHead title={p.numbersTitle} lead={t.work.resultsNote} />
           <div className="mt-8"><ResultsBlock lang={lang} /></div>
-        </div>
-      </section>
-
-      <section className="bg-secondary py-16 md:py-24">
-        <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHead title={p.highlightsTitle} lead={t.work.storiesNote} />
-            <Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }} className="font-bold text-primary underline underline-offset-4">{p.readMore}</Link>
-          </div>
-          <ul className="mt-8 grid gap-6 md:grid-cols-2">
-            {t.work.stories.slice(0, 2).map((s) => (
-              <li key={s.title}>
-                <Link to="/$lang/stories/$storyId" params={{ lang, storyId: s.img }} className="curve-card group grid h-full overflow-hidden bg-card sm:grid-cols-[1fr_1.2fr]">
-                <img src={storyImg(s.img)} alt="" loading="lazy" style={{ objectPosition: storyPosition(s.img) }} className="h-full min-h-48 w-full object-cover object-top origin-top" />
-                <div className="p-6"><p className="eyebrow text-xs">{s.place}</p><h3 className="mt-1.5 text-lg font-extrabold">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p><span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span></div>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

@@ -31,3 +31,4 @@
 - [x] Make every image URL work in downloaded source code hosted outside Lovable
 - [x] Leadership page banner: face still clipped by the banner's curved bottom edge — needs a wider-composition photo
 - [x] Reframe and replace clipped banner photos across all 39 pages, reduce banner parallax zoom so heads stay clear of edges on desktop and mobile, and publish the updated site
+- [x] Remove the Stories page and all six individual story pages in EN/FR, with their menu entries, copy and tests

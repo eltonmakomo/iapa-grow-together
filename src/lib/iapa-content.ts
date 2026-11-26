@@ -93,16 +93,6 @@ const en = {
     sharedStats: [["1.5M+", "smallholder farmers trained"], ["500+", "cooperatives and producer organisations supported"], ["85%", "beneficiary training satisfaction"], ["10+ yrs", "of ABF-GIZ experience behind our approaches"]],
     targets: { label: "Our 2030 targets", tag: "Future targets — not yet achieved" },
     targetStats: [["200", "partners using IAPA solutions"], ["860", "new trainers trained"], ["70", "inclusive agribusiness institutions strengthened"], ["370", "new members"], ["40", "countries reached"], ["1M+", "farmers and entrepreneurs trained"]],
-    storiesTitle: "Stories from the field, 2026",
-    storiesNote: "Missions led by IAPA members, reported in IAPA Pulse.",
-    stories: [
-      { img: "cameroon", place: "Cameroon", title: "FBS Coffee: 21 trainers certified", text: "21 FBS Coffee trainers certified (8 women, 6 youth) and 414 producers trained, with GIZ/SAFE and the National Cocoa and Coffee Office." },
-      { img: "mauritania", place: "Mauritania", title: "PBS for women fish processors", text: "A pilot in Ndiago (4–6 Aug 2026) tested the Processor Business School with women in fish processing, with GIZ-ProGRH and ABF." },
-      { img: "morocco", place: "Morocco", title: "Pilot FBS Milk training", text: "Dalila Delhoumi led the pilot FBS Milk training, paving the way for a better-structured dairy sector." },
-      { img: "burkina", place: "Burkina Faso", title: "PBS launched in Bobo-Dioulasso", text: "With Lonnya Consult and Baitoul Maal under the MGF project, followed by a PBS training of trainers in June 2026." },
-      { img: "civ", place: "Côte d'Ivoire", title: "FBS Coffee for Nestlé and partners", text: "KOUAKOU Djé Robert led an FBS Café training of trainers for Nestlé employees and partners, in a public-private collaboration." },
-      { img: "spirulina", place: "Chad", title: "17 trainers, 300 spirulina producers", text: "With GIZ PEA-PAMELOT and Dorsch Impact, Jude Kawzu trained 17 trainers (2 women) and 300 producers, 203 of them women." },
-    ],
     partnersTitle: "Partners and funders",
     partners: [
       ["ABF-GIZ", "Agri-Business Facility for Africa: funding, technical assistance and training"],
@@ -252,16 +242,6 @@ const fr: Content = {
     sharedStats: [["1,5 M+", "petits producteurs formés"], ["500+", "coopératives et organisations de producteurs accompagnées"], ["85 %", "de satisfaction des bénéficiaires"], ["10+ ans", "d'expérience ABF-GIZ derrière nos approches"]],
     targets: { label: "Nos objectifs 2030", tag: "Objectifs futurs — pas encore atteints" },
     targetStats: [["200", "partenaires utilisant les solutions IAPA"], ["860", "nouveaux formateurs formés"], ["70", "institutions inclusives renforcées"], ["370", "nouveaux membres"], ["40", "pays atteints"], ["1 M+", "producteurs et entrepreneurs formés"]],
-    storiesTitle: "Histoires de terrain, 2026",
-    storiesNote: "Missions menées par des membres de l'IAPA, publiées dans IAPA Pulse.",
-    stories: [
-      { img: "cameroon", place: "Cameroun", title: "FBS Café : 21 formateurs certifiés", text: "21 formateurs FBS Café certifiés (8 femmes, 6 jeunes) et 414 producteurs formés, avec GIZ/SAFE et l'Office National du Cacao et du Café." },
-      { img: "mauritania", place: "Mauritanie", title: "La PBS pour les transformatrices de poisson", text: "Une formation pilote à Ndiago (4–6 août 2026) a testé l'approche PBS avec des femmes de la transformation halieutique, avec GIZ-ProGRH et l'ABF." },
-      { img: "morocco", place: "Maroc", title: "Formation pilote FBS Lait", text: "Dalila Delhoumi a animé la formation pilote FBS Lait, ouvrant la voie à une meilleure structuration de la filière laitière." },
-      { img: "burkina", place: "Burkina Faso", title: "Lancement de la PBS à Bobo-Dioulasso", text: "Avec Lonnya Consult et Baitoul Maal dans le cadre du projet MGF, suivi d'une formation de formateurs PBS en juin 2026." },
-      { img: "civ", place: "Côte d'Ivoire", title: "FBS Café pour Nestlé et ses partenaires", text: "KOUAKOU Djé Robert a animé une formation de formateurs FBS Café pour des employés de Nestlé et leurs partenaires, dans une collaboration public-privé." },
-      { img: "spirulina", place: "Tchad", title: "17 formateurs, 300 producteurs de spiruline", text: "Avec le programme GIZ PEA-PAMELOT et Dorsch Impact, Jude Kawzu a formé 17 formateurs (dont 2 femmes) et 300 producteurs, dont 203 femmes." },
-    ],
     partnersTitle: "Partenaires et bailleurs",
     partners: [
       ["ABF-GIZ", "Agri-Business Facility for Africa : financement, assistance technique et formation"],

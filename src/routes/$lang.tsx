@@ -21,7 +21,7 @@ function LangLayout() {
   const lang = asLang(Route.useParams().lang);
   const pathname = useLocation({ select: (location) => location.pathname });
   const section = pathname.split("/")[2];
-  const standaloneBreadcrumbs = section === "stories" || section === "privacy" || section === "legal";
+  const standaloneBreadcrumbs = section === "privacy" || section === "legal";
   useSiteMotion();
   return (
     <div id="top" lang={lang}>

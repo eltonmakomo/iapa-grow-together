@@ -9,7 +9,7 @@ const en = {
   home: "Home",
   meta: {
     "who-we-are": ["Who We Are — IAPA", "IAPA's story, vision, mission, values, governance, partners and regional network across Africa."],
-    "our-work": ["Our Work — IAPA", "Advisory, curriculum adaptation, training at scale and member services, with results, stories and partnerships."],
+    "our-work": ["Our Work — IAPA", "Advisory, curriculum adaptation, training at scale and member services, with results and partnerships."],
     training: ["Training & Approaches — IAPA", "Farmer, Cooperative, Processor and Aquaculture Business Schools, Inclusive Contract Farming and GAP."],
     "knowledge-hub": ["Knowledge Hub — IAPA", "Download the IAPA Pulse newsletter and explore IAPA publications and resources."],
     media: ["Media — IAPA", "IAPA milestones, events, press releases and key documents."],
@@ -28,7 +28,6 @@ const en = {
     ["join-us", "Member growth", "Certification, mentorship and visibility for agribusiness professionals."],
   ] as [PageSlug, string, string][],
   numbersTitle: "IAPA in numbers",
-  highlightsTitle: "Highlight stories",
   subscribe: { title: "Subscribe to IAPA Pulse", text: "Get our newsletter with news from the network.", cta: "Subscribe by email", subject: "Subscribe to IAPA Pulse" },
   who: {
     lead: "A membership-based pan-African association building Africa's first professional body for the certification and coordination of agribusiness practitioners.",
@@ -142,7 +141,7 @@ const fr: PagesContent = {
   home: "Accueil",
   meta: {
     "who-we-are": ["Qui sommes-nous — IAPA", "Histoire, vision, mission, valeurs, gouvernance, partenaires et réseau régional de l'IAPA en Afrique."],
-    "our-work": ["Nos actions — IAPA", "Conseil, adaptation de curricula, formation à grande échelle et services aux membres, avec résultats et histoires."],
+    "our-work": ["Nos actions — IAPA", "Conseil, adaptation de curricula, formation à grande échelle et services aux membres, avec résultats et partenariats."],
     training: ["Formation et approches — IAPA", "Écoles d'entrepreneuriat agricole, coopératif, de transformation et aquacole, agriculture contractuelle et BPA."],
     "knowledge-hub": ["Ressources — IAPA", "Téléchargez la lettre IAPA Pulse et découvrez les publications de l'IAPA."],
     media: ["Médias — IAPA", "Étapes clés, événements, communiqués et documents clés de l'IAPA."],
@@ -161,7 +160,6 @@ const fr: PagesContent = {
     ["join-us", "Croissance des membres", "Certification, mentorat et visibilité pour les professionnels de l'agribusiness."],
   ],
   numbersTitle: "L'IAPA en chiffres",
-  highlightsTitle: "Histoires à la une",
   subscribe: { title: "Abonnez-vous à IAPA Pulse", text: "Recevez notre lettre d'information avec les nouvelles du réseau.", cta: "S'abonner par e-mail", subject: "Abonnement à IAPA Pulse" },
   who: {
     lead: "Une association panafricaine de membres qui bâtit le premier organisme professionnel africain de certification et de coordination des praticiens de l'agribusiness.",
