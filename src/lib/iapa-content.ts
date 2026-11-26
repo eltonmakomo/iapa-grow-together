@@ -103,7 +103,6 @@ const en = {
     ],
     inViewTitle: "Partnerships in progress",
     inView: [
-      ["AfCFTA", "A partnership framework is being set up with the African Continental Free Trade Area."],
       ["Africa Agribusiness Academy", "Exploring collaboration on training and practitioner skills.", "https://aaa-kenya.org/"],
     ],
   },
@@ -130,7 +129,6 @@ const en = {
     title: "IAPA Pulse newsletter",
     lead: "News from the network: milestones, partnerships and members in the field.",
     issues: [
-      { key: "3", label: "Issue 3 · October 2026", title: "IAPA is officially recognised", text: "Registration in Ghana, handover of legal documents, AfCFTA partnership and field stories from seven countries." },
       { key: "2", label: "Issue 2 · June 2026", title: "A strategic turning point", text: "Strategic workshop in Kenya, ACBF consultancy missions, the AAA partnership and new member opportunities." },
     ],
     download: "Download PDF",
@@ -252,7 +250,6 @@ const fr: Content = {
     ],
     inViewTitle: "Partenariats en cours",
     inView: [
-      ["ZLECAf", "Un cadre de partenariat est en cours de mise en place avec la Zone de libre-échange continentale africaine."],
       ["Africa Agribusiness Academy", "Exploration d'une collaboration sur la formation et les compétences des praticiens.", "https://aaa-kenya.org/"],
     ],
   },
@@ -279,7 +276,6 @@ const fr: Content = {
     title: "Lettre d'information IAPA Pulse",
     lead: "Les nouvelles du réseau : étapes clés, partenariats et membres sur le terrain.",
     issues: [
-      { key: "3", label: "Numéro 3 · Octobre 2026", title: "L'IAPA officiellement reconnue", text: "Enregistrement au Ghana, remise des documents juridiques, partenariat avec la ZLECAf et histoires de terrain dans sept pays." },
       { key: "2", label: "Numéro 2 · Juin 2026", title: "Un tournant stratégique", text: "Atelier stratégique au Kenya, missions des consultants de l'ACBF, partenariat avec l'AAA et nouvelles opportunités pour les membres." },
     ],
     download: "Télécharger le PDF",

@@ -16,9 +16,7 @@ import burkinaMaize from "@/assets/burkina-maize.jpg.asset.json";
 import civ from "@/assets/cotedivoire-coffee.jpg.asset.json";
 import spirulina from "@/assets/chad-spirulina.jpg.asset.json";
 import seedling from "@/assets/seedling.jpg.asset.json";
-import pulse3Cover from "@/assets/pulse3-cover.jpg.asset.json";
 import pulse2Cover from "@/assets/pulse2-cover.jpg.asset.json";
-import pulse3 from "@/assets/pulse-3.pdf.asset.json";
 import pulse2 from "@/assets/pulse-2.pdf.asset.json";
 import aboutHandover from "@/assets/child-banners/about-handover.webp.asset.json";
 import aquacultureProcessing from "@/assets/child-banners/aquaculture-processing.webp.asset.json";
@@ -127,8 +125,8 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
   tailoredTraining: "50% 20%",
   teamAssociates: "50% 20%",
 };
-export const PULSE: Record<string, string> = { "3": assetUrl(pulse3.url), "2": assetUrl(pulse2.url) };
-export const PULSE_COVER: Record<string, string> = { "3": assetUrl(pulse3Cover.url), "2": assetUrl(pulse2Cover.url) };
+export const PULSE: Record<string, string> = { "2": assetUrl(pulse2.url) };
+export const PULSE_COVER: Record<string, string> = { "2": assetUrl(pulse2Cover.url) };
 
 import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 

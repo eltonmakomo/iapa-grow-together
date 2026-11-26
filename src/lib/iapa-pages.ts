@@ -87,7 +87,6 @@ const en = {
     lead: "Milestones, events and official news from IAPA.",
     pressTitle: "Press releases",
     press: [
-      ["Oct 2026", "IAPA Ghana team receives IAPA's legal documents from ABF", "On 2 October 2026, the IAPA Ghana team, led by Patrick, officially received the legal documents from the ABF team."],
       ["Aug 2026", "IAPA is officially recognised", "IAPA was officially registered in Accra, Ghana, opening new opportunities for funding, collaboration and impact."],
     ],
     eventsTitle: "Events",
@@ -228,7 +227,6 @@ const fr: PagesContent = {
     lead: "Étapes clés, événements et actualités officielles de l'IAPA.",
     pressTitle: "Communiqués",
     press: [
-      ["Oct. 2026", "L'équipe IAPA Ghana reçoit les documents juridiques de l'ABF", "Le 2 octobre 2026, l'équipe IAPA Ghana, conduite par Patrick, a officiellement reçu les documents juridiques de l'équipe ABF."],
       ["Août 2026", "L'IAPA officiellement reconnue", "L'IAPA a été officiellement enregistrée à Accra, au Ghana, ouvrant de nouvelles opportunités de financement, de collaboration et d'impact."],
     ],
     eventsTitle: "Événements",

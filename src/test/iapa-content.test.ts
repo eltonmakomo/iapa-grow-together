@@ -7,6 +7,7 @@ import mapData from "@/lib/africa-map-data.json";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
 import { CAPTIONS } from "@/lib/iapa-photos";
 import { partitionEvents } from "@/components/iapa/events";
+import { PULSE, PULSE_COVER } from "@/components/iapa/media";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -123,5 +124,15 @@ describe("IAPA content", () => {
       expect(media.upcomingEventsTitle).toBe(lang === "en" ? "Upcoming events" : "Événements à venir");
       expect(media.pastEventsTitle).toBe(lang === "en" ? "Past events" : "Événements passés");
     }
+  });
+  it("removes IAPA Pulse Issue 3, AfCFTA, Patrick and the Oct 2026 handover in EN and FR", () => {
+    expect(Object.keys(PULSE)).toEqual(["2"]);
+    expect(Object.keys(PULSE_COVER)).toEqual(["2"]);
+    expect(CONTENT.en.hub.issues.map((i) => i.key)).toEqual(["2"]);
+    expect(CONTENT.fr.hub.issues.map((i) => i.key)).toEqual(["2"]);
+    expect(PAGES.en.media.press.map(([d]) => d)).toEqual(["Aug 2026"]);
+    expect(PAGES.fr.media.press.map(([d]) => d)).toEqual(["Août 2026"]);
+    const allCopy = JSON.stringify([CONTENT, PAGES, CHILD_CONTENT]);
+    expect(allCopy).not.toMatch(/issue 3|numéro 3|october 2026|octobre 2026|oct\.? 2026|afcfta|zlecaf|patrick|2 october 2026|2 octobre 2026/i);
   });
 });

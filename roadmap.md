@@ -36,3 +36,5 @@
 - [x] Who We Are → Our Journey: update the 5 timeline steps to match client wording exactly (EN/FR)
 - [x] Photo captions: keep the 8 confirmed captions, replace unconfirmed captions with neutral text and italic [Caption TBC], and sync image alt text (EN/FR)
 - [x] Use the uploaded cabbage-harvest photograph for the Home banner in EN/FR (no clipped face, readable headline on mobile)
+- [x] Remove IAPA Pulse Issue 3 (EN/FR), its PDF/cover assets, and any Issue 3 / October 2026 newsletter / AfCFTA references
+- [x] Remove the Oct 2026 press release (EN/FR) and any Patrick / 2 October 2026 handover references
