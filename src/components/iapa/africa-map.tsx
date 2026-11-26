@@ -20,15 +20,17 @@ interface RegionMeta {
   countries: ReadonlyArray<{ id: string; en: string; fr: string; hq?: boolean }>;
 }
 
-const softMapFill = (colour: string) => `color-mix(in oklab, ${colour} 68%, var(--card))`;
+const coverageStyle = {
+  fill: "color-mix(in oklab, var(--primary) 68%, var(--card))",
+  cardClass: "border border-primary/20 bg-primary/10 text-foreground",
+  chipClass: "bg-primary/10 text-primary hover:bg-primary/20",
+  chipActiveClass: "bg-primary text-primary-foreground",
+} as const;
 
 export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   {
     key: "north",
-    fill: softMapFill("var(--primary)"),
-    cardClass: "border border-primary/20 bg-primary/10 text-foreground",
-    chipClass: "bg-primary/10 text-primary hover:bg-primary/20",
-    chipActiveClass: "bg-primary text-primary-foreground",
+    ...coverageStyle,
     countries: [
       { id: "tn", en: "Tunisia", fr: "Tunisie" },
       { id: "dz", en: "Algeria", fr: "Algérie" },
@@ -36,10 +38,7 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "west-fr",
-    fill: softMapFill("var(--sun)"),
-    cardClass: "border border-sun/30 bg-sun/15 text-foreground",
-    chipClass: "bg-sun/20 text-accent-foreground hover:bg-sun/30",
-    chipActiveClass: "bg-sun text-accent-foreground",
+    ...coverageStyle,
     countries: [
       { id: "bj", en: "Benin", fr: "Bénin" },
       { id: "bf", en: "Burkina Faso", fr: "Burkina Faso" },
@@ -50,10 +49,7 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "west-en",
-    fill: softMapFill("var(--savanna)"),
-    cardClass: "border border-savanna/30 bg-savanna/15 text-foreground",
-    chipClass: "bg-savanna/20 text-secondary-foreground hover:bg-savanna/30",
-    chipActiveClass: "bg-savanna text-accent-foreground",
+    ...coverageStyle,
     countries: [
       { id: "gh", en: "Ghana", fr: "Ghana", hq: true },
       { id: "ng", en: "Nigeria", fr: "Nigeria" },
@@ -62,10 +58,7 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "east",
-    fill: softMapFill("var(--arid)"),
-    cardClass: "border border-arid/25 bg-arid/10 text-foreground",
-    chipClass: "bg-arid/15 text-arid-ink hover:bg-arid/25",
-    chipActiveClass: "bg-arid text-accent-foreground",
+    ...coverageStyle,
     countries: [
       { id: "ss", en: "South Sudan", fr: "Soudan du Sud" },
       { id: "et", en: "Ethiopia", fr: "Éthiopie" },
@@ -76,10 +69,7 @@ export const AFRICA_REGIONS: ReadonlyArray<RegionMeta> = [
   },
   {
     key: "south",
-    fill: softMapFill("var(--forest)"),
-    cardClass: "border border-forest/20 bg-forest/10 text-foreground",
-    chipClass: "bg-forest/10 text-forest hover:bg-forest/20",
-    chipActiveClass: "bg-forest text-forest-foreground",
+    ...coverageStyle,
     countries: [
       { id: "na", en: "Namibia", fr: "Namibie" },
       { id: "mz", en: "Mozambique", fr: "Mozambique" },
@@ -222,7 +212,6 @@ export function AfricaImpactMap({ lang }: { lang: Lang }) {
                   );
                 }
 
-                const inActiveRegion = activeRegionIndex === null || activeRegionIndex === info.regionIndex;
                 const isExact = activeCountryId === shape.id;
                 const label = `${info[lang]} — ${regionNames[info.regionIndex] ?? ""}`;
 
@@ -234,7 +223,6 @@ export function AfricaImpactMap({ lang }: { lang: Lang }) {
                     aria-label={label}
                     aria-pressed={selectedCountry === shape.id}
                     className="cursor-pointer outline-none transition-opacity duration-200"
-                    style={{ opacity: inActiveRegion ? 1 : 0.25 }}
                     onMouseEnter={() => setHoveredCountry(shape.id)}
                     onMouseLeave={() => setHoveredCountry(null)}
                     onFocus={() => setHoveredCountry(shape.id)}
@@ -268,7 +256,6 @@ export function AfricaImpactMap({ lang }: { lang: Lang }) {
                           stroke={isExact ? "var(--foreground)" : "var(--card)"}
                           strokeWidth={isExact ? 2.4 : 1.2}
                           vectorEffect="non-scaling-stroke"
-                          style={{ filter: isExact ? "brightness(1.08)" : undefined }}
                         />
                       ))}
                     </g>
