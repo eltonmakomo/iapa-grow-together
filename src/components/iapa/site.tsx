@@ -18,6 +18,8 @@ export const asLang = (v: string): Lang => (v === "fr" ? "fr" : "en");
 
 export function pageHead(lang: string, slug: PageSlug) {
   const [title, description] = PAGES[asLang(lang)].meta[slug];
+  const heroKeys: Record<PageSlug, string> = { "who-we-are": "ghana", "our-work": "cameroon", training: "burkina", "knowledge-hub": "morocco", media: "mauritania", "join-us": "join" };
+  const hero = bannerSpec(heroKeys[slug]).src;
   return {
     meta: [
       { title },
@@ -26,6 +28,8 @@ export function pageHead(lang: string, slug: PageSlug) {
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: hero },
+      { name: "twitter:image", content: hero },
     ],
   };
 }

@@ -3,7 +3,8 @@ import { ChildPage } from "@/components/iapa/child-page";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { asLang } from "@/components/iapa/site";
-import { childContent } from "@/lib/iapa-child-content";
+import { childContent, childHero } from "@/lib/iapa-child-content";
+import { bannerSpec } from "@/components/iapa/media";
 
 export const REDIRECTED_HUB_CHILDREN = new Set([
   "publications",
@@ -32,6 +33,7 @@ export const Route = createFileRoute("/$lang/$section/$child")({
     const section = params.section as PageSlug;
     const title = `${childLabel(section, params.child, lang)} — IAPA`;
     const description = childContent(section, params.child, lang).lead;
+    const hero = bannerSpec(childHero(section, params.child)).src;
     return {
       meta: [
         { title },
@@ -40,6 +42,8 @@ export const Route = createFileRoute("/$lang/$section/$child")({
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
+        { property: "og:image", content: hero },
+        { name: "twitter:image", content: hero },
       ],
     };
   },

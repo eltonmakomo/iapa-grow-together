@@ -40,3 +40,5 @@
 - [x] Remove the Oct 2026 press release (EN/FR) and any Patrick / 2 October 2026 handover references
 
 - [x] Match the reference homepage photograph and floating header menu in EN/FR
+- [x] Audit and repair all banner photos: replace 13 unsuitable images, keep faces intact, disable banner zoom, verify all 31 pages in EN/FR with complete photos on narrow screens.
+- [ ] Publish the reviewed banner photographs and framing updates.

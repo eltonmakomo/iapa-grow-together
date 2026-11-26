@@ -26,13 +26,16 @@ export function useSiteMotion() {
     }), { threshold: 0.01, rootMargin: "0px 0px -20px 0px" });
     els.forEach((el) => io.observe(el));
 
-    const px = Array.from(main.querySelectorAll<HTMLElement>("section.isolate > img"));
+    // Banner framing must stay fixed while scrolling so faces cannot hit an edge.
+    const px = Array.from(main.querySelectorAll<HTMLElement>("section.isolate:not(.page-banner) > img"));
     px.forEach((el) => el.classList.add("parallax"));
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => px.forEach((el) => {
-        const r = el.parentElement!.getBoundingClientRect();
+        const parent = el.parentElement;
+        if (!parent) return;
+        const r = parent.getBoundingClientRect();
         if (r.bottom < 0 || r.top > innerHeight) return;
         const offset = Math.max(-r.height * 0.03, Math.min(0, r.top) * 0.05);
         const flipX = el.dataset["flip"] === "true" ? -1.03 : 1.03;

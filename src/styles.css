@@ -258,6 +258,25 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   .banner-actions { margin-top: 2.25rem; }
 }
 
+/* Narrow banners show the complete photograph above the copy, not a face crop. */
+@media (max-width: 1023px) {
+  .inside-banner { aspect-ratio: auto; }
+  .inside-banner > img {
+    inset: 6.5rem 0 auto;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  #main > .inside-banner .banner-content {
+    height: auto;
+    padding-top: calc(6.5rem + 66.667vw + 1.5rem);
+    padding-bottom: 2.5rem;
+  }
+  .inside-banner .photo-scrim {
+    background: linear-gradient(180deg, transparent 0%, transparent 55%, var(--banner-night) 100%);
+  }
+}
+
 /* Hero ring-and-pill CTA buttons (matching reference banner). */
 .wwu { --wwu-gap: 6px; --wwu-slot: 44px; }.wwu-fill {
   position: absolute;

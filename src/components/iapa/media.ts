@@ -1,6 +1,19 @@
 import { assetUrl } from "@/lib/asset-url";
 import heroImg from "@/assets/hero-farmer.jpg.asset.json";
 import homeCornField from "@/assets/banners/home-corn-field.jpg.asset.json";
+import refinedAbout from "@/assets/banner-refinements/about.jpg.asset.json";
+import refinedAbs from "@/assets/banner-refinements/abs.jpg.asset.json";
+import refinedBlended from "@/assets/banner-refinements/blended.jpg.asset.json";
+import refinedEvents from "@/assets/banner-refinements/events.jpg.asset.json";
+import refinedNumbers from "@/assets/banner-refinements/iapa-in-numbers.jpg.asset.json";
+import refinedBoard from "@/assets/banner-refinements/managing-board.jpg.asset.json";
+import refinedOffices from "@/assets/banner-refinements/offices.jpg.asset.json";
+import refinedOnline from "@/assets/banner-refinements/online.jpg.asset.json";
+import refinedPartners from "@/assets/banner-refinements/partners.jpg.asset.json";
+import refinedResidential from "@/assets/banner-refinements/residential.jpg.asset.json";
+import refinedJoin from "@/assets/banner-refinements/join.jpg.asset.json";
+import refinedMedia from "@/assets/banner-refinements/mauritania.jpg.asset.json";
+import refinedFbs from "@/assets/banner-refinements/fbs.jpg.asset.json";
 import cameroon from "@/assets/cameroon-coffee.jpg.asset.json";
 import mauritania from "@/assets/mauritania-pbs.jpg.asset.json";
 import morocco from "@/assets/morocco-milk.jpg.asset.json";
@@ -131,11 +144,28 @@ export const PULSE_COVER: Record<string, string> = { "2": assetUrl(pulse2Cover.u
 
 import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 
-/** Every banner photograph: focal point keeps faces just below the top edge. */
+// Keep replacements separate from the generated banner inventory.
+const REFINED_BANNERS: Record<string, string> = {
+  about: refinedAbout.url,
+  abs: refinedAbs.url,
+  blended: refinedBlended.url,
+  events: refinedEvents.url,
+  "iapa-in-numbers": refinedNumbers.url,
+  "managing-board": refinedBoard.url,
+  offices: refinedOffices.url,
+  online: refinedOnline.url,
+  partners: refinedPartners.url,
+  residential: refinedResidential.url,
+  join: refinedJoin.url,
+  mauritania: refinedMedia.url,
+  fbs: refinedFbs.url,
+};
+
+/** Reviewed banner photographs with face-safe focal points and no mirroring. */
 export const BANNER: Record<string, BannerSpec> = Object.fromEntries(
   Object.entries(NEW_BANNERS).map(([key, spec]) => [key, key === "home"
     ? { src: assetUrl(homeCornField.url), pos: "50% 50%" }
-    : { ...spec, src: assetUrl(spec.src) }]),
+    : { src: assetUrl(REFINED_BANNERS[key] ?? spec.src), pos: "70% 15%" }]),
 );
 export const bannerSpec = (key: string): BannerSpec =>
   BANNER[key] ?? { src: IMG[key as ImgKey] ?? IMG.hero, pos: PHOTO_POSITION[key as ImgKey] ?? "50% 20%" };

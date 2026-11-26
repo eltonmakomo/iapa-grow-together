@@ -38,3 +38,4 @@ use the editor.
 - Use global type-size and content-density tokens for section headings, cards and grid spacing; maintain readable body text and content-driven page heights instead of scaling or clipping whole pages.
 - Derive translated breadcrumbs from the active page hierarchy; render them inside PageHero photos, with the language layout supplying them only for legal pages without PageHero, to avoid duplicate navigation.
 - Use a shared ProfileGrid for leadership sections and profile pages, showing title, name and location on cards with full details in an accessible dialog; label fictional names and generated portraits as placeholders inside the dialog rather than verified officeholders.
+- Keep reviewed banner replacements in the media registry instead of editing the generated banner inventory; disable banner zoom/mirroring and show complete photos above copy on narrow screens to preserve faces.
