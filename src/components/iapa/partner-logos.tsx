@@ -2,9 +2,9 @@ import { CONTENT, type Lang } from "@/lib/iapa-content";
 import { assetUrl } from "@/lib/asset-url";
 import abf from "@/assets/partners/abf.svg.asset.json";
 import acbf from "@/assets/partners/acbf.svg.asset.json";
-import eu from "@/assets/partners/european-union.png.asset.json";
-import germanCooperation from "@/assets/partners/german-cooperation.png.asset.json";
-import giz from "@/assets/partners/giz.png.asset.json";
+import eu from "@/assets/partners/european-union-transparent.png.asset.json";
+import germanCooperation from "@/assets/partners/german-cooperation-transparent.png.asset.json";
+import giz from "@/assets/partners/giz-transparent.png.asset.json";
 import move from "@/assets/partners/move.png.asset.json";
 import oacps from "@/assets/partners/oacps.png.asset.json";
 
@@ -34,7 +34,7 @@ export function PartnerCards({ lang, className = "sm:grid-cols-2 lg:grid-cols-3"
         const logos = PARTNER_LOGOS[index] ?? [];
         return (
           <li key={name} className="curve-card group flex h-full flex-col bg-card p-6 md:p-7">
-            <div className="flex h-28 items-center justify-center gap-5 rounded-2xl bg-background px-5 py-4">
+            <div className="flex h-28 items-center justify-center gap-5 px-5 py-4">
               {logos.map((logo) => (
                 <img
                   key={logo.alt}
