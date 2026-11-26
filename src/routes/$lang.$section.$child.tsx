@@ -1,9 +1,19 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { ChildPage } from "@/components/iapa/child-page";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
 import { asLang } from "@/components/iapa/site";
 import { childContent } from "@/lib/iapa-child-content";
+
+export const REDIRECTED_HUB_CHILDREN = new Set([
+  "publications",
+  "policy-briefs",
+  "research-papers",
+  "case-studies",
+  "webinars",
+  "multimedia",
+  "podcasts",
+]);
 
 function validChild(section: string, child: string): section is PageSlug {
   return PAGE_SLUGS.includes(section as PageSlug) &&
@@ -12,6 +22,9 @@ function validChild(section: string, child: string): section is PageSlug {
 
 export const Route = createFileRoute("/$lang/$section/$child")({
   beforeLoad: ({ params }) => {
+    if (params.section === "knowledge-hub" && REDIRECTED_HUB_CHILDREN.has(params.child)) {
+      throw redirect({ to: "/$lang/knowledge-hub", params: { lang: params.lang } });
+    }
     if (!validChild(params.section, params.child)) throw notFound();
   },
   head: ({ params }) => {

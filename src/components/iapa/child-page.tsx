@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
@@ -7,7 +7,6 @@ import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-ch
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { EventsSections } from "@/components/iapa/events";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
-import { PULSE, PULSE_COVER } from "@/components/iapa/media";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
 
@@ -99,21 +98,6 @@ function TrainingBody({ lang, child }: { lang: Lang; child: string }) {
   return <FeatureBody lang={lang} title={childLabel("training", child, lang)} copy={childContent("training", child, lang)} child={child} />;
 }
 
-function HubBody({ lang, child }: { lang: Lang; child: string }) {
-  const h = CONTENT[lang].hub;
-  if (child !== "publications") {
-    const copy = childContent("knowledge-hub", child, lang);
-    return <>
-      {copy.body?.map((text) => <p key={text} className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{text}</p>)}
-      {copy.samples && <SampleShowcase lang={lang} kind={copy.sampleKind} items={copy.samples} child={child} />}
-    </>;
-  }
-  return <>
-    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{h.lead}</p>
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">{h.issues.map((issue, i) => <li key={issue.key} className="curve-card flex flex-col overflow-hidden bg-card"><div className={`h-2 ${i === 0 ? "bg-primary" : "bg-arid"}`} /><div className="grid flex-1 gap-6 p-7 sm:grid-cols-[9rem_1fr]"><img src={PULSE_COVER[issue.key]!} alt={`IAPA Pulse — ${issue.label}`} loading="lazy" className="w-36 rounded-lg border shadow-soft sm:w-full" /><div><p className="eyebrow">{issue.label}</p><h3 className="mt-2 text-2xl font-extrabold">{issue.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{issue.text}</p><div className="mt-6 flex flex-wrap gap-3"><a href={PULSE[issue.key]!} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary hover:bg-primary hover:text-primary-foreground"><BookOpen className="h-5 w-5" aria-hidden />{h.read}</a><a href={PULSE[issue.key]!} download className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-bold text-primary-foreground hover:brightness-110"><Download className="h-5 w-5" aria-hidden />{h.download}</a></div><p className="mt-2 text-xs text-muted-foreground">{h.size}</p></div></div></li>)}</ul>
-  </>;
-}
-
 function MediaBody({ lang, child }: { lang: Lang; child: string }) {
   const m = PAGES[lang].media;
   if (child === "events") return <EventsSections lang={lang} />;
@@ -143,7 +127,6 @@ function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: s
   if (slug === "who-we-are") return <WhoBody lang={lang} child={child} />;
   if (slug === "our-work") return <WorkBody lang={lang} child={child} />;
   if (slug === "training") return <TrainingBody lang={lang} child={child} />;
-  if (slug === "knowledge-hub") return <HubBody lang={lang} child={child} />;
   if (slug === "media") return <MediaBody lang={lang} child={child} />;
   return <JoinBody lang={lang} child={child} />;
 }
@@ -152,8 +135,8 @@ export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; c
   const p = PAGES[lang];
   const n = navPage(slug);
   const copy = childContent(slug, child, lang);
-  const hasContentAnchor = slug === "knowledge-hub" || slug === "media";
-  const contentId = slug === "media" ? `media-${child}` : child === "webinars" ? "webinar-recordings" : "hub-resources";
+  const hasContentAnchor = slug === "media";
+  const contentId = `media-${child}`;
   const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
     <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} />

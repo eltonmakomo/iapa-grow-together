@@ -5,6 +5,7 @@ import { NAV } from "@/lib/iapa-nav";
 import { AFRICA_REGIONS } from "@/components/iapa/africa-map";
 import mapData from "@/lib/africa-map-data.json";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
+import { CAPTIONS } from "@/lib/iapa-photos";
 import { partitionEvents } from "@/components/iapa/events";
 
 describe("IAPA content", () => {
@@ -30,12 +31,12 @@ describe("IAPA content", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
-  it("gives all 31 dropdown children a unique page path in each language", () => {
+  it("gives all 24 dropdown children a unique page path in each language", () => {
     const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
-    expect(children).toHaveLength(31);
+    expect(children).toHaveLength(24);
     for (const lang of ["en", "fr"] as const) {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
-      expect(new Set(paths).size).toBe(31);
+      expect(new Set(paths).size).toBe(24);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
@@ -70,37 +71,46 @@ describe("IAPA content", () => {
       leads.add(entry!.en.lead);
       leads.add(entry!.fr.lead);
     }
-    expect(heroes.size).toBe(31);
-    expect(leads.size).toBe(62);
+    expect(heroes.size).toBe(24);
+    expect(leads.size).toBe(48);
   });
-  it("fills formerly empty resource and opportunity pages with sample cards", () => {
-    const pages = ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"];
-    for (const id of pages) {
-      expect(CHILD_CONTENT["knowledge-hub"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
-      expect(CHILD_CONTENT["knowledge-hub"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
-    }
+  it("keeps Knowledge Hub sub-pages empty and lists the six coming-soon categories in both languages", () => {
+    expect(Object.keys(CHILD_CONTENT["knowledge-hub"])).toHaveLength(0);
+    expect(NAV.find((n) => n.slug === "knowledge-hub")?.groups).toHaveLength(0);
+    expect(PAGES.en.hub.categories).toHaveLength(6);
+    expect(PAGES.fr.hub.categories).toHaveLength(6);
+    expect(PAGES.en.hub.soon).toBe("Coming soon");
+    expect(PAGES.fr.hub.soon).toBe("Bientôt disponible");
     for (const id of ["vacancies", "scholarships"]) {
       expect(CHILD_CONTENT["join-us"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
       expect(CHILD_CONTENT["join-us"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
     }
   });
-  it("gives podcasts playable durations and publications structured takeaways without generic sample phrasing", () => {
-    for (const lang of ["en", "fr"] as const) {
-      const pods = CHILD_CONTENT["knowledge-hub"]["podcasts"]?.[lang];
-      expect(pods?.sampleKind).toBe("podcast");
-      for (const ep of pods?.samples ?? []) {
-        expect(ep.durationSec).toBeGreaterThan(60);
-        expect(ep.text).not.toMatch(/^(A sample|Un épisode fictif)/i);
-      }
-      for (const pubId of ["policy-briefs", "research-papers", "case-studies"]) {
-        const pub = CHILD_CONTENT["knowledge-hub"][pubId]?.[lang];
-        expect(pub?.sampleKind).toBe("publication");
-        for (const doc of pub?.samples ?? []) {
-          expect(doc.highlights?.length).toBeGreaterThanOrEqual(3);
-          expect(doc.text).not.toMatch(/^(A sample|Une note fictive|Un article fictif|Un cas fictif)/i);
-        }
-      }
-    }
+  it("matches the five client-approved Our Journey steps in English and French", () => {
+    expect(PAGES.en.who.timeline).toEqual([
+      ["2014–2019", "Idea generation for the establishment of country associations of trainers"],
+      ["Sep 2023", "Master Trainer Network Conference in Johannesburg; an interim steering team was set up to develop the statutes"],
+      ["Jul 2024", "IAPA Constituent General Assembly: validation of the statutes and election of the governing body"],
+      ["2025", "IAPA Ordinary General Assembly, Aburi, Ghana"],
+      ["2026", "IAPA legalisation and development of framework documents"],
+    ]);
+    expect(PAGES.fr.who.timeline).toEqual([
+      ["2014–2019", "Émergence de l'idée de créer des associations nationales de formateurs"],
+      ["Sept. 2023", "Conférence du réseau des Master Trainers à Johannesburg ; mise en place d'un comité de pilotage intérimaire chargé d'élaborer les statuts"],
+      ["Juil. 2024", "Assemblée générale constitutive de l'IAPA : validation des statuts et élection des organes dirigeants"],
+      ["2025", "Assemblée générale ordinaire de l'IAPA, Aburi, Ghana"],
+      ["2026", "Légalisation de l'IAPA et élaboration des documents cadres"],
+    ]);
+  });
+  it("marks only unconfirmed photo captions as TBC and removes unconfirmed partner/date claims", () => {
+    const kept = ["kenya", "evaluation", "signing", "robusta", "chadSup", "burkinaSession", "mali", "morocco"];
+    for (const k of kept) expect(CAPTIONS[k]?.tbc).toBeUndefined();
+    expect(CAPTIONS["ghana"]).toMatchObject({ en: "IAPA members, Ghana", tbc: true });
+    expect(CAPTIONS["mauritania"]).toMatchObject({ en: "Processor Business School training session", tbc: true });
+    expect(CAPTIONS["civ"]).toEqual({ en: "FBS Coffee training of trainers, Côte d'Ivoire", fr: "Formation de formateurs FBS Café, Côte d'Ivoire" });
+    expect(CAPTIONS["spirulina"]).toMatchObject({ en: "Farmer Business School training session", tbc: true });
+    expect(CAPTIONS["burkinaMaize"]).toEqual({ en: "PBS training of trainers, Burkina Faso", fr: "Formation de formateurs PBS, Burkina Faso" });
+    expect(CAPTIONS["cameroon"]).toMatchObject({ en: "FBS Coffee trainers, Cameroon", tbc: true });
   });
   it("separates upcoming and past events in both languages", () => {
     for (const lang of ["en", "fr"] as const) {

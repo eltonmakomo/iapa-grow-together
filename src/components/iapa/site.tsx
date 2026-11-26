@@ -5,7 +5,7 @@ import { navPage } from "@/lib/iapa-nav";
 import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
 import { CONTACT, CONTENT, SOCIALS, type Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, type PageSlug } from "@/lib/iapa-pages";
-import { CAPTIONS } from "@/lib/iapa-photos";
+import { CAPTION_TBC, CAPTIONS } from "@/lib/iapa-photos";
 import { bannerSpec, BANNER, IMG, PHOTO_POSITION, type HeroKey, type ImgKey } from "@/components/iapa/media";
 import { CountUp } from "@/components/iapa/motion";
 import logoEn from "@/assets/logo-en.png.asset.json";
@@ -113,14 +113,19 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         </Link>
         <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
-            {PAGE_SLUGS.map((s) => (
-              <li key={s} onMouseEnter={() => show(s)} className="flex items-center">
-                <Link to={pathFor(s)} params={{ lang }} className={`${navCls} ${mega === s ? "bg-secondary" : ""}`} activeProps={{ className: "text-primary", "aria-current": "page" }} onFocus={() => show(s)}>{p.nav[s]}</Link>
-                <button type="button" aria-expanded={mega === s} aria-controls={`mega-${s}`} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setMega(mega === s ? null : s)} className="-ml-1.5 grid h-8 w-6 place-items-center rounded-full text-muted-foreground hover:text-primary">
-                  <ChevronDown className={`h-4 w-4 transition-transform ${mega === s ? "rotate-180" : ""}`} aria-hidden />
-                </button>
-              </li>
-            ))}
+            {PAGE_SLUGS.map((s) => {
+              const hasMenu = navPage(s).groups.length > 0;
+              return (
+                <li key={s} onMouseEnter={() => (hasMenu ? show(s) : setMega(null))} className="flex items-center">
+                  <Link to={pathFor(s)} params={{ lang }} className={`${navCls} ${mega === s ? "bg-secondary" : ""}`} activeProps={{ className: "text-primary", "aria-current": "page" }} onFocus={() => (hasMenu ? show(s) : setMega(null))}>{p.nav[s]}</Link>
+                  {hasMenu && (
+                    <button type="button" aria-expanded={mega === s} aria-controls={`mega-${s}`} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setMega(mega === s ? null : s)} className="-ml-1.5 grid h-8 w-6 place-items-center rounded-full text-muted-foreground hover:text-primary">
+                      <ChevronDown className={`h-4 w-4 transition-transform ${mega === s ? "rotate-180" : ""}`} aria-hidden />
+                    </button>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <div className="flex items-center gap-2">
@@ -137,23 +142,28 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         <nav id="mobile-nav" aria-label="Primary" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t bg-background/90 backdrop-blur-2xl xl:hidden">
           <ul className="container-page flex flex-col py-3">
             <li><Link to="/$lang" params={{ lang }} activeOptions={{ exact: true }} className="block rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.home}</Link></li>
-            {PAGE_SLUGS.map((s) => (
-              <li key={s} className="border-t border-border/50">
-                <div className="flex items-center justify-between">
-                  <Link to={pathFor(s)} params={{ lang }} className="block flex-1 rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.nav[s]}</Link>
-                  <button type="button" aria-expanded={sub === s} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setSub(sub === s ? null : s)} className="grid h-10 w-10 place-items-center rounded-full hover:bg-secondary">
-                    <ChevronDown className={`h-5 w-5 transition-transform ${sub === s ? "rotate-180" : ""}`} aria-hidden />
-                  </button>
-                </div>
-                {sub === s && (
-                  <ul className="mb-3 ml-3 border-l-2 border-savanna pl-3">
-                    {navPage(s).groups.flatMap((g) => g.items).map((it) => (
-                      <li key={it.id}><Link to="/$lang/$section/$child" params={{ lang, section: s, child: it.id }} onClick={() => setOpen(false)} className="block rounded-lg px-2 py-2 text-muted-foreground hover:text-primary">{it.label[lang]}</Link></li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+            {PAGE_SLUGS.map((s) => {
+              const hasMenu = navPage(s).groups.length > 0;
+              return (
+                <li key={s} className="border-t border-border/50">
+                  <div className="flex items-center justify-between">
+                    <Link to={pathFor(s)} params={{ lang }} className="block flex-1 rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.nav[s]}</Link>
+                    {hasMenu && (
+                      <button type="button" aria-expanded={sub === s} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setSub(sub === s ? null : s)} className="grid h-10 w-10 place-items-center rounded-full hover:bg-secondary">
+                        <ChevronDown className={`h-5 w-5 transition-transform ${sub === s ? "rotate-180" : ""}`} aria-hidden />
+                      </button>
+                    )}
+                  </div>
+                  {hasMenu && sub === s && (
+                    <ul className="mb-3 ml-3 border-l-2 border-savanna pl-3">
+                      {navPage(s).groups.flatMap((g) => g.items).map((it) => (
+                        <li key={it.id}><Link to="/$lang/$section/$child" params={{ lang, section: s, child: it.id }} onClick={() => setOpen(false)} className="block rounded-lg px-2 py-2 text-muted-foreground hover:text-primary">{it.label[lang]}</Link></li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       )}
@@ -328,11 +338,17 @@ export function ResultsBlock({ lang }: { lang: Lang }) {
 
 
 export function Photo({ k, lang, className = "", ratio = "aspect-[4/3]" }: { k: ImgKey; lang: Lang; className?: string; ratio?: string }) {
-  const cap = CAPTIONS[k]?.[lang] ?? "";
+  const entry = CAPTIONS[k];
+  const cap = entry?.[lang] ?? "";
   return (
     <figure className={`curve-card group relative overflow-hidden bg-muted ${className}`}>
       <img src={IMG[k]} alt={cap} loading="lazy" style={{ objectPosition: PHOTO_POSITION[k] }} className={`h-full w-full object-cover object-top origin-top transition duration-500 group-hover:scale-105 ${ratio}`} />
-      {cap && <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent p-4 pt-10 text-sm font-semibold text-forest-foreground">{cap}</figcaption>}
+      {cap && (
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 to-transparent p-4 pt-10 text-sm font-semibold text-forest-foreground">
+          {cap}
+          {entry?.tbc && <>{" "}<span className="text-xs font-normal italic opacity-85">{CAPTION_TBC[lang]}</span></>}
+        </figcaption>
+      )}
     </figure>
   );
 }

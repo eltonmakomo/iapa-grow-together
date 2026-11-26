@@ -32,3 +32,6 @@
 - [x] Leadership page banner: face still clipped by the banner's curved bottom edge — needs a wider-composition photo
 - [x] Reframe and replace clipped banner photos across all 39 pages, reduce banner parallax zoom so heads stay clear of edges on desktop and mobile, and publish the updated site
 - [x] Remove the Stories page and all six individual story pages in EN/FR, with their menu entries, copy and tests
+- [x] Knowledge Hub: delete all 7 sub-pages and 18 invented resources, redirect deleted URLs to /knowledge-hub, keep IAPA Pulse on main page and replace category Explore links with non-clickable Coming soon labels (EN/FR)
+- [x] Who We Are → Our Journey: update the 5 timeline steps to match client wording exactly (EN/FR)
+- [x] Photo captions: keep the 8 confirmed captions, replace unconfirmed captions with neutral text and italic [Caption TBC], and sync image alt text (EN/FR)

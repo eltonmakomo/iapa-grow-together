@@ -1,8 +1,6 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Download, FileText, Film, Headphones, Video } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { BookOpen, Download, FileText, Film, Headphones, Video } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
-import { childLabel } from "@/lib/iapa-nav";
-import { childContent } from "@/lib/iapa-child-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { PULSE, PULSE_COVER } from "@/components/iapa/media";
@@ -12,7 +10,6 @@ export const Route = createFileRoute("/$lang/knowledge-hub")({
   component: Hub,
 });
 
-const CATS = ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"];
 const CAT_ICON: Record<string, typeof FileText> = {
   "policy-briefs": FileText,
   "research-papers": BookOpen,
@@ -31,7 +28,7 @@ function Hub() {
       <PageHero eyebrow={h.eyebrow} title={h.title} lead={p.lead} img="morocco" />
       <section id="publications" className="py-16 md:py-24">
         <div className="container-page">
-          <SectionHead eyebrow={h.title} title={childLabel("knowledge-hub", "publications", lang)} lead={h.lead} />
+          <SectionHead eyebrow={h.title} title={p.publicationsTitle} lead={h.lead} />
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {h.issues.map((is, i) => (
               <li key={is.key} className="curve-card flex flex-col overflow-hidden bg-card">
@@ -67,19 +64,16 @@ function Hub() {
           </div>
           <SectionHead title={p.libraryTitle} />
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {CATS.map((id) => {
+            {p.categories.map(([id, title, description]) => {
               const Icon = CAT_ICON[id] ?? FileText;
-              const entry = childContent("knowledge-hub", id, lang);
               return (
                 <li key={id} id={id}>
-                  <Link to="/$lang/$section/$child" params={{ lang, section: "knowledge-hub", child: id }} className="curve-card group flex h-full flex-col bg-card p-6 transition hover:-translate-y-1 hover:shadow-soft">
+                  <div className="curve-card flex h-full flex-col bg-card p-6">
                     <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-primary"><Icon className="h-5 w-5" aria-hidden /></span>
-                    <h3 className="mt-4 text-lg font-extrabold">{childLabel("knowledge-hub", id, lang)}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{entry.lead}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">
-                      {lang === "fr" ? "Explorer" : "Explore"} ({entry.samples?.length ?? 0}) <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
-                    </span>
-                  </Link>
+                    <h3 className="mt-4 text-lg font-extrabold">{title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                    <span className="mt-4 inline-flex items-center text-sm font-semibold text-muted-foreground">{p.soon}</span>
+                  </div>
                 </li>
               );
             })}
