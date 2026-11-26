@@ -114,7 +114,22 @@
 }
 
 /* Header: the bilingual nav must stay on one line in French too. */
-header .container-page { max-width: min(100%, 88rem); }
+.site-header { padding: 0.75rem 0.75rem 0; }
+.site-header .header-capsule { max-width: 80rem; height: 5rem; padding-left: 1rem; padding-right: 0.5rem; transition: height 250ms ease, background-color 250ms ease; }
+.header-logo { height: 2.75rem; transition: height 250ms ease; }
+.site-header.is-compact .header-capsule { height: 4rem; background-color: color-mix(in srgb, var(--card) 90%, transparent); }
+.is-compact .header-logo { height: 2.25rem; }
+.header-search { width: 3.5rem; height: 3.5rem; }
+.is-compact .header-search { width: 3rem; height: 3rem; }
+.header-icon.btn-hover::before { display: none; }
+.header-icon.btn-hover:hover { box-shadow: none; transform: none; }
+.header-nav-link[aria-current="page"]::after { content: ""; position: absolute; bottom: 0; left: 0.75rem; right: 0.75rem; height: 2px; background: var(--primary); }
+.header-nav-link { position: relative; }
+.mobile-menu { position: fixed; right: 0; top: 0; height: 100dvh; width: min(88%, 24rem); }
+@media (min-width: 1024px) { .site-header { padding: 1rem 1.5rem 0; } .site-header .header-capsule { padding-left: 1.5rem; } }
+#main > .page-banner .banner-content { padding-top: 8rem; }
+#main > .page-banner { min-height: 36rem; }
+#main > nav:first-child { padding-top: 7rem; }
 header nav a, header nav button { white-space: nowrap; }
 @media (min-width: 1280px) and (max-width: 1439px) {
   header nav a { font-size: 0.86rem; padding-inline: 0.55rem; }
@@ -219,7 +234,7 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
       linear-gradient(90deg, color-mix(in srgb, var(--banner-night) 85%, transparent) 0%, color-mix(in srgb, var(--banner-night) 45%, transparent) 50%, transparent 100%);
   }
   /* Keep the whole face inside the narrow mobile frame instead of on an edge. */
-  .home-banner img { object-position: 62% 12% !important; }
+  .home-banner img { object-position: 50% 50% !important; }
 }
 @media (min-width: 768px) {
   .home-banner { aspect-ratio: 16 / 9; max-height: 46rem; min-height: 30rem; }

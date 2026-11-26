@@ -34,6 +34,7 @@ use the editor.
 - The EN/FR switch links to the same route with the other lang param, so visitors stay on the same page.
 - Home and all parent/dropdown child pages use the straight-edged full-bleed banner layout (photo background with left-to-right dark photo-scrim, top breadcrumb trail with orange current label, bold white title, light lead text, and ring-and-pill hero CTAs on Home).
 - Home and PageHero share banner typography and height-aware spacing in global CSS; keep content-driven heights so shorter desktop screens fit banners without clipping translated text or buttons.
+- The shared header is a fixed, inset glass capsule that compacts on scroll; reserve space inside banners and legal pages so navigation never covers page text.
 - Use global type-size and content-density tokens for section headings, cards and grid spacing; maintain readable body text and content-driven page heights instead of scaling or clipping whole pages.
 - Derive translated breadcrumbs from the active page hierarchy; render them inside PageHero photos, with the language layout supplying them only for legal pages without PageHero, to avoid duplicate navigation.
 - Use a shared ProfileGrid for leadership sections and profile pages, showing title, name and location on cards with full details in an accessible dialog; label fictional names and generated portraits as placeholders inside the dialog rather than verified officeholders.

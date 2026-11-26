@@ -1,5 +1,6 @@
 import { assetUrl } from "@/lib/asset-url";
 import heroImg from "@/assets/hero-farmer.jpg.asset.json";
+import homeCornField from "@/assets/banners/home-corn-field.jpg.asset.json";
 import cameroon from "@/assets/cameroon-coffee.jpg.asset.json";
 import mauritania from "@/assets/mauritania-pbs.jpg.asset.json";
 import morocco from "@/assets/morocco-milk.jpg.asset.json";
@@ -132,7 +133,9 @@ import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 
 /** Every banner photograph: focal point keeps faces just below the top edge. */
 export const BANNER: Record<string, BannerSpec> = Object.fromEntries(
-  Object.entries(NEW_BANNERS).map(([key, spec]) => [key, { ...spec, src: assetUrl(spec.src) }]),
+  Object.entries(NEW_BANNERS).map(([key, spec]) => [key, key === "home"
+    ? { src: assetUrl(homeCornField.url), pos: "50% 50%" }
+    : { ...spec, src: assetUrl(spec.src) }]),
 );
 export const bannerSpec = (key: string): BannerSpec =>
   BANNER[key] ?? { src: IMG[key as ImgKey] ?? IMG.hero, pos: PHOTO_POSITION[key as ImgKey] ?? "50% 20%" };

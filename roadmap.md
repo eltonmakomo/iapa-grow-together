@@ -38,3 +38,5 @@
 - [x] Use the uploaded cabbage-harvest photograph for the Home banner in EN/FR (no clipped face, readable headline on mobile)
 - [x] Remove IAPA Pulse Issue 3 (EN/FR), its PDF/cover assets, and any Issue 3 / October 2026 newsletter / AfCFTA references
 - [x] Remove the Oct 2026 press release (EN/FR) and any Patrick / 2 October 2026 handover references
+
+- [x] Match the reference homepage photograph and floating header menu in EN/FR
