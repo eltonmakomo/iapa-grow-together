@@ -4,7 +4,6 @@ import type { Lang } from "@/lib/iapa-content";
 import { PAGES, PAGE_SLUGS, LEGAL, type PageSlug } from "@/lib/iapa-pages";
 import { childLabel } from "@/lib/iapa-nav";
 import { getEventDetail, getLeadershipProfile, getPressDetail, getWhatWeDo } from "@/lib/iapa-details";
-import { getStory } from "@/lib/iapa-stories";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const parents = {
@@ -31,12 +30,10 @@ export function PageBreadcrumbs({ lang: requestedLang, inBanner = false }: { lan
   const slug = PAGE_SLUGS.find((value) => value === section);
   const parent: PageSlug | undefined = slug;
   const detailParent: { slug: PageSlug; label: string } | undefined =
-    section === "stories" ? { slug: "our-work", label: PAGES[lang].nav["our-work"] }
-    : section === "events" || section === "press" ? { slug: "media", label: PAGES[lang].nav.media }
+    section === "events" || section === "press" ? { slug: "media", label: PAGES[lang].nav.media }
     : section === "leadership" ? { slug: "who-we-are", label: PAGES[lang].nav["who-we-are"] }
     : undefined;
   const current = slug ? child ? childLabel(slug, child, lang) : PAGES[lang].nav[slug]
-    : section === "stories" && child ? (getStory(child)?.[lang].title ?? child)
     : section === "what-we-do" && child ? (getWhatWeDo(child)?.[lang].title ?? child)
     : section === "events" && child ? (getEventDetail(child)?.[lang].title ?? child)
     : section === "press" && child ? (getPressDetail(child)?.[lang].title ?? child)

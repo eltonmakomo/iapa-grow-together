@@ -5,7 +5,6 @@ import { childLabel } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { CHILD_CONTENT, CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { PRESS_DETAILS } from "@/lib/iapa-details";
-import { STORIES, STORY_UI } from "@/lib/iapa-stories";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { EventsSections } from "@/components/iapa/events";
 import { FormDialog, NewsletterInlineForm } from "@/components/iapa/forms";
@@ -13,7 +12,7 @@ import { PulseIssuesGrid } from "@/components/iapa/pulse-issues";
 import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PartnerStrip } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
-import { DOC_FILES, IMG, PHOTO_POSITION, STRUCTURE_CHARTS, type ImgKey } from "@/components/iapa/media";
+import { DOC_FILES, IMG, STRUCTURE_CHARTS, type ImgKey } from "@/components/iapa/media";
 
 function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | undefined>> }) {
   return (
@@ -93,31 +92,8 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
 function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const w = CONTENT[lang].work;
   const p = PAGES[lang].work;
-  const sui = STORY_UI[lang];
   if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
   if (child === "iapa-in-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
-  if (child === "stories") {
-    return (
-      <>
-        <SectionHead eyebrow={sui.eyebrow} title={sui.sectionTitle} lead={sui.sectionLead} />
-        <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {STORIES.map((story) => (
-            <li key={story.id}>
-              <Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.id }} className="curve-card group flex h-full flex-col overflow-hidden bg-card transition hover:-translate-y-1">
-                <img src={IMG[story.img]} alt={story[lang].title} loading="lazy" style={{ objectPosition: PHOTO_POSITION[story.img] }} className="aspect-[16/10] w-full object-cover" />
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="eyebrow text-xs">{story[lang].place} · {story[lang].date}</p>
-                  <h3 className="mt-2 text-xl font-extrabold leading-snug group-hover:text-primary">{story[lang].title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story[lang].lead}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{sui.readStory} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-  }
   return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} child={child} />;
 }
 

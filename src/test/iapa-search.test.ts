@@ -14,9 +14,8 @@ describe("site search", () => {
   it("returns no results for unmatched queries", () => {
     expect(searchSite("xyzzzznotfound", "en")).toEqual([]);
   });
-  it("indexes stories and Knowledge Hub category pages in both languages", () => {
+  it("indexes Knowledge Hub and Media category pages in both languages", () => {
     for (const lang of ["en", "fr"] as const) {
-      expect(searchIndex(lang).filter((entry) => /\/stories\//.test(entry.href))).toHaveLength(6);
       const hubChildren = searchIndex(lang).filter((entry) => /knowledge-hub\//.test(entry.href)).map((entry) => entry.href);
       expect(hubChildren).toHaveLength(9);
       expect(hubChildren).toContain("/$lang/knowledge-hub/key-documents");

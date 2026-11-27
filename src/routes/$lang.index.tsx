@@ -3,11 +3,10 @@ import { ArrowRight, ArrowUpRight, Compass, BookOpen, GraduationCap, CalendarDay
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
-import { STORIES, STORY_UI } from "@/lib/iapa-stories";
 import { NewsletterInlineForm } from "@/components/iapa/forms";
 import { EmblemBackdrop, Photo, ResultsSummary, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
-import { bannerSpec, IMG, PHOTO_POSITION } from "@/components/iapa/media";
+import { bannerSpec } from "@/components/iapa/media";
 
 const offerIcons = {
   "strategic-advisory": Compass,
@@ -37,7 +36,6 @@ function Home() {
   const lang = asLang(Route.useParams().lang);
   const t = CONTENT[lang];
   const p = PAGES[lang];
-  const sui = STORY_UI[lang];
   const partnerOffers = WHAT_WE_DO_DETAILS.filter((d) => d.audience === "partner");
   const memberOffers = WHAT_WE_DO_DETAILS.filter((d) => d.audience === "member");
   return (
@@ -138,32 +136,6 @@ function Home() {
         <div className="container-page">
           <SectionHead title={p.numbersTitle} lead={t.work.resultsNote} />
           <div className="mt-8"><ResultsSummary lang={lang} /></div>
-        </div>
-      </section>
-
-      <section id="highlight-stories" className="py-16 md:py-24">
-        <div className="container-page">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHead eyebrow={sui.eyebrow} title={sui.sectionTitle} lead={sui.sectionLead} />
-            <Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }} className="group inline-flex items-center gap-1.5 font-bold text-primary hover:underline">
-              {sui.allStories} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
-            </Link>
-          </div>
-          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {STORIES.map((story) => (
-              <li key={story.id}>
-                <Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.id }} className="curve-card group flex h-full flex-col overflow-hidden bg-card transition hover:-translate-y-1">
-                  <img src={IMG[story.img]} alt={story[lang].title} loading="lazy" style={{ objectPosition: PHOTO_POSITION[story.img] }} className="aspect-[16/10] w-full object-cover" />
-                  <div className="flex flex-1 flex-col p-6">
-                    <p className="eyebrow text-xs">{story[lang].place}</p>
-                    <h3 className="mt-2 text-xl font-extrabold leading-snug group-hover:text-primary">{story[lang].title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story[lang].lead}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">{sui.readStory} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

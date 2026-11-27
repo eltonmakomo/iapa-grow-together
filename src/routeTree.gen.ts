@@ -24,7 +24,6 @@ import { Route as LangSectionChildRouteImport } from './routes/$lang.$section.$c
 import { Route as LangEventsEventIdRouteImport } from './routes/$lang.events.$eventId'
 import { Route as LangLeadershipProfileIdRouteImport } from './routes/$lang.leadership.$profileId'
 import { Route as LangPressPressIdRouteImport } from './routes/$lang.press.$pressId'
-import { Route as LangStoriesStoryIdRouteImport } from './routes/$lang.stories.$storyId'
 import { Route as LangWhatWeDoSlugRouteImport } from './routes/$lang.what-we-do.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -102,11 +101,6 @@ const LangPressPressIdRoute = LangPressPressIdRouteImport.update({
   path: '/press/$pressId',
   getParentRoute: () => LangRoute,
 } as any)
-const LangStoriesStoryIdRoute = LangStoriesStoryIdRouteImport.update({
-  id: '/stories/$storyId',
-  path: '/stories/$storyId',
-  getParentRoute: () => LangRoute,
-} as any)
 const LangWhatWeDoSlugRoute = LangWhatWeDoSlugRouteImport.update({
   id: '/what-we-do/$slug',
   path: '/what-we-do/$slug',
@@ -129,7 +123,6 @@ export interface FileRoutesByFullPath {
   '/$lang/events/$eventId': typeof LangEventsEventIdRoute
   '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
   '/$lang/press/$pressId': typeof LangPressPressIdRoute
-  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
   '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRoutesByTo {
@@ -147,7 +140,6 @@ export interface FileRoutesByTo {
   '/$lang/events/$eventId': typeof LangEventsEventIdRoute
   '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
   '/$lang/press/$pressId': typeof LangPressPressIdRoute
-  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
   '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRoutesById {
@@ -167,7 +159,6 @@ export interface FileRoutesById {
   '/$lang/events/$eventId': typeof LangEventsEventIdRoute
   '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
   '/$lang/press/$pressId': typeof LangPressPressIdRoute
-  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
   '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRouteTypes {
@@ -188,7 +179,6 @@ export interface FileRouteTypes {
     | '/$lang/events/$eventId'
     | '/$lang/leadership/$profileId'
     | '/$lang/press/$pressId'
-    | '/$lang/stories/$storyId'
     | '/$lang/what-we-do/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -206,7 +196,6 @@ export interface FileRouteTypes {
     | '/$lang/events/$eventId'
     | '/$lang/leadership/$profileId'
     | '/$lang/press/$pressId'
-    | '/$lang/stories/$storyId'
     | '/$lang/what-we-do/$slug'
   id:
     | '__root__'
@@ -225,7 +214,6 @@ export interface FileRouteTypes {
     | '/$lang/events/$eventId'
     | '/$lang/leadership/$profileId'
     | '/$lang/press/$pressId'
-    | '/$lang/stories/$storyId'
     | '/$lang/what-we-do/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -341,13 +329,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPressPressIdRouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/stories/$storyId': {
-      id: '/$lang/stories/$storyId'
-      path: '/stories/$storyId'
-      fullPath: '/$lang/stories/$storyId'
-      preLoaderRoute: typeof LangStoriesStoryIdRouteImport
-      parentRoute: typeof LangRoute
-    }
     '/$lang/what-we-do/$slug': {
       id: '/$lang/what-we-do/$slug'
       path: '/what-we-do/$slug'
@@ -372,7 +353,6 @@ interface LangRouteChildren {
   LangEventsEventIdRoute: typeof LangEventsEventIdRoute
   LangLeadershipProfileIdRoute: typeof LangLeadershipProfileIdRoute
   LangPressPressIdRoute: typeof LangPressPressIdRoute
-  LangStoriesStoryIdRoute: typeof LangStoriesStoryIdRoute
   LangWhatWeDoSlugRoute: typeof LangWhatWeDoSlugRoute
 }
 
@@ -390,7 +370,6 @@ const LangRouteChildren: LangRouteChildren = {
   LangEventsEventIdRoute: LangEventsEventIdRoute,
   LangLeadershipProfileIdRoute: LangLeadershipProfileIdRoute,
   LangPressPressIdRoute: LangPressPressIdRoute,
-  LangStoriesStoryIdRoute: LangStoriesStoryIdRoute,
   LangWhatWeDoSlugRoute: LangWhatWeDoSlugRoute,
 }
 

@@ -152,17 +152,6 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       en: { lead: "A transparent view of IAPA's own network, shared ABF-GIZ results and ambitions for 2030." },
       fr: { lead: "Une lecture transparente du réseau propre à l'IAPA, des résultats partagés avec ABF-GIZ et des ambitions 2030." },
     },
-    stories: {
-      img: "cameroon",
-      en: {
-        lead: "Field stories from Cameroon, Mauritania, Morocco, Burkina Faso, Côte d'Ivoire and Chad.",
-        heading: "Highlight stories from across Africa",
-      },
-      fr: {
-        lead: "Récits de terrain au Cameroun, en Mauritanie, au Maroc, au Burkina Faso, en Côte d'Ivoire et au Tchad.",
-        heading: "Histoires phares à travers l'Afrique",
-      },
-    },
     testimonials: {
       img: "farmerVoices",
       en: {
