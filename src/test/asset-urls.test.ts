@@ -3,6 +3,7 @@ import { assetUrl } from "@/lib/asset-url";
 import { BANNER, DOC_FILES, IMG, PULSE, PULSE_COVER, STRUCTURE_CHARTS } from "@/components/iapa/media";
 import { PARTNER_LOGOS } from "@/components/iapa/partner-logos";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
+import { ACTION_PHOTOS } from "@/lib/iapa-action";
 import brandPdf from "@/assets/brand-guidelines.pdf.asset.json";
 import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
@@ -17,6 +18,7 @@ describe("downloadable source asset URLs", () => {
       )),
     );
     const urls = [
+      ...ACTION_PHOTOS,
       ...Object.values(IMG),
       ...Object.values(BANNER).map((banner) => banner.src),
       ...Object.values(PULSE),

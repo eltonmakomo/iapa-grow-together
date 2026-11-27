@@ -56,3 +56,5 @@
 - [x] Partners page: all logos in one strip, with ACBF and MOVE as standalone logos below
 - [x] Restyle Home What we do cards with IAPA branding, partners left, members right, and green-fill hover.
 - [x] Remove Highlight Stories: Home and Our Work sections, story pages, menu entry, search entries and tests
+
+- [x] Add Home IAPA in action section matching the reference layout with six uploaded photographs (EN/FR)

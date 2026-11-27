@@ -334,3 +334,8 @@ export const SEARCH_UI = {
   en: { title: "Search IAPA", placeholder: "Search pages, training, news…", empty: "No results found. Try another search.", popular: "Popular pages", results: "results", clear: "Clear search" },
   fr: { title: "Rechercher sur l'IAPA", placeholder: "Rechercher des pages, formations, actualités…", empty: "Aucun résultat. Essayez une autre recherche.", popular: "Pages populaires", results: "résultats", clear: "Effacer la recherche" },
 } as const;
+
+export const ACTION_UI = {
+  en: { title: "IAPA in action", photo: "IAPA in action — photograph" },
+  fr: { title: "L'IAPA en action", photo: "L'IAPA en action — photographie" },
+} as const;
