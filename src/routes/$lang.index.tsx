@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Compass, BookOpen, GraduationCap, CalendarDays, BadgeCheck, Handshake, Megaphone } from "lucide-react";
 import { ACTION_UI, CONTENT } from "@/lib/iapa-content";
-import { ACTION_PHOTOS } from "@/lib/iapa-action";
 import { PAGES } from "@/lib/iapa-pages";
 import { WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
 import { NewsletterInlineForm } from "@/components/iapa/forms";
+import { ActionGallery } from "@/components/iapa/action-gallery";
 import { EmblemBackdrop, Photo, ResultsSummary, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { bannerSpec } from "@/components/iapa/media";
@@ -140,20 +140,7 @@ function Home() {
         </div>
       </section>
 
-      <section id="iapa-in-action" className="py-16 md:py-24" aria-labelledby="action-title">
-        <div className="container-page">
-          <h2 id="action-title" className="section-title mb-8">{ACTION_UI[lang].title}</h2>
-          <ul className="grid auto-rows-[14rem] grid-cols-2 gap-4 md:auto-rows-[16rem] md:grid-cols-4">
-            {ACTION_PHOTOS.map((src, i) => (
-              <li key={src} className={i === 0 ? "col-span-2 row-span-2" : i === 3 ? "col-span-2" : i === 5 ? "md:col-span-3" : ""}>
-                <figure className="curve-card h-full overflow-hidden bg-muted">
-                  <img src={src} alt={`${ACTION_UI[lang].photo} ${i + 1}`} loading="lazy" className="h-full w-full object-cover object-top" />
-                </figure>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <ActionGallery lang={lang} title={ACTION_UI[lang].title} id="iapa-in-action" headingId="action-title" />
 
       <section className="py-16 md:py-20">
         <div className="container-page">

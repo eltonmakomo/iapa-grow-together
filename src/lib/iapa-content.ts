@@ -336,6 +336,6 @@ export const SEARCH_UI = {
 } as const;
 
 export const ACTION_UI = {
-  en: { title: "IAPA in action", photo: "IAPA in action — photograph" },
-  fr: { title: "L'IAPA en action", photo: "L'IAPA en action — photographie" },
+  en: { title: "IAPA in action", galleryTitle: "Photo gallery", photo: "IAPA in action — photograph" },
+  fr: { title: "L'IAPA en action", galleryTitle: "Galerie photo", photo: "L'IAPA en action — photographie" },
 } as const;
