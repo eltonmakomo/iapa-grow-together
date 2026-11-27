@@ -60,3 +60,5 @@
 - [x] Add Home IAPA in action section matching the reference layout with six uploaded photographs (EN/FR)
 
 - [x] Managing Board: show Organisational Structure before Operational Structure (EN/FR)
+- [x] Remove Policy Briefs, Research Papers, Case Studies, Webinars & Recordings, Multimedia and Podcasts from Knowledge Hub and across the site (EN/FR)
+- [x] Remove "Photo gallery" from all pages (EN/FR)

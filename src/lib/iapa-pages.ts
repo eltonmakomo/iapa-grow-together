@@ -75,17 +75,6 @@ const en = {
   hub: {
     lead: "Newsletters, publications and learning resources from the IAPA network.",
     publicationsTitle: "Publications",
-    libraryTitle: "Resource library",
-    library: ["Publications", "Policy briefs", "Research papers", "Case studies", "Webinars & recordings", "Multimedia", "Podcasts"],
-    categories: [
-      ["policy-briefs", "Policy Briefs", "Concise, evidence-informed reading on policies that shape inclusive agribusiness development."],
-      ["research-papers", "Research Papers", "Longer-form learning on training, professional practice and agricultural enterprise development."],
-      ["case-studies", "Case Studies", "Practical accounts of how approaches are adapted, delivered and improved in different contexts."],
-      ["webinars", "Webinars & Recordings", "Live sessions and recordings for agribusiness practitioners wherever they work."],
-      ["multimedia", "Multimedia", "Visual stories, demonstrations and interactive features from the IAPA learning network."],
-      ["podcasts", "Podcasts", "Conversations with trainers, partners and value chain experts on the practice of agribusiness."],
-    ] as [string, string, string][],
-    soon: "Coming soon",
   },
   media: {
     lead: "Milestones, events and official news from IAPA.",
@@ -220,17 +209,6 @@ const fr: PagesContent = {
   hub: {
     lead: "Lettres d'information, publications et ressources d'apprentissage du réseau IAPA.",
     publicationsTitle: "Publications",
-    libraryTitle: "Bibliothèque de ressources",
-    library: ["Publications", "Notes de politique", "Articles de recherche", "Études de cas", "Webinaires et enregistrements", "Multimédia", "Podcasts"],
-    categories: [
-      ["policy-briefs", "Notes de politique", "Des lectures concises sur les politiques qui influencent le développement inclusif de l'agribusiness."],
-      ["research-papers", "Articles de recherche", "Des analyses approfondies sur la formation, la pratique professionnelle et le développement des entreprises agricoles."],
-      ["case-studies", "Études de cas", "Des récits pratiques sur l'adaptation, la mise en œuvre et l'amélioration des approches dans différents contextes."],
-      ["webinars", "Webinaires et enregistrements", "Des sessions en direct et des enregistrements pour les praticiens de l'agribusiness où qu'ils travaillent."],
-      ["multimedia", "Multimédia", "Des récits visuels, démonstrations et contenus interactifs issus du réseau d'apprentissage de l'IAPA."],
-      ["podcasts", "Podcasts", "Des conversations avec des formateurs, partenaires et experts sur la pratique de l'agribusiness."],
-    ] as [string, string, string][],
-    soon: "Bientôt disponible",
   },
   media: {
     lead: "Étapes clés, événements et actualités officielles de l'IAPA.",

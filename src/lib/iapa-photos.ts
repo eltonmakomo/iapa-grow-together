@@ -24,4 +24,3 @@ export const CAPTIONS: Record<string, CaptionEntry> = {
 
 export const GALLERY_TITLE: Record<Lang, string> = { en: "IAPA in action", fr: "L'IAPA en action" };
 export const TRAINING_GALLERY_TITLE: Record<Lang, string> = { en: "Our trainings in the field", fr: "Nos formations sur le terrain" };
-export const MEDIA_GALLERY_TITLE: Record<Lang, string> = { en: "Photo gallery", fr: "Galerie photos" };

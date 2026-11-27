@@ -40,8 +40,7 @@ export const NAV: NavPage[] = [
     slug: "knowledge-hub", img: "mali",
     blurb: { en: "Newsletters, publications and learning resources from the IAPA network.", fr: "Lettres, publications et ressources d'apprentissage du réseau IAPA." },
     groups: [
-      { title: { en: "Publications", fr: "Publications" }, items: [c("publications", "Publications", "Publications"), c("newsletters", "Newsletters", "Lettres d'information"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("policy-briefs", "Policy Briefs", "Notes d'orientation"), c("research-papers", "Research Papers", "Documents de recherche"), c("case-studies", "Case Studies", "Études de cas")] },
-      { title: { en: "Media & learning", fr: "Médias et apprentissage" }, items: [c("webinars", "Webinars & Recordings", "Webinaires et enregistrements"), c("multimedia", "Multimedia", "Multimédia"), c("podcasts", "Podcasts", "Podcasts")] },
+      { title: { en: "Publications", fr: "Publications" }, items: [c("publications", "Publications", "Publications"), c("newsletters", "Newsletters", "Lettres d'information"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA")] },
     ],
   },
   {

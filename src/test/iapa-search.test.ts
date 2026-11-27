@@ -17,9 +17,13 @@ describe("site search", () => {
   it("indexes Knowledge Hub and Media category pages in both languages", () => {
     for (const lang of ["en", "fr"] as const) {
       const hubChildren = searchIndex(lang).filter((entry) => /knowledge-hub\//.test(entry.href)).map((entry) => entry.href);
-      expect(hubChildren).toHaveLength(9);
-      expect(hubChildren).toContain("/$lang/knowledge-hub/key-documents");
-      expect(hubChildren).toContain("/$lang/knowledge-hub/newsletters");
+      expect(hubChildren).toEqual([
+        "/$lang/knowledge-hub/publications",
+        "/$lang/knowledge-hub/newsletters",
+        "/$lang/knowledge-hub/key-documents",
+      ]);
+      expect(searchSite("Policy Briefs", lang)).toEqual([]);
+      expect(searchSite("Podcasts", lang)).toEqual([]);
       const mediaChildren = searchIndex(lang).filter((entry) => /\/media\//.test(entry.href)).map((entry) => entry.href);
       expect(mediaChildren).toEqual(["/$lang/media/events", "/$lang/media/press-releases"]);
     }

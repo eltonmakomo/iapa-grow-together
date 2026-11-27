@@ -44,13 +44,13 @@ describe("IAPA content", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
-  it("gives all 32 dropdown children across all 6 top-level pages a unique page path in each language", () => {
+  it("gives all 26 dropdown children across all 6 top-level pages a unique page path in each language", () => {
     expect(NAV.every((page) => page.groups.length > 0)).toBe(true);
     const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
-    expect(children).toHaveLength(32);
+    expect(children).toHaveLength(26);
     for (const lang of ["en", "fr"] as const) {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
-      expect(new Set(paths).size).toBe(32);
+      expect(new Set(paths).size).toBe(26);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
@@ -85,14 +85,15 @@ describe("IAPA content", () => {
       leads.add(entry!.en.lead);
       leads.add(entry!.fr.lead);
     }
-    expect(heroes.size).toBe(32);
-    expect(leads.size).toBe(64);
+    expect(heroes.size).toBe(26);
+    expect(leads.size).toBe(52);
   });
-  it("populates all 6 Knowledge Hub categories, Team and Testimonials with sample content in both languages", () => {
-    expect(NAV.find((n) => n.slug === "knowledge-hub")?.groups).toHaveLength(2);
+  it("keeps Knowledge Hub to Publications, Newsletters and Key Documents and populates Team, Testimonials and Join Us", () => {
+    const hubGroups = NAV.find((n) => n.slug === "knowledge-hub")?.groups ?? [];
+    expect(hubGroups).toHaveLength(1);
+    expect(hubGroups[0]?.items.map((i) => i.id)).toEqual(["publications", "newsletters", "key-documents"]);
     for (const id of ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"]) {
-      expect(CHILD_CONTENT["knowledge-hub"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
-      expect(CHILD_CONTENT["knowledge-hub"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
+      expect(CHILD_CONTENT["knowledge-hub"][id], id).toBeUndefined();
     }
     expect(CHILD_CONTENT["who-we-are"]["iapa-team"]?.en.samples?.length).toBeGreaterThanOrEqual(3);
     expect(CHILD_CONTENT["our-work"]["testimonials"]?.en.samples?.length).toBeGreaterThanOrEqual(3);

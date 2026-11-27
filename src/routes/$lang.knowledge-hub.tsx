@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, BookOpen, Download, FileText, Film, Headphones, Video } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUpRight, Download, FileText } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { childLabel } from "@/lib/iapa-nav";
@@ -12,21 +12,11 @@ export const Route = createFileRoute("/$lang/knowledge-hub")({
   component: Hub,
 });
 
-const CAT_ICON: Record<string, typeof FileText> = {
-  "policy-briefs": FileText,
-  "research-papers": BookOpen,
-  "case-studies": FileText,
-  webinars: Video,
-  multimedia: Film,
-  podcasts: Headphones,
-};
-
 function Hub() {
   const lang = asLang(Route.useParams().lang);
   const h = CONTENT[lang].hub;
   const p = PAGES[lang].hub;
   const m = PAGES[lang].media;
-  const explore = lang === "fr" ? "Explorer" : "Explore";
   return (
     <>
       <PageHero eyebrow={h.eyebrow} title={h.title} lead={p.lead} img="morocco" />
@@ -51,26 +41,6 @@ function Hub() {
                   <a href={file.url} download={file.name} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
                 </div>}
               </li>;
-            })}
-          </ul>
-        </div>
-      </section>
-      <section className="bg-secondary py-16 md:py-24">
-        <div className="container-page">
-          <SectionHead title={p.libraryTitle} />
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {p.categories.map(([id, title, description]) => {
-              const Icon = CAT_ICON[id] ?? FileText;
-              return (
-                <li key={id} id={id}>
-                  <Link to="/$lang/$section/$child" params={{ lang, section: "knowledge-hub", child: id }} className="curve-card group flex h-full flex-col bg-card p-6 transition hover:-translate-y-0.5">
-                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-primary"><Icon className="h-5 w-5" aria-hidden /></span>
-                    <h3 className="mt-4 text-lg font-extrabold group-hover:text-primary">{title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{explore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
-                  </Link>
-                </li>
-              );
             })}
           </ul>
         </div>
