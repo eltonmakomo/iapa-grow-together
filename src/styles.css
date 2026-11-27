@@ -266,6 +266,10 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   .page-banner .banner-content { padding-block: 4rem; }
   .page-banner .banner-title { font-size: 3rem; }
   .home-banner .banner-title { font-size: 2.75rem; }
+  /* The crop-field photo is brighter on the left, so hold the lead and ghost button legible. */
+  .home-banner .photo-scrim {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--banner-night) 92%, transparent) 0%, color-mix(in srgb, var(--banner-night) 62%, transparent) 52%, transparent 100%);
+  }
   .banner-lead { font-size: 1.125rem; }
   .banner-actions { margin-top: 3.25rem; }
 }

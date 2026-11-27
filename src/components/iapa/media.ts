@@ -1,6 +1,6 @@
 import { assetUrl } from "@/lib/asset-url";
 import heroImg from "@/assets/hero-farmer.jpg.asset.json";
-import homeCornField from "@/assets/banners/home-corn-field.jpg.asset.json";
+import homeCropRows from "@/assets/banners/home-crop-rows.jpg.asset.json";
 import refinedAbout from "@/assets/banner-refinements/about.jpg.asset.json";
 import refinedAbs from "@/assets/banner-refinements/abs.jpg.asset.json";
 import refinedBlended from "@/assets/banner-refinements/blended.jpg.asset.json";
@@ -181,7 +181,7 @@ const REFINED_BANNERS: Record<string, string> = {
 /** Reviewed banner photographs with face-safe focal points and no mirroring. */
 export const BANNER: Record<string, BannerSpec> = Object.fromEntries(
   Object.entries(NEW_BANNERS).map(([key, spec]) => [key, key === "home"
-    ? { src: assetUrl(homeCornField.url), pos: "50% 50%" }
+    ? { src: assetUrl(homeCropRows.url), pos: "50% 62%" }
     : { src: assetUrl(REFINED_BANNERS[key] ?? spec.src), pos: "70% 15%" }]),
 );
 export const bannerSpec = (key: string): BannerSpec =>
