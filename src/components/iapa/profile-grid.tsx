@@ -29,14 +29,14 @@ export function ProfileGrid({ lang, items }: { lang: Lang; items: SampleItem[] }
               <Link
                 to="/$lang/leadership/$profileId"
                 params={{ lang, profileId: leader.slug }}
-                className="flex h-full flex-col overflow-hidden rounded-lg border bg-card shadow-soft transition hover:-translate-y-1"
+                className="card-fill flex h-full flex-col overflow-hidden rounded-lg border bg-card shadow-soft transition hover:-translate-y-1"
               >
                 <img src={leader.portraitUrl} alt={item.name ?? item.title} loading="lazy" className="aspect-square w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-bold uppercase text-primary">{item.title}</p>
-                  <h3 className="mt-2 text-base font-extrabold leading-snug group-hover:text-primary sm:text-lg lg:text-xl">{item.name ?? item.title}</h3>
-                  {item.location && <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />{item.location}</p>}
-                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-bold text-primary">
+                  <p className="card-fill-text text-xs font-bold uppercase text-primary">{item.title}</p>
+                  <h3 className="mt-2 text-base font-extrabold leading-snug sm:text-lg lg:text-xl">{item.name ?? item.title}</h3>
+                  {item.location && <p className="card-fill-text mt-2 flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />{item.location}</p>}
+                  <span className="card-fill-text mt-auto inline-flex items-center gap-1 pt-4 text-sm font-bold text-primary">
                     {ui.more} <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                   </span>
                 </div>
@@ -45,22 +45,22 @@ export function ProfileGrid({ lang, items }: { lang: Lang; items: SampleItem[] }
           );
         }
         return (
-          <li key={item.name ?? item.title} className="group flex h-full flex-col overflow-hidden rounded-lg border bg-card shadow-soft">
+          <li key={item.name ?? item.title} className="card-fill group flex h-full flex-col overflow-hidden rounded-lg border bg-card shadow-soft">
             {item.portraitUrl ? (
               <img src={item.portraitUrl} alt={item.name ?? item.title} loading="lazy" className="aspect-square w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
             ) : (
-              <div className="grid h-24 place-items-center bg-secondary text-2xl font-bold text-primary">
+              <div className="card-fill-panel grid h-24 place-items-center bg-secondary text-2xl font-bold text-primary">
                 {(item.name ?? item.title).split(/\s+/).filter((word) => /[A-Za-zÀ-ÿ]/.test(word[0] ?? "")).slice(0, 2).map((word) => word[0]).join("")}
               </div>
             )}
             <div className="flex flex-1 flex-col p-5">
-              <p className="text-xs font-bold uppercase text-primary">{item.title}</p>
+              <p className="card-fill-text text-xs font-bold uppercase text-primary">{item.title}</p>
               <h3 className="mt-2 text-base font-extrabold leading-snug sm:text-lg lg:text-xl">{item.name ?? item.title}</h3>
-              {item.location && <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />{item.location}</p>}
+              {item.location && <p className="card-fill-text mt-2 flex items-center gap-1.5 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />{item.location}</p>}
               <div className="mt-auto pt-3">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-primary" aria-label={`${ui.more} · ${item.name ?? item.title}`} title={ui.more}>
+                  <Button variant="ghost" size="icon" className="card-fill-panel text-primary" aria-label={`${ui.more} · ${item.name ?? item.title}`} title={ui.more}>
                     <ArrowUpRight aria-hidden />
                   </Button>
                 </DialogTrigger>
