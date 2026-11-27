@@ -53,4 +53,4 @@
 - [x] Architecture alignment: clickable detail pages (What we do, Training schools & formats, Media events & press release, Leadership profiles), Stories section & Home highlight cards, Newsletter Issue 1, real DB-backed forms (newsletter, membership, partnership, contact, training, upcoming event), full desktop & mobile dropdown sub-menus, and populated Testimonials, Team & 6 Knowledge Hub categories
 - [x] Use the uploaded crop-field photograph for the Home banner in EN/FR
 - [x] Stats section: show only 4 figures (20+ countries, 1.5M+ farmers trained, 500+ cooperatives, 75 master trainers) plus a "View all" link to IAPA in Numbers
-- [ ] Partners page: all logos in one strip, with ACBF and MOVE as standalone logos below
+- [x] Partners page: all logos in one strip, with ACBF and MOVE as standalone logos below
