@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Compass, BookOpen, GraduationCap, CalendarDays, BadgeCheck, Handshake, Megaphone } from "lucide-react";
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
@@ -8,6 +8,16 @@ import { NewsletterInlineForm } from "@/components/iapa/forms";
 import { EmblemBackdrop, Photo, ResultsSummary, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { bannerSpec, IMG, PHOTO_POSITION } from "@/components/iapa/media";
+
+const offerIcons = {
+  "strategic-advisory": Compass,
+  "curriculum-adaptation": BookOpen,
+  "training-at-scale": GraduationCap,
+  "events-conferences": CalendarDays,
+  "certification-capacity": BadgeCheck,
+  "coaching-mentorship": Handshake,
+  "visibility-opportunities": Megaphone,
+};
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -78,33 +88,45 @@ function Home() {
       <section id="key-initiatives" className="bg-card py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={p.initiativesTitle} />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <div className="mt-10 grid gap-10 lg:grid-cols-[2fr_1fr]">
             <div>
               <h3 className="eyebrow">{t.work.partnersLabel}</h3>
               <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                {partnerOffers.map((item) => (
+                {partnerOffers.map((item) => {
+                  const Icon = offerIcons[item.slug as keyof typeof offerIcons] ?? Compass;
+                  return (
                   <li key={item.slug}>
-                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="curve-card group relative flex h-full flex-col overflow-hidden border bg-background p-6 transition hover:-translate-y-0.5">
-                      <h4 className="relative text-lg font-extrabold group-hover:text-primary">{item[lang].title}</h4>
-                      <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="offer-card group flex h-full flex-col rounded-lg border border-primary/20 bg-background p-6 text-primary md:p-7">
+                      <div className="mb-7 flex items-start justify-between gap-4">
+                        <Icon className="h-10 w-10 shrink-0" strokeWidth={1.5} aria-hidden />
+                        <ArrowUpRight className="h-6 w-6 shrink-0" strokeWidth={1.5} aria-hidden />
+                      </div>
+                      <h4 className="text-xl font-extrabold leading-snug">{item[lang].title}</h4>
+                      <p className="offer-description mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold">{p.readMore} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden /></span>
                     </Link>
                   </li>
-                ))}
+                );})}
               </ul>
             </div>
             <div>
               <h3 className="eyebrow">{t.work.membersLabel}</h3>
               <ul className="mt-4 grid gap-4">
-                {memberOffers.map((item) => (
+                {memberOffers.map((item) => {
+                  const Icon = offerIcons[item.slug as keyof typeof offerIcons] ?? BadgeCheck;
+                  return (
                   <li key={item.slug}>
-                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="group block rounded-2xl bg-secondary p-6 transition hover:-translate-y-0.5 hover:shadow-soft">
-                      <h4 className="text-lg font-extrabold group-hover:text-primary">{item[lang].title}</h4>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="offer-card group flex h-full flex-col rounded-lg border border-primary/20 bg-background p-6 text-primary">
+                      <div className="mb-4 flex items-start justify-between gap-4">
+                        <Icon className="h-8 w-8 shrink-0" strokeWidth={1.5} aria-hidden />
+                        <ArrowUpRight className="h-5 w-5 shrink-0" strokeWidth={1.5} aria-hidden />
+                      </div>
+                      <h4 className="text-lg font-extrabold leading-snug">{item[lang].title}</h4>
+                      <p className="offer-description mt-2 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
+                      <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold">{p.readMore} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden /></span>
                     </Link>
                   </li>
-                ))}
+                );})}
               </ul>
               <Link to="/$lang/join-us" params={{ lang }} className="group mt-5 inline-flex items-center gap-1.5 font-bold text-primary underline-offset-4 hover:underline">{p.nav["join-us"]} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></Link>
             </div>

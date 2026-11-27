@@ -54,3 +54,4 @@
 - [x] Use the uploaded crop-field photograph for the Home banner in EN/FR
 - [x] Stats section: show only 4 figures (20+ countries, 1.5M+ farmers trained, 500+ cooperatives, 75 master trainers) plus a "View all" link to IAPA in Numbers
 - [x] Partners page: all logos in one strip, with ACBF and MOVE as standalone logos below
+- [x] Restyle Home What we do cards with IAPA branding, partners left, members right, and green-fill hover.

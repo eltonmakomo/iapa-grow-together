@@ -303,6 +303,23 @@ main a.rounded-full[class*="px-"] { font-size: 0.875rem; max-width: 100%; }
   }
 }
 
+/* Service cards: the IAPA-green foreground becomes the full fill on interaction. */
+.offer-card {
+  transition: background-color 240ms ease, color 240ms ease, border-color 240ms ease;
+}
+.offer-card .offer-description { transition: color 240ms ease; }
+.offer-card:hover,
+.offer-card:focus-visible {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.offer-card:hover .offer-description,
+.offer-card:focus-visible .offer-description { color: var(--primary-foreground); }
+@media (prefers-reduced-motion: reduce) {
+  .offer-card, .offer-card .offer-description { transition: none; }
+}
+
 /* Hero ring-and-pill CTA buttons (matching reference banner). */
 .wwu { --wwu-gap: 6px; --wwu-slot: 44px; }.wwu-fill {
   position: absolute;
