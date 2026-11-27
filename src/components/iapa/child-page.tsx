@@ -11,7 +11,7 @@ import { EventsSections } from "@/components/iapa/events";
 import { FormDialog, NewsletterInlineForm } from "@/components/iapa/forms";
 import { PulseIssuesGrid } from "@/components/iapa/pulse-issues";
 import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
-import { PartnerCards } from "@/components/iapa/partner-logos";
+import { PartnerStrip } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
 import { DOC_FILES, IMG, PHOTO_POSITION, STRUCTURE_CHARTS, type ImgKey } from "@/components/iapa/media";
 
@@ -83,7 +83,7 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
       </figure>
     </div>
   </>;
-  if (child === "partners") return <><PartnerCards lang={lang} className="sm:grid-cols-2 lg:grid-cols-3" /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
+  if (child === "partners") return <><PartnerStrip lang={lang} /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>
     <div className="curve-card bg-primary p-7 text-primary-foreground"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider"><MapPin className="h-4 w-4" aria-hidden />{p.hq}</p><p className="mt-2 text-xl font-extrabold">{CONTACT.address}</p></div>
     <div className="mt-10"><SectionHead title={t.regionsTitle} /><AfricaImpactMap lang={lang} /></div>
