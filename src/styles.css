@@ -118,6 +118,8 @@
 .site-header .header-capsule { max-width: 80rem; height: 5rem; padding-left: 1rem; padding-right: 0.5rem; transition: height 250ms ease, background-color 250ms ease; }
 .header-logo { height: 2.75rem; max-width: 100%; object-fit: contain; transition: height 250ms ease; }
 .site-header.is-compact .header-actions { gap: 32px; }
+/* Scrolled: only the hamburger remains, so drop the auto margin that pushed the group right. */
+.site-header.is-compact .header-capsule .header-actions { margin-left: 0; }
 .header-search { width: 3.5rem; height: 3.5rem; }
 .header-icon.btn-hover::before { display: none; }
 .header-icon.btn-hover:hover { box-shadow: none; transform: none; }
@@ -126,14 +128,16 @@
 .mobile-menu { position: fixed; right: 0; top: 0; height: 100dvh; width: min(88%, 24rem); }
 /* Scrolled: the bar keeps only the hamburger — logo, search, language and nav move into the drawer. */
 .site-header.is-compact .header-capsule {
-  width: max-content;
+  width: 3.5rem;
   max-width: none;
   margin-inline: auto 0;
-  justify-content: flex-end;
+  justify-content: center;
   height: 3.5rem;
-  padding-inline: 0.5rem;
+  padding-inline: 0;
+  gap: 0;
   background-color: color-mix(in srgb, var(--card) 90%, transparent);
 }
+.site-header.is-compact .header-capsule .header-brand,
 .site-header.is-compact .header-capsule .header-logo,
 .site-header.is-compact .header-capsule .header-nav,
 .site-header.is-compact .header-capsule .header-search,
@@ -177,6 +181,7 @@ header nav a, header nav button { white-space: nowrap; }
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
 
 /* Content density shared by parent, child, article and legal page sections. */
+main { overflow-x: clip; }
 main section:not(.page-banner):is(.py-16, .py-14, .py-20, .py-24) {
   padding-block: var(--section-space);
 }

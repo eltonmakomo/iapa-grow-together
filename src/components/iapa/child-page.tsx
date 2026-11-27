@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Check, FileText, MapPin, Newspaper } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
@@ -9,6 +9,7 @@ import { EventsSections } from "@/components/iapa/events";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
+import { DOC_FILES, PULSE, PULSE_COVER } from "@/components/iapa/media";
 
 function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | undefined>> }) {
   return (
@@ -94,12 +95,42 @@ function MediaBody({ lang, child }: { lang: Lang; child: string }) {
   if (child === "events") return <EventsSections lang={lang} />;
   if (child === "key-documents") return <>
     <SectionHead title={m.docsTitle} />
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text]) => <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text], i) => {
+      const file = DOC_FILES[i];
+      return <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">
       <div className="flex items-center justify-between gap-4"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary"><FileText className="h-6 w-6" aria-hidden /></span><span className="rounded-full bg-sun/25 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">IAPA</span></div>
       <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{text}</p>
-      <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(title ?? "")}`} className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.requestDoc}<ArrowRight className="h-4 w-4" aria-hidden /></a>
-    </li>)}</ul>
+      {file && <div className="mt-6 flex flex-wrap gap-3">
+        <a href={file.url} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.viewDoc}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
+        <a href={file.url} download={file.name} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
+      </div>}
+    </li>; })}</ul>
   </>;
+  if (child === "newsletters") {
+    const h = CONTENT[lang].hub;
+    return <>
+      <SectionHead title={h.title} lead={h.lead} />
+      <ul className="mt-8 grid gap-6 md:grid-cols-2">
+        {h.issues.map((is) => {
+          const pdf = PULSE[is.key];
+          const cover = PULSE_COVER[is.key];
+          return <li key={is.key} className="curve-card flex flex-col gap-5 border bg-card p-7 sm:flex-row">
+            {cover && <img src={cover} alt={`IAPA Pulse — ${is.label}`} loading="lazy" className="w-full shrink-0 rounded-lg border shadow-soft sm:w-44" />}
+            <div className="flex flex-1 flex-col">
+              <p className="eyebrow">{is.label}</p>
+              <h3 className="mt-2 text-2xl font-extrabold leading-tight">{is.title}</h3>
+              <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{is.text}</p>
+              {pdf && <div className="mt-5 flex flex-wrap gap-3">
+                <a href={pdf} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.viewDoc}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
+                <a href={pdf} download={`IAPA-Pulse-${is.key}.pdf`} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
+              </div>}
+              <p className="mt-3 text-xs text-muted-foreground">{h.size}</p>
+            </div>
+          </li>;
+        })}
+      </ul>
+    </>;
+  }
   return <>
     <SectionHead title={m.pressTitle} />
     <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.press.map(([date, title, text]) => <li key={title} className="curve-card group border bg-card p-7 transition duration-300 hover:-translate-y-1">

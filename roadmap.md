@@ -46,3 +46,6 @@
 - [x] Make site search find live pages and content in EN/FR on desktop and phones.
 - [x] Place search and language beside the collapsed hamburger with 32px spacing.
 - [x] Scrolled header shows only the hamburger; logo, search, language and nav live in the drawer
+- [x] Key documents: View and Download CTAs on the strategic plan and operationalisation plan
+- [x] Add a Newsletters page under Media with Pulse issues viewable and downloadable, plus a matching banner
+- [x] Make the collapsed menu button circular with its lines centred

@@ -32,6 +32,8 @@ import spirulina from "@/assets/chad-spirulina.jpg.asset.json";
 import seedling from "@/assets/seedling.jpg.asset.json";
 import pulse2Cover from "@/assets/pulse2-cover.jpg.asset.json";
 import pulse2 from "@/assets/pulse-2.pdf.asset.json";
+import strategicPlan from "@/assets/iapa-strategic-plan-2026-2030.pdf.asset.json";
+import first12Plan from "@/assets/iapa-first-12-months-plan.pdf.asset.json";
 import aboutHandover from "@/assets/child-banners/about-handover.webp.asset.json";
 import aquacultureProcessing from "@/assets/child-banners/aquaculture-processing.webp.asset.json";
 import blendedWorkshop from "@/assets/child-banners/blended-workshop.webp.asset.json";
@@ -57,6 +59,7 @@ import resultsCertificates from "@/assets/child-banners/results-certificates.web
 import scholarshipCertificate from "@/assets/child-banners/scholarship-certificate.webp.asset.json";
 import tailoredTraining from "@/assets/child-banners/tailored-training.webp.asset.json";
 import teamAssociates from "@/assets/child-banners/team-associates.webp.asset.json";
+import newslettersPhoto from "@/assets/headers/newsletters.jpg.asset.json";
 
 const IMG_SOURCES = {
   hero: heroImg.url, cameroon: cameroon.url, mauritania: mauritania.url, morocco: morocco.url, burkina: burkina.url, ghana: ghana.url,
@@ -87,6 +90,7 @@ const IMG_SOURCES = {
   scholarshipCertificate: scholarshipCertificate.url,
   tailoredTraining: tailoredTraining.url,
   teamAssociates: teamAssociates.url,
+  newsletters: newslettersPhoto.url,
 };
 
 export const IMG = Object.fromEntries(
@@ -97,6 +101,7 @@ export type ImgKey = keyof typeof IMG;
 // Focal points keep faces just below the top edge, including in wide banners.
 export const PHOTO_POSITION: Record<ImgKey, string> = {
   hero: "30% 15%",
+  newsletters: "68% 12%",
   burkinaMaize: "50% 20%",
   burkina: "50% 20%",
   burkinaSession: "50% 15%",
@@ -141,6 +146,12 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
 };
 export const PULSE: Record<string, string> = { "2": assetUrl(pulse2.url) };
 export const PULSE_COVER: Record<string, string> = { "2": assetUrl(pulse2Cover.url) };
+
+/** Downloadable key documents, in the same order as PAGES[lang].media.docs. */
+export const DOC_FILES: { url: string; name: string }[] = [
+  { url: assetUrl(strategicPlan.url), name: "IAPA-Strategic-Plan-2026-2030.pdf" },
+  { url: assetUrl(first12Plan.url), name: "IAPA-First-12-Months-Operationalisation-Plan.pdf" },
+];
 
 import { NEW_BANNERS, type BannerSpec } from "@/components/iapa/banners";
 

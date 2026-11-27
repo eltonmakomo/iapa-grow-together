@@ -45,7 +45,7 @@ export const NAV: NavPage[] = [
     slug: "media", img: "evaluation",
     blurb: { en: "Milestones, events and official news from IAPA.", fr: "Étapes clés, événements et actualités officielles de l'IAPA." },
     groups: [
-      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("press-releases", "Press Releases", "Communiqués de presse")] },
+      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("newsletters", "Newsletters", "Lettres d'information"), c("press-releases", "Press Releases", "Communiqués de presse")] },
     ],
   },
   {

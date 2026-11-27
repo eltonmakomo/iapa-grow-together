@@ -22,6 +22,7 @@ import bLeadership from "@/assets/headers/leadership.jpg.asset.json";
 import bManagingBoard from "@/assets/banners/managing-board.webp.asset.json";
 import bMauritania from "@/assets/banners/mauritania.webp.asset.json";
 import bMorocco from "@/assets/headers/morocco.jpg.asset.json";
+import bNewsletters from "@/assets/headers/newsletters.jpg.asset.json";
 import bOffices from "@/assets/banners/offices.webp.asset.json";
 import bOnline from "@/assets/banners/online.webp.asset.json";
 import bPartners from "@/assets/banners/partners.webp.asset.json";
@@ -57,6 +58,7 @@ export const NEW_BANNERS: Record<string, BannerSpec> = {
   "managing-board": { src: bManagingBoard.url, pos: "60% 15%" },
   "mauritania": { src: bMauritania.url, pos: "50% 0%" },
   "morocco": { src: bMorocco.url, pos: "68% 20%" },
+  "newsletters": { src: bNewsletters.url, pos: "68% 12%" },
   "offices": { src: bOffices.url, pos: "50% 0%" },
   "online": { src: bOnline.url, pos: "68% 18%" },
   "partners": { src: bPartners.url, pos: "50% 0%" },

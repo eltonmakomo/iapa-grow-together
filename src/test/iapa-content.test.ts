@@ -32,12 +32,12 @@ describe("IAPA content", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
-  it("gives all 24 dropdown children a unique page path in each language", () => {
+  it("gives all 25 dropdown children a unique page path in each language", () => {
     const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
-    expect(children).toHaveLength(24);
+    expect(children).toHaveLength(25);
     for (const lang of ["en", "fr"] as const) {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
-      expect(new Set(paths).size).toBe(24);
+      expect(new Set(paths).size).toBe(25);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
@@ -72,8 +72,8 @@ describe("IAPA content", () => {
       leads.add(entry!.en.lead);
       leads.add(entry!.fr.lead);
     }
-    expect(heroes.size).toBe(24);
-    expect(leads.size).toBe(48);
+    expect(heroes.size).toBe(25);
+    expect(leads.size).toBe(50);
   });
   it("keeps Knowledge Hub sub-pages empty and lists the six coming-soon categories in both languages", () => {
     expect(Object.keys(CHILD_CONTENT["knowledge-hub"])).toHaveLength(0);

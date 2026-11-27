@@ -344,6 +344,11 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       en: { lead: "The strategic and operational documents that guide IAPA's priorities and implementation.", heading: "Strategy & operational documents" },
       fr: { lead: "Les documents stratégiques et opérationnels qui guident les priorités et la mise en œuvre de l'IAPA.", heading: "Documents stratégiques et opérationnels" },
     },
+    "newsletters": {
+      img: "newsletters",
+      en: { lead: "IAPA Pulse newsletter issues, readable online and downloadable as PDFs.", heading: "IAPA Pulse newsletter archive" },
+      fr: { lead: "Les numéros de la lettre d'information IAPA Pulse, à lire en ligne et à télécharger en PDF.", heading: "Archives de la lettre d'information IAPA Pulse" },
+    },
     "press-releases": {
       img: "signing",
       en: { lead: "Official announcements on IAPA's registration, legal milestones and institutional development.", heading: "Official IAPA announcements" },

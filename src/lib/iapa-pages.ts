@@ -106,7 +106,8 @@ const en = {
       ["IAPA Strategic Plan 2026–2030", "Our five-year strategy and three strategic pillars."],
       ["First 12 months operationalisation plan", "How the strategy is put into action."],
     ],
-    requestDoc: "Request a copy",
+    viewDoc: "View",
+    downloadDoc: "Download",
   },
   join: {
     lead: "Become a member, partner with us, or explore opportunities in the network.",
@@ -246,7 +247,8 @@ const fr: PagesContent = {
       ["Plan stratégique IAPA 2026–2030", "Notre stratégie quinquennale et ses trois piliers."],
       ["Plan d'opérationnalisation des 12 premiers mois", "La mise en œuvre de la stratégie."],
     ],
-    requestDoc: "Demander une copie",
+    viewDoc: "Voir",
+    downloadDoc: "Télécharger",
   },
   join: {
     lead: "Devenez membre, devenez partenaire ou découvrez les opportunités du réseau.",

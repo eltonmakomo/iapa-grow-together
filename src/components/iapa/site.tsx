@@ -129,7 +129,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     <header className={`site-header fixed inset-x-0 top-0 z-50 ${compact ? "is-compact" : ""}`} onMouseLeave={hide}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">{t.skip}</a>
       <div className="header-capsule container-page flex items-center justify-between gap-4 rounded-full border border-card/70 bg-card/80 text-foreground shadow-soft backdrop-blur-xl">
-        <Link to="/$lang" params={{ lang }} className="min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
+        <Link to="/$lang" params={{ lang }} className="header-brand min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
           <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={180} height={50} className="header-logo w-auto" />
         </Link>
         <nav aria-label="Primary" className="header-nav hidden xl:block">
