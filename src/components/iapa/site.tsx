@@ -107,6 +107,11 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => {
+    // Back at the top on a desktop screen the full nav returns, so the drawer is no longer needed.
+    if (compact) return;
+    if (window.innerWidth >= 1280) { setOpen(false); setSub(null); }
+  }, [compact]);
+  useEffect(() => {
     if (!open && !mega) return;
     const k = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(false); setMega(null); } };
     window.addEventListener("keydown", k);
@@ -123,7 +128,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         <Link to="/$lang" params={{ lang }} className="min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
           <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={180} height={50} className="header-logo w-auto" />
         </Link>
-        <nav aria-label="Primary" className="hidden xl:block">
+        <nav aria-label="Primary" className="header-nav hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {PAGE_SLUGS.map((s) => {
               const hasMenu = navPage(s).groups.length > 0;
@@ -146,14 +151,14 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             <Link to="/$lang/knowledge-hub" params={{ lang }} aria-label={p.nav["knowledge-hub"]}><Search aria-hidden /></Link>
           </Button>
         </div>
-          <Button variant="ghost" size="icon" type="button" className="header-icon ml-auto h-10 w-10 rounded-full xl:hidden"
+          <Button variant="ghost" size="icon" type="button" className="header-icon header-toggle ml-auto h-10 w-10 rounded-full"
             aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? t.close : t.menu} onClick={() => setOpen((o) => !o)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
       </div>
       {mega && <div className="hidden xl:block" onMouseEnter={() => show(mega)}><MegaPanel key={mega} lang={lang} slug={mega} onNavigate={() => setMega(null)} /></div>}
       {open && (
-        <nav id="mobile-nav" aria-label="Primary" className="mobile-menu overflow-y-auto border bg-card shadow-lift xl:hidden">
+        <nav id="mobile-nav" aria-label="Primary" className="mobile-menu overflow-y-auto border bg-card shadow-lift">
           <div className="flex items-center justify-between px-5 pt-5"><LangSwitch lang={lang} /><Button variant="ghost" size="icon" className="header-icon" aria-label={t.close} onClick={() => setOpen(false)}><X aria-hidden /></Button></div>
           <ul className="container-page flex flex-col py-3">
             <li><Link to="/$lang" params={{ lang }} activeOptions={{ exact: true }} className="block rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.home}</Link></li>
@@ -183,7 +188,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         </nav>
       )}
     </header>
-    {open && <div aria-hidden onClick={() => setOpen(false)} className="fixed inset-0 z-40 bg-foreground/50 xl:hidden" />}
+    {open && <div aria-hidden onClick={() => setOpen(false)} className="fixed inset-0 z-40 bg-foreground/50" />}
     {mega && <div aria-hidden onClick={() => setMega(null)} className="mega-backdrop fixed inset-0 z-40 hidden bg-forest/25 backdrop-blur-md xl:block" />}
     </>
   );

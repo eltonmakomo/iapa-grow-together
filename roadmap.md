@@ -42,3 +42,4 @@
 - [x] Match the reference homepage photograph and floating header menu in EN/FR
 - [x] Audit and repair all banner photos: replace 13 unsuitable images, keep faces intact, disable banner zoom, verify all 31 pages in EN/FR with complete photos on narrow screens.
 - [x] Request publication of the reviewed banner photographs and framing updates.
+- [x] Collapse the desktop nav into the hamburger menu once the page is scrolled (EN/FR)
