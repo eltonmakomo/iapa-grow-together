@@ -9,7 +9,7 @@ import { EventsSections } from "@/components/iapa/events";
 import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
-import { DOC_FILES, PULSE, PULSE_COVER } from "@/components/iapa/media";
+import { DOC_FILES, PULSE, PULSE_COVER, STRUCTURE_CHARTS } from "@/components/iapa/media";
 
 function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | undefined>> }) {
   return (
@@ -68,8 +68,16 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
     <div className="mt-14"><SectionHead eyebrow={t.pillarsEyebrow} title={t.pillarsTitle} /><PairCards items={t.pillars} /></div>
   </>;
   if (child === "managing-board") return <>
-    <SectionHead title={p.govTitle} lead={p.govText} /><PairCards items={p.organs} />
-    <div className="mt-12"><SectionHead title={p.boardTitle} /><ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{p.board.map((role) => <li key={role} className="rounded-2xl border bg-card p-5 font-semibold">{role}</li>)}</ul></div>
+    <SectionHead eyebrow={p.govTitle} title={p.opsStructureTitle} lead={p.opsStructureLead} />
+    <figure className="mt-8 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
+      <img src={STRUCTURE_CHARTS.operational} alt={`${p.opsStructureTitle} — ${p.opsStructureLead}`} className="block h-auto w-full rounded-xl" />
+    </figure>
+    <div className="mt-14">
+      <SectionHead eyebrow={p.govTitle} title={p.orgStructureTitle} lead={p.orgStructureLead} />
+      <figure className="mt-8 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
+        <img src={STRUCTURE_CHARTS.organizational} alt={`${p.orgStructureTitle} — ${p.orgStructureLead}`} loading="lazy" className="block h-auto w-full rounded-xl" />
+      </figure>
+    </div>
   </>;
   if (child === "partners") return <><PartnerCards lang={lang} className="sm:grid-cols-2 lg:grid-cols-3" /><div className="mt-12"><SectionHead title={w.inViewTitle} /><PairCards items={w.inView.map(([name, text]) => [name, text])} /></div></>;
   return <>

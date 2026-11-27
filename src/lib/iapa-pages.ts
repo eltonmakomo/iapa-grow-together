@@ -47,6 +47,10 @@ const en = {
     ],
     govTitle: "Governance",
     govText: "In line with its statutes, IAPA is governed by:",
+    opsStructureTitle: "Operational Structure",
+    opsStructureLead: "How decisions, oversight and day-to-day operations connect.",
+    orgStructureTitle: "Organizational Structure",
+    orgStructureLead: "From the Board of Directors to country associations across five regions.",
     organs: [
       ["General Assembly", "The decision-making body of all members, with honorary members."],
       ["Board of Directors", "9 members responsible for strategic direction and policy."],
@@ -188,6 +192,10 @@ const fr: PagesContent = {
     ],
     govTitle: "Gouvernance",
     govText: "Conformément à ses statuts, l'IAPA est gouvernée par :",
+    opsStructureTitle: "Structure opérationnelle",
+    opsStructureLead: "Comment les décisions, le contrôle et les opérations quotidiennes s'articulent.",
+    orgStructureTitle: "Structure organisationnelle",
+    orgStructureLead: "Du Conseil d'administration aux associations nationales dans cinq régions.",
     organs: [
       ["Assemblée générale", "L'organe de décision de tous les membres, avec les membres d'honneur."],
       ["Conseil d'administration", "9 membres chargés de l'orientation stratégique et des politiques."],

@@ -60,6 +60,8 @@ import scholarshipCertificate from "@/assets/child-banners/scholarship-certifica
 import tailoredTraining from "@/assets/child-banners/tailored-training.webp.asset.json";
 import teamAssociates from "@/assets/child-banners/team-associates.webp.asset.json";
 import newslettersPhoto from "@/assets/headers/newsletters.jpg.asset.json";
+import orgStructureImg from "@/assets/organizational-structure.png.asset.json";
+import opsStructureImg from "@/assets/operational-structure.png.asset.json";
 
 const IMG_SOURCES = {
   hero: heroImg.url, cameroon: cameroon.url, mauritania: mauritania.url, morocco: morocco.url, burkina: burkina.url, ghana: ghana.url,
@@ -146,6 +148,10 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
 };
 export const PULSE: Record<string, string> = { "2": assetUrl(pulse2.url) };
 export const PULSE_COVER: Record<string, string> = { "2": assetUrl(pulse2Cover.url) };
+export const STRUCTURE_CHARTS = {
+  organizational: assetUrl(orgStructureImg.url),
+  operational: assetUrl(opsStructureImg.url),
+};
 
 /** Downloadable key documents, in the same order as PAGES[lang].media.docs. */
 export const DOC_FILES: { url: string; name: string }[] = [

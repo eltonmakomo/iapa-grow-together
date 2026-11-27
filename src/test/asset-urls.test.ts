@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { assetUrl } from "@/lib/asset-url";
-import { BANNER, IMG, PULSE, PULSE_COVER } from "@/components/iapa/media";
+import { BANNER, IMG, PULSE, PULSE_COVER, STRUCTURE_CHARTS } from "@/components/iapa/media";
 import { PARTNER_LOGOS } from "@/components/iapa/partner-logos";
 import { CHILD_CONTENT } from "@/lib/iapa-child-content";
 
@@ -18,6 +18,7 @@ describe("downloadable source asset URLs", () => {
       ...Object.values(BANNER).map((banner) => banner.src),
       ...Object.values(PULSE),
       ...Object.values(PULSE_COVER),
+      ...Object.values(STRUCTURE_CHARTS),
       ...PARTNER_LOGOS.flat().map((logo) => logo.src),
       ...portraits,
     ];

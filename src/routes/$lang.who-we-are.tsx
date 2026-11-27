@@ -6,6 +6,7 @@ import { PAGES } from "@/lib/iapa-pages";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { ProfileGrid } from "@/components/iapa/profile-grid";
+import { STRUCTURE_CHARTS } from "@/components/iapa/media";
 import { childContent } from "@/lib/iapa-child-content";
 
 export const Route = createFileRoute("/$lang/who-we-are")({
@@ -84,40 +85,23 @@ function WhoWeAre() {
       <section id="managing-board" className="bg-secondary py-16 md:py-24">
         <div className="container-page">
           <SectionHead eyebrow={p.govTitle} title={childLabel("who-we-are", "managing-board", lang)} lead={p.govText} />
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {p.organs.map(([h, d]) => <li key={h} className="curve-card bg-card p-6"><h3 className="text-lg font-extrabold text-primary">{h}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
-          </ul>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="mt-10">
+            <h3 className="text-2xl font-extrabold">{p.opsStructureTitle}</h3>
+            <p className="mt-2 text-muted-foreground">{p.opsStructureLead}</p>
+            <figure className="mt-5 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
+              <img src={STRUCTURE_CHARTS.operational} alt={`${p.opsStructureTitle} — ${p.opsStructureLead}`} loading="lazy" className="block h-auto w-full rounded-xl" />
+            </figure>
+          </div>
+          <div className="mt-14">
+            <h3 className="text-2xl font-extrabold">{p.orgStructureTitle}</h3>
+            <p className="mt-2 text-muted-foreground">{p.orgStructureLead}</p>
+            <figure className="mt-5 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
+              <img src={STRUCTURE_CHARTS.organizational} alt={`${p.orgStructureTitle} — ${p.orgStructureLead}`} loading="lazy" className="block h-auto w-full rounded-xl" />
+            </figure>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
             <Photo k="ghana" lang={lang} ratio="aspect-[16/9]" />
             <Photo k="evaluation" lang={lang} ratio="aspect-[16/9]" />
-          </div>
-          <div className="mt-14">
-            <h3 className="text-2xl font-extrabold">{p.boardTitle}</h3>
-            <p className="mt-2 text-muted-foreground">{p.board.slice(0, 4).join(" · ")}</p>
-            <div className="curve-card mt-4 bg-card p-6 md:p-8">
-              <p className="eyebrow">{lang === "fr" ? "Points focaux régionaux" : "Regional focal points"}</p>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-                {p.board.slice(4).map((b) => (
-                  <li key={b} className="flex items-start gap-2.5 rounded-2xl bg-secondary p-4">
-                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
-                    <span className="font-semibold leading-snug">{b.split(/\s[–-]\s/).slice(1).join(" – ") || b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-14">
-            <h3 className="text-2xl font-extrabold">{p.deptTitle}</h3>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-              {p.depts.map(([h, d], i) => (
-                <li key={h} className="curve-card relative overflow-hidden bg-card p-6">
-                  <span aria-hidden className="absolute -right-3 -top-4 text-7xl font-extrabold text-sun/30">{i + 1}</span>
-                  <span aria-hidden className="block h-1.5 w-10 rounded-full bg-arid" />
-                  <p className="relative mt-4 text-lg font-extrabold leading-tight">{h}</p>
-                  <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
