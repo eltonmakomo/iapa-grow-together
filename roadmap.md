@@ -49,3 +49,4 @@
 - [x] Key documents: View and Download CTAs on the strategic plan and operationalisation plan
 - [x] Add a Newsletters page under Media with Pulse issues viewable and downloadable, plus a matching banner
 - [x] Make the collapsed menu button circular with its lines centred
+- [x] Ensure all images and external documents resolve to live public URLs and record the rule for all future uploads

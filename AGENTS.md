@@ -40,3 +40,4 @@ use the editor.
 - Use a shared ProfileGrid for leadership sections and profile pages, showing title, name and location on cards with full details in an accessible dialog; label fictional names and generated portraits as placeholders inside the dialog rather than verified officeholders.
 - Keep reviewed banner replacements in the media registry instead of editing the generated banner inventory; disable banner zoom/mirroring and show complete photos above copy on narrow screens to preserve faces.
 - Site search uses the current bilingual navigation and content as a browser-side index; only live pages are indexed so removed pages cannot appear in results.
+- Upload every new image and external document via lovable-assets, resolve its .asset.json URL through assetUrl() in src/lib/asset-url.ts, and include it in src/test/asset-urls.test.ts so all media and documents load when the site is deployed to external dev or hosting environments.
