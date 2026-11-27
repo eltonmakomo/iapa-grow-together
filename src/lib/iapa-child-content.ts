@@ -499,13 +499,6 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
         ],
       },
     },
-  },
-  media: {
-    events: {
-      img: "kenya",
-      en: { lead: "Workshops, assemblies, evaluation missions and partnership meetings from IAPA's journey.", heading: "IAPA milestones & gatherings" },
-      fr: { lead: "Ateliers, assemblées, missions d'évaluation et rencontres de partenariat qui marquent le parcours de l'IAPA.", heading: "Étapes et rencontres de l'IAPA" },
-    },
     "key-documents": {
       img: "documentSigning",
       en: { lead: "The strategic and operational documents that guide IAPA's priorities and implementation.", heading: "Strategy & operational documents" },
@@ -515,6 +508,13 @@ export const CHILD_CONTENT: Record<PageSlug, Record<string, ChildPageContent>> =
       img: "newsletters",
       en: { lead: "IAPA Pulse newsletter issues, readable online and downloadable as PDFs.", heading: "IAPA Pulse newsletter archive" },
       fr: { lead: "Les numéros de la lettre d'information IAPA Pulse, à lire en ligne et à télécharger en PDF.", heading: "Archives de la lettre d'information IAPA Pulse" },
+    },
+  },
+  media: {
+    events: {
+      img: "kenya",
+      en: { lead: "Workshops, assemblies, evaluation missions and partnership meetings from IAPA's journey.", heading: "IAPA milestones & gatherings" },
+      fr: { lead: "Ateliers, assemblées, missions d'évaluation et rencontres de partenariat qui marquent le parcours de l'IAPA.", heading: "Étapes et rencontres de l'IAPA" },
     },
     "press-releases": {
       img: "signing",

@@ -78,7 +78,7 @@ function StoryDetailPage() {
               <div className="curve-card border bg-card p-6">
                 <p className="flex items-center gap-2 font-extrabold text-primary"><BookOpen className="h-4 w-4" aria-hidden /> {ui.sourceTitle}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{ui.sourceNote}</p>
-                <Link to="/$lang/$section/$child" params={{ lang, section: "media", child: "newsletters" }} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline">
+                <Link to="/$lang/$section/$child" params={{ lang, section: "knowledge-hub", child: "newsletters" }} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline">
                   {ui.download} <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </div>

@@ -17,7 +17,12 @@ describe("site search", () => {
   it("indexes stories and Knowledge Hub category pages in both languages", () => {
     for (const lang of ["en", "fr"] as const) {
       expect(searchIndex(lang).filter((entry) => /\/stories\//.test(entry.href))).toHaveLength(6);
-      expect(searchIndex(lang).filter((entry) => /knowledge-hub\//.test(entry.href))).toHaveLength(7);
+      const hubChildren = searchIndex(lang).filter((entry) => /knowledge-hub\//.test(entry.href)).map((entry) => entry.href);
+      expect(hubChildren).toHaveLength(9);
+      expect(hubChildren).toContain("/$lang/knowledge-hub/key-documents");
+      expect(hubChildren).toContain("/$lang/knowledge-hub/newsletters");
+      const mediaChildren = searchIndex(lang).filter((entry) => /\/media\//.test(entry.href)).map((entry) => entry.href);
+      expect(mediaChildren).toEqual(["/$lang/media/events", "/$lang/media/press-releases"]);
     }
   });
 });

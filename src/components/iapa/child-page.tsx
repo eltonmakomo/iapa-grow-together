@@ -167,25 +167,22 @@ function KnowledgeHubBody({ lang, child }: { lang: Lang; child: string }) {
       </>
     );
   }
-  return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} child={child} />;
-}
-
-function MediaBody({ lang, child }: { lang: Lang; child: string }) {
-  const m = PAGES[lang].media;
-  if (child === "events") return <EventsSections lang={lang} />;
-  if (child === "key-documents") return <>
-    <SectionHead title={m.docsTitle} />
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text], i) => {
-      const file = DOC_FILES[i];
-      return <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">
-      <div className="flex items-center justify-between gap-4"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary"><FileText className="h-6 w-6" aria-hidden /></span><span className="rounded-full bg-sun/25 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">IAPA</span></div>
-      <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{text}</p>
-      {file && <div className="mt-6 flex flex-wrap gap-3">
-        <a href={file.url} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.viewDoc}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
-        <a href={file.url} download={file.name} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
-      </div>}
-    </li>; })}</ul>
-  </>;
+  if (child === "key-documents") {
+    const m = PAGES[lang].media;
+    return <>
+      <SectionHead title={m.docsTitle} />
+      <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.docs.map(([title, text], i) => {
+        const file = DOC_FILES[i];
+        return <li key={title} className="curve-card group flex flex-col border bg-card p-7 transition duration-300 hover:-translate-y-1">
+        <div className="flex items-center justify-between gap-4"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-primary"><FileText className="h-6 w-6" aria-hidden /></span><span className="rounded-full bg-sun/25 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent-foreground">IAPA</span></div>
+        <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{text}</p>
+        {file && <div className="mt-6 flex flex-wrap gap-3">
+          <a href={file.url} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.viewDoc}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
+          <a href={file.url} download={file.name} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
+        </div>}
+      </li>; })}</ul>
+    </>;
+  }
   if (child === "newsletters") {
     const h = CONTENT[lang].hub;
     const sub = PAGES[lang].subscribe;
@@ -198,6 +195,12 @@ function MediaBody({ lang, child }: { lang: Lang; child: string }) {
       </div>
     </>;
   }
+  return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} child={child} />;
+}
+
+function MediaBody({ lang, child }: { lang: Lang; child: string }) {
+  const m = PAGES[lang].media;
+  if (child === "events") return <EventsSections lang={lang} />;
   return <>
     <SectionHead title={m.pressTitle} />
     <ul className="mt-8 grid gap-6 md:grid-cols-2">{PRESS_DETAILS.map((pr) => {

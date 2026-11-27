@@ -40,7 +40,7 @@ export const NAV: NavPage[] = [
     slug: "knowledge-hub", img: "mali",
     blurb: { en: "Newsletters, publications and learning resources from the IAPA network.", fr: "Lettres, publications et ressources d'apprentissage du réseau IAPA." },
     groups: [
-      { title: { en: "Publications", fr: "Publications" }, items: [c("publications", "Publications", "Publications"), c("policy-briefs", "Policy Briefs", "Notes d'orientation"), c("research-papers", "Research Papers", "Documents de recherche"), c("case-studies", "Case Studies", "Études de cas")] },
+      { title: { en: "Publications", fr: "Publications" }, items: [c("publications", "Publications", "Publications"), c("newsletters", "Newsletters", "Lettres d'information"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("policy-briefs", "Policy Briefs", "Notes d'orientation"), c("research-papers", "Research Papers", "Documents de recherche"), c("case-studies", "Case Studies", "Études de cas")] },
       { title: { en: "Media & learning", fr: "Médias et apprentissage" }, items: [c("webinars", "Webinars & Recordings", "Webinaires et enregistrements"), c("multimedia", "Multimedia", "Multimédia"), c("podcasts", "Podcasts", "Podcasts")] },
     ],
   },
@@ -48,7 +48,7 @@ export const NAV: NavPage[] = [
     slug: "media", img: "evaluation",
     blurb: { en: "Milestones, events and official news from IAPA.", fr: "Étapes clés, événements et actualités officielles de l'IAPA." },
     groups: [
-      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("key-documents", "Key IAPA Documents", "Documents clés de l'IAPA"), c("newsletters", "Newsletters", "Lettres d'information"), c("press-releases", "Press Releases", "Communiqués de presse")] },
+      { title: { en: "Media", fr: "Médias" }, items: [c("events", "Events", "Événements"), c("press-releases", "Press Releases", "Communiqués de presse")] },
     ],
   },
   {
