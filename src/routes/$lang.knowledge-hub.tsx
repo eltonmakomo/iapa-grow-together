@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, FileText, Film, Headphones, Video } from "lucide-
 import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
 import { PulseIssuesGrid } from "@/components/iapa/pulse-issues";
-import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { PageHero, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 
 export const Route = createFileRoute("/$lang/knowledge-hub")({
   head: ({ params }) => pageHead(params.lang, "knowledge-hub"),
@@ -35,11 +35,6 @@ function Hub() {
       </section>
       <section className="bg-secondary py-16 md:py-24">
         <div className="container-page">
-          <div className="mb-10 grid gap-4 md:grid-cols-3">
-            <Photo k="mali" lang={lang} ratio="aspect-[4/3]" />
-            <Photo k="burkinaSession" lang={lang} ratio="aspect-[4/3]" />
-            <Photo k="morocco" lang={lang} ratio="aspect-[4/3]" />
-          </div>
           <SectionHead title={p.libraryTitle} />
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {p.categories.map(([id, title, description]) => {
