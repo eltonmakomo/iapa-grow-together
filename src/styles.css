@@ -116,7 +116,8 @@
 /* Header: the bilingual nav must stay on one line in French too. */
 .site-header { padding: 0.75rem 0.75rem 0; }
 .site-header .header-capsule { max-width: 80rem; height: 5rem; padding-left: 1rem; padding-right: 0.5rem; transition: height 250ms ease, background-color 250ms ease; }
-.header-logo { height: 2.75rem; transition: height 250ms ease; }
+.header-logo { height: 2.75rem; max-width: 100%; object-fit: contain; transition: height 250ms ease; }
+.site-header.is-compact .header-actions { gap: 32px; }
 .site-header.is-compact .header-capsule { height: 4rem; background-color: color-mix(in srgb, var(--card) 90%, transparent); }
 .is-compact .header-logo { height: 2.25rem; }
 .header-search { width: 3.5rem; height: 3.5rem; }

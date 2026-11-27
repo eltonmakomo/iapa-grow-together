@@ -43,3 +43,5 @@
 - [x] Audit and repair all banner photos: replace 13 unsuitable images, keep faces intact, disable banner zoom, verify all 31 pages in EN/FR with complete photos on narrow screens.
 - [x] Request publication of the reviewed banner photographs and framing updates.
 - [x] Collapse the desktop nav into the hamburger menu once the page is scrolled (EN/FR)
+- [x] Make site search find live pages and content in EN/FR on desktop and phones.
+- [x] Place search and language beside the collapsed hamburger with 32px spacing.

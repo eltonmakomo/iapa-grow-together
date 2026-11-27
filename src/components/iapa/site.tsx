@@ -13,6 +13,8 @@ import logoEn from "@/assets/logo-en.png.asset.json";
 import logoFr from "@/assets/logo-fr.png.asset.json";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { assetUrl } from "@/lib/asset-url";
+import { SiteSearch } from "@/components/iapa/site-search";
+import { SEARCH_UI } from "@/lib/iapa-content";
 
 export const asLang = (v: string): Lang => (v === "fr" ? "fr" : "en");
 
@@ -46,7 +48,8 @@ function LangSwitch({ lang }: { lang: Lang }) {
     <Link to={to} params={{ ...currentParams, lang: other }} hrefLang={other} aria-label={CONTENT[lang].langLabel}
       className="header-language inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-foreground transition-colors hover:text-primary">
       <Globe className="h-4 w-4" aria-hidden />
-      <span>{other === "fr" ? "Français" : "English"}</span>
+      <span className="hidden sm:inline">{other === "fr" ? "Français" : "English"}</span>
+      <span className="sm:hidden">{other.toUpperCase()}</span>
     </Link>
   );
 }
@@ -96,6 +99,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
   const [mega, setMega] = useState<PageSlug | null>(null);
   const [sub, setSub] = useState<PageSlug | null>(null);
   const [compact, setCompact] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const matches = useMatches();
   const path = matches[matches.length - 1]?.pathname;
@@ -145,16 +149,14 @@ export function SiteHeader({ lang }: { lang: Lang }) {
             })}
           </ul>
         </nav>
-        <div className="hidden items-center gap-3 xl:flex">
+        <div className="header-actions ml-auto flex shrink-0 items-center gap-3">
+          <Button size="icon" className="header-search shrink-0 rounded-full" title={SEARCH_UI[lang].title} aria-label={SEARCH_UI[lang].title} onClick={() => { setOpen(false); setMega(null); setSearchOpen(true); }}><Search aria-hidden /></Button>
           <LangSwitch lang={lang} />
-          <Button asChild size="icon" className="header-search rounded-full" title={p.nav["knowledge-hub"]}>
-            <Link to="/$lang/knowledge-hub" params={{ lang }} aria-label={p.nav["knowledge-hub"]}><Search aria-hidden /></Link>
-          </Button>
-        </div>
-          <Button variant="ghost" size="icon" type="button" className="header-icon header-toggle ml-auto h-10 w-10 rounded-full"
+          <Button variant="ghost" size="icon" type="button" className="header-icon header-toggle h-10 w-10 rounded-full"
             aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? t.close : t.menu} onClick={() => setOpen((o) => !o)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
+        </div>
       </div>
       {mega && <div className="hidden xl:block" onMouseEnter={() => show(mega)}><MegaPanel key={mega} lang={lang} slug={mega} onNavigate={() => setMega(null)} /></div>}
       {open && (
@@ -190,6 +192,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
     </header>
     {open && <div aria-hidden onClick={() => setOpen(false)} className="fixed inset-0 z-40 bg-foreground/50" />}
     {mega && <div aria-hidden onClick={() => setMega(null)} className="mega-backdrop fixed inset-0 z-40 hidden bg-forest/25 backdrop-blur-md xl:block" />}
+    <SiteSearch lang={lang} open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );
 }
