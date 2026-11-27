@@ -118,20 +118,31 @@
 .site-header .header-capsule { max-width: 80rem; height: 5rem; padding-left: 1rem; padding-right: 0.5rem; transition: height 250ms ease, background-color 250ms ease; }
 .header-logo { height: 2.75rem; max-width: 100%; object-fit: contain; transition: height 250ms ease; }
 .site-header.is-compact .header-actions { gap: 32px; }
-.site-header.is-compact .header-capsule { height: 4rem; background-color: color-mix(in srgb, var(--card) 90%, transparent); }
-.is-compact .header-logo { height: 2.25rem; }
 .header-search { width: 3.5rem; height: 3.5rem; }
-.is-compact .header-search { width: 3rem; height: 3rem; }
 .header-icon.btn-hover::before { display: none; }
 .header-icon.btn-hover:hover { box-shadow: none; transform: none; }
 .header-nav-link[aria-current="page"]::after { content: ""; position: absolute; bottom: 0; left: 0.75rem; right: 0.75rem; height: 2px; background: var(--primary); }
 .header-nav-link { position: relative; }
 .mobile-menu { position: fixed; right: 0; top: 0; height: 100dvh; width: min(88%, 24rem); }
-/* Once the page is scrolled the desktop nav folds into the hamburger too. */
+/* Scrolled: the bar keeps only the hamburger — logo, search, language and nav move into the drawer. */
+.site-header.is-compact .header-capsule {
+  width: max-content;
+  max-width: none;
+  margin-inline: auto 0;
+  justify-content: flex-end;
+  height: 3.5rem;
+  padding-inline: 0.5rem;
+  background-color: color-mix(in srgb, var(--card) 90%, transparent);
+}
+.site-header.is-compact .header-capsule .header-logo,
+.site-header.is-compact .header-capsule .header-nav,
+.site-header.is-compact .header-capsule .header-search,
+.site-header.is-compact .header-capsule .header-language { display: none; }
 @media (min-width: 1280px) {
-  .site-header.is-compact .header-nav { display: none; }
   .site-header:not(.is-compact) .header-toggle { display: none; }
 }
+/* Search row inside the slide-out menu. */
+.mobile-search { height: 3.25rem; width: 100%; justify-content: flex-start; gap: 0.75rem; border-radius: 9999px; padding-inline: 1.25rem; font-weight: 700; }
 @media (min-width: 1024px) { .site-header { padding: 1rem 1.5rem 0; } .site-header .header-capsule { padding-left: 1.5rem; } }
 #main > .page-banner .banner-content { padding-top: 8rem; }
 #main > nav:first-child { padding-top: 7rem; }

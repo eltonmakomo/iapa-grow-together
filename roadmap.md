@@ -45,3 +45,4 @@
 - [x] Collapse the desktop nav into the hamburger menu once the page is scrolled (EN/FR)
 - [x] Make site search find live pages and content in EN/FR on desktop and phones.
 - [x] Place search and language beside the collapsed hamburger with 32px spacing.
+- [x] Scrolled header shows only the hamburger; logo, search, language and nav live in the drawer

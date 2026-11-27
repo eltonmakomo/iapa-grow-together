@@ -161,7 +161,16 @@ export function SiteHeader({ lang }: { lang: Lang }) {
       {mega && <div className="hidden xl:block" onMouseEnter={() => show(mega)}><MegaPanel key={mega} lang={lang} slug={mega} onNavigate={() => setMega(null)} /></div>}
       {open && (
         <nav id="mobile-nav" aria-label="Primary" className="mobile-menu overflow-y-auto border bg-card shadow-lift">
-          <div className="flex items-center justify-between px-5 pt-5"><LangSwitch lang={lang} /><Button variant="ghost" size="icon" className="header-icon" aria-label={t.close} onClick={() => setOpen(false)}><X aria-hidden /></Button></div>
+          <div className="flex items-center justify-between gap-3 px-5 pt-5">
+            <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={160} height={44} className="h-9 w-auto max-w-[60%] object-contain" />
+            <Button variant="ghost" size="icon" className="header-icon" aria-label={t.close} onClick={() => setOpen(false)}><X aria-hidden /></Button>
+          </div>
+          <div className="px-5 pt-4">
+            <Button type="button" variant="outline" className="mobile-search" onClick={() => { setOpen(false); setSearchOpen(true); }}>
+              <Search className="h-4 w-4 shrink-0" aria-hidden />{SEARCH_UI[lang].title}
+            </Button>
+          </div>
+          <div className="px-5 pt-4"><LangSwitch lang={lang} /></div>
           <ul className="container-page flex flex-col py-3">
             <li><Link to="/$lang" params={{ lang }} activeOptions={{ exact: true }} className="block rounded-xl px-3 py-3 text-lg font-semibold" activeProps={{ className: "text-primary", "aria-current": "page" }}>{p.home}</Link></li>
             {PAGE_SLUGS.map((s) => {
