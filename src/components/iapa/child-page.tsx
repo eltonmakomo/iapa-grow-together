@@ -71,14 +71,14 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
     <div className="mt-14"><SectionHead eyebrow={t.pillarsEyebrow} title={t.pillarsTitle} /><PairCards items={t.pillars} /></div>
   </>;
   if (child === "managing-board") return <>
-    <SectionHead eyebrow={p.govTitle} title={p.opsStructureTitle} lead={p.opsStructureLead} />
+    <SectionHead eyebrow={p.govTitle} title={p.orgStructureTitle} lead={p.orgStructureLead} />
     <figure className="mt-8 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
-      <img src={STRUCTURE_CHARTS.operational} alt={`${p.opsStructureTitle} — ${p.opsStructureLead}`} className="block h-auto w-full rounded-xl" />
+      <img src={STRUCTURE_CHARTS.organizational} alt={`${p.orgStructureTitle} — ${p.orgStructureLead}`} className="block h-auto w-full rounded-xl" />
     </figure>
     <div className="mt-14">
-      <SectionHead eyebrow={p.govTitle} title={p.orgStructureTitle} lead={p.orgStructureLead} />
+      <SectionHead eyebrow={p.govTitle} title={p.opsStructureTitle} lead={p.opsStructureLead} />
       <figure className="mt-8 overflow-hidden rounded-2xl border bg-card p-3 shadow-soft sm:p-5">
-        <img src={STRUCTURE_CHARTS.organizational} alt={`${p.orgStructureTitle} — ${p.orgStructureLead}`} loading="lazy" className="block h-auto w-full rounded-xl" />
+        <img src={STRUCTURE_CHARTS.operational} alt={`${p.opsStructureTitle} — ${p.opsStructureLead}`} loading="lazy" className="block h-auto w-full rounded-xl" />
       </figure>
     </div>
   </>;

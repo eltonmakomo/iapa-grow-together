@@ -58,3 +58,5 @@
 - [x] Remove Highlight Stories: Home and Our Work sections, story pages, menu entry, search entries and tests
 
 - [x] Add Home IAPA in action section matching the reference layout with six uploaded photographs (EN/FR)
+
+- [x] Managing Board: show Organisational Structure before Operational Structure (EN/FR)
