@@ -50,3 +50,4 @@
 - [x] Add a Newsletters page under Media with Pulse issues viewable and downloadable, plus a matching banner
 - [x] Make the collapsed menu button circular with its lines centred
 - [x] Ensure all images and external documents resolve to live public URLs and record the rule for all future uploads
+- [x] Architecture alignment: clickable detail pages (What we do, Training schools & formats, Media events & press release, Leadership profiles), Stories section & Home highlight cards, Newsletter Issue 1, real DB-backed forms (newsletter, membership, partnership, contact, training, upcoming event), full desktop & mobile dropdown sub-menus, and populated Testimonials, Team & 6 Knowledge Hub categories

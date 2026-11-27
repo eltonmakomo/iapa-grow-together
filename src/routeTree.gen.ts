@@ -21,6 +21,11 @@ import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
 import { Route as LangTrainingRouteImport } from './routes/$lang.training'
 import { Route as LangWhoWeAreRouteImport } from './routes/$lang.who-we-are'
 import { Route as LangSectionChildRouteImport } from './routes/$lang.$section.$child'
+import { Route as LangEventsEventIdRouteImport } from './routes/$lang.events.$eventId'
+import { Route as LangLeadershipProfileIdRouteImport } from './routes/$lang.leadership.$profileId'
+import { Route as LangPressPressIdRouteImport } from './routes/$lang.press.$pressId'
+import { Route as LangStoriesStoryIdRouteImport } from './routes/$lang.stories.$storyId'
+import { Route as LangWhatWeDoSlugRouteImport } from './routes/$lang.what-we-do.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +87,31 @@ const LangSectionChildRoute = LangSectionChildRouteImport.update({
   path: '/$section/$child',
   getParentRoute: () => LangRoute,
 } as any)
+const LangEventsEventIdRoute = LangEventsEventIdRouteImport.update({
+  id: '/events/$eventId',
+  path: '/events/$eventId',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangLeadershipProfileIdRoute = LangLeadershipProfileIdRouteImport.update({
+  id: '/leadership/$profileId',
+  path: '/leadership/$profileId',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPressPressIdRoute = LangPressPressIdRouteImport.update({
+  id: '/press/$pressId',
+  path: '/press/$pressId',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangStoriesStoryIdRoute = LangStoriesStoryIdRouteImport.update({
+  id: '/stories/$storyId',
+  path: '/stories/$storyId',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangWhatWeDoSlugRoute = LangWhatWeDoSlugRouteImport.update({
+  id: '/what-we-do/$slug',
+  path: '/what-we-do/$slug',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +126,11 @@ export interface FileRoutesByFullPath {
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/$section/$child': typeof LangSectionChildRoute
+  '/$lang/events/$eventId': typeof LangEventsEventIdRoute
+  '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
+  '/$lang/press/$pressId': typeof LangPressPressIdRoute
+  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
+  '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -109,6 +144,11 @@ export interface FileRoutesByTo {
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/$section/$child': typeof LangSectionChildRoute
+  '/$lang/events/$eventId': typeof LangEventsEventIdRoute
+  '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
+  '/$lang/press/$pressId': typeof LangPressPressIdRoute
+  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
+  '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,6 +164,11 @@ export interface FileRoutesById {
   '/$lang/who-we-are': typeof LangWhoWeAreRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/$section/$child': typeof LangSectionChildRoute
+  '/$lang/events/$eventId': typeof LangEventsEventIdRoute
+  '/$lang/leadership/$profileId': typeof LangLeadershipProfileIdRoute
+  '/$lang/press/$pressId': typeof LangPressPressIdRoute
+  '/$lang/stories/$storyId': typeof LangStoriesStoryIdRoute
+  '/$lang/what-we-do/$slug': typeof LangWhatWeDoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -140,6 +185,11 @@ export interface FileRouteTypes {
     | '/$lang/who-we-are'
     | '/$lang/'
     | '/$lang/$section/$child'
+    | '/$lang/events/$eventId'
+    | '/$lang/leadership/$profileId'
+    | '/$lang/press/$pressId'
+    | '/$lang/stories/$storyId'
+    | '/$lang/what-we-do/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -153,6 +203,11 @@ export interface FileRouteTypes {
     | '/$lang/who-we-are'
     | '/$lang'
     | '/$lang/$section/$child'
+    | '/$lang/events/$eventId'
+    | '/$lang/leadership/$profileId'
+    | '/$lang/press/$pressId'
+    | '/$lang/stories/$storyId'
+    | '/$lang/what-we-do/$slug'
   id:
     | '__root__'
     | '/'
@@ -167,6 +222,11 @@ export interface FileRouteTypes {
     | '/$lang/who-we-are'
     | '/$lang/'
     | '/$lang/$section/$child'
+    | '/$lang/events/$eventId'
+    | '/$lang/leadership/$profileId'
+    | '/$lang/press/$pressId'
+    | '/$lang/stories/$storyId'
+    | '/$lang/what-we-do/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -260,6 +320,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangSectionChildRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/events/$eventId': {
+      id: '/$lang/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/$lang/events/$eventId'
+      preLoaderRoute: typeof LangEventsEventIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/leadership/$profileId': {
+      id: '/$lang/leadership/$profileId'
+      path: '/leadership/$profileId'
+      fullPath: '/$lang/leadership/$profileId'
+      preLoaderRoute: typeof LangLeadershipProfileIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/press/$pressId': {
+      id: '/$lang/press/$pressId'
+      path: '/press/$pressId'
+      fullPath: '/$lang/press/$pressId'
+      preLoaderRoute: typeof LangPressPressIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/stories/$storyId': {
+      id: '/$lang/stories/$storyId'
+      path: '/stories/$storyId'
+      fullPath: '/$lang/stories/$storyId'
+      preLoaderRoute: typeof LangStoriesStoryIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/what-we-do/$slug': {
+      id: '/$lang/what-we-do/$slug'
+      path: '/what-we-do/$slug'
+      fullPath: '/$lang/what-we-do/$slug'
+      preLoaderRoute: typeof LangWhatWeDoSlugRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
@@ -274,6 +369,11 @@ interface LangRouteChildren {
   LangWhoWeAreRoute: typeof LangWhoWeAreRoute
   LangIndexRoute: typeof LangIndexRoute
   LangSectionChildRoute: typeof LangSectionChildRoute
+  LangEventsEventIdRoute: typeof LangEventsEventIdRoute
+  LangLeadershipProfileIdRoute: typeof LangLeadershipProfileIdRoute
+  LangPressPressIdRoute: typeof LangPressPressIdRoute
+  LangStoriesStoryIdRoute: typeof LangStoriesStoryIdRoute
+  LangWhatWeDoSlugRoute: typeof LangWhatWeDoSlugRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
@@ -287,6 +387,11 @@ const LangRouteChildren: LangRouteChildren = {
   LangWhoWeAreRoute: LangWhoWeAreRoute,
   LangIndexRoute: LangIndexRoute,
   LangSectionChildRoute: LangSectionChildRoute,
+  LangEventsEventIdRoute: LangEventsEventIdRoute,
+  LangLeadershipProfileIdRoute: LangLeadershipProfileIdRoute,
+  LangPressPressIdRoute: LangPressPressIdRoute,
+  LangStoriesStoryIdRoute: LangStoriesStoryIdRoute,
+  LangWhatWeDoSlugRoute: LangWhatWeDoSlugRoute,
 }
 
 const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)

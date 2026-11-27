@@ -25,7 +25,7 @@ export const NAV: NavPage[] = [
     blurb: { en: "Where we work, what we have achieved and the people behind the results.", fr: "Où nous travaillons, nos résultats et les personnes qui les portent." },
     groups: [
       { title: { en: "Impact", fr: "Impact" }, items: [c("impact-map", "Impact Map", "Carte d'impact"), c("iapa-in-numbers", "IAPA in Numbers", "L'IAPA en chiffres")] },
-      { title: { en: "Voices", fr: "Témoignages" }, items: [c("testimonials", "Testimonials", "Témoignages")] },
+      { title: { en: "Voices", fr: "Témoignages" }, items: [c("stories", "Highlight Stories", "Histoires phares"), c("testimonials", "Testimonials", "Témoignages")] },
     ],
   },
   {
@@ -39,7 +39,10 @@ export const NAV: NavPage[] = [
   {
     slug: "knowledge-hub", img: "mali",
     blurb: { en: "Newsletters, publications and learning resources from the IAPA network.", fr: "Lettres, publications et ressources d'apprentissage du réseau IAPA." },
-    groups: [],
+    groups: [
+      { title: { en: "Publications", fr: "Publications" }, items: [c("publications", "Publications", "Publications"), c("policy-briefs", "Policy Briefs", "Notes d'orientation"), c("research-papers", "Research Papers", "Documents de recherche"), c("case-studies", "Case Studies", "Études de cas")] },
+      { title: { en: "Media & learning", fr: "Médias et apprentissage" }, items: [c("webinars", "Webinars & Recordings", "Webinaires et enregistrements"), c("multimedia", "Multimedia", "Multimédia"), c("podcasts", "Podcasts", "Podcasts")] },
+    ],
   },
   {
     slug: "media", img: "evaluation",

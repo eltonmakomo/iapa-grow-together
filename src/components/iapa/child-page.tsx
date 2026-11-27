@@ -1,15 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
 import { childLabel, navPage } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
-import { CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
+import { CHILD_CONTENT, CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
+import { PRESS_DETAILS } from "@/lib/iapa-details";
+import { STORIES, STORY_UI } from "@/lib/iapa-stories";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { EventsSections } from "@/components/iapa/events";
-import { PageHero, ResultsBlock, SectionHead } from "@/components/iapa/site";
+import { FormDialog, NewsletterInlineForm } from "@/components/iapa/forms";
+import { PulseIssuesGrid } from "@/components/iapa/pulse-issues";
+import { PageHero, Photo, ResultsBlock, SectionHead } from "@/components/iapa/site";
 import { PartnerCards } from "@/components/iapa/partner-logos";
 import { SampleShowcase } from "@/components/iapa/sample-showcase";
-import { DOC_FILES, PULSE, PULSE_COVER, STRUCTURE_CHARTS } from "@/components/iapa/media";
+import { DOC_FILES, IMG, PHOTO_POSITION, STRUCTURE_CHARTS, type ImgKey } from "@/components/iapa/media";
 
 function PairCards({ items }: { items: ReadonlyArray<ReadonlyArray<string | undefined>> }) {
   return (
@@ -89,13 +93,81 @@ function WhoBody({ lang, child }: { lang: Lang; child: string }) {
 function WorkBody({ lang, child }: { lang: Lang; child: string }) {
   const w = CONTENT[lang].work;
   const p = PAGES[lang].work;
+  const sui = STORY_UI[lang];
   if (child === "impact-map") return <><SectionHead title={p.mapTitle} lead={p.mapNote} /><AfricaImpactMap lang={lang} /></>;
   if (child === "iapa-in-numbers") return <><SectionHead title={w.resultsTitle} lead={w.resultsNote} /><div className="mt-8"><ResultsBlock lang={lang} /></div></>;
+  if (child === "stories") {
+    return (
+      <>
+        <SectionHead eyebrow={sui.eyebrow} title={sui.sectionTitle} lead={sui.sectionLead} />
+        <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {STORIES.map((story) => (
+            <li key={story.id}>
+              <Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.id }} className="curve-card group flex h-full flex-col overflow-hidden bg-card transition hover:-translate-y-1">
+                <img src={IMG[story.img]} alt={story[lang].title} loading="lazy" style={{ objectPosition: PHOTO_POSITION[story.img] }} className="aspect-[16/10] w-full object-cover" />
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="eyebrow text-xs">{story[lang].place} · {story[lang].date}</p>
+                  <h3 className="mt-2 text-xl font-extrabold leading-snug group-hover:text-primary">{story[lang].title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story[lang].lead}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{sui.readStory} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  }
   return <FeatureBody lang={lang} title={childLabel("our-work", child, lang)} copy={childContent("our-work", child, lang)} child={child} />;
 }
 
 function TrainingBody({ lang, child }: { lang: Lang; child: string }) {
-  return <FeatureBody lang={lang} title={childLabel("training", child, lang)} copy={childContent("training", child, lang)} child={child} />;
+  const title = childLabel("training", child, lang);
+  const copy = childContent("training", child, lang);
+  const rawImg = CHILD_CONTENT.training[child]?.img;
+  const img: ImgKey = rawImg && rawImg in IMG ? (rawImg as ImgKey) : "burkina";
+  const ui = lang === "fr"
+    ? { back: "Retour aux formations", cta: "Demander une formation / S'inscrire", desc: "Indiquez vos besoins et votre pays ; le Secrétariat exécutif vous répondra avec un plan adapté." }
+    : { back: "Back to Training", cta: "Request training / Enrol", desc: "Share your target group and country; the Executive Secretariat will follow up with a tailored plan." };
+  return (
+    <>
+      <Link to="/$lang/training" params={{ lang }} className="mb-8 inline-flex items-center gap-2 font-bold text-primary hover:underline">
+        <ArrowLeft className="h-4 w-4" aria-hidden /> {ui.back}
+      </Link>
+      <FeatureBody lang={lang} title={title} copy={copy} child={child} />
+      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+        <Photo k={img} lang={lang} ratio="aspect-[16/10]" />
+        <div className="curve-card bg-secondary p-7 md:p-8">
+          <h3 className="text-2xl font-extrabold">{title}</h3>
+          <p className="mt-2 text-muted-foreground">{ui.desc}</p>
+          <div className="mt-6">
+            <FormDialog
+              lang={lang}
+              formType="training"
+              triggerLabel={ui.cta}
+              title={`${ui.cta} — ${title}`}
+              description={ui.desc}
+              defaultSubject={title}
+              metadata={{ programme: child }}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function KnowledgeHubBody({ lang, child }: { lang: Lang; child: string }) {
+  if (child === "publications") {
+    const h = CONTENT[lang].hub;
+    return (
+      <>
+        <SectionHead title={h.title} lead={h.lead} />
+        <PulseIssuesGrid lang={lang} />
+      </>
+    );
+  }
+  return <FeatureBody lang={lang} title={childLabel("knowledge-hub", child, lang)} copy={childContent("knowledge-hub", child, lang)} child={child} />;
 }
 
 function MediaBody({ lang, child }: { lang: Lang; child: string }) {
@@ -116,36 +188,28 @@ function MediaBody({ lang, child }: { lang: Lang; child: string }) {
   </>;
   if (child === "newsletters") {
     const h = CONTENT[lang].hub;
+    const sub = PAGES[lang].subscribe;
     return <>
       <SectionHead title={h.title} lead={h.lead} />
-      <ul className="mt-8 grid gap-6 md:grid-cols-2">
-        {h.issues.map((is) => {
-          const pdf = PULSE[is.key];
-          const cover = PULSE_COVER[is.key];
-          return <li key={is.key} className="curve-card flex flex-col gap-5 border bg-card p-7 sm:flex-row">
-            {cover && <img src={cover} alt={`IAPA Pulse — ${is.label}`} loading="lazy" className="w-full shrink-0 rounded-lg border shadow-soft sm:w-44" />}
-            <div className="flex flex-1 flex-col">
-              <p className="eyebrow">{is.label}</p>
-              <h3 className="mt-2 text-2xl font-extrabold leading-tight">{is.title}</h3>
-              <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{is.text}</p>
-              {pdf && <div className="mt-5 flex flex-wrap gap-3">
-                <a href={pdf} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.viewDoc}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
-                <a href={pdf} download={`IAPA-Pulse-${is.key}.pdf`} className="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-5 py-2.5 font-bold text-primary">{m.downloadDoc}<Download className="h-4 w-4" aria-hidden /></a>
-              </div>}
-              <p className="mt-3 text-xs text-muted-foreground">{h.size}</p>
-            </div>
-          </li>;
-        })}
-      </ul>
+      <PulseIssuesGrid lang={lang} />
+      <div className="curve-card mt-12 flex flex-col gap-6 bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:justify-between">
+        <div><h3 className="text-2xl font-extrabold">{sub.title}</h3><p className="mt-1 opacity-90">{sub.text}</p></div>
+        <NewsletterInlineForm lang={lang} dark />
+      </div>
     </>;
   }
   return <>
     <SectionHead title={m.pressTitle} />
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">{m.press.map(([date, title, text]) => <li key={title} className="curve-card group border bg-card p-7 transition duration-300 hover:-translate-y-1">
-      <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground"><Newspaper className="h-5 w-5" aria-hidden /></span><p className="eyebrow">{date}</p></div>
-      <h3 className="mt-5 text-2xl font-extrabold leading-tight">{title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{text}</p>
-      <div aria-hidden className="mt-6 h-1 w-14 rounded-full bg-sun transition-all duration-300 group-hover:w-24" />
-    </li>)}</ul>
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">{PRESS_DETAILS.map((pr) => {
+      const copy = pr[lang];
+      return <li key={pr.slug}>
+        <Link to="/$lang/press/$pressId" params={{ lang, pressId: pr.slug }} className="curve-card group block h-full border bg-card p-7 transition duration-300 hover:-translate-y-1">
+          <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground"><Newspaper className="h-5 w-5" aria-hidden /></span><p className="eyebrow">{copy.date}</p></div>
+          <h3 className="mt-5 text-2xl font-extrabold leading-tight group-hover:text-primary">{copy.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{copy.summary}</p>
+          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary">{PAGES[lang].readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+        </Link>
+      </li>;
+    })}</ul>
   </>;
 }
 
@@ -157,6 +221,7 @@ function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: s
   if (slug === "who-we-are") return <WhoBody lang={lang} child={child} />;
   if (slug === "our-work") return <WorkBody lang={lang} child={child} />;
   if (slug === "training") return <TrainingBody lang={lang} child={child} />;
+  if (slug === "knowledge-hub") return <KnowledgeHubBody lang={lang} child={child} />;
   if (slug === "media") return <MediaBody lang={lang} child={child} />;
   return <JoinBody lang={lang} child={child} />;
 }

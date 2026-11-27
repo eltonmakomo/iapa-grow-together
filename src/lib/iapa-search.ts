@@ -2,6 +2,7 @@ import { CONTENT, type Lang } from "./iapa-content";
 import { PAGES, LEGAL } from "./iapa-pages";
 import { NAV } from "./iapa-nav";
 import { CHILD_CONTENT } from "./iapa-child-content";
+import { STORIES } from "./iapa-stories";
 
 export type SearchEntry = { title: string; section: string; href: string; description: string; text: string };
 
@@ -28,6 +29,10 @@ export function searchIndex(lang: Lang): SearchEntry[] {
   }
   for (const slug of ["privacy", "legal"] as const) {
     entries.push({ title: LEGAL[lang][slug].title, section: "IAPA", href: `/$lang/${slug}`, description: LEGAL[lang][slug].body[0] ?? "", text: LEGAL[lang][slug].body.join(" ") });
+  }
+  for (const story of STORIES) {
+    const copy = story[lang];
+    entries.push({ title: copy.title, section: copy.place, href: `/$lang/stories/${story.id}`, description: copy.lead, text: copy.body.join(" ") });
   }
   return entries;
 }

@@ -147,7 +147,7 @@ export const PHOTO_POSITION: Record<ImgKey, string> = {
   teamAssociates: "50% 20%",
 };
 export const PULSE: Record<string, string> = { "2": assetUrl(pulse2.url) };
-export const PULSE_COVER: Record<string, string> = { "2": assetUrl(pulse2Cover.url) };
+export const PULSE_COVER: Record<string, string> = { "1": assetUrl(kenya.url), "2": assetUrl(pulse2Cover.url) };
 export const STRUCTURE_CHARTS = {
   organizational: assetUrl(orgStructureImg.url),
   operational: assetUrl(opsStructureImg.url),

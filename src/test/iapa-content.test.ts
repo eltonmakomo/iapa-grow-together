@@ -8,6 +8,9 @@ import { CHILD_CONTENT } from "@/lib/iapa-child-content";
 import { CAPTIONS } from "@/lib/iapa-photos";
 import { partitionEvents } from "@/components/iapa/events";
 import { PULSE, PULSE_COVER } from "@/components/iapa/media";
+import { STORIES } from "@/lib/iapa-stories";
+import { EVENT_DETAILS, LEADERSHIP_PROFILES, PRESS_DETAILS, WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
+import { formSubmissionSchema } from "@/lib/forms.functions";
 
 describe("IAPA content", () => {
   it("keeps the same number of figures in English and French for each results group", () => {
@@ -32,12 +35,13 @@ describe("IAPA content", () => {
     expect(PAGES.en.arch.social).toBe("Follow us");
     expect(PAGES.fr.arch.social).toBe("Suivez-nous");
   });
-  it("gives all 25 dropdown children a unique page path in each language", () => {
+  it("gives all 33 dropdown children across all 6 top-level pages a unique page path in each language", () => {
+    expect(NAV.every((page) => page.groups.length > 0)).toBe(true);
     const children = NAV.flatMap((page) => page.groups.flatMap((group) => group.items.map((item) => ({ page: page.slug, id: item.id }))));
-    expect(children).toHaveLength(25);
+    expect(children).toHaveLength(33);
     for (const lang of ["en", "fr"] as const) {
       const paths = children.map(({ page, id }) => `/${lang}/${page}/${id}`);
-      expect(new Set(paths).size).toBe(25);
+      expect(new Set(paths).size).toBe(33);
       expect(paths.every((path) => !path.includes("#"))).toBe(true);
     }
   });
@@ -72,16 +76,22 @@ describe("IAPA content", () => {
       leads.add(entry!.en.lead);
       leads.add(entry!.fr.lead);
     }
-    expect(heroes.size).toBe(25);
-    expect(leads.size).toBe(50);
+    expect(heroes.size).toBe(33);
+    expect(leads.size).toBe(66);
   });
-  it("keeps Knowledge Hub sub-pages empty and lists the six coming-soon categories in both languages", () => {
-    expect(Object.keys(CHILD_CONTENT["knowledge-hub"])).toHaveLength(0);
-    expect(NAV.find((n) => n.slug === "knowledge-hub")?.groups).toHaveLength(0);
-    expect(PAGES.en.hub.categories).toHaveLength(6);
-    expect(PAGES.fr.hub.categories).toHaveLength(6);
-    expect(PAGES.en.hub.soon).toBe("Coming soon");
-    expect(PAGES.fr.hub.soon).toBe("Bientôt disponible");
+  it("populates all 6 Knowledge Hub categories, Stories, Team and Testimonials with sample content in both languages", () => {
+    expect(NAV.find((n) => n.slug === "knowledge-hub")?.groups).toHaveLength(2);
+    for (const id of ["policy-briefs", "research-papers", "case-studies", "webinars", "multimedia", "podcasts"]) {
+      expect(CHILD_CONTENT["knowledge-hub"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
+      expect(CHILD_CONTENT["knowledge-hub"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
+    }
+    expect(CHILD_CONTENT["who-we-are"]["iapa-team"]?.en.samples?.length).toBeGreaterThanOrEqual(3);
+    expect(CHILD_CONTENT["our-work"]["testimonials"]?.en.samples?.length).toBeGreaterThanOrEqual(3);
+    expect(STORIES).toHaveLength(6);
+    expect(WHAT_WE_DO_DETAILS).toHaveLength(7);
+    expect(EVENT_DETAILS).toHaveLength(6);
+    expect(PRESS_DETAILS).toHaveLength(1);
+    expect(LEADERSHIP_PROFILES).toHaveLength(4);
     for (const id of ["vacancies", "scholarships"]) {
       expect(CHILD_CONTENT["join-us"][id]?.en.samples?.length, id).toBeGreaterThanOrEqual(3);
       expect(CHILD_CONTENT["join-us"][id]?.fr.samples?.length, id).toBeGreaterThanOrEqual(3);
@@ -125,14 +135,20 @@ describe("IAPA content", () => {
       expect(media.pastEventsTitle).toBe(lang === "en" ? "Past events" : "Événements passés");
     }
   });
-  it("removes IAPA Pulse Issue 3, AfCFTA, Patrick and the Oct 2026 handover in EN and FR", () => {
+  it("includes IAPA Pulse Issue 1 and Issue 2 while keeping Issue 3, AfCFTA, Patrick and Oct 2026 removed", () => {
     expect(Object.keys(PULSE)).toEqual(["2"]);
-    expect(Object.keys(PULSE_COVER)).toEqual(["2"]);
-    expect(CONTENT.en.hub.issues.map((i) => i.key)).toEqual(["2"]);
-    expect(CONTENT.fr.hub.issues.map((i) => i.key)).toEqual(["2"]);
+    expect(Object.keys(PULSE_COVER)).toEqual(["1", "2"]);
+    expect(CONTENT.en.hub.issues.map((i) => i.key)).toEqual(["1", "2"]);
+    expect(CONTENT.fr.hub.issues.map((i) => i.key)).toEqual(["1", "2"]);
     expect(PAGES.en.media.press.map(([d]) => d)).toEqual(["Aug 2026"]);
     expect(PAGES.fr.media.press.map(([d]) => d)).toEqual(["Août 2026"]);
-    const allCopy = JSON.stringify([CONTENT, PAGES, CHILD_CONTENT]);
+    const allCopy = JSON.stringify([CONTENT, PAGES, CHILD_CONTENT, STORIES]);
     expect(allCopy).not.toMatch(/issue 3|numéro 3|october 2026|octobre 2026|oct\.? 2026|afcfta|zlecaf|patrick|2 october 2026|2 octobre 2026/i);
+  });
+  it("validates form submissions with Zod for newsletter and contact forms", () => {
+    expect(formSubmissionSchema.safeParse({ formType: "newsletter", lang: "en", email: "bad-email" }).success).toBe(false);
+    expect(formSubmissionSchema.safeParse({ formType: "newsletter", lang: "en", email: "member@iapa.org" }).success).toBe(true);
+    expect(formSubmissionSchema.safeParse({ formType: "contact", lang: "en", fullName: "Amina", email: "a@iapa.org", message: "short" }).success).toBe(false);
+    expect(formSubmissionSchema.safeParse({ formType: "contact", lang: "en", fullName: "Amina", email: "a@iapa.org", message: "Hello IAPA Secretariat, I would like to discuss training." }).success).toBe(true);
   });
 });

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Users } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { childLabel } from "@/lib/iapa-nav";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
@@ -114,9 +114,9 @@ function WhoWeAre() {
       </section>
 
       <section id="iapa-team" className="bg-card py-16 md:py-24">
-        <div className="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <SectionHead title={childLabel("who-we-are", "iapa-team", lang)} lead={a.teamText} />
-          <div className="curve-card border-2 border-dashed border-savanna p-8"><Users className="h-10 w-10 text-primary" aria-hidden /><p className="mt-4 text-lg font-extrabold">{a.soon}</p></div>
+        <div className="container-page">
+          <SectionHead title={childLabel("who-we-are", "iapa-team", lang)} lead={childContent("who-we-are", "iapa-team", lang).lead} />
+          <ProfileGrid lang={lang} items={childContent("who-we-are", "iapa-team", lang).samples ?? []} />
         </div>
       </section>
 

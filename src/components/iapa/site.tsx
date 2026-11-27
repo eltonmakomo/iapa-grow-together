@@ -15,6 +15,7 @@ import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { assetUrl } from "@/lib/asset-url";
 import { SiteSearch } from "@/components/iapa/site-search";
 import { SEARCH_UI } from "@/lib/iapa-content";
+import { FormDialog } from "@/components/iapa/forms";
 
 export const asLang = (v: string): Lang => (v === "fr" ? "fr" : "en");
 
@@ -229,7 +230,16 @@ export function SiteFooter({ lang }: { lang: Lang }) {
           </Link>
           <p className="mt-4 max-w-xs text-sm text-forest-foreground/80">{t.footer.rights}</p>
           <p className="mt-2 text-sm font-semibold text-sun">{t.footer.motto}</p>
-          <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="mt-6 inline-flex rounded-full bg-sun px-5 py-2.5 text-sm font-extrabold text-accent-foreground hover:brightness-105">{p.subscribe.cta}</a>
+          <div className="mt-6">
+            <FormDialog
+              lang={lang}
+              formType="newsletter"
+              triggerLabel={p.subscribe.cta}
+              title={p.subscribe.title}
+              description={p.subscribe.text}
+              triggerClassName="inline-flex rounded-full bg-sun px-5 py-2.5 text-sm font-extrabold text-accent-foreground hover:brightness-105"
+            />
+          </div>
           <div className="mt-7">
             <p className="text-sm font-extrabold uppercase tracking-wider text-sun">{p.arch.social}</p>
             <ul className="mt-3 flex flex-wrap gap-2">

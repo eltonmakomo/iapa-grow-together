@@ -129,6 +129,7 @@ const en = {
     title: "IAPA Pulse newsletter",
     lead: "News from the network: milestones, partnerships and members in the field.",
     issues: [
+      { key: "1", label: "Issue 1 · January 2026", title: "Foundations of a pan-African network", text: "Inaugural edition covering IAPA's founding milestones from Johannesburg to Aburi, five regional focal-point networks and the 2026–2030 Strategic Plan." },
       { key: "2", label: "Issue 2 · June 2026", title: "A strategic turning point", text: "Strategic workshop in Kenya, ACBF consultancy missions, the AAA partnership and new member opportunities." },
     ],
     download: "Download PDF",
@@ -276,6 +277,7 @@ const fr: Content = {
     title: "Lettre d'information IAPA Pulse",
     lead: "Les nouvelles du réseau : étapes clés, partenariats et membres sur le terrain.",
     issues: [
+      { key: "1", label: "Numéro 1 · Janvier 2026", title: "Les fondations d'un réseau panafricain", text: "Édition inaugurale retraçant les étapes fondatrices de Johannesburg à Aburi, les cinq réseaux régionaux et le Plan stratégique 2026–2030." },
       { key: "2", label: "Numéro 2 · Juin 2026", title: "Un tournant stratégique", text: "Atelier stratégique au Kenya, missions des consultants de l'ACBF, partenariat avec l'AAA et nouvelles opportunités pour les membres." },
     ],
     download: "Télécharger le PDF",

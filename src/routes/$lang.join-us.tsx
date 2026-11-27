@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Check, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { CONTACT, CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
+import { InquiryForm } from "@/components/iapa/forms";
 import { PageHero, Photo, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 
 export const Route = createFileRoute("/$lang/join-us")({
@@ -13,18 +14,19 @@ function JoinUs() {
   const lang = asLang(Route.useParams().lang);
   const j = CONTENT[lang].join;
   const p = PAGES[lang].join;
-  const mail = (s: string) => `mailto:${CONTACT.email}?subject=${encodeURIComponent(s)}`;
   return (
     <>
       <PageHero eyebrow={j.eyebrow} title={j.title} lead={p.lead} img="join" />
       <section className="py-16 md:py-24">
         <div className="container-page grid gap-6 lg:grid-cols-2">
-          {([["membership", j.member, "bg-primary text-primary-foreground", "bg-sun text-accent-foreground"], ["partnership", j.partner, "bg-card", "bg-primary text-primary-foreground"]] as const).map(([id, c, cls, btn]) => (
+          {([["membership", j.member, "bg-primary text-primary-foreground", true], ["partnership", j.partner, "bg-card", false]] as const).map(([id, c, cls, inverted]) => (
             <div key={id} id={id} className={`curve-card scroll-mt-24 p-7 md:p-9 ${cls}`}>
               <h2 className="text-3xl font-extrabold">{c.title}</h2>
               <p className="mt-3 text-lg leading-relaxed opacity-90">{c.text}</p>
               <ul className="mt-5 space-y-2">{c.perks.map((x) => <li key={x} className="flex gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0" aria-hidden />{x}</li>)}</ul>
-              <a href={mail(c.subject)} className={`mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-extrabold hover:brightness-105 ${btn}`}><Mail className="h-5 w-5" aria-hidden />{c.cta}</a>
+              <div className="mt-7 border-t border-current/15 pt-6">
+                <InquiryForm lang={lang} formType={id} defaultSubject={c.subject} inverted={inverted} />
+              </div>
             </div>
           ))}
         </div>
@@ -62,6 +64,9 @@ function JoinUs() {
           </div>
           <div id="contact" className="scroll-mt-24">
             <SectionHead title={j.contactTitle} />
+            <div className="curve-card mt-6 bg-card p-7">
+              <InquiryForm lang={lang} formType="contact" />
+            </div>
             <dl className="curve-card mt-6 grid gap-6 bg-card p-7 sm:grid-cols-2">
               <div><dt className="flex items-center gap-2 text-sm font-bold text-primary"><Mail className="h-4 w-4" aria-hidden />{j.email}</dt><dd className="mt-1 text-sm [overflow-wrap:anywhere]"><a className="font-semibold underline underline-offset-4" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
               <div><dt className="flex items-center gap-2 text-sm font-bold text-primary"><Phone className="h-4 w-4" aria-hidden />{j.phone}</dt><dd className="mt-1 space-y-1">{CONTACT.phones.map((ph, i) => <a key={ph} className="block font-semibold underline underline-offset-4" href={`tel:${CONTACT.phoneHrefs[i]}`}>{ph}</a>)}</dd></div>

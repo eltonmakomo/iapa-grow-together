@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BookOpen, Briefcase, Calendar, Check, Download, FileText, GraduationCap, Mail, MapPin, Quote, X } from "lucide-react";
-import { CONTACT, type Lang } from "@/lib/iapa-content";
+import type { Lang } from "@/lib/iapa-content";
 import type { SampleItem, SampleKind } from "@/lib/iapa-child-content";
 import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
+import { FormDialog } from "@/components/iapa/forms";
 import { PodcastPlayer, VideoShowcase } from "@/components/iapa/media-player";
 import { ProfileGrid } from "@/components/iapa/profile-grid";
 
@@ -157,9 +158,19 @@ function OpportunityGrid({ lang, items, isScholarship }: { lang: Lang; items: Sa
               {item.highlights.map((h) => <li key={h} className="flex items-start gap-2"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden /> {h}</li>)}
             </ul>
           )}
-          <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(item.title)}`} className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-4 py-2 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground">
-            <Mail className="h-4 w-4" aria-hidden /> {ui.enquire}
-          </a>
+          <div className="mt-5">
+            <FormDialog
+              lang={lang}
+              formType="opportunity"
+              triggerLabel={ui.enquire}
+              title={item.title}
+              description={item.text}
+              defaultSubject={item.title}
+              metadata={{ opportunity: item.title, category: isScholarship ? "scholarship" : "vacancy" }}
+              icon={<Mail className="h-4 w-4" aria-hidden />}
+              triggerClassName="inline-flex w-fit items-center gap-2 rounded-full border-2 border-primary px-4 py-2 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+            />
+          </div>
         </li>
       ))}
     </ul>

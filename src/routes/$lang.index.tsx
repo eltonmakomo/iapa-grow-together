@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
-import { CONTACT, CONTENT } from "@/lib/iapa-content";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { CONTENT } from "@/lib/iapa-content";
 import { PAGES } from "@/lib/iapa-pages";
-import { EmblemBackdrop, Gallery, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
+import { STORIES, STORY_UI } from "@/lib/iapa-stories";
+import { NewsletterInlineForm } from "@/components/iapa/forms";
+import { EmblemBackdrop, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
-import { GALLERY_TITLE } from "@/lib/iapa-photos";
-import { bannerSpec } from "@/components/iapa/media";
+import { bannerSpec, IMG, PHOTO_POSITION } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -25,6 +27,9 @@ function Home() {
   const lang = asLang(Route.useParams().lang);
   const t = CONTENT[lang];
   const p = PAGES[lang];
+  const sui = STORY_UI[lang];
+  const partnerOffers = WHAT_WE_DO_DETAILS.filter((d) => d.audience === "partner");
+  const memberOffers = WHAT_WE_DO_DETAILS.filter((d) => d.audience === "member");
   return (
     <>
       <section className="page-banner home-banner relative isolate w-full overflow-hidden bg-banner-night text-forest-foreground">
@@ -77,9 +82,13 @@ function Home() {
             <div>
               <h3 className="eyebrow">{t.work.partnersLabel}</h3>
               <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                {t.work.partnerServices.map(([h, d]) => (
-                  <li key={h} className="curve-card relative overflow-hidden border bg-background p-6">
-                    <h4 className="relative text-lg font-extrabold">{h}</h4><p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+                {partnerOffers.map((item) => (
+                  <li key={item.slug}>
+                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="curve-card group relative flex h-full flex-col overflow-hidden border bg-background p-6 transition hover:-translate-y-0.5">
+                      <h4 className="relative text-lg font-extrabold group-hover:text-primary">{item[lang].title}</h4>
+                      <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -87,7 +96,15 @@ function Home() {
             <div>
               <h3 className="eyebrow">{t.work.membersLabel}</h3>
               <ul className="mt-4 grid gap-4">
-                {t.work.memberServices.map(([h, d]) => <li key={h} className="rounded-2xl bg-secondary p-6"><h4 className="text-lg font-extrabold">{h}</h4><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p></li>)}
+                {memberOffers.map((item) => (
+                  <li key={item.slug}>
+                    <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="group block rounded-2xl bg-secondary p-6 transition hover:-translate-y-0.5 hover:shadow-soft">
+                      <h4 className="text-lg font-extrabold group-hover:text-primary">{item[lang].title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item[lang].lead}</p>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-primary">{p.readMore} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <Link to="/$lang/join-us" params={{ lang }} className="group mt-5 inline-flex items-center gap-1.5 font-bold text-primary underline-offset-4 hover:underline">{p.nav["join-us"]} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></Link>
             </div>
@@ -102,9 +119,29 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section id="highlight-stories" className="py-16 md:py-24">
         <div className="container-page">
-          <Gallery lang={lang} title={GALLERY_TITLE[lang]} keys={["ghana", "robusta", "mauritania", "civ", "spirulina", "mali"]} />
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHead eyebrow={sui.eyebrow} title={sui.sectionTitle} lead={sui.sectionLead} />
+            <Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "stories" }} className="group inline-flex items-center gap-1.5 font-bold text-primary hover:underline">
+              {sui.allStories} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
+            </Link>
+          </div>
+          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {STORIES.map((story) => (
+              <li key={story.id}>
+                <Link to="/$lang/stories/$storyId" params={{ lang, storyId: story.id }} className="curve-card group flex h-full flex-col overflow-hidden bg-card transition hover:-translate-y-1">
+                  <img src={IMG[story.img]} alt={story[lang].title} loading="lazy" style={{ objectPosition: PHOTO_POSITION[story.img] }} className="aspect-[16/10] w-full object-cover" />
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="eyebrow text-xs">{story[lang].place}</p>
+                    <h3 className="mt-2 text-xl font-extrabold leading-snug group-hover:text-primary">{story[lang].title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{story[lang].lead}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">{sui.readStory} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -113,9 +150,7 @@ function Home() {
           <div className="curve-card relative flex flex-col gap-6 overflow-hidden bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:justify-between md:p-12">
             <EmblemBackdrop className="absolute -bottom-14 -right-6 h-64 w-64 text-primary-foreground opacity-[0.1]" />
             <div className="relative"><h2 className="text-3xl font-extrabold">{p.subscribe.title}</h2><p className="mt-2 opacity-90">{p.subscribe.text}</p></div>
-            <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(p.subscribe.subject)}`} className="relative inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-sun px-7 py-3.5 font-extrabold text-accent-foreground hover:brightness-105">
-              <Mail className="h-5 w-5" aria-hidden /> {p.subscribe.cta}
-            </a>
+            <div className="relative w-full md:w-auto"><NewsletterInlineForm lang={lang} dark /></div>
           </div>
         </div>
       </section>
