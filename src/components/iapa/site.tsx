@@ -385,6 +385,30 @@ export function ResultsBlock({ lang }: { lang: Lang }) {
   );
 }
 
+/** Four headline figures, each labelled with the group it belongs to, plus a link to the full breakdown. */
+export function ResultsSummary({ lang }: { lang: Lang }) {
+  const w = CONTENT[lang].work;
+  const tags = { own: w.own.tag, shared: w.shared.tag };
+  return (
+    <div>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {w.headlineStats.map(([n, d, tone]) => (
+          <li key={d} className="curve-card flex flex-col justify-between border bg-background p-6">
+            <div>
+              <p className="text-4xl font-extrabold tracking-tight text-primary md:text-5xl"><CountUp value={n} /></p>
+              <p className="mt-2 text-sm leading-snug text-muted-foreground">{d}</p>
+            </div>
+            <span className="mt-5 inline-block w-fit rounded-full bg-secondary px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-secondary-foreground">{tags[tone]}</span>
+          </li>
+        ))}
+      </ul>
+      <Link to="/$lang/$section/$child" params={{ lang, section: "our-work", child: "iapa-in-numbers" }} className="group mt-6 inline-flex items-center gap-1.5 font-bold text-primary underline-offset-4 hover:underline">
+        {w.viewAll} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden />
+      </Link>
+    </div>
+  );
+}
+
 
 export function Photo({ k, lang, className = "", ratio = "aspect-[4/3]" }: { k: ImgKey; lang: Lang; className?: string; ratio?: string }) {
   const entry = CAPTIONS[k];

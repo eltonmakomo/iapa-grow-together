@@ -18,6 +18,16 @@ describe("IAPA content", () => {
       expect(CONTENT.fr.work[k].length).toBe(CONTENT.en.work[k].length);
     }
   });
+  it("shows exactly the four headline figures on the results summary, in both languages", () => {
+    const en = CONTENT.en.work.headlineStats;
+    const fr = CONTENT.fr.work.headlineStats;
+    expect(en.map(([n]) => n)).toEqual(["20+", "1.5M+", "500+", "75+"]);
+    expect(fr.map(([n]) => n)).toEqual(["20+", "1,5 M+", "500+", "75+"]);
+    expect(en.map(([, , tone]) => tone)).toEqual(["own", "shared", "shared", "own"]);
+    expect(fr.map(([, , tone]) => tone)).toEqual(["own", "shared", "shared", "own"]);
+    expect(CONTENT.en.work.viewAll).toBe("View all figures");
+    expect(CONTENT.fr.work.viewAll).toBe("Voir tous les chiffres");
+  });
   it("labels 2030 figures as future targets", () => {
     expect(CONTENT.en.work.targets.tag).toMatch(/not yet achieved/i);
     expect(CONTENT.en.work.targetStats.map(([n]) => n)).toEqual(["200", "860", "70", "370", "40", "1M+"]);

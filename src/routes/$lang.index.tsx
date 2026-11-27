@@ -5,7 +5,7 @@ import { PAGES } from "@/lib/iapa-pages";
 import { WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
 import { STORIES, STORY_UI } from "@/lib/iapa-stories";
 import { NewsletterInlineForm } from "@/components/iapa/forms";
-import { EmblemBackdrop, Photo, ResultsBlock, SectionHead, asLang } from "@/components/iapa/site";
+import { EmblemBackdrop, Photo, ResultsSummary, SectionHead, asLang } from "@/components/iapa/site";
 import { PageBreadcrumbs } from "@/components/iapa/breadcrumbs";
 import { bannerSpec, IMG, PHOTO_POSITION } from "@/components/iapa/media";
 
@@ -115,7 +115,7 @@ function Home() {
       <section className="bg-card py-16 md:py-24">
         <div className="container-page">
           <SectionHead title={p.numbersTitle} lead={t.work.resultsNote} />
-          <div className="mt-8"><ResultsBlock lang={lang} /></div>
+          <div className="mt-8"><ResultsSummary lang={lang} /></div>
         </div>
       </section>
 

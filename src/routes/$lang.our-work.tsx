@@ -8,7 +8,7 @@ import { STORIES, STORY_UI } from "@/lib/iapa-stories";
 import { AfricaImpactMap } from "@/components/iapa/africa-map";
 import { FormDialog } from "@/components/iapa/forms";
 import { IMG, PHOTO_POSITION } from "@/components/iapa/media";
-import { PageHero, ResultsBlock, SectionHead, asLang, pageHead } from "@/components/iapa/site";
+import { PageHero, ResultsSummary, SectionHead, asLang, pageHead } from "@/components/iapa/site";
 
 export const Route = createFileRoute("/$lang/our-work")({
   head: ({ params }) => pageHead(params.lang, "our-work"),
@@ -35,7 +35,7 @@ function OurWork() {
       <section id="iapa-in-numbers" className="bg-card py-16 md:py-24">
         <div className="container-page">
           <SectionHead eyebrow={w.resultsTitle} title={childLabel("our-work", "iapa-in-numbers", lang)} lead={w.resultsNote} />
-          <div className="mt-8"><ResultsBlock lang={lang} /></div>
+          <div className="mt-8"><ResultsSummary lang={lang} /></div>
         </div>
       </section>
 

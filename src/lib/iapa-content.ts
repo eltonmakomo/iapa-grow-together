@@ -93,6 +93,13 @@ const en = {
     sharedStats: [["1.5M+", "smallholder farmers trained"], ["500+", "cooperatives and producer organisations supported"], ["85%", "beneficiary training satisfaction"], ["10+ yrs", "of ABF-GIZ experience behind our approaches"]],
     targets: { label: "Our 2030 targets", tag: "Future targets — not yet achieved" },
     targetStats: [["200", "partners using IAPA solutions"], ["860", "new trainers trained"], ["70", "inclusive agribusiness institutions strengthened"], ["370", "new members"], ["40", "countries reached"], ["1M+", "farmers and entrepreneurs trained"]],
+    headlineStats: [
+      ["20+", "African countries", "own"],
+      ["1.5M+", "smallholder farmers trained", "shared"],
+      ["500+", "cooperatives and producer organisations", "shared"],
+      ["75+", "Master Trainers", "own"],
+    ] as [string, string, "own" | "shared"][],
+    viewAll: "View all figures",
     partnersTitle: "Partners and funders",
     partners: [
       ["ABF-GIZ", "Agri-Business Facility for Africa: funding, technical assistance and training"],
@@ -241,6 +248,13 @@ const fr: Content = {
     sharedStats: [["1,5 M+", "petits producteurs formés"], ["500+", "coopératives et organisations de producteurs accompagnées"], ["85 %", "de satisfaction des bénéficiaires"], ["10+ ans", "d'expérience ABF-GIZ derrière nos approches"]],
     targets: { label: "Nos objectifs 2030", tag: "Objectifs futurs — pas encore atteints" },
     targetStats: [["200", "partenaires utilisant les solutions IAPA"], ["860", "nouveaux formateurs formés"], ["70", "institutions inclusives renforcées"], ["370", "nouveaux membres"], ["40", "pays atteints"], ["1 M+", "producteurs et entrepreneurs formés"]],
+    headlineStats: [
+      ["20+", "pays africains", "own"],
+      ["1,5 M+", "petits producteurs formés", "shared"],
+      ["500+", "coopératives et organisations de producteurs", "shared"],
+      ["75+", "Maîtres Formateurs", "own"],
+    ] as [string, string, "own" | "shared"][],
+    viewAll: "Voir tous les chiffres",
     partnersTitle: "Partenaires et bailleurs",
     partners: [
       ["ABF-GIZ", "Agri-Business Facility for Africa : financement, assistance technique et formation"],
