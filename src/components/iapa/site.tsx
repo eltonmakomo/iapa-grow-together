@@ -55,7 +55,7 @@ function LangSwitch({ lang }: { lang: Lang }) {
   );
 }
 
-const navCls = "header-nav-link inline-flex items-center gap-1 whitespace-nowrap px-3 py-2 text-[0.95rem] font-medium transition-colors hover:text-primary";
+const navCls = "header-nav-link inline-flex items-center gap-1 whitespace-nowrap px-2.5 py-2 text-[0.95rem] font-medium transition-colors hover:text-primary";
 
 function MegaPanel({ lang, slug, onNavigate }: { lang: Lang; slug: PageSlug; onNavigate: () => void }) {
   const n = navPage(slug);
@@ -133,7 +133,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
         <Link to="/$lang" params={{ lang }} className="header-brand min-w-0 shrink" aria-label={`IAPA — ${p.home}`}>
           <img src={assetUrl((lang === "en" ? logoEn : logoFr).url)} alt="IAPA" width={180} height={50} className="header-logo w-auto" />
         </Link>
-        <nav aria-label="Primary" className="header-nav hidden xl:block">
+        <nav aria-label="Primary" className="header-nav ml-auto hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {PAGE_SLUGS.map((s) => {
               const hasMenu = navPage(s).groups.length > 0;
@@ -141,18 +141,21 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 <li key={s} onMouseEnter={() => (hasMenu ? show(s) : setMega(null))} className="flex items-center">
                   <Link to={pathFor(s)} params={{ lang }} className={`${navCls} ${mega === s ? "text-primary" : ""}`} activeProps={{ className: "text-primary font-bold", "aria-current": "page" }} onFocus={() => (hasMenu ? show(s) : setMega(null))}>{p.nav[s]}</Link>
                   {hasMenu && (
-                    <Button variant="ghost" size="icon" type="button" aria-expanded={mega === s} aria-controls={`mega-${s}`} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setMega(mega === s ? null : s)} className="header-icon -ml-2 h-8 w-6 rounded-full text-muted-foreground hover:text-primary">
+                    <Button variant="ghost" size="icon" type="button" aria-expanded={mega === s} aria-controls={`mega-${s}`} aria-label={`${p.nav[s]} — ${t.menu}`} onClick={() => setMega(mega === s ? null : s)} className="header-icon -ml-1.5 h-8 w-6 rounded-full text-foreground/80 hover:text-primary">
                       <Plus className={`h-4 w-4 transition-transform ${mega === s ? "rotate-45" : ""}`} aria-hidden />
                     </Button>
                   )}
                 </li>
               );
             })}
+            <li onMouseEnter={() => setMega(null)} className="flex items-center">
+              <Link to="/$lang/join-us" params={{ lang }} hash="contact" className={navCls} onFocus={() => setMega(null)}>{p.footer.contact}</Link>
+            </li>
           </ul>
         </nav>
-        <div className="header-actions ml-auto flex shrink-0 items-center gap-3">
-          <Button size="icon" className="header-search shrink-0 rounded-full" title={SEARCH_UI[lang].title} aria-label={SEARCH_UI[lang].title} onClick={() => { setOpen(false); setMega(null); setSearchOpen(true); }}><Search aria-hidden /></Button>
+        <div className="header-actions ml-auto flex shrink-0 items-center gap-4 xl:ml-3">
           <LangSwitch lang={lang} />
+          <Button size="icon" className="header-search shrink-0 rounded-full" title={SEARCH_UI[lang].title} aria-label={SEARCH_UI[lang].title} onClick={() => { setOpen(false); setMega(null); setSearchOpen(true); }}><Search aria-hidden /></Button>
           <Button variant="ghost" size="icon" type="button" className="header-icon header-toggle h-10 w-10 rounded-full"
             aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? t.close : t.menu} onClick={() => setOpen((o) => !o)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -196,6 +199,9 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 </li>
               );
             })}
+            <li className="border-t border-border/50">
+              <Link to="/$lang/join-us" params={{ lang }} hash="contact" onClick={() => setOpen(false)} className="block rounded-xl px-3 py-3 text-lg font-semibold hover:text-primary">{p.footer.contact}</Link>
+            </li>
           </ul>
         </nav>
       )}

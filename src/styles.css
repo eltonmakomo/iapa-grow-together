@@ -114,8 +114,8 @@
 }
 
 /* Header: the bilingual nav must stay on one line in French too. */
-.site-header { padding: 0.75rem 0.75rem 0; }
-.site-header .header-capsule { max-width: 80rem; height: 5rem; padding-left: 1rem; padding-right: 0.5rem; transition: height 250ms ease, background-color 250ms ease; }
+.site-header { padding: 0.75rem 1.25rem 0; }
+.site-header .header-capsule { max-width: 84rem; height: 5rem; padding-inline: 1.25rem; transition: height 250ms ease, background-color 250ms ease; }
 .header-logo { height: 2.75rem; max-width: 100%; object-fit: contain; transition: height 250ms ease; }
 .site-header.is-compact .header-actions { gap: 32px; }
 /* Scrolled: only the hamburger remains, so drop the auto margin that pushed the group right. */
@@ -147,12 +147,12 @@
 }
 /* Search row inside the slide-out menu. */
 .mobile-search { height: 3.25rem; width: 100%; justify-content: flex-start; gap: 0.75rem; border-radius: 9999px; padding-inline: 1.25rem; font-weight: 700; }
-@media (min-width: 1024px) { .site-header { padding: 1rem 1.5rem 0; } .site-header .header-capsule { padding-left: 1.5rem; } }
+@media (min-width: 1024px) { .site-header { padding: 1rem 1.5rem 0; } .site-header .header-capsule { padding-inline: 1.5rem; } }
 #main > .page-banner .banner-content { padding-top: 8rem; }
 #main > nav:first-child { padding-top: 7rem; }
 header nav a, header nav button { white-space: nowrap; }
 @media (min-width: 1280px) and (max-width: 1439px) {
-  header nav a { font-size: 0.86rem; padding-inline: 0.55rem; }
+  header nav a { font-size: 0.84rem; padding-inline: 0.45rem; }
   header .btn-hover { padding-inline: 0.9rem; font-size: 0.82rem; }
 }
 @utility eyebrow {
