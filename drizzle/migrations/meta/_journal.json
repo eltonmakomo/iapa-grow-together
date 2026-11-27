@@ -8,6 +8,13 @@
       "when": 1795774544480,
       "tag": "0000_create_form_submissions",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795781696215,
+      "tag": "0001_restrict_form_submissions_direct_insert",
+      "breakpoints": true
     }
   ]
 }
