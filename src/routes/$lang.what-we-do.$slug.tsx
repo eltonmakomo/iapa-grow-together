@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Check } from "lucide-react";
-import { getWhatWeDo, WHAT_WE_DO_DETAILS } from "@/lib/iapa-details";
+import { getWhatWeDo } from "@/lib/iapa-details";
 import { PageHero, Photo, SectionHead, asLang } from "@/components/iapa/site";
 import { FormDialog } from "@/components/iapa/forms";
 import { bannerSpec } from "@/components/iapa/media";
@@ -35,9 +35,8 @@ function WhatWeDoDetail() {
   const copy = entry[lang];
   const isPartner = entry.audience !== "member";
   const ui = lang === "fr"
-    ? { back: "Retour à l'accueil", highlights: "Points clés", cta: isPartner ? "Discuter d'un partenariat" : "Demander l'adhésion", more: "Autres services" }
-    : { back: "Back to Home", highlights: "Key highlights", cta: isPartner ? "Discuss a partnership" : "Enquire about membership", more: "More of what we do" };
-  const others = WHAT_WE_DO_DETAILS.filter((item) => item.slug !== slug).slice(0, 3);
+    ? { back: "Retour à l'accueil", highlights: "Points clés", cta: isPartner ? "Discuter d'un partenariat" : "Demander l'adhésion" }
+    : { back: "Back to Home", highlights: "Key highlights", cta: isPartner ? "Discuss a partnership" : "Enquire about membership" };
 
   return (
     <>
@@ -79,20 +78,6 @@ function WhatWeDoDetail() {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="mt-16 border-t pt-12">
-            <h2 className="text-2xl font-extrabold">{ui.more}</h2>
-            <ul className="mt-6 grid gap-4 md:grid-cols-3">
-              {others.map((item) => (
-                <li key={item.slug}>
-                  <Link to="/$lang/what-we-do/$slug" params={{ lang, slug: item.slug }} className="curve-card block h-full bg-card p-6 transition hover:-translate-y-0.5">
-                    <p className="eyebrow text-xs">{item[lang].eyebrow}</p>
-                    <h3 className="mt-2 text-lg font-extrabold">{item[lang].title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{item[lang].lead}</p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

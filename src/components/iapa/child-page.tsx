@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Download, FileText, MapPin, Newspaper } from "lucide-react";
 import { CONTACT, CONTENT, type Lang } from "@/lib/iapa-content";
-import { childLabel, navPage } from "@/lib/iapa-nav";
+import { childLabel } from "@/lib/iapa-nav";
 import { PAGES, type PageSlug } from "@/lib/iapa-pages";
 import { CHILD_CONTENT, CHILD_UI, childContent, childHero, type ChildCopy } from "@/lib/iapa-child-content";
 import { PRESS_DETAILS } from "@/lib/iapa-details";
@@ -228,14 +228,11 @@ function ChildBody({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: s
 
 export function ChildPage({ lang, slug, child }: { lang: Lang; slug: PageSlug; child: string }) {
   const p = PAGES[lang];
-  const n = navPage(slug);
   const copy = childContent(slug, child, lang);
   const hasContentAnchor = slug === "media";
   const contentId = `media-${child}`;
-  const siblings = n.groups.flatMap((group) => group.items).filter((item) => item.id !== child);
   return <>
     <PageHero eyebrow={p.nav[slug]} title={childLabel(slug, child, lang)} lead={copy.lead} img={childHero(slug, child)} />
     <section id={hasContentAnchor ? contentId : undefined} className="py-16 md:py-24"><div className="container-page"><ChildBody lang={lang} slug={slug} child={child} /></div></section>
-    <section className="bg-secondary py-14 md:py-20"><div className="container-page"><SectionHead title={p.nav[slug]} /><ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{siblings.map((item) => <li key={item.id}><Link to="/$lang/$section/$child" params={{ lang, section: slug, child: item.id }} className="group flex h-full items-center justify-between gap-4 rounded-2xl bg-card p-5 font-bold transition hover:-translate-y-1 hover:shadow-soft">{item.label[lang]}<ArrowRight className="h-5 w-5 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden /></Link></li>)}</ul></div></section>
   </>;
 }

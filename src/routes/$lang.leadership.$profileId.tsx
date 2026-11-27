@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Check, MapPin } from "lucide-react";
-import { getLeadershipProfile, LEADERSHIP_PROFILES } from "@/lib/iapa-details";
+import { getLeadershipProfile } from "@/lib/iapa-details";
 import { PageHero, SectionHead, asLang } from "@/components/iapa/site";
 import { bannerSpec } from "@/components/iapa/media";
 
@@ -33,9 +33,8 @@ function LeadershipDetailPage() {
   const profile = getLeadershipProfile(profileId)!;
   const copy = profile[lang];
   const ui = lang === "fr"
-    ? { back: "Retour à la direction", focus: "Domaines de responsabilité", placeholder: "Profil fictif · Portrait IA — en attente des biographies officielles des responsables de l'IAPA.", others: "Autres responsables" }
-    : { back: "Back to Leadership", focus: "Areas of responsibility", placeholder: "Placeholder profile · AI portrait — pending official IAPA officeholder biographies.", others: "Other leadership profiles" };
-  const others = LEADERSHIP_PROFILES.filter((p) => p.slug !== profileId);
+    ? { back: "Retour à la direction", focus: "Domaines de responsabilité", placeholder: "Profil fictif · Portrait IA — en attente des biographies officielles des responsables de l'IAPA." }
+    : { back: "Back to Leadership", focus: "Areas of responsibility", placeholder: "Placeholder profile · AI portrait — pending official IAPA officeholder biographies." };
 
   return (
     <>
@@ -73,23 +72,6 @@ function LeadershipDetailPage() {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="mt-16 border-t pt-12">
-            <h2 className="text-2xl font-extrabold">{ui.others}</h2>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-              {others.map((other) => (
-                <li key={other.slug}>
-                  <Link to="/$lang/leadership/$profileId" params={{ lang, profileId: other.slug }} className="curve-card flex items-center gap-4 bg-card p-4 transition hover:-translate-y-0.5">
-                    <img src={other.portraitUrl} alt={other[lang].name} loading="lazy" className="h-16 w-16 shrink-0 rounded-lg object-cover object-top" />
-                    <div className="min-w-0">
-                      <p className="text-xs font-bold uppercase text-primary">{other[lang].role}</p>
-                      <p className="truncate font-extrabold">{other[lang].name}</p>
-                      <p className="text-xs text-muted-foreground">{other.location}</p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

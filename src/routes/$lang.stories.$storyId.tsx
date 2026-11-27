@@ -1,8 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Users, Handshake, BookOpen } from "lucide-react";
-import { getStory, STORIES, STORY_UI } from "@/lib/iapa-stories";
+import { getStory, STORY_UI } from "@/lib/iapa-stories";
 import { PageHero, Photo, SectionHead, asLang } from "@/components/iapa/site";
-import { bannerSpec, IMG, PHOTO_POSITION } from "@/components/iapa/media";
+import { bannerSpec } from "@/components/iapa/media";
 
 export const Route = createFileRoute("/$lang/stories/$storyId")({
   beforeLoad: ({ params }) => {
@@ -33,7 +33,6 @@ function StoryDetailPage() {
   const story = getStory(storyId)!;
   const copy = story[lang];
   const ui = STORY_UI[lang];
-  const more = STORIES.filter((item) => item.id !== story.id).slice(0, 3);
 
   return (
     <>
@@ -84,24 +83,6 @@ function StoryDetailPage() {
                 </Link>
               </div>
             </div>
-          </div>
-          <div className="mt-16 border-t pt-12">
-            <h2 className="text-2xl font-extrabold">{ui.moreStories}</h2>
-            <ul className="mt-6 grid gap-6 md:grid-cols-3">
-              {more.map((item) => (
-                <li key={item.id}>
-                  <Link to="/$lang/stories/$storyId" params={{ lang, storyId: item.id }} className="curve-card group flex h-full flex-col overflow-hidden bg-card transition hover:-translate-y-1">
-                    <img src={IMG[item.img]} alt={item[lang].title} loading="lazy" style={{ objectPosition: PHOTO_POSITION[item.img] }} className="aspect-[16/10] w-full object-cover" />
-                    <div className="flex flex-1 flex-col p-5">
-                      <p className="eyebrow text-xs">{item[lang].place}</p>
-                      <h3 className="mt-1.5 text-lg font-extrabold leading-snug">{item[lang].title}</h3>
-                      <p className="mt-2 flex-1 text-sm text-muted-foreground">{item[lang].lead}</p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">{ui.readStory} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden /></span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
